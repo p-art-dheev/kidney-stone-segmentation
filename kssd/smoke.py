@@ -40,9 +40,11 @@ def main():
         started=time.perf_counter();values=model.train_on_batch(x,y,return_dict=True);seconds=time.perf_counter()-started
         if not all(np.isfinite(v) for v in values.values()):raise RuntimeError('Non-finite training smoke result')
         prediction=model(x,training=False).numpy()
+        if prediction.shape!=y.shape or not np.all(np.isfinite(prediction)) or np.any((prediction<0)|(prediction>1)):
+            raise RuntimeError('Invalid prediction shape or probabilities in smoke check')
         path=output/f'{architecture}.weights.h5';model.save_weights(path)
         model.set_weights([np.zeros_like(w) for w in model.get_weights()]);model.load_weights(path)
-        np.testing.assert_allclose(model(x,training=False),prediction,atol=1e-7)
+        np.testing.assert_allclose(model(x,training=False),prediction,atol=1e-7,equal_nan=False)
         result={'architecture':architecture,'parameters':model.count_params(),'training_batch_seconds':seconds,
                 'input_shape':list(x.shape),'sample_ids':ids,'seed':43,'loss':float(values['loss']),
                 'loss_function':args.loss,'loss_parameters':loss.get_config() if args.loss=='focal_tversky' else {'smooth':1e-6,'reduction':'per image then Keras batch mean'},

@@ -260,3 +260,19 @@ the durable ignored workspace directory `tmp/gpu-wheels/`, with hash verificatio
 Native runtime currently has pip/build tools only; full CUDA install, GPU operations,
 all-model GPU smoke and representative GPU training remain **unverified**. This
 storage correction does not imply successful GPU training or completed Phase 5.
+
+## Consolidated tests and finite-prediction smoke gate
+
+`python -m pytest -q --basetemp tmp/pytest-complete`: **59 passed** in
+50.37 s on the native CPU environment; 936 upstream deprecation warnings.
+This integrates the previously verified metric, data, split, training,
+augmentation, loss, aggregation, matched-comparison and figure tests.
+
+The smoke CLI now rejects non-finite/out-of-range probabilities and wrong output
+shapes before saving a checkpoint, and explicitly disables NaN equality during
+restoration checks. Actual full-resolution CPU Focal Tversky smoke with two
+augmented images passed again (`--output runs/cpu-focal-smoke-finite`), with an
+8.54 s initial compiled batch. This is functionality evidence, not CV performance.
+The numerical training implementation and experiment protocols are unchanged.
+The `/var/tmp` WSL runtime survived another invocation; RTX 4070 GPU visibility
+was confirmed by nvidia-smi, but TensorFlow GPU execution remains pending.

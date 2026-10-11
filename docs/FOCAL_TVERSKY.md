@@ -7,9 +7,8 @@ This is a known loss, not a novel method. No improvement is claimed.
 Definition verified against Abraham and Khan, [arXiv:1810.07842](https://arxiv.org/pdf/1810.07842),
 page 2, and the [authors' code](https://github.com/nabsabraham/focal-tversky-unet/blob/master/losses.py).
 The printed equation 4 uses exponent `1/gamma`, with gamma `4/3`; the code names
-the exponent itself gamma `0.75`. The paper's symbol placement and surrounding
-discussion are confusing about FN/FP weighting; the released code explicitly
-weights FN by 0.7 and FP by 0.3. We use these explicit count names.
+the exponent itself gamma `0.75`. The paper and released code weight FN by 0.7
+and FP by 0.3. The implementation names the FN and FP weights explicitly.
 
 For each image, using continuous sigmoid probabilities and binary ground truth:
 

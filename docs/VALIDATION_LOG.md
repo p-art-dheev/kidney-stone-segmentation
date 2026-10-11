@@ -96,3 +96,20 @@ Ten-epoch/batch-2 and 150-epoch/batch-16 configs prepared for all architectures.
 full CV budget is completed at this gate. Native CPU full training would be costly
 (a single Modified U-Net epoch already takes six minutes); GPU dependency installation
 is still underway. GPU usability and full-run duration must be verified in Phase 5.
+
+Augmentation commit `5d71929` pushed and remote hash confirmed.
+
+## Phase 5a - verified evaluation aggregation (full experiment gate pending)
+
+Strict aggregator requires all five outer evaluations, exact test IDs, matching ground
+truth/pixel counts, identical configuration across folds and checkpoint hashes. It
+recomputes per-image/fold metrics, macro means, pooled counts and across-fold sample
+standard deviations; earliest maximum inner-Dice checkpoint epoch is checked against
+the saved history. Cross-architecture comparisons reject protocol differences.
+Four synthetic aggregation/error-detection tests passed in 2.85 s; synthetic fixtures
+are tests only and are never written as research outputs. Provenance now also captures
+all installed dependency versions, actual source file hashes and Git dirty state.
+
+**Phase 5 is not complete:** no corrected five-fold model comparison exists yet. The
+isolated WSL GPU environment is still downloading CUDA dependencies. No metric values,
+best-model ranking or improvement claims have been fabricated while waiting.

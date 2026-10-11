@@ -53,3 +53,9 @@ def test_fair_protocol_validation(tmp_path):
     b['configuration']['architecture']='unetpp';assert compare_protocols([a,b])
     b['configuration']['threshold']=.7
     with pytest.raises(ValueError,match='mismatched'):compare_protocols([a,b])
+
+
+def test_reported_area_corruption_rejected(tmp_path):
+    manifest,splits,result=fake_fixture(tmp_path)
+    result['per_image'][0]['stone_area']+=1
+    with pytest.raises(ValueError,match='stone area'):verify_evaluation(result,splits['folds'][-1],manifest)

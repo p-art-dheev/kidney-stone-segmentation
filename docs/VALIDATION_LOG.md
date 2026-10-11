@@ -172,3 +172,25 @@ Notebook code cells parse successfully, outputs are empty, all referenced config
 exist with epochs 10/batch 2/augmentation enabled, and README local links resolve.
 `git diff --check` passes. Documentation of actual final results and final-review
 readiness still depends on incomplete experiments; Phase 8 is not fully complete.
+
+Documentation/config alignment commit `e89b4f2` pushed and remote hash confirmed.
+
+## Independent Phase 6b - matched comparison and size-analysis validator
+
+Implemented comparison that requires complete, checkpoint-verified five-fold runs
+whose configs differ only in loss. It verifies exact folds, dataset, initial weight
+hashes, deterministic execution, computational source hashes and environment parity.
+Per-fold area terciles use outer-training labels only; results include bin counts,
+micro/macro scores, paired per-image Dice differences and paired fold differences
+with sample standard deviation. Corrupted reported mask areas are now rejected by
+the general aggregator too.
+
+`python -m pytest tests/test_reporting.py tests/test_compare_losses.py -q --basetemp tmp/pytest-comparison-final`:
+**11 passed** in 30.19 s. Tests verify no outer-label influence on bins, complete
+sample accounting, known negative paired differences, rejection of changed configs,
+initial weights, computational sources and stone areas. Fixtures are explicitly
+synthetic and never emitted as scientific outputs. `git diff --check` passes.
+
+CUDA installation is still downloading large dependencies. Full baseline and loss
+experiments, measured size analysis and failure figures remain unrun. Neither
+Phase 5 nor Phase 6 is claimed complete.

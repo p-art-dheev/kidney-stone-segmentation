@@ -24,6 +24,7 @@ def verify_evaluation(result,fold,manifest):
         local={k:row[k] for k in counts}
         if any(not isinstance(v,int) or v<0 for v in local.values()):raise ValueError('Invalid confusion counts')
         if row['tp']+row['fn']!=samples[row['id']]['stone_area']:raise ValueError('Ground truth count mismatch')
+        if row.get('stone_area')!=samples[row['id']]['stone_area']:raise ValueError('Reported stone area mismatch')
         if sum(local.values())!=int(np.prod(samples[row['id']]['shape'])):raise ValueError('Pixel count mismatch')
         for key,value in metrics_from_counts(**local).items():close(row[key],value)
         for key in counts:counts[key]+=row[key]

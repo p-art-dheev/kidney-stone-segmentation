@@ -40,5 +40,14 @@ size; pixel spacing is unavailable. Apply the same boundaries to both losses.
 Report per-bin counts, pooled binary metrics, per-image means, paired differences
 and fold variability, including precision/recall tradeoffs and inconclusive results.
 
-Status: numerical implementation only. Both real five-fold runs, size analysis,
-failure figures and the performance comparison remain unverified.
+Comparison implementation checks complete checkpoint/count records, configs differing
+only in loss, identical initial weights, computational source hashes and numerical
+environment. It reports paired fold differences with sample SD and training-derived
+size groups, and rejects missing/mismatched experiments before writing a report:
+
+```sh
+python -m kssd.compare_losses --baseline runs/baseline/modified_unet --alternative runs/focal/modified_unet --output runs/loss-comparison.json
+```
+
+Status: loss and comparison implementations only. Both real five-fold runs, measured
+size analysis, failure figures and performance conclusions remain unverified.

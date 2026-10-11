@@ -56,7 +56,7 @@ Hybrid CNN-Transformer architecture with Vision Transformer (ViT) blocks at the 
 | **Strategy** | `tf.distribute.MirroredStrategy` |
 | **Mixed precision** | Disabled (causes sigmoid saturation on small objects) |
 
-## Results (10 Epochs)
+## Legacy preliminary results (10 epochs; NOT validated)
 
 | Model | Dice (Mean±Std) | IoU (Mean±Std) | Precision | Recall |
 |-------|----------------|----------------|-----------|--------|
@@ -65,7 +65,7 @@ Hybrid CNN-Transformer architecture with Vision Transformer (ViT) blocks at the 
 | **U-Net3+** | 0.5891 ± 0.0150 | 0.4337 ± 0.0143 | 1.0000 ± 0.0000 | 0.6623 ± 0.0417 |
 | **TransU-Net** | 0.2850 ± 0.1551 | 0.1914 ± 0.1156 | 0.9916 ± 0.0169 | 0.8743 ± 0.2435 |
 
-> **Note**: These results are from only **10 epochs** as a sanity check. The paper trains for **150 epochs** and reports Dice scores above 95% for all models. Full training is expected to significantly improve these numbers.
+> **Superseded protocol:** These historical numbers mix soft Dice/IoU with binary precision/recall and independently select each metric's best epoch. They do not describe one checkpoint and are not verified performance evidence. The original model/figure assets are retained for provenance. No improvement from longer training has been measured. See [audit](docs/AUDIT.md) and [metric policy](docs/METRICS.md).
 
 ## Project Structure
 
@@ -95,7 +95,7 @@ Hybrid CNN-Transformer architecture with Vision Transformer (ViT) blocks at the 
 - **No mixed precision**: Float16 causes sigmoid saturation for small kidney stone regions, resulting in the model predicting all-background during validation. All training uses float32.
 - **Dice loss returns per-sample tensor**: Shape `(batch,)` so Keras handles distributed reduction correctly with `MirroredStrategy`.
 - **TransU-Net Keras 3 patch**: The `keras_unet_collection` library uses `tf.reshape` which is incompatible with Keras 3 KerasTensors. We monkey-patch it to use `keras.ops.reshape`.
-- **TransU-Net model saving**: Saved as weights-only (`.weights.h5`) because `keras_unet_collection` custom layers aren't registered with Keras 3 serialization.
+- **Legacy TransU-Net saving**: Notebooks saved `.keras` archives and rebuilt the architecture to load extracted weights. Full deserialization was not established.
 
 ## References
 

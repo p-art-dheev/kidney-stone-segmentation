@@ -41,6 +41,9 @@ def aggregate(run_root,manifest,splits,verify_checkpoints=True):
         path=root/f"fold-{fold['fold']}"/'evaluation.json'
         if not path.is_file():raise ValueError(f'Missing completed fold: {path}')
         result=json.loads(path.read_text(encoding='utf-8'));verify_evaluation(result,fold,manifest)
+        budget=result['configuration']['epochs'];completed=result['epochs_completed']
+        if completed>budget or (not result['configuration'].get('early_stopping_patience',0) and completed!=budget):
+            raise ValueError('Completed epochs differ from fixed training budget')
         if result['fold']!=fold['fold'] or result['seed']!=fold['seed'] or result['dataset_fingerprint']!=splits['dataset_fingerprint']:
             raise ValueError('Fold provenance mismatch')
         if result['configuration']['mask_threshold']!=manifest['mask_threshold']:raise ValueError('Mask protocol mismatch')
@@ -51,6 +54,8 @@ def aggregate(run_root,manifest,splits,verify_checkpoints=True):
             if not weights.is_file() or hashlib.sha256(weights.read_bytes()).hexdigest()!=result['checkpoint_sha256']:
                 raise ValueError('Missing or changed selected checkpoint')
             history=json.loads((path.parent/'history.json').read_text())
+            if not history or any(len(values)!=completed or not np.isfinite(values).all() for values in history.values()):
+                raise ValueError('History length or values do not match completed epochs')
             if result['selected_epoch']!=int(np.argmax(history['val_hard_mask_dice']))+1:
                 raise ValueError('Checkpoint epoch is not earliest maximum inner Dice')
         results.append(result)

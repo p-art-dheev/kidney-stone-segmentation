@@ -112,13 +112,16 @@ python -m kssd.train --data data/kssd2025/data --config configs/representative.j
 After verifying resources, run all five folds per model. For example:
 
 ```sh
-python -m kssd.train --data data/kssd2025/data --config configs/10epoch/modified_unet.json --output runs/baseline/modified_unet
+python -m kssd.train --data data/kssd2025/data --config configs/10epoch/modified_unet.json --output runs/baseline/modified_unet --require-gpu
 python -m kssd.reporting --run runs/baseline/modified_unet --output runs/baseline/modified_unet-summary.json
 ```
 
 Repeat with `unetpp`, `unet3plus` and `transunet` configs/output roots. Do not compare
 different budgets or protocols. The aggregator rejects missing folds, changed
 checkpoint hashes, mismatched counts/metrics and incompatible configurations.
+It also rejects short fixed-budget runs and inconsistent or nonfinite histories.
+`--require-gpu` fails before creating a run if TensorFlow cannot see a GPU; omit it
+only when deliberately choosing the much slower CPU execution path.
 Existing fold directories are rejected; choose new roots for reruns. Interrupted
 runs are incomplete until verified evaluation outputs exist.
 
@@ -133,7 +136,7 @@ weight 0.3, exponent 0.75, smoothing 1e-6. Its Modified U-Net config changes onl
 the loss relative to the Dice baseline:
 
 ```sh
-python -m kssd.train --data data/kssd2025/data --config configs/focal_tversky/modified_unet.json --output runs/focal/modified_unet
+python -m kssd.train --data data/kssd2025/data --config configs/focal_tversky/modified_unet.json --output runs/focal/modified_unet --require-gpu
 ```
 
 This experiment has **not** produced measured CV results. Its definition, source,

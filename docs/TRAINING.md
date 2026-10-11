@@ -4,6 +4,8 @@ Use Python >=3.11 and pinned package extras: `python -m pip install -e ".[train,
 Native Windows TensorFlow 2.20 is CPU-only; use a CUDA-capable Linux/WSL GPU environment
 for full-resolution training. An isolated WSL environment is being validated; its status
 and measured runtime are recorded in VALIDATION_LOG.md, not assumed from installation.
+Use `--require-gpu` on training commands when GPU execution is intended; the runner
+then fails before creating a run if TensorFlow cannot see one.
 
 ## Splits
 

@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 import numpy as np
@@ -59,3 +60,21 @@ def test_reported_area_corruption_rejected(tmp_path):
     manifest,splits,result=fake_fixture(tmp_path)
     result['per_image'][0]['stone_area']+=1
     with pytest.raises(ValueError,match='stone area'):verify_evaluation(result,splits['folds'][-1],manifest)
+
+
+def test_short_fixed_budget_is_incomplete(tmp_path):
+    manifest,splits,result=fake_fixture(tmp_path)
+    result=json.loads((tmp_path/'fold-1/evaluation.json').read_text())
+    result['configuration']['epochs']=10
+    (tmp_path/'fold-1/evaluation.json').write_text(json.dumps(result))
+    with pytest.raises(ValueError,match='fixed training budget'):aggregate(tmp_path,manifest,splits,False)
+
+
+@pytest.mark.parametrize('values',[[1,1],[float('nan')]])
+def test_inconsistent_checkpoint_history_rejected(tmp_path,values):
+    manifest,splits,_=fake_fixture(tmp_path)
+    path=tmp_path/'fold-1/evaluation.json';result=json.loads(path.read_text())
+    weights=path.parent/'best.weights.h5';weights.write_bytes(b'synthetic-checkpoint')
+    result['checkpoint_sha256']=hashlib.sha256(weights.read_bytes()).hexdigest()
+    path.write_text(json.dumps(result));(path.parent/'history.json').write_text(json.dumps({'val_hard_mask_dice':values}))
+    with pytest.raises(ValueError,match='History length or values'):aggregate(tmp_path,manifest,splits)

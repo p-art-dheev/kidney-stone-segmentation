@@ -214,3 +214,19 @@ visually inspected; labels, error colors and error bars are readable. Synthetic
 images remain ignored temporary tests, not research outputs. `compileall` and
 `git diff --check` pass. Measured baseline/loss figures and error interpretation
 remain incomplete until actual five-fold runs finish.
+
+Figure implementation commit `b50a58c` pushed and remote hash confirmed.
+
+## Phase 5c - budget completion and GPU execution gates
+
+The strict aggregator now rejects runs marked complete that finish fewer than the
+prespecified epochs without enabled early stopping, exceed their budget, or have
+history lengths/finite values inconsistent with completed epochs. This closes an
+acceptance gap before expensive real runs. Training's explicit `--require-gpu`
+flag prevents an unintended native-CPU fallback before creating output directories.
+
+`python -m pytest tests/test_reporting.py tests/test_compare_losses.py -q --basetemp tmp/pytest-budget`:
+**14 passed** in 33.68 s. Actual native-CPU invocation with `--require-gpu` failed
+as expected with exit 1 and created no run directory. README/training instructions
+show the execution gate; `git diff --check` passes. Numerical training behavior is
+unchanged. CUDA dependency installation and full experimental outputs remain pending.

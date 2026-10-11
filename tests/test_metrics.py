@@ -79,7 +79,8 @@ def test_all_notebooks_use_shared_binary_metrics():
     for path in Path('.').glob('*.ipynb'):
         notebook = json.loads(path.read_text(encoding='utf-8'))
         code = '\n'.join(''.join(c['source']) for c in notebook['cells'] if c['cell_type'] == 'code')
-        assert 'metrics=make_metrics(threshold=0.5)' in code
+        assert 'from kssd.train import run_fold' in code
+        assert 'from kssd.tf_metrics import dice_loss, make_metrics' in code
         assert 'def dice_coef' not in code
         assert 'max(h[' not in code
         ast.parse('\n'.join(line for line in code.splitlines() if not line.startswith('!')))

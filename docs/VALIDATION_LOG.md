@@ -155,3 +155,20 @@ gradients, serialization, config matching and a compiled Adam step are verified.
 Two upstream Keras deprecation warnings. No real-data performance experiment or
 size-stratified comparison is claimed; Phase 6 acceptance remains incomplete.
 The dependent matched experiment waits for baseline prerequisites and measured runs.
+
+Optional loss implementation commit `12fd797` pushed and remote hash confirmed.
+
+## Independent documentation/configuration alignment
+
+During the GPU download limitation, corrected stale README instructions and claims
+independently of future experiment results: actual parameters, batch budget,
+content-group/inner-selection protocol, setup commands, artifact policy, and explicit
+unmeasured result gates. Removed unsupported general mixed-precision claims and
+obsolete Kaggle runtime estimates. Legacy numbers remain clearly superseded.
+
+All three notebooks now load committed 10-epoch CLI configs, including tested
+augmentation; previously their default configuration unintentionally disabled it.
+Notebook code cells parse successfully, outputs are empty, all referenced configs
+exist with epochs 10/batch 2/augmentation enabled, and README local links resolve.
+`git diff --check` passes. Documentation of actual final results and final-review
+readiness still depends on incomplete experiments; Phase 8 is not fully complete.

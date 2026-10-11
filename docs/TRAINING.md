@@ -35,8 +35,8 @@ final unbiased test. Each outer fold is evaluated once after loading the selecte
 hashes; clears the Keras session; seeds Python/NumPy/TensorFlow to 42+fold; enables
 deterministic TensorFlow ops; constructs a fresh model and optimizer with zero iterations.
 Set `PYTHONHASHSEED=42` **before** starting Python (setting it after launch has no effect).
-Models are float32. Train-only shuffling has an explicit seed; spatial transforms are
-disabled until the augmentation configuration is tested. Streaming batches include the
+Models are float32. Train-only shuffling has an explicit seed; tested spatial transforms
+are enabled in the committed experiment configs (see AUGMENTATION.md). Streaming batches include the
 last incomplete batch. There is no training-state transfer across folds or architectures.
 
 Checkpoint policy: maximum inner-selection hard-mask Dice; earliest epoch wins ties.

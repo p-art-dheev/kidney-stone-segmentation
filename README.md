@@ -1,106 +1,179 @@
 # Kidney Stone Segmentation — KSSD2025
 
-Replication of the paper: **"KSSD2025: A New Annotated Dataset for Automatic Kidney Stone Segmentation and Evaluation With Modified U-Net Based Deep Learning Models"** (IEEE Access, 2025).
+Research implementation of Modified U-Net, U-Net++, U-Net3+ and TransU-Net for
+binary segmentation in exported axial CT images. Reference: Bouzon et al.,
+[*KSSD2025* (IEEE Access, 2025)](https://doi.org/10.1109/ACCESS.2025.3610027).
+The corrected protocol differs from the paper and historical notebooks.
 
-## Overview
+**Validation is in progress.** Shared metrics, preprocessing, grouped splits,
+checkpoint selection, augmentation and model weight round trips have been tested.
+All four models passed actual 512×512 CPU optimizer-step smoke checks. A full
+Modified U-Net training/inner-selection epoch completed in 363.70 s on CPU.
+Corrected five-fold performance results, the matched Focal Tversky comparison and
+prediction/error figures are **not yet available**. No best model is established.
+See the [validation log](docs/VALIDATION_LOG.md) for measured checks and open gates.
 
-Automatic segmentation of kidney stones from axial CT images using four U-Net-based deep learning architectures. All models are evaluated using **5-fold cross-validation** on the KSSD2025 dataset.
+## Dataset and protocol
 
-## Dataset — KSSD2025
+[KSSD2025 on Kaggle](https://www.kaggle.com/datasets/murillobouzon/kssd2025-kidney-stone-segmentation-dataset)
+contains 838 matched 512×512 TIFF image/mask pairs. The validator checked every pair.
+Images are uint8 grayscale, normalized by 255; no resizing is performed. Decode
+mask palettes, then use **mask >127**. The legacy >0 rule included faint background
+artifacts. Exported intensities are not calibrated Hounsfield units.
 
-| Property | Value |
-|----------|-------|
-| **Total images** | 838 axial CT scans |
-| **Image size** | 512 × 512 pixels |
-| **Format** | Grayscale TIFF (.tif) |
-| **Labels** | Binary masks (stone / background) |
-| **Source** | Derived from "CT KIDNEY DATASET: Normal-Cyst-Tumor and Stone" (Islam et al., 2022) |
-| **Annotation** | Threshold → connected component filtering → expert manual refinement |
+Seven redundant decoded-image copies are excluded through the manifest, leaving
+831 eligible images; original files remain intact. A prespecified thumbnail
+similarity heuristic forms 39 content clusters for leakage reduction. Patient/scan
+IDs are unavailable: these clusters are not patients and cannot establish patient
+independence. Details, hashes, overlays and limitations: [dataset audit](docs/DATASET.md).
 
-The dataset is publicly available on Kaggle: [`murillobouzon/kssd2025-kidney-stone-segmentation-dataset`](https://www.kaggle.com/datasets/murillobouzon/kssd2025-kidney-stone-segmentation-dataset)
+Five seeded outer group folds each hold out different images. An inner group split
+within each outer-training partition selects the earliest checkpoint attaining
+maximum inner hard-mask Dice. The selected weights are evaluated once on the outer
+test fold. Every eligible image appears in outer test exactly once. All batches,
+including incomplete final batches, are used. See [training methodology](docs/TRAINING.md).
 
-## Models
+Evaluation uses probabilities **>=0.5** for Dice, IoU, precision and recall from the
+same confusion counts. Fold scores pool pixels; per-image means are saved separately.
+Across-fold error bars use sample standard deviation, not confidence intervals.
+Both-empty Dice/IoU are 1; undefined precision/recall are 0. Training Dice loss uses
+continuous probabilities and is separate from binary metrics: [metric policy](docs/METRICS.md).
 
-### 1. Modified U-Net (Custom)
-Standard U-Net encoder-decoder with:
-- **Encoder**: 4 blocks `[16, 32, 64, 128]` filters — each with 2×(Conv3×3 + BatchNorm + ReLU) + Dropout + MaxPool
-- **Bottleneck**: 256 filters
-- **Decoder**: Conv2DTranspose upsampling + skip connections + 2×(Conv3×3 + BatchNorm + ReLU)
-- **Dropout rates**: 0.1, 0.2, 0.3, 0.3, 0.3
-- **Parameters**: ~1.4M
+## Architectures and budgets
 
-### 2. U-Net++
-Nested U-Net with dense skip connections. Built using `keras-unet-collection` with filters `[16, 32, 64, 128, 256]`.
-- **Parameters**: ~2.0M
+| Architecture | Parameters at 512×512 | Implementation |
+|---|---:|---|
+| Modified U-Net | 1,945,233 | Filters 16/32/64/128, bottleneck 256, BatchNorm/dropout |
+| U-Net++ | 1,967,713 | keras-unet-collection nested skips |
+| U-Net3+ | 2,374,583 | keras-unet-collection full-scale skips |
+| TransU-Net | 4,747,553 | Local library-based hybrid, embed 192, 4 heads, 3 transformer blocks |
 
-### 3. U-Net3+
-Full-scale skip connections aggregating features from all encoder-decoder levels.
-- **Parameters**: ~2.4M
+All use float32 and fresh seeded weights/optimizers per fold. Float32 is a fixed
+protocol choice; a general claim that mixed precision causes sigmoid saturation
+has not been established. TransU-Net uses Keras Reshape layers for compatibility;
+installed library source is never modified. This library variant is not claimed
+to exactly reproduce the original TransUNet authors' implementation.
 
-### 4. TransU-Net
-Hybrid CNN-Transformer architecture with Vision Transformer (ViT) blocks at the bottleneck.
-- `embed_dim=192`, `num_heads=4`, `num_transformer=3`
-- **Parameters**: ~4.7M
+The shared preliminary budget is **10 epochs, batch 2, Adam, LR 0.001, Dice loss**.
+Configs use identical train-only paired augmentation: small rotation/shift/zoom,
+horizontal flips and image-only noise. Masks use nearest-neighbor interpolation.
+Exact distributions and deviations from unspecified paper details are documented
+in [augmentation](docs/AUGMENTATION.md). Paper-budget **150 epochs/batch 16** configs
+are provided but have not run; memory feasibility must be verified first.
 
-## Training Configuration
+## Setup and reproduction
 
-| Parameter | Value |
-|-----------|-------|
-| **Epochs** | 10 (sanity check; paper uses 150) |
-| **Batch size** | 8 |
-| **Optimizer** | Adam |
-| **Learning rate** | 0.001 |
-| **Loss function** | Dice Loss |
-| **Cross-validation** | 5-fold (KFold, shuffle=True, seed=42) |
-| **Hardware** | 2× NVIDIA Tesla T4 (Kaggle) |
-| **Strategy** | `tf.distribute.MirroredStrategy` |
-| **Mixed precision** | Disabled (causes sigmoid saturation on small objects) |
+Run commands from the repository root with Python **>=3.11**. The verified native
+CPU environment uses Python 3.13.5, TensorFlow 2.20.0 and Keras 3.13.2. Native Windows
+TensorFlow 2.20 is CPU-only; full experiments need a verified Linux/WSL CUDA environment.
+WSL Python 3.12 GPU dependencies are currently being installed; GPU training success
+is not assumed from hardware visibility.
 
-## Legacy preliminary results (10 epochs; NOT validated)
-
-| Model | Dice (Mean±Std) | IoU (Mean±Std) | Precision | Recall |
-|-------|----------------|----------------|-----------|--------|
-| **Modified U-Net** | 0.5799 ± 0.0126 | 0.4256 ± 0.0130 | 0.9610 ± 0.0781 | 0.7371 ± 0.1241 |
-| **U-Net++** | 0.5361 ± 0.0187 | 0.3843 ± 0.0184 | 0.7727 ± 0.1200 | 0.9964 ± 0.0027 |
-| **U-Net3+** | 0.5891 ± 0.0150 | 0.4337 ± 0.0143 | 1.0000 ± 0.0000 | 0.6623 ± 0.0417 |
-| **TransU-Net** | 0.2850 ± 0.1551 | 0.1914 ± 0.1156 | 0.9916 ± 0.0169 | 0.8743 ± 0.2435 |
-
-> **Superseded protocol:** These historical numbers mix soft Dice/IoU with binary precision/recall and independently select each metric's best epoch. They do not describe one checkpoint and are not verified performance evidence. The original model/figure assets are retained for provenance. No improvement from longer training has been measured. See [audit](docs/AUDIT.md) and [metric policy](docs/METRICS.md).
-
-## Project Structure
-
-```
-├── kdss-modified-unet-10epoch.ipynb     # Modified U-Net — 5-fold CV
-├── kdss-unetpp-unet3p-10epochs.ipynb    # U-Net++ & U-Net3+ — 5-fold CV
-├── kssd-transunet-10epochs.ipynb        # TransU-Net — 5-fold CV
-└── README.md
+```sh
+python -m venv .venv
 ```
 
-## How to Run
+Activate it (PowerShell: `.venv\Scripts\Activate.ps1`; Linux: `source .venv/bin/activate`),
+then install:
 
-1. Open any notebook on [Kaggle](https://www.kaggle.com/)
-2. Add dataset: `murillobouzon/kssd2025-kidney-stone-segmentation-dataset`
-3. Set accelerator to **GPU T4 × 2**
-4. Enable **Internet** (for `pip install keras-unet-collection`)
-5. **Run All**
+```sh
+python -m pip install -e ".[train,test]"
+```
 
-| Notebook | Estimated time |
-|----------|---------------|
-| Modified U-Net | ~30 min |
-| U-Net++ & U-Net3+ | ~75 min |
-| TransU-Net | ~60 min |
+On Linux/WSL additionally install `python -m pip install "tensorflow[and-cuda]==2.20.0"`.
+Verify TensorFlow detects a GPU before long runs. Dependencies are pinned in
+`pyproject.toml`; each run also records all installed-package versions and source hashes.
+If Linux venv creation fails because ensurepip is unavailable, install the appropriate
+Python venv package or bootstrap pip into an isolated `--without-pip` venv; the local
+WSL setup used an official downloaded pip wheel without modifying system packages.
 
-## Key Implementation Notes
+Download/unzip the official Kaggle archive into `data/kssd2025/`; it contains a
+nested `data/` with `image/` and `label/`. See [dataset instructions](docs/DATASET.md)
+for the verified archive hash. Create `tmp/` first (PowerShell:
+`New-Item -ItemType Directory -Force tmp`; Linux: `mkdir -p tmp`). Then:
 
-- **No mixed precision**: Float16 causes sigmoid saturation for small kidney stone regions, resulting in the model predicting all-background during validation. All training uses float32.
-- **Dice loss returns per-sample tensor**: Shape `(batch,)` so Keras handles distributed reduction correctly with `MirroredStrategy`.
-- **TransU-Net Keras 3 patch**: The `keras_unet_collection` library uses `tf.reshape` which is incompatible with Keras 3 KerasTensors. We monkey-patch it to use `keras.ops.reshape`.
-- **Legacy TransU-Net saving**: Notebooks saved `.keras` archives and rebuilt the architecture to load extracted weights. Full deserialization was not established.
+```sh
+python -m kssd.validate_data --data data/kssd2025/data --output runs/dataset-audit
+python -m kssd.splits --manifest reports/dataset/manifest.json --output runs/splits-check.json
+python -m pytest -q --basetemp tmp/tests
+python -m kssd.smoke --data data/kssd2025/data --output runs/new-smoke
+```
 
-## References
+The dataset/split outputs should match the committed protocol; do not replace it
+silently with another dataset version. For GPU smoke add `--require-gpu`. Set
+`PYTHONHASHSEED=42` before Python (PowerShell: `$env:PYTHONHASHSEED='42'`; Linux:
+`export PYTHONHASHSEED=42`). First run a selection-only resource pilot, which never
+evaluates outer test:
 
-1. Bouzon, M., et al. (2025). *"KSSD2025: A New Annotated Dataset for Automatic Kidney Stone Segmentation and Evaluation With Modified U-Net Based Deep Learning Models."* IEEE Access, Vol. 13. DOI: [10.1109/ACCESS.2025.3610027](https://doi.org/10.1109/ACCESS.2025.3610027)
-2. Ronneberger, O., et al. (2015). *"U-Net: Convolutional Networks for Biomedical Image Segmentation."*
-3. Zhou, Z., et al. (2018). *"UNet++: A Nested U-Net Architecture for Medical Image Segmentation."*
-4. Huang, H., et al. (2020). *"UNet 3+: A Full-Scale Connected UNet for Medical Image Segmentation."*
-5. Chen, J., et al. (2021). *"TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation."*
+```sh
+python -m kssd.train --data data/kssd2025/data --config configs/representative.json --output runs/new-pilot --fold 1 --selection-only
+```
+
+After verifying resources, run all five folds per model. For example:
+
+```sh
+python -m kssd.train --data data/kssd2025/data --config configs/10epoch/modified_unet.json --output runs/baseline/modified_unet
+python -m kssd.reporting --run runs/baseline/modified_unet --output runs/baseline/modified_unet-summary.json
+```
+
+Repeat with `unetpp`, `unet3plus` and `transunet` configs/output roots. Do not compare
+different budgets or protocols. The aggregator rejects missing folds, changed
+checkpoint hashes, mismatched counts/metrics and incompatible configurations.
+Existing fold directories are rejected; choose new roots for reruns. Interrupted
+runs are incomplete until verified evaluation outputs exist.
+
+The notebooks are thin wrappers loading these same 10-epoch configs. Run from
+this checkout; `KSSD_DATA` and `KSSD_RUN` override data/output locations. They
+contain no precomputed corrected results or hidden Kaggle training logic.
+
+## Research-inspired experiment
+
+Optional foreground Focal Tversky loss is numerically tested: FN weight 0.7, FP
+weight 0.3, exponent 0.75, smoothing 1e-6. Its Modified U-Net config changes only
+the loss relative to the Dice baseline:
+
+```sh
+python -m kssd.train --data data/kssd2025/data --config configs/focal_tversky/modified_unet.json --output runs/focal/modified_unet
+```
+
+This experiment has **not** produced measured CV results. Its definition, source,
+reduction choices and planned training-derived size bins are documented in
+[Focal Tversky](docs/FOCAL_TVERSKY.md). No novelty or improvement is claimed.
+
+## Files and artifacts
+
+| Location | Purpose |
+|---|---|
+| `kssd/`, `tests/` | Shared implementation and automated checks |
+| `configs/` | Preliminary, paper-budget, pilot and controlled loss configs |
+| `reports/dataset/`, `reports/splits.json` | Audited manifest, overlays and frozen folds |
+| `reports/resources/`, `reports/legacy_archive_audit.json` | Measured functionality/resource and compatibility checks |
+| `docs/` | Audit, methodology, acceptance status and validation log |
+| `runs/` (ignored) | New weights, histories, provenance, evaluations and reports |
+| `Results/` | Preserved historical archives/figures, superseded protocol |
+| `paper/` | Supplied reference paper |
+
+Keep new large weights and downloaded data outside Git. Retain complete fold
+directories; provenance records initial-weight and selected-checkpoint hashes,
+config, split IDs, hardware, source and dependencies. Share checkpoints through an
+artifact store if needed; publish compact validated tables/plots only after strict
+aggregation passes. No existing user assets or remote history have been removed.
+
+## Legacy preliminary results — superseded and unvalidated
+
+| Model | Soft Dice | Soft IoU | Binary precision | Binary recall |
+|---|---|---|---|---|
+| Modified U-Net | 0.5799 ± 0.0126 | 0.4256 ± 0.0130 | 0.9610 ± 0.0781 | 0.7371 ± 0.1241 |
+| U-Net++ | 0.5361 ± 0.0187 | 0.3843 ± 0.0184 | 0.7727 ± 0.1200 | 0.9964 ± 0.0027 |
+| U-Net3+ | 0.5891 ± 0.0150 | 0.4337 ± 0.0143 | 1.0000 ± 0.0000 | 0.6623 ± 0.0417 |
+| TransU-Net | 0.2850 ± 0.1551 | 0.1914 ± 0.1156 | 0.9916 ± 0.0169 | 0.8743 ± 0.2435 |
+
+These historical values mix probability and binary metrics, independently select
+metric maxima and use flawed mask preprocessing. They do not describe one selected
+checkpoint and cannot support a model ranking. Old plots/archives are retained for
+provenance. All 20 archives passed finite-weight restoration checks; that establishes
+compatibility, not performance or defensible checkpoint selection.
+
+Remaining gates: verified GPU execution; corrected five-fold comparisons; matched
+loss experiment and size/error analysis; result-derived plots; final audit. No
+clinical readiness or external-hospital generalization is established.

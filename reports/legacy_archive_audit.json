@@ -1,0 +1,248 @@
+{
+  "scope": "Archive compatibility only. Legacy final-epoch checkpoints have no verified nested-CV provenance.",
+  "archives": [
+    {
+      "path": "Results/Modified_Unet/Model/modified_unet_fold1.keras",
+      "architecture": "modified_unet",
+      "sha256": "b5f5d787fedd653acd4b2bc06ff3ea12b7ef2a878e6abbad387fa6bbce196890",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@07:52:35"
+      },
+      "parameters": 1945233,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Modified_Unet/Model/modified_unet_fold2.keras",
+      "architecture": "modified_unet",
+      "sha256": "9367061e9aa94c87b17bd0f526854c75a264fa28da2c9cfb602f0bfa60cbe6af",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@07:57:28"
+      },
+      "parameters": 1945233,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Modified_Unet/Model/modified_unet_fold3.keras",
+      "architecture": "modified_unet",
+      "sha256": "52eef71d78629287edfa482acbf17dce00109e7cfa59895165912b1ecca19289",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:02:22"
+      },
+      "parameters": 1945233,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Modified_Unet/Model/modified_unet_fold4.keras",
+      "architecture": "modified_unet",
+      "sha256": "d002029d0a237d4e07265ae500504651687233b6ce907ce2e4e7a1b5911c5f6a",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:07:15"
+      },
+      "parameters": 1945233,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Modified_Unet/Model/modified_unet_fold5.keras",
+      "architecture": "modified_unet",
+      "sha256": "31f33bfa948aa71f7490d2a1b01f6af4d9f0f6f76cd02699ead966e86d6a9637",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:12:08"
+      },
+      "parameters": 1945233,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/UNet++/Model/UNetPP_fold1.keras",
+      "architecture": "unetpp",
+      "sha256": "c0aa770f5876878209e724ee20fd4f56fe67fdaf71ba6a9adbe479479a026b97",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:38:24"
+      },
+      "parameters": 1967713,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/UNet++/Model/UNetPP_fold2.keras",
+      "architecture": "unetpp",
+      "sha256": "5596bf29d854fbe246108181c00368ddd31d6a6366b92a7505c39ce984f1e2eb",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:43:23"
+      },
+      "parameters": 1967713,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/UNet++/Model/UNetPP_fold3.keras",
+      "architecture": "unetpp",
+      "sha256": "bde00b7c90554cea79320766e730e2eb6fa34c1a11752c6be8a4c0794d1689dd",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:48:28"
+      },
+      "parameters": 1967713,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/UNet++/Model/UNetPP_fold4.keras",
+      "architecture": "unetpp",
+      "sha256": "b66c0ae512d920d398d44a66f2aaac73769070041da3517c9eec72b6f7903c70",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:53:33"
+      },
+      "parameters": 1967713,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/UNet++/Model/UNetPP_fold5.keras",
+      "architecture": "unetpp",
+      "sha256": "61bf6d5c010bc8693c1dc25eca43cb134edab24f41c17d5353b7c49abdd70d7e",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@08:58:37"
+      },
+      "parameters": 1967713,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Unet 3+/Model/UNet3Plus_fold1.keras",
+      "architecture": "unet3plus",
+      "sha256": "bfedc0b9575d5229485b14bc2cb896749a2804dec17f63ff5ec35be7ecc0c93c",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@09:21:24"
+      },
+      "parameters": 2374583,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Unet 3+/Model/UNet3Plus_fold2.keras",
+      "architecture": "unet3plus",
+      "sha256": "2f4fe7870c81f25fc675cd8e5a9c4324a23a80d805d6d2fdb5cb27d883217e29",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@09:43:56"
+      },
+      "parameters": 2374583,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Unet 3+/Model/UNet3Plus_fold3.keras",
+      "architecture": "unet3plus",
+      "sha256": "38440dd35eebfe7212f9f0d1b1eabfe89a590e29dfaa8ba9ce8ad156a6f5b65c",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@10:06:26"
+      },
+      "parameters": 2374583,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Unet 3+/Model/UNet3Plus_fold4.keras",
+      "architecture": "unet3plus",
+      "sha256": "c06252e02c848c4bcb787aa4508287bf317fc7a52267d5726d6e1daf66825ce1",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@10:28:59"
+      },
+      "parameters": 2374583,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Unet 3+/Model/UNet3Plus_fold5.keras",
+      "architecture": "unet3plus",
+      "sha256": "900c2320fd30bcd4a48de2742ca9cba2bc3e9b41b25264dcfad3556b8227ce69",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@10:51:27"
+      },
+      "parameters": 2374583,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Trans_UNet/Model/TransUNet_fold1.keras",
+      "architecture": "transunet",
+      "sha256": "a88a7275f4d7c2054d45a0b40b0bb41ec245d28c3c1fcf010c4e62a6c8f2f048",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@12:31:05"
+      },
+      "parameters": 4747553,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Trans_UNet/Model/TransUNet_fold2.keras",
+      "architecture": "transunet",
+      "sha256": "afa39100a48d9d05cef5363f942d15ecaee9d335444f05b0593724237816ec37",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@12:38:01"
+      },
+      "parameters": 4747553,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Trans_UNet/Model/TransUNet_fold3.keras",
+      "architecture": "transunet",
+      "sha256": "f3ef0f7fee1575a2cc6d709c319bd2e0d16fa2eb15cf3529ca7205f7fd48105e",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@12:44:56"
+      },
+      "parameters": 4747553,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Trans_UNet/Model/TransUNet_fold4.keras",
+      "architecture": "transunet",
+      "sha256": "d3be2a4715639c3de9cbc5cd6e3fe577c183294cfcbff6ed19369e62249b41f8",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@12:51:54"
+      },
+      "parameters": 4747553,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    },
+    {
+      "path": "Results/Trans_UNet/Model/TransUNet_fold5.keras",
+      "architecture": "transunet",
+      "sha256": "7ddce6b0f1dc68bedbf6ac36ee03c58e353849b0dc9ff619f84fa74bcb3595e4",
+      "metadata": {
+        "keras_version": "3.13.2",
+        "date_saved": "2026-08-17@12:58:50"
+      },
+      "parameters": 4747553,
+      "weights_restore_passed": true,
+      "full_size_inference_checked": false
+    }
+  ],
+  "weights_restoration_passed": true,
+  "performance_claim": null,
+  "inference_scope": "Not checked by this run"
+}

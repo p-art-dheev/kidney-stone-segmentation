@@ -113,3 +113,27 @@ all installed dependency versions, actual source file hashes and Git dirty state
 **Phase 5 is not complete:** no corrected five-fold model comparison exists yet. The
 isolated WSL GPU environment is still downloading CUDA dependencies. No metric values,
 best-model ranking or improvement claims have been fabricated while waiting.
+
+## Phase 5b - preserved legacy archive compatibility
+
+`python -m kssd.audit_legacy --data data/kssd2025/data` completed successfully:
+all 20 original `.keras` archives restore their extracted weights into the corresponding
+current architecture, with matching weight shapes and finite values. SHA-256 hashes,
+archive metadata and measured parameter counts are recorded in
+`reports/legacy_archive_audit.json`. Original archives are unchanged.
+
+This run checks weights only. An earlier optional full-resolution CPU prediction
+passed for the first Modified U-Net and U-Net++ archives but became unusually slow
+for U-Net3+ and was stopped. No full inference pass is claimed for all legacy models.
+Inspection of U-Net3+ fold-1 weights found no nonfinite or subnormal weights; this
+does not rule out numerical issues in intermediate activations. The separately
+verified newly initialized model smoke checks remain valid. Legacy checkpoints
+lack defensible nested selection provenance and cannot replace corrected training.
+
+**Phase 5 remains incomplete:** CUDA dependencies are still downloading, corrected
+five-fold experiments have not run, and no new performance ranking is available.
+
+Full native-CPU suite recheck: `python -m pytest -q --basetemp tmp/pytest-phase5`
+**38 passed** in 214.06 s, including synthetic training and checkpoint restoration.
+934 upstream deprecation warnings remain. Archive CLI exits 0; `compileall` and
+`git diff --check` pass.

@@ -137,3 +137,21 @@ Full native-CPU suite recheck: `python -m pytest -q --basetemp tmp/pytest-phase5
 **38 passed** in 214.06 s, including synthetic training and checkpoint restoration.
 934 upstream deprecation warnings remain. Archive CLI exits 0; `compileall` and
 `git diff --check` pass.
+
+Archive compatibility commit `83b2907` pushed and remote hash confirmed.
+
+## Independent Phase 6a - mathematical loss implementation only
+
+While Phase 5 GPU dependency downloads block experiments, independently verified
+the Focal Tversky definition using the research paper and authors' released code.
+Implemented foreground, per-image loss with FN weight 0.7, FP weight 0.3, exponent
+0.75, smoothing 1e-6, and an explicit finite-gradient convention at perfect overlap.
+Sampling/reduction differences from the original implementation are documented.
+The Modified U-Net alternative config differs from its baseline only in loss.
+
+`python -m pytest tests/test_losses.py -q --basetemp tmp/pytest-loss-final`:
+**7 passed** in 42.43 s. Formula, reduction, FN weighting, perfect/empty and imperfect
+gradients, serialization, config matching and a compiled Adam step are verified.
+Two upstream Keras deprecation warnings. No real-data performance experiment or
+size-stratified comparison is claimed; Phase 6 acceptance remains incomplete.
+The dependent matched experiment waits for baseline prerequisites and measured runs.

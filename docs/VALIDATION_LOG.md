@@ -67,3 +67,32 @@ Python project requirement corrected to >=3.11.
 
 Final cleanup recheck: `tests/test_training.py` **8 passed** in 26.79 s, no library
 input-structure warning remains. Upstream Keras/gast deprecations persist.
+
+Training commit `f49cf3d` pushed and remote hash confirmed.
+
+## Phase 4 - augmentation, configuration and real-data smoke
+
+Reference page 8/Table 2 visually verified. Small paired affine augmentation implemented
+with nearest-neighbor masks, image-only Gaussian noise and explicit sampling conventions.
+Five augmentation tests passed; all tests after integration: **34 passed** in 64.78 s.
+Upstream deprecation warnings remain. A reproducible paired CT/mask overlay was inspected.
+
+`python -m kssd.smoke --data data/kssd2025/data --output runs/cpu-smoke`:
+all four architectures passed actual **2x512x512x1** optimizer-step, finite-output and
+weights save/load checks on native CPU. Initial compiled-batch times: Modified U-Net
+8.17 s; U-Net++ 9.00 s; U-Net3+ 28.13 s; TransU-Net 16.25 s. These include compilation
+and are not steady-state speed comparisons or segmentation performance evidence.
+
+`python -m kssd.train --data data/kssd2025/data --config configs/representative.json --output runs/cpu-representative --fold 1 --selection-only`:
+one full representative epoch **completed**: 446 training images, 206 inner-selection
+images; all 223 training batches used. **363.70 s** training/selection duration on CPU,
+batch size 2, augmentation enabled. Inner-selection binary Dice was 0 at this early
+checkpoint; this is a measured training diagnostic, not an outer-test result. Checkpoint
+and history were saved. No outer-test prediction was generated. Tests explicitly enforce
+the no-outer-evaluation pilot path. Compact measured outputs are in reports/resources;
+weights remain in ignored runs/cpu-representative/fold-1/best.weights.h5.
+
+Ten-epoch/batch-2 and 150-epoch/batch-16 configs prepared for all architectures. Neither
+full CV budget is completed at this gate. Native CPU full training would be costly
+(a single Modified U-Net epoch already takes six minutes); GPU dependency installation
+is still underway. GPU usability and full-run duration must be verified in Phase 5.

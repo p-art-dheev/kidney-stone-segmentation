@@ -1,0 +1,6 @@
+{
+  "architecture": "modified_unet",
+  "epochs": 1,
+  "batch_size": 2,
+  "augmentation": true
+}

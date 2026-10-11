@@ -46,7 +46,7 @@ def test_invalid_configs():
         with pytest.raises(ValueError):ExperimentConfig(**kwargs)
 
 
-def test_nested_runner_synthetic_end_to_end(tmp_path):
+def test_nested_runner_synthetic_end_to_end(tmp_path,monkeypatch):
     from PIL import Image
     from kssd.validate_data import validate
     from kssd.splits import make_splits
@@ -56,7 +56,7 @@ def test_nested_runner_synthetic_end_to_end(tmp_path):
         image=np.full((32,32),i*16,dtype=np.uint8);mask=np.zeros_like(image);mask[8:12,8:12]=255
         Image.fromarray(image).save(root/'image'/f'{i}.tif');Image.fromarray(mask).save(root/'label'/f'{i}.tif')
     manifest=validate(root,15,32);splits=make_splits(manifest,3)
-    config=ExperimentConfig(epochs=1,n_folds=3,input_size=32,batch_size=2)
+    config=ExperimentConfig(epochs=1,n_folds=3,input_size=32,batch_size=2,augmentation=True)
     result=run_fold(root,manifest,splits,config,1,tmp_path/'run')
     output=tmp_path/'run/fold-1'
     assert result['status']=='complete' and result['selected_epoch']==1
@@ -65,3 +65,8 @@ def test_nested_runner_synthetic_end_to_end(tmp_path):
     assert (output/'history.csv').exists() and (output/'best.weights.h5').exists()
     assert json.loads((output/'provenance.json').read_text())['status']=='complete'
     with pytest.raises(ValueError,match='already exists'):run_fold(root,manifest,splits,config,1,tmp_path/'run')
+    def forbid_outer(*args,**kwargs):raise AssertionError('Runtime pilot must not look at outer test')
+    monkeypatch.setattr('kssd.train.evaluate',forbid_outer)
+    pilot=run_fold(root,manifest,splits,config,1,tmp_path/'pilot',evaluate_outer=False)
+    assert pilot['status']=='selection_only'
+    assert not (tmp_path/'pilot/fold-1/evaluation.json').exists()

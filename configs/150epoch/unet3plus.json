@@ -1,0 +1,16 @@
+{
+  "architecture": "unet3plus",
+  "epochs": 150,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "optimizer": "adam",
+  "loss": "dice",
+  "threshold": 0.5,
+  "seed": 42,
+  "n_folds": 5,
+  "mask_threshold": 127,
+  "input_size": 512,
+  "early_stopping_patience": 0,
+  "augmentation": true,
+  "augmentation_parameters": {}
+}

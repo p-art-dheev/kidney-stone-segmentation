@@ -38,8 +38,8 @@ def dataset(root, ids, config, training=False, seed=42):
     ds=ds.map(load,num_parallel_calls=2,deterministic=True)
     if config.augmentation:
         if training:
-            from kssd.augmentation import augment_dataset
-            ds=augment_dataset(ds,seed)
+            from kssd.augmentation import augment_dataset,AugmentationParameters
+            ds=augment_dataset(ds,seed,AugmentationParameters(**config.augmentation_parameters))
     options=tf.data.Options();options.experimental_deterministic=True;options.threading.private_threadpool_size=2
     return ds.batch(config.batch_size,drop_remainder=False).with_options(options).prefetch(1)
 
@@ -65,7 +65,7 @@ def evaluate(model,root,ids,config):
             'latency_scope':'model forward + device synchronization; excludes disk/preprocessing'}
 
 
-def run_fold(root,manifest,splits,config,fold_number,output):
+def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True):
     validate_splits(splits,manifest)
     if config.n_folds!=splits['n_folds'] or config.seed!=splits['seed'] or config.mask_threshold!=manifest['mask_threshold']:
         raise ValueError('Configuration differs from audited preprocessing/split protocol')
@@ -107,6 +107,15 @@ def run_fold(root,manifest,splits,config,fold_number,output):
         raise RuntimeError('Training did not produce finite histories and a checkpoint')
     model.load_weights(checkpoint)
     selected_epoch=int(np.argmax(history.history['val_hard_mask_dice']))+1
+    if not evaluate_outer:
+        result={'status':'selection_only','selected_epoch':selected_epoch,'training_seconds':duration,
+                'epochs_completed':len(history.epoch),'configuration':config.to_dict()}
+        write_json(output/'selection_run.json',result)
+        provenance=json.loads((output/'provenance.json').read_text(encoding='utf-8'))
+        provenance.update({'status':'selection_only','selected_epoch':selected_epoch})
+        write_json(output/'provenance.json',provenance)
+        del model;tf.keras.backend.clear_session();gc.collect()
+        return result
     result=evaluate(model,root,fold['test'],config)
     result.update({'architecture':config.architecture,'fold':fold_number,'seed':fold['seed'],
                    'selected_epoch':selected_epoch,'checkpoint_sha256':hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
@@ -126,14 +135,15 @@ def main():
     parser.add_argument('--data',required=True);parser.add_argument('--config',required=True);parser.add_argument('--output',required=True)
     parser.add_argument('--manifest',default='reports/dataset/manifest.json');parser.add_argument('--splits',default='reports/splits.json')
     parser.add_argument('--fold',type=int)
+    parser.add_argument('--selection-only',action='store_true',help='Runtime pilot without looking at outer-test predictions')
     args=parser.parse_args()
     for gpu in tf.config.list_physical_devices('GPU'):tf.config.experimental.set_memory_growth(gpu,True)
     config=ExperimentConfig(**json.loads(Path(args.config).read_text(encoding='utf-8')))
     manifest=json.loads(Path(args.manifest).read_text(encoding='utf-8'));splits=json.loads(Path(args.splits).read_text(encoding='utf-8'))
     folds=[args.fold] if args.fold else list(range(1,config.n_folds+1))
     for fold in folds:
-        result=run_fold(args.data,manifest,splits,config,fold,args.output)
-        print(json.dumps({'fold':fold,'micro':result['micro'],'training_seconds':result['training_seconds']}))
+        result=run_fold(args.data,manifest,splits,config,fold,args.output,evaluate_outer=not args.selection_only)
+        print(json.dumps({'fold':fold,'micro':result.get('micro'),'training_seconds':result['training_seconds']}))
 
 
 if __name__=='__main__':main()

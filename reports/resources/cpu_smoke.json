@@ -1,0 +1,95 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "versions": {
+      "tensorflow": "2.20.0",
+      "keras": "3.13.2",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "Pillow": "11.1.0",
+      "scikit-learn": "1.7.2",
+      "keras-unet-collection": "0.1.13"
+    },
+    "tensorflow_gpu_devices": [],
+    "gpu_details": [],
+    "git_commit": "f49cf3d6c9a2d82d430fad1d6f601d095de7a918",
+    "pythonhashseed": "42",
+    "deterministic_ops": true
+  },
+  "models": [
+    {
+      "architecture": "modified_unet",
+      "parameters": 1945233,
+      "training_batch_seconds": 8.173594299994875,
+      "input_shape": [
+        2,
+        512,
+        512,
+        1
+      ],
+      "sample_ids": [
+        "1.tif",
+        "10.tif"
+      ],
+      "loss": 0.99866783618927,
+      "passed": true,
+      "scope": "one augmented training batch and checkpoint round trip; NOT performance evidence"
+    },
+    {
+      "architecture": "unetpp",
+      "parameters": 1967713,
+      "training_batch_seconds": 9.0038276000123,
+      "input_shape": [
+        2,
+        512,
+        512,
+        1
+      ],
+      "sample_ids": [
+        "1.tif",
+        "10.tif"
+      ],
+      "loss": 0.9988168478012085,
+      "passed": true,
+      "scope": "one augmented training batch and checkpoint round trip; NOT performance evidence"
+    },
+    {
+      "architecture": "unet3plus",
+      "parameters": 2374583,
+      "training_batch_seconds": 28.13004910000018,
+      "input_shape": [
+        2,
+        512,
+        512,
+        1
+      ],
+      "sample_ids": [
+        "1.tif",
+        "10.tif"
+      ],
+      "loss": 0.999016284942627,
+      "passed": true,
+      "scope": "one augmented training batch and checkpoint round trip; NOT performance evidence"
+    },
+    {
+      "architecture": "transunet",
+      "parameters": 4747553,
+      "training_batch_seconds": 16.249069499986945,
+      "input_shape": [
+        2,
+        512,
+        512,
+        1
+      ],
+      "sample_ids": [
+        "1.tif",
+        "10.tif"
+      ],
+      "loss": 0.9987115263938904,
+      "passed": true,
+      "scope": "one augmented training batch and checkpoint round trip; NOT performance evidence"
+    }
+  ],
+  "complete": true
+}

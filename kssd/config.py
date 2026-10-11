@@ -1,5 +1,5 @@
 """Strict experiment configuration shared by all architectures."""
-from dataclasses import dataclass,asdict
+from dataclasses import dataclass,asdict,field
 from kssd.models import ARCHITECTURES
 
 
@@ -18,6 +18,7 @@ class ExperimentConfig:
     input_size: int=512
     early_stopping_patience: int=0
     augmentation: bool=False
+    augmentation_parameters: dict=field(default_factory=dict)
 
     def __post_init__(self):
         if self.architecture not in ARCHITECTURES:raise ValueError('Unknown architecture')

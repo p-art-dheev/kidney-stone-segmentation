@@ -1,0 +1,32 @@
+{
+  "hard_mask_dice": [
+    0.024825940253850293
+  ],
+  "hard_mask_iou": [
+    0.01256898860702987
+  ],
+  "hard_mask_precision": [
+    0.012571248957753715
+  ],
+  "hard_mask_recall": [
+    0.9858964521904344
+  ],
+  "loss": [
+    0.9918582439422607
+  ],
+  "val_hard_mask_dice": [
+    0.0
+  ],
+  "val_hard_mask_iou": [
+    0.0
+  ],
+  "val_hard_mask_precision": [
+    0.0
+  ],
+  "val_hard_mask_recall": [
+    0.0
+  ],
+  "val_loss": [
+    0.9990219473838806
+  ]
+}

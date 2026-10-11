@@ -194,3 +194,23 @@ synthetic and never emitted as scientific outputs. `git diff --check` passes.
 CUDA installation is still downloading large dependencies. Full baseline and loss
 experiments, measured size analysis and failure figures remain unrun. Neither
 Phase 5 nor Phase 6 is claimed complete.
+
+Matched-comparison implementation commit `e9766d2` pushed and remote hash confirmed.
+
+## Independent Phase 7a - verified figure generation implementation
+
+Implemented deterministic case selection, four-model mean/sample-SD comparison,
+all-fold training/inner-selection curves and CT/GT/prediction/error/crop panels.
+The generator requires complete matched aggregate results and original checkpoints.
+Source pixel hashes are checked, original evaluation batch shape/order preserved,
+and restored predictions must reproduce saved confusion counts before plotting.
+Figure index records checkpoints, plotted values and selected cases; status stays
+running if generation fails. No successful-case or clinical ambiguity label is
+invented when measured case rankings do not support it.
+
+`python -m pytest tests/test_figures.py -q --basetemp tmp/pytest-figures-final`:
+**4 passed** in 24.19 s. Synthetic prediction, comparison and curve outputs were
+visually inspected; labels, error colors and error bars are readable. Synthetic
+images remain ignored temporary tests, not research outputs. `compileall` and
+`git diff --check` pass. Measured baseline/loss figures and error interpretation
+remain incomplete until actual five-fold runs finish.

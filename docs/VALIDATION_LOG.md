@@ -230,3 +230,33 @@ flag prevents an unintended native-CPU fallback before creating output directori
 as expected with exit 1 and created no run directory. README/training instructions
 show the execution gate; `git diff --check` passes. Numerical training behavior is
 unchanged. CUDA dependency installation and full experimental outputs remain pending.
+
+Budget/GPU-gate commit `4941e00` and definition clarification `a70a59b` pushed;
+both remote hashes confirmed.
+
+## Independent Phase 6c - full-resolution Focal Tversky functionality
+
+The reusable smoke CLI now supports requested architectures and either loss, refuses
+existing output directories and zeroes model weights before restoring the saved file.
+`python -m kssd.smoke --data data/kssd2025/data --output runs/cpu-focal-smoke-cli --architectures modified_unet --loss focal_tversky`:
+**passed** on native CPU with actual augmented training images 1.tif/10.tif,
+input shape 2x512x512x1. One Adam update, finite loss/predictions and weight round trip
+verified. Initial compiled-batch time **8.52 s**, measured loss 0.998336; neither is a
+CV performance result. Compact measured report: reports/resources/cpu_focal_smoke.json.
+Loss parameter/seed/source/dependency provenance recorded; weights remain ignored.
+`git diff --check` passes. Full matched five-fold experiments remain unrun.
+
+## GPU setup limitation and corrected storage strategy
+
+Large CUDA wheels downloaded and native WSL pip installation succeeded, but its
+runtime and cache under `/tmp` disappeared between WSL invocations on this machine.
+No TensorFlow GPU test ran from that lost runtime. OneDrive-mounted installation
+also spent long stretches waiting for filesystem I/O and was stopped.
+
+Replacement native runtime is under `/var/tmp/kssd-gpu312-20261012`; its bootstrap
+and a persistence probe survived a fresh WSL invocation. Official PyPI wheel URLs
+and SHA-256 hashes are resolved for the same package versions. Downloads now use
+the durable ignored workspace directory `tmp/gpu-wheels/`, with hash verification.
+Native runtime currently has pip/build tools only; full CUDA install, GPU operations,
+all-model GPU smoke and representative GPU training remain **unverified**. This
+storage correction does not imply successful GPU training or completed Phase 5.

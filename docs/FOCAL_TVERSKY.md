@@ -4,6 +4,18 @@ Question: does foreground Focal Tversky loss improve segmentation, particularly
 for small annotated stone regions, relative to Dice under matched conditions?
 This is a known loss, not a novel method. No improvement is claimed.
 
+Real-data functionality smoke passed for Modified U-Net at batch 2, 512x512:
+finite optimizer step and predictions, then zeroing/restoring weights reproduced
+predictions. Reproduce in a fresh output directory:
+
+```sh
+python -m kssd.smoke --data data/kssd2025/data --output runs/new-focal-smoke --architectures modified_unet --loss focal_tversky
+```
+
+Add `--require-gpu` when testing GPU execution. The smoke supports either loss and
+records the requested architectures explicitly; one requested model passing does
+not imply all four were tested. This is not performance evidence.
+
 Definition verified against Abraham and Khan, [arXiv:1810.07842](https://arxiv.org/pdf/1810.07842),
 page 2, and the [authors' code](https://github.com/nabsabraham/focal-tversky-unet/blob/master/losses.py).
 The printed equation 4 uses exponent `1/gamma`, with gamma `4/3`; the code names

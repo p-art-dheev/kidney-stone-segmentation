@@ -23,3 +23,20 @@ plus notebook syntax/integration. `git diff --check` passed.
 Windows sandbox runs could not create the default pytest temp directory and later stalled
 in model I/O. The final passing run used repository-local temp files outside the sandbox,
 with TF intra/inter-op threads limited to 2. No dataset evaluation has been measured.
+
+Metric commit `53db6fa` pushed and remote hash confirmed.
+
+## Phase 2 - dataset integrity
+
+Official archive downloaded (78.5 MiB), resumed after a 180-second transfer timeout;
+archive SHA256 and CRC recorded in DATASET.md. Both `>0` and `>127` audits executed
+over all 838 pairs. Initially raw-mask hash differences falsely looked like conflicting
+labels for duplicate images; comparison of the actual binary masks found zero
+disagreements. Validator now tests conflicts after the declared binarization.
+
+Final `python -m kssd.validate_data --data data/kssd2025/data --output runs/dataset-audit --mask-threshold 127`:
+**passed**, 838 valid pairs, 831 eligible unique images, 39 content similarity groups,
+zero empty masks. Synthetic integrity suite: **5 passed** in 0.47 s. Full mask
+histogram and duplicate checks measured; representative overlay visually inspected.
+Notebooks use strict pairing, explicit normalization/binarization and eligibility.
+Patient/scan grouping remains unavailable; heuristic group limits documented.

@@ -54,3 +54,15 @@ budget only, not all folds or longer training. The final common configs now
 use float32, batch two, ten epochs and five folds for every architecture and
 the matched Focal Tversky experiment. Final runs restart all folds under
 `runs/baseline_fp32_final`; previously generated outputs remain preserved.
+
+## Execution-overhead trial
+
+At the user's request for another speed improvement, a short 512x512 Modified
+U-Net GPU trial compared Keras steps_per_execution 1 and 8. Each used three
+epochs of 32 batches on two fixed real images; all losses/metrics were finite,
+histories matched, and both performed 96 optimizer updates. Excluding compilation,
+mean epoch times were 6.74 seconds and 7.73 seconds respectively. Evidence:
+`reports/resources/execution_benchmark.json`. The main TransUNet training remained
+active during this trial, so shared-GPU contention limits timing interpretation.
+There was no demonstrated steady-state speed gain; the change was not adopted,
+and the main training was not restarted. This trial is not CV performance evidence.

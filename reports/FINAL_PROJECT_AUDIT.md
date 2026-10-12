@@ -4,7 +4,8 @@
 
 The user subsequently authorized a matched Attention U-Net experiment. Its
 additive skip-gate implementation and mask-persistence regression checks passed
-77 tests; GPU smoke and a retained fold-1 pilot precede automatic folds 2–5.
+77 tests. GPU smoke and the retained fold-1 pilot passed; automatic folds 2–5
+are underway. Available fold metrics: [Attention results](../docs/ATTENTION_RESULTS.md).
 This extension does not change the verified historical baseline results below.
 Current protocol/status: [Attention U-Net](../docs/ATTENTION_UNET.md). Completed
 Attention results will be added from saved evidence; they are not yet claimed.

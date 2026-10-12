@@ -156,10 +156,10 @@ contain no precomputed corrected results or hidden Kaggle training logic.
 
 Attention U-Net adds four additive spatial gates to Modified U-Net's skip
 connections, preserving its encoder/decoder and the frozen ten-epoch protocol.
-The implementation passed 77 tests. A GPU smoke check and five-fold run are
-being prepared; no Attention CV result is claimed until its records are complete.
-Fold 1 is retained as the pilot and evaluated once. See
-[Attention U-Net protocol and status](docs/ATTENTION_UNET.md).
+The implementation passed 77 tests and the full-size GPU smoke check. The
+retained fold-1 pilot passed validation; folds 2–5 are running automatically.
+No five-fold Attention mean is claimed until all records are complete. See
+[protocol](docs/ATTENTION_UNET.md) and [measured fold status](docs/ATTENTION_RESULTS.md).
 
 ### Focal Tversky loss
 

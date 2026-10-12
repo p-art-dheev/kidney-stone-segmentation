@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Verified short-budget baseline release; Focal CV pending; no new large training authorized",
+  "scope": "Verified four-model short-budget baseline; user-authorized Attention U-Net extension running; Focal pending",
   "dataset": {
     "name": "KSSD2025",
     "pairs": 838,
@@ -1077,5 +1077,77 @@
     "aggregate_example": "python -m kssd.reporting --run runs/persistent-backup-20261012/baseline_fp32_final/modified_unet --output runs/modified-unet-summary-check.json"
   },
   "inventory": "reports/experiment_inventory.json",
-  "verification": "reports/final_validation.json"
+  "verification": "reports/final_validation.json",
+  "attention_unet_extension": {
+    "status": "running",
+    "configuration": {
+      "architecture": "attention_unet",
+      "epochs": 10,
+      "batch_size": 2,
+      "learning_rate": 0.001,
+      "optimizer": "adam",
+      "loss": "dice",
+      "threshold": 0.5,
+      "seed": 42,
+      "n_folds": 5,
+      "mask_threshold": 127,
+      "input_size": 512,
+      "early_stopping_patience": 0,
+      "augmentation": true,
+      "augmentation_parameters": {},
+      "precision": "float32"
+    },
+    "completed_outer_folds": [
+      1
+    ],
+    "folds": [
+      {
+        "fold": 1,
+        "seed": 43,
+        "selected_epoch": 9,
+        "micro": {
+          "hard_mask_dice": 0.47454029485730104,
+          "hard_mask_iou": 0.31108018996339876,
+          "hard_mask_precision": 0.34446491374979066,
+          "hard_mask_recall": 0.7624555160142349
+        },
+        "counts": {
+          "tp": 20568,
+          "fp": 39142,
+          "fn": 6408,
+          "tn": 46857658
+        },
+        "training_seconds": 378.204900604,
+        "epochs_completed": 10,
+        "checkpoint_sha256": "25830fd50270bd4bd7df11db75464eec05f68602dbebf17f36daa046bed2b624"
+      }
+    ],
+    "records": "reports/experiments/attention10fp32_20261012/attention_unet",
+    "native_checkpoint_root": "/var/tmp/kssd-workspace-20261012/runs/attention10fp32_20261012/attention_unet",
+    "local_backup": "runs/persistent-backup-20261012/attention10fp32_20261012/attention_unet",
+    "new_checkpoints_remotely_published": false,
+    "training_log": "/var/tmp/kssd-attention10fp32-20261012.log",
+    "pilot_fold_reused": 1,
+    "outer_evaluations_per_fold": 1,
+    "protocol": "docs/ATTENTION_UNET.md",
+    "gpu_smoke": "reports/resources/attention_gpu_smoke.json",
+    "tests": "reports/resources/attention_tests.txt",
+    "parameters": 1967357,
+    "seed": 42,
+    "fold_seeds": [
+      43,
+      44,
+      45,
+      46,
+      47
+    ],
+    "dataset_fingerprint": "5fec0d38d1fd0386277a056cb1579235121f65a5da4fc3ac71abda8218db621f",
+    "remaining_folds": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "aggregation": "Unavailable until all five complete; no partial mean or missing-fold imputation"
+  }
 }

@@ -45,3 +45,21 @@ TF_NUM_INTRAOP_THREADS=2 TF_NUM_INTEROP_THREADS=2 python -m pytest -q tests
 An initial collection command also picked up a preserved scratch test copy;
 its duplicate-module error is retained in the collection-failure log. Restricting
 collection to `tests/` resolved it without discarding the scratch files.
+
+Full-size GPU smoke passed: 1,967,357 parameters (22,124 more than Modified
+U-Net), a 512x512 batch of two, float32/Adam/Dice, finite forward and optimizer
+update, and exact checkpoint prediction round trip. First update: 11.62 seconds;
+peak TensorFlow allocation: 1,277,059,840 bytes. Evidence:
+[GPU smoke record](../reports/resources/attention_gpu_smoke.json).
+Training implementation commit: `0de39f5`; native workspace was clean at launch.
+GPU smoke results are functionality evidence, not a CV performance score.
+
+Fold-1 pilot passed: all ten epochs finite, selected epoch 9, 179 outer masks
+verified against saved counts, checkpoint SHA-256 verified and locally backed up.
+Training time 378.20 seconds; Dice/IoU/precision/recall
+0.474540/0.311080/0.344465/0.762456. Automatic fold-2 training started.
+Largest-FP and lowest-Dice panels were inspected from saved masks: the model
+detects some annotated foreground but also predicts bright background structures;
+1226.tif misses all 57 foreground pixels (TP/FP/FN 0/511/57). These failures
+are retained. No training setting or epoch is changed using these outer results.
+Current [measured fold status](ATTENTION_RESULTS.md) is incomplete until five folds finish.

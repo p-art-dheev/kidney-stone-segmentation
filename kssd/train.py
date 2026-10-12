@@ -44,7 +44,10 @@ def dataset(root, ids, config, training=False, seed=42):
     return ds.batch(config.batch_size,drop_remainder=False).with_options(options).prefetch(1)
 
 
-def evaluate(model,root,ids,config):
+def evaluate(model,root,ids,config,prediction_output=None):
+    if prediction_output is not None:
+        from PIL import Image
+        prediction_output=Path(prediction_output);prediction_output.mkdir(parents=True,exist_ok=False)
     rows=[];counts=dict(tp=0,fp=0,fn=0,tn=0);durations=[]
     for names in [ids[i:i+config.batch_size] for i in range(0,len(ids),config.batch_size)]:
         pairs=[load_pair(Path(root)/'image'/n,Path(root)/'label'/n,config.mask_threshold) for n in names]
@@ -53,6 +56,8 @@ def evaluate(model,root,ids,config):
         durations.append(time.perf_counter()-start)
         for name,pair,pred in zip(names,pairs,predictions):
             result=binary_metrics(pair[1],pred,config.threshold)
+            if prediction_output is not None:
+                Image.fromarray(((pred[...,0]>=config.threshold)*255).astype(np.uint8)).save(prediction_output/f'{Path(name).stem}.png')
             rows.append({'id':name,'stone_area':int(pair[1].sum()),**result})
             for key in counts:counts[key]+=result[key]
     metrics=metrics_from_counts(**counts)
@@ -65,7 +70,7 @@ def evaluate(model,root,ids,config):
             'latency_scope':'model forward + device synchronization; excludes disk/preprocessing'}
 
 
-def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True):
+def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True,save_predictions=False):
     validate_splits(splits,manifest)
     if config.n_folds!=splits['n_folds'] or config.seed!=splits['seed'] or config.mask_threshold!=manifest['mask_threshold']:
         raise ValueError('Configuration differs from audited preprocessing/split protocol')
@@ -123,7 +128,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
         write_json(output/'provenance.json',provenance)
         del model;tf.keras.backend.clear_session();gc.collect()
         return result
-    result=evaluate(model,root,fold['test'],config)
+    result=evaluate(model,root,fold['test'],config,prediction_output=output/'predictions' if save_predictions else None)
     result.update({'architecture':config.architecture,'fold':fold_number,'seed':fold['seed'],
                    'selected_epoch':selected_epoch,'checkpoint_sha256':hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
                    'parameters':model.count_params(),'training_seconds':duration,'epochs_completed':len(history.epoch),
@@ -144,6 +149,7 @@ def main():
     parser.add_argument('--manifest',default='reports/dataset/manifest.json');parser.add_argument('--splits',default='reports/splits.json')
     parser.add_argument('--fold',type=int)
     parser.add_argument('--selection-only',action='store_true',help='Runtime pilot without looking at outer-test predictions')
+    parser.add_argument('--save-predictions',action='store_true',help='Save binary PNG masks during the single outer evaluation')
     parser.add_argument('--require-gpu',action='store_true',help='Fail before creating a run if TensorFlow cannot see a GPU')
     args=parser.parse_args()
     gpus=tf.config.list_physical_devices('GPU')
@@ -153,7 +159,7 @@ def main():
     manifest=json.loads(Path(args.manifest).read_text(encoding='utf-8'));splits=json.loads(Path(args.splits).read_text(encoding='utf-8'))
     folds=[args.fold] if args.fold else list(range(1,config.n_folds+1))
     for fold in folds:
-        result=run_fold(args.data,manifest,splits,config,fold,args.output,evaluate_outer=not args.selection_only)
+        result=run_fold(args.data,manifest,splits,config,fold,args.output,evaluate_outer=not args.selection_only,save_predictions=args.save_predictions)
         print(json.dumps({'fold':fold,'micro':result.get('micro'),'training_seconds':result['training_seconds']}))
 
 

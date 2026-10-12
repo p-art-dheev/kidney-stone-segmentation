@@ -152,6 +152,17 @@ contain no precomputed corrected results or hidden Kaggle training logic.
 
 ## Research-inspired experiment
 
+### Attention U-Net extension
+
+Attention U-Net adds four additive spatial gates to Modified U-Net's skip
+connections, preserving its encoder/decoder and the frozen ten-epoch protocol.
+The implementation passed 77 tests. A GPU smoke check and five-fold run are
+being prepared; no Attention CV result is claimed until its records are complete.
+Fold 1 is retained as the pilot and evaluated once. See
+[Attention U-Net protocol and status](docs/ATTENTION_UNET.md).
+
+### Focal Tversky loss
+
 Optional foreground Focal Tversky loss is numerically tested: FN weight 0.7, FP
 weight 0.3, exponent 0.75, smoothing 1e-6. Its Modified U-Net config changes only
 the loss relative to the Dice baseline:

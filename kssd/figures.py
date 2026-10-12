@@ -88,12 +88,12 @@ def training_plot(root,path):
 
 
 def generate(root,data,manifest,splits,output,architectures=None):
-    from kssd.models import ARCHITECTURES,build_model
+    from kssd.models import ARCHITECTURES,BASELINE_ARCHITECTURES,build_model
     from kssd.reproducibility import set_seeds
     import tensorflow as tf
     import matplotlib
     matplotlib.use('Agg')
-    architectures=ARCHITECTURES if architectures is None else architectures
+    architectures=BASELINE_ARCHITECTURES if architectures is None else architectures
     if not architectures or len(set(architectures))!=len(architectures) or any(a not in ARCHITECTURES for a in architectures):
         raise ValueError('Invalid architecture selection')
     summaries=[aggregate(Path(root)/architecture,manifest,splits) for architecture in architectures]

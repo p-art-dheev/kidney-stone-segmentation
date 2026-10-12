@@ -1,0 +1,41 @@
+
+==================================== ERRORS ====================================
+_____ ERROR collecting tmp/attention-pre-sync-20261012/test_final_audit.py _____
+import file mismatch:
+imported module 'test_final_audit' has this __file__ attribute:
+  /var/tmp/kssd-workspace-20261012/tests/test_final_audit.py
+which is not the same as the test file we want to collect:
+  /var/tmp/kssd-workspace-20261012/tmp/attention-pre-sync-20261012/test_final_audit.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=============================== warnings summary ===============================
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+../kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_mathtext.py:45
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tmp/attention-pre-sync-20261012/test_final_audit.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+14 warnings, 1 error in 5.33s

@@ -1,5 +1,14 @@
 # Final project audit — Kidney Stone Segmentation
 
+## Attention U-Net extension after this release
+
+The user subsequently authorized a matched Attention U-Net experiment. Its
+additive skip-gate implementation and mask-persistence regression checks passed
+77 tests; GPU smoke and a retained fold-1 pilot precede automatic folds 2–5.
+This extension does not change the verified historical baseline results below.
+Current protocol/status: [Attention U-Net](../docs/ATTENTION_UNET.md). Completed
+Attention results will be added from saved evidence; they are not yet claimed.
+
 ## Release state
 
 This final non-training completion pass verifies the saved 20-fold float32 baseline, publishes compact exploratory/partial evidence, completes qualitative review and reproducibility documentation, and adds an independent saved-record auditor. No new large training was started. The matched Focal Tversky CV remains pending because its existing run stopped before its first completed epoch and has no selected checkpoint. The baseline release is reviewable; the loss experiment is **not complete**.

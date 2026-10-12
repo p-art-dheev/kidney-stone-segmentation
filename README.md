@@ -11,8 +11,11 @@ All four models passed actual 512×512 CPU and GPU optimizer-step smoke checks.
 The full test suite passed 59 tests in both environments. A full Modified U-Net
 training/inner-selection epoch completed in 363.70 s on CPU and 110.47 s on GPU.
 The [verified WSL GPU environment](docs/GPU_ENVIRONMENT.md) includes exact dependencies.
-Corrected five-fold performance results, the matched Focal Tversky comparison and
-prediction/error figures are **not yet available**. No best model is established.
+Corrected float32 five-fold baseline evaluations are complete. Measured fold-mean
+hard-mask Dice is 0.7910 for Modified U-Net, 0.3678 for U-Net++, 0.3230 for
+U-Net3+ and 0.4842 for TransUNet. These are preliminary ten-epoch results with
+substantial fold variability; the loss experiment and final audit remain pending.
+See [measured baseline results](docs/BASELINE_RESULTS.md).
 See the [validation log](docs/VALIDATION_LOG.md) for measured checks and open gates.
 
 ## Dataset and protocol

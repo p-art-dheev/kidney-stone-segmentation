@@ -310,3 +310,16 @@ command before execution. On the user's later request to resume, review accepted
 the continuation; the runtime persisted and all GPU gates above were confirmed.
 Full baseline CV, matched Focal Tversky results and actual result figures remain
 pending. No performance ranking or project-completion claim follows from these gates.
+
+## Final float32 baseline CV, 12 October 2026
+
+All twenty 10-epoch folds completed; strict per-fold checkpoint/history/count
+validation, five-fold aggregation and matched architecture protocol checks passed.
+Every runtime record was independently checked for complete status and actual
+float32/Adam. Measured results and limitations are in BASELINE_RESULTS.md;
+compact records are in reports/experiments/baseline10fp32_final. Checkpoint-derived
+comparison, curves and prediction/error figures completed with re-evaluated count
+checks; selected figures were visually inspected. All completed checkpoint files
+were SHA-256 verified in the local Windows backup (246 recorded files, 2.07 GB at
+that snapshot). Mixed-precision and other incomplete runs are separate and excluded.
+The matched Focal Tversky experiment and final audit still remain.

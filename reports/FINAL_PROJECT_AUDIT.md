@@ -2,6 +2,12 @@
 
 ## Completed Attention U-Net extension
 
+All five folds, 831 saved masks, five checkpoint hashes and all eight plots
+passed independent validation/review. The pre-release suite passed 80 tests in
+77.50 seconds; the post-push suite passed 80 tests in 65.46 seconds.
+[Post-push verification](experiments/attention10fp32_20261012/post_push_verification.json)
+confirms the remote artifact counts. No Attention training remains outstanding.
+
 | Model | Dice | IoU | Precision | Recall |
 |---|---:|---:|---:|---:|
 | Modified U-Net | 0.7910 ± 0.0724 | 0.6589 ± 0.0973 | 0.8298 ± 0.1621 | 0.7786 ± 0.0755 |

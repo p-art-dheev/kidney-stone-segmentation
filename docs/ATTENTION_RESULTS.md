@@ -41,3 +41,10 @@ Full-size GPU smoke, independent ground-truth intersections for all saved masks,
 all selected checkpoint hashes, protocol comparison and deterministic figure
 selection passed. No Attention experiment blocker remains. The checkpoint
 publication limitation and existing Focal/150-epoch pending work remain separate.
+
+Post-push suite also passed **80 tests**, 1166 upstream warnings, in **65.46
+seconds**. The native checkpoint/ground-truth audit passed again without inference.
+The remote release contains all 831 prediction masks and eight reviewed plots.
+[Post-push verification](../reports/experiments/attention10fp32_20261012/post_push_verification.json)
+records the tested release commit and remote file evidence; the final closure
+commit only adds this evidence and does not change the tested implementation.

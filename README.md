@@ -50,9 +50,11 @@ continuous probabilities and is separate from binary metrics: [metric policy](do
 | U-Net3+ | 2,374,583 | keras-unet-collection full-scale skips |
 | TransU-Net | 4,747,553 | Local library-based hybrid, embed 192, 4 heads, 3 transformer blocks |
 
-The 10-epoch configs use mixed_float16 with float32 probabilities, losses and
-trainable variables, automatic loss scaling, and fresh seeded weights/optimizers
-per fold. All four passed full-resolution GPU checks at batch 2. TransU-Net uses Keras Reshape layers for compatibility;
+The final 10-epoch configs use float32 and fresh seeded weights/optimizers per
+fold. Short mixed-precision GPU checks passed, but TransUNet developed NaN losses
+during longer training; the matched comparison was restarted in float32.
+See [measured acceleration limitations](docs/GPU_ACCELERATION.md).
+TransU-Net uses Keras Reshape layers for compatibility;
 installed library source is never modified. This library variant is not claimed
 to exactly reproduce the original TransUNet authors' implementation.
 

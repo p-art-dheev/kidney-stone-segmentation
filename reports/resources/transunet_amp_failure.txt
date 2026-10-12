@@ -1,0 +1,45 @@
+2026-10-12 11:29:57.007302: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791804603.132664    5469 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5518 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4070 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+Epoch 1/10
+2026-10-12 11:30:05.952831: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+2026-10-12 11:30:31.820364: E tensorflow/core/util/util.cc:131] oneDNN supports DT_HALF only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-12 11:30:32.241198: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 92700
+223/223 - 80s - 359ms/step - hard_mask_dice: 0.0345 - hard_mask_iou: 0.0176 - hard_mask_precision: 0.0176 - hard_mask_recall: 0.9922 - loss: 0.9921 - val_hard_mask_dice: 4.2256e-04 - val_hard_mask_iou: 2.1133e-04 - val_hard_mask_precision: 2.1150e-04 - val_hard_mask_recall: 0.2082 - val_loss: 0.9991
+Epoch 2/10
+223/223 - 46s - 206ms/step - hard_mask_dice: 0.2507 - hard_mask_iou: 0.1433 - hard_mask_precision: 0.1484 - hard_mask_recall: 0.8062 - loss: 0.9094 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9999
+Epoch 3/10
+223/223 - 47s - 211ms/step - hard_mask_dice: 0.1172 - hard_mask_iou: 0.0623 - hard_mask_precision: 0.0658 - hard_mask_recall: 0.5340 - loss: 0.9012 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: nan
+Epoch 4/10
+Batch 39: Invalid loss, terminating training
+223/223 - 12s - 53ms/step - hard_mask_dice: 0.1603 - hard_mask_iou: 0.0871 - hard_mask_precision: 0.1022 - hard_mask_recall: 0.3717 - loss: nan - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: nan
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/var/tmp/kssd-workspace-20261012/kssd/train.py", line 160, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/var/tmp/kssd-workspace-20261012/kssd/train.py", line 156, in main
+    result=run_fold(args.data,manifest,splits,config,fold,args.output,evaluate_outer=not args.selection_only)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/tmp/kssd-workspace-20261012/kssd/train.py", line 111, in run_fold
+    write_json(output/'history.json',history.history)
+  File "/var/tmp/kssd-workspace-20261012/kssd/train.py", line 22, in write_json
+    path.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 317, in _iterencode_list
+    yield buf + _floatstr(value)
+                ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 240, in floatstr
+    raise ValueError(
+ValueError: Out of range float values are not JSON compliant: nan

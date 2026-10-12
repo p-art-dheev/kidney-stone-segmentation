@@ -3,5 +3,5 @@
   "epochs": 1,
   "batch_size": 2,
   "augmentation": true,
-  "precision": "mixed_float16"
+  "precision": "float32"
 }

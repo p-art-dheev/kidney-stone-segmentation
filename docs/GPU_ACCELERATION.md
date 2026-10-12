@@ -35,3 +35,22 @@ float32. Keras supplies dynamic loss scaling automatically. See the
 [TensorFlow mixed precision guide](https://www.tensorflow.org/guide/mixed_precision).
 This protocol differs from the paper budget; 150-epoch/batch-16 reproduction
 has not been performed. Policy selection used runtime and memory checks only.
+
+## Longer-run failure and final fallback
+
+The corrected mixed-precision run completed all five folds for Modified U-Net,
+U-Net++ and U-Net3+. TransUNet fold 1 developed NaN inner-validation loss at
+epoch 3 and NaN training loss at epoch 4, batch 39. TerminateOnNaN stopped
+training, and strict JSON serialization rejected the non-finite history.
+The actual trace is `reports/resources/transunet_amp_failure.txt`.
+The short five-update checks did not establish longer-run numerical stability.
+These mixed-precision results are retained as exploratory records and are not
+combined with float32 results into a matched architecture comparison.
+
+A four-epoch TransUNet fold-1 float32 diagnostic completed with finite histories
+in 203.26 seconds and no outer-test evaluation. Its compact records are under
+`reports/resources/transunet_fp32_diagnostic/`. This verifies the diagnostic
+budget only, not all folds or longer training. The final common configs now
+use float32, batch two, ten epochs and five folds for every architecture and
+the matched Focal Tversky experiment. Final runs restart all folds under
+`runs/baseline_fp32_final`; previously generated outputs remain preserved.

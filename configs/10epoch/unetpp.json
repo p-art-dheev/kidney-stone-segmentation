@@ -13,5 +13,5 @@
   "early_stopping_patience": 0,
   "augmentation": true,
   "augmentation_parameters": {},
-  "precision": "mixed_float16"
+  "precision": "float32"
 }

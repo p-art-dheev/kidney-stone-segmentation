@@ -38,8 +38,10 @@ final unbiased test. Each outer fold is evaluated once after loading the selecte
 hashes; clears the Keras session; seeds Python/NumPy/TensorFlow to 42+fold; enables
 deterministic TensorFlow ops; constructs a fresh model and optimizer with zero iterations.
 Set `PYTHONHASHSEED=42` **before** starting Python (setting it after launch has no effect).
-The 10-epoch configs use mixed_float16 computation with float32 model variables,
-output probabilities and losses, and Keras automatic dynamic loss scaling.
+The final 10-epoch configs use float32. Mixed-precision acceleration passed short
+checks but caused non-finite TransUNet losses during longer training, so the
+matched comparison was restarted in float32; see GPU_ACCELERATION.md.
+The runner supports optional mixed_float16 with automatic dynamic loss scaling.
 Precision is recorded in configuration and runtime provenance; figure regeneration
 restores the same policy. The 150-epoch configs retain float32 and remain unrun.
 Train-only shuffling has an explicit seed; tested spatial transforms

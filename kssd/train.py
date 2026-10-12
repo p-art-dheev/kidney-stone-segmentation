@@ -78,8 +78,8 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
     output=Path(output)/f'fold-{fold_number}'
     if output.exists():raise ValueError(f'Output already exists: {output}; choose a new run directory')
     output.mkdir(parents=True)
-    tf.keras.mixed_precision.set_global_policy(config.precision)
     tf.keras.backend.clear_session();gc.collect();set_seeds(fold['seed'])
+    tf.keras.mixed_precision.set_global_policy(config.precision)
     model=build_model(config.architecture,(config.input_size,config.input_size,1))
     optimizer=(tf.keras.optimizers.Adam if config.optimizer=='adam' else tf.keras.optimizers.SGD)(learning_rate=config.learning_rate)
     if config.loss=='dice':loss=dice_loss
@@ -87,6 +87,10 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
         from kssd.losses import FocalTverskyLoss
         loss=FocalTverskyLoss()
     model.compile(optimizer=optimizer,loss=loss,metrics=make_metrics(config.threshold),jit_compile=False)
+    if tf.keras.mixed_precision.global_policy().name!=config.precision:
+        raise RuntimeError('Runtime precision differs from configured policy')
+    if config.precision=='mixed_float16' and not isinstance(model.optimizer,tf.keras.mixed_precision.LossScaleOptimizer):
+        raise RuntimeError('Mixed precision requires automatic loss scaling')
     if int(optimizer.iterations)!=0:raise RuntimeError('Optimizer was not freshly initialized')
     initial_hash=hashlib.sha256(b''.join(w.tobytes() for w in model.get_weights())).hexdigest()
     write_json(output/'provenance.json',{'config':config.to_dict(),'fold':fold,'dataset_fingerprint':splits['dataset_fingerprint'],

@@ -22,7 +22,13 @@ in U-Net3+. All final comparison configs therefore keep common batch two,
 10 epochs, all five folds and the frozen split/augmentation protocol.
 The two completed earlier float32 Modified U-Net folds and interrupted third
 fold remain preserved in `runs/baseline`; they are excluded from the new matched
-comparison. New runs use `runs/baseline_amp` with all folds restarted.
+comparison. The initial `runs/baseline_amp` launch also reset the policy during
+Keras session clearing; its runtime provenance correctly recorded float32/Adam.
+It was stopped after this was discovered and excluded from comparison. The
+corrected runner sets the policy after clearing the session and asserts that
+mixed precision uses LossScaleOptimizer. A synthetic end-to-end runner test
+now verifies actual runtime policy and optimizer for both precision modes.
+New runs use `runs/baseline_amp_verified` with all folds restarted.
 
 Output sigmoid computations and losses remain float32; model variables remain
 float32. Keras supplies dynamic loss scaling automatically. See the

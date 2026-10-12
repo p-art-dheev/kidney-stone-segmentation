@@ -61,7 +61,8 @@ def test_mixed_precision_keeps_probabilities_and_variables_float32(architecture)
         tf.keras.mixed_precision.set_global_policy('float32');tf.keras.backend.clear_session()
 
 
-def test_nested_runner_synthetic_end_to_end(tmp_path,monkeypatch):
+@pytest.mark.parametrize('precision',['float32','mixed_float16'])
+def test_nested_runner_synthetic_end_to_end(tmp_path,monkeypatch,precision):
     from PIL import Image
     from kssd.validate_data import validate
     from kssd.splits import make_splits
@@ -71,14 +72,17 @@ def test_nested_runner_synthetic_end_to_end(tmp_path,monkeypatch):
         image=np.full((32,32),i*16,dtype=np.uint8);mask=np.zeros_like(image);mask[8:12,8:12]=255
         Image.fromarray(image).save(root/'image'/f'{i}.tif');Image.fromarray(mask).save(root/'label'/f'{i}.tif')
     manifest=validate(root,15,32);splits=make_splits(manifest,3)
-    config=ExperimentConfig(epochs=1,n_folds=3,input_size=32,batch_size=2,augmentation=True)
+    config=ExperimentConfig(epochs=1,n_folds=3,input_size=32,batch_size=2,augmentation=True,precision=precision)
     result=run_fold(root,manifest,splits,config,1,tmp_path/'run')
     output=tmp_path/'run/fold-1'
     assert result['status']=='complete' and result['selected_epoch']==1
     assert result['outer_test_count']==len(splits['folds'][0]['test'])
     assert len(result['per_image'])==result['outer_test_count']
     assert (output/'history.csv').exists() and (output/'best.weights.h5').exists()
-    assert json.loads((output/'provenance.json').read_text())['status']=='complete'
+    provenance=json.loads((output/'provenance.json').read_text())
+    assert provenance['status']=='complete'
+    assert provenance['environment']['precision_policy']==precision
+    assert provenance['optimizer_class']==('LossScaleOptimizer' if precision=='mixed_float16' else 'Adam')
     with pytest.raises(ValueError,match='already exists'):run_fold(root,manifest,splits,config,1,tmp_path/'run')
     def forbid_outer(*args,**kwargs):raise AssertionError('Runtime pilot must not look at outer test')
     monkeypatch.setattr('kssd.train.evaluate',forbid_outer)

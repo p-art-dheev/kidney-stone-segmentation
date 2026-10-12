@@ -7,8 +7,10 @@ The corrected protocol differs from the paper and historical notebooks.
 
 **Validation is in progress.** Shared metrics, preprocessing, grouped splits,
 checkpoint selection, augmentation and model weight round trips have been tested.
-All four models passed actual 512×512 CPU optimizer-step smoke checks. A full
-Modified U-Net training/inner-selection epoch completed in 363.70 s on CPU.
+All four models passed actual 512×512 CPU and GPU optimizer-step smoke checks.
+The full test suite passed 59 tests in both environments. A full Modified U-Net
+training/inner-selection epoch completed in 363.70 s on CPU and 110.47 s on GPU.
+The [verified WSL GPU environment](docs/GPU_ENVIRONMENT.md) includes exact dependencies.
 Corrected five-fold performance results, the matched Focal Tversky comparison and
 prediction/error figures are **not yet available**. No best model is established.
 See the [validation log](docs/VALIDATION_LOG.md) for measured checks and open gates.

@@ -276,3 +276,37 @@ augmented images passed again (`--output runs/cpu-focal-smoke-finite`), with an
 The numerical training implementation and experiment protocols are unchanged.
 The `/var/tmp` WSL runtime survived another invocation; RTX 4070 GPU visibility
 was confirmed by nvidia-smi, but TensorFlow GPU execution remains pending.
+
+Finite-prediction gate commit `7201932` pushed and remote hash confirmed.
+
+## Phase 4 GPU gates - completed on the persistent WSL runtime
+
+All 66 official PyPI wheels passed SHA-256 verification; offline installation
+completed and `pip check` reported no broken requirements. Runtime is native
+WSL `/var/tmp/kssd-gpu312-20261012`, with a clean sparse checkout initially at
+`7201932` in `/var/tmp/kssd-workspace-20261012`. Original assets are preserved.
+Dataset copy contains all 838 image/mask pairs; live decoded hashes are checked
+by the training runner. Details and exact dependency lock: GPU_ENVIRONMENT.md.
+
+Actual TensorFlow 2.20 GPU matmul passed with CPU fallback disabled. All four
+architectures passed full-resolution batch-2 Dice optimizer, finite prediction,
+and checkpoint round-trip smoke checks (`python -m kssd.smoke --data
+data/kssd2025/data --output runs/gpu-smoke --require-gpu`). Initial compiled batch
+times: Modified U-Net 13.64 s, U-Net++ 11.50 s, U-Net3+ 17.61 s, TransU-Net 19.63 s.
+These include compilation and are not steady-state speed or CV performance.
+
+`python -m pytest -q --basetemp tmp/pytest-gpu-confirmed`: **59 passed** in
+145.75 s, with 812 upstream deprecation warnings. Complete log: gpu_tests.txt.
+`python -m kssd.train --data data/kssd2025/data --config configs/representative.json
+--output runs/gpu-representative --fold 1 --selection-only --require-gpu`:
+**passed**, 446 training / 206 inner-selection images, one epoch, **110.47 s**
+training duration. Inner hard-mask Dice was 0; no outer-test evaluation was run.
+Compact history/selection records are under reports/resources/gpu_representative_*.
+TensorFlow emitted nonfatal layout-optimizer and ignored dataset-attribute warnings;
+finite outputs and training completion were checked, not inferred from logs.
+
+An approval-review account usage limit temporarily blocked a WSL evidence-copy
+command before execution. On the user's later request to resume, review accepted
+the continuation; the runtime persisted and all GPU gates above were confirmed.
+Full baseline CV, matched Focal Tversky results and actual result figures remain
+pending. No performance ranking or project-completion claim follows from these gates.

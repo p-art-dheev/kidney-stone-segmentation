@@ -14,6 +14,8 @@ The [central audit](reports/FINAL_PROJECT_AUDIT.md) records every completed,
 exploratory, failed and pending run. See the [experiment manifest](reports/experiment_manifest.json),
 [reproduction instructions](docs/EVALUATION_REPRODUCTION.md) and
 [validation log](docs/VALIDATION_LOG.md).
+The post-push regression suite passed **71 tests**; actual commands and outcomes
+are in [release verification](reports/final_release_verification.json).
 
 Verified **10-epoch, batch-two** baseline: mean ± sample SD across five
 outer-fold pooled-pixel scores. These are not the paper's 150-epoch results.

@@ -60,5 +60,12 @@ size groups, and rejects missing/mismatched experiments before writing a report:
 python -m kssd.compare_losses --baseline runs/baseline/modified_unet --alternative runs/focal/modified_unet --output runs/loss-comparison.json
 ```
 
-Status: loss and comparison implementations only. Both real five-fold runs, measured
-size analysis, failure figures and performance conclusions remain unverified.
+Final status: the matched float32 Dice baseline is complete and independently
+verified. Focal's full-size GPU optimizer/checkpoint smoke passed, but its prior
+real-data run stopped before one complete epoch; zero outer folds and no selected
+fold checkpoint exist. There is no active Focal process, and the cause of its
+interruption is unrecorded. New five-fold training is necessary; the final audit
+did not start it. Therefore Focal size analysis, figures and performance
+conclusions remain unavailable. See [final audit](../reports/FINAL_PROJECT_AUDIT.md).
+The example comparison requires two complete five-fold roots; the actual baseline
+recovery location is `runs/persistent-backup-20261012/baseline_fp32_final/modified_unet`.

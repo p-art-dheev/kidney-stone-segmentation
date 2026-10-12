@@ -8,3 +8,5 @@ kaggle/
 runs/
 tmp/
 *.egg-info/
+.env
+.env.*

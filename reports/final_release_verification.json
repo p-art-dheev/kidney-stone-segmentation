@@ -1,0 +1,397 @@
+{
+  "status": "verified",
+  "verified_at_utc": "2026-10-12T18:04:00.764909+00:00",
+  "tested_release_commit": "018b12a7b87e95898fb215b801a443419a18215a",
+  "remote_main_at_verification": "018b12a7b87e95898fb215b801a443419a18215a",
+  "post_push_tests": {
+    "command": "CUDA_VISIBLE_DEVICES=-1 PYTHONHASHSEED=42 TF_NUM_INTRAOP_THREADS=2 TF_NUM_INTEROP_THREADS=2 /var/tmp/kssd-gpu312-20261012/bin/python -m pytest -q --basetemp tmp/post-release-tests",
+    "cwd": "Windows checkout via WSL /mnt/c",
+    "passed": 71,
+    "warnings": 1042,
+    "seconds": 254.25,
+    "log": "reports/resources/final_post_commit_tests.txt",
+    "large_real_data_training_started": false
+  },
+  "record_audit": {
+    "command": "python -m kssd.final_audit --output runs/records-only-audit.json",
+    "status": "verified",
+    "outer_ids_per_architecture": 831,
+    "weights_checked": false
+  },
+  "checkpoint_audit": {
+    "command": "python -m kssd.final_audit --checkpoints runs/persistent-backup-20261012/baseline_fp32_final --output runs/checkpoint-audit.json",
+    "status": "verified",
+    "selected_weights_verified": 20,
+    "counts_and_metrics_match_committed_validation": true,
+    "figure_index_files_verified": 30
+  },
+  "summary_regeneration": {
+    "command": "python -m kssd.reporting --run runs/persistent-backup-20261012/baseline_fp32_final/modified_unet --output runs/modified-unet-summary-check.json",
+    "result_matches_committed": true
+  },
+  "release_artifact_checks": "reports/release_artifact_checks.json",
+  "published_expected_files": [
+    "README.md",
+    "reports/FINAL_PROJECT_AUDIT.md",
+    "reports/experiment_manifest.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-1/evaluation.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-1/history.csv",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-1/history.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-1/provenance.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-2/evaluation.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-2/history.csv",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-2/history.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-2/provenance.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-3/evaluation.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-3/history.csv",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-3/history.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-3/provenance.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-4/evaluation.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-4/history.csv",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-4/history.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-4/provenance.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-5/evaluation.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-5/history.csv",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-5/history.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/fold-5/provenance.json",
+    "reports/experiments/baseline10fp32_final/modified_unet/summary.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-1/evaluation.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-1/history.csv",
+    "reports/experiments/baseline10fp32_final/transunet/fold-1/history.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-1/provenance.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-2/evaluation.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-2/history.csv",
+    "reports/experiments/baseline10fp32_final/transunet/fold-2/history.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-2/provenance.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-3/evaluation.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-3/history.csv",
+    "reports/experiments/baseline10fp32_final/transunet/fold-3/history.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-3/provenance.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-4/evaluation.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-4/history.csv",
+    "reports/experiments/baseline10fp32_final/transunet/fold-4/history.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-4/provenance.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-5/evaluation.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-5/history.csv",
+    "reports/experiments/baseline10fp32_final/transunet/fold-5/history.json",
+    "reports/experiments/baseline10fp32_final/transunet/fold-5/provenance.json",
+    "reports/experiments/baseline10fp32_final/transunet/summary.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-1/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-1/history.csv",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-1/history.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-1/provenance.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-2/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-2/history.csv",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-2/history.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-2/provenance.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-3/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-3/history.csv",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-3/history.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-3/provenance.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-4/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-4/history.csv",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-4/history.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-4/provenance.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-5/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-5/history.csv",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-5/history.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/fold-5/provenance.json",
+    "reports/experiments/baseline10fp32_final/unet3plus/summary.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-1/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-1/history.csv",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-1/history.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-1/provenance.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-2/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-2/history.csv",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-2/history.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-2/provenance.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-3/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-3/history.csv",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-3/history.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-3/provenance.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-4/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-4/history.csv",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-4/history.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-4/provenance.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-5/evaluation.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-5/history.csv",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-5/history.json",
+    "reports/experiments/baseline10fp32_final/unetpp/fold-5/provenance.json",
+    "reports/experiments/baseline10fp32_final/unetpp/summary.json",
+    "reports/figures/baseline10fp32_final/comparison.png",
+    "reports/figures/baseline10fp32_final/index.json",
+    "reports/figures/baseline10fp32_final/modified_unet-curves.png",
+    "reports/figures/baseline10fp32_final/modified_unet-highest_dice-1002.png",
+    "reports/figures/baseline10fp32_final/modified_unet-largest_fn-302.png",
+    "reports/figures/baseline10fp32_final/modified_unet-largest_fp-647.png",
+    "reports/figures/baseline10fp32_final/modified_unet-lowest_dice-1222.png",
+    "reports/figures/baseline10fp32_final/modified_unet-middle_dice-875.png",
+    "reports/figures/baseline10fp32_final/modified_unet-smallest_area-126.png",
+    "reports/figures/baseline10fp32_final/transunet-curves.png",
+    "reports/figures/baseline10fp32_final/transunet-highest_dice-1015.png",
+    "reports/figures/baseline10fp32_final/transunet-largest_fn-307.png",
+    "reports/figures/baseline10fp32_final/transunet-largest_fp-688.png",
+    "reports/figures/baseline10fp32_final/transunet-lowest_dice-1306.png",
+    "reports/figures/baseline10fp32_final/transunet-middle_dice-172.png",
+    "reports/figures/baseline10fp32_final/transunet-smallest_area-126.png",
+    "reports/figures/baseline10fp32_final/unet3plus-curves.png",
+    "reports/figures/baseline10fp32_final/unet3plus-highest_dice-278.png",
+    "reports/figures/baseline10fp32_final/unet3plus-largest_fn-324.png",
+    "reports/figures/baseline10fp32_final/unet3plus-largest_fp-993.png",
+    "reports/figures/baseline10fp32_final/unet3plus-lowest_dice-1012.png",
+    "reports/figures/baseline10fp32_final/unet3plus-middle_dice-506.png",
+    "reports/figures/baseline10fp32_final/unet3plus-smallest_area-126.png",
+    "reports/figures/baseline10fp32_final/unetpp-curves.png",
+    "reports/figures/baseline10fp32_final/unetpp-highest_dice-839.png",
+    "reports/figures/baseline10fp32_final/unetpp-largest_fn-307.png",
+    "reports/figures/baseline10fp32_final/unetpp-largest_fp-871.png",
+    "reports/figures/baseline10fp32_final/unetpp-lowest_dice-1.png",
+    "reports/figures/baseline10fp32_final/unetpp-middle_dice-62.png",
+    "reports/figures/baseline10fp32_final/unetpp-smallest_area-126.png",
+    "reports/final_validation.json"
+  ],
+  "python_ast_parse_files": [
+    "kssd\\audit_legacy.py",
+    "kssd\\augmentation.py",
+    "kssd\\compare_losses.py",
+    "kssd\\config.py",
+    "kssd\\data.py",
+    "kssd\\figures.py",
+    "kssd\\final_audit.py",
+    "kssd\\losses.py",
+    "kssd\\metrics.py",
+    "kssd\\models.py",
+    "kssd\\reporting.py",
+    "kssd\\reproducibility.py",
+    "kssd\\smoke.py",
+    "kssd\\splits.py",
+    "kssd\\tf_metrics.py",
+    "kssd\\train.py",
+    "kssd\\validate_data.py",
+    "kssd\\__init__.py",
+    "tests\\test_augmentation.py",
+    "tests\\test_compare_losses.py",
+    "tests\\test_data.py",
+    "tests\\test_figures.py",
+    "tests\\test_final_audit.py",
+    "tests\\test_losses.py",
+    "tests\\test_metrics.py",
+    "tests\\test_reporting.py",
+    "tests\\test_splits.py",
+    "tests\\test_training.py"
+  ],
+  "local_backup": {
+    "copied_at_utc": "2026-10-12T17:59:19.894339+00:00",
+    "files": 280,
+    "bytes": 2102753557,
+    "completed_artifact_sha256_checked": true,
+    "unfinished_checkpoint_copies_skipped": 3,
+    "remote_backup_verified": false
+  },
+  "training_state": {
+    "active_real_data_training_processes": 0,
+    "gpu_observation": "RTX 4070 Laptop; utilization 0%, memory 9/8188 MiB, 52 C during final pass; tests ran on CPU",
+    "focal_completed_epochs": 0,
+    "focal_completed_outer_folds": 0,
+    "focal_new_training_required": true
+  },
+  "remaining": "New Focal five-fold training, optional paper-budget studies and remote publication/access to new weights; these are not claimed complete. Final evidence-only closure commit follows this verification.",
+  "final_relative_links_verified": [
+    {
+      "source": "README.md",
+      "target": "reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/EVALUATION_REPRODUCTION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/VALIDATION_LOG.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/final_release_verification.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/BASELINE_RESULTS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/TRAINING.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/METRICS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/AUGMENTATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/AUGMENTATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "dataset/manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "splits.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "final_validation.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_inventory.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/local_run_snapshots"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "resources/transunet_amp_failure.txt"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "release_artifact_checks.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10fp32_final"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/index.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/DATASET.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "final_release_verification.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "resources/final_post_commit_tests.txt"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "../reports/experiment_manifest.json"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "DATASET.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "FIGURES.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/final_release_verification.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/resources/final_post_commit_tests.txt"
+    },
+    {
+      "source": "docs/FOCAL_TVERSKY.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    }
+  ]
+}

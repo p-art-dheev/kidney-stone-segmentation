@@ -340,6 +340,13 @@ guards were added, seven focused auditor tests passed in 0.95 seconds. Commands
 and logs are in reports/resources/final_tests.txt and final_audit_tests.txt;
 the post-push full run is recorded in the release verification report.
 
+Post-push suite on the Windows checkout via the verified WSL runtime:
+**71 passed, 1042 upstream warnings, 254.25 seconds**. Records-only auditing,
+twenty backed-up checkpoint hash checks and Modified U-Net summary regeneration
+passed and match committed canonical results. See
+[release verification](../reports/final_release_verification.json) and
+[post-push test log](../reports/resources/final_post_commit_tests.txt).
+
 Focal's previous process is absent, with zero complete epochs/folds and no H5
 selected checkpoint. Its disappearance has no recorded cause. GPU smoke passed,
 but cannot substitute for CV. No new real-data training was started; Focal

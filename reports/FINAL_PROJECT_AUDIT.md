@@ -182,10 +182,17 @@ Use the recorded runtime/hardware for numerical reproducibility; different devic
 
 ## Checks and remaining limits
 
-- Final full regression pass: 69 tests passed, 1042 upstream warnings, 59.35 seconds. After adding two final guards: seven focused auditor tests passed in 0.95 seconds. Full post-commit suite is recorded separately when performed.
+- Initial full regression pass: 69 tests passed in 59.35 seconds; seven focused auditor tests passed after adding two final guards. The full post-push suite passed **71 tests**, 1042 upstream warnings, in **254.25 seconds**. Commands, remote file verification, summary regeneration and final backup evidence are in [release verification](final_release_verification.json); [complete test log](resources/final_post_commit_tests.txt).
 - Independent saved-record auditor: verified all 831 IDs per architecture, all twenty local checkpoint hashes, optimizer budget/precision/configuration/selection histories and all 30 figure/index file identities. No new outer-test optimization was performed.
 - No raw data, environment directory, credential or temporary helper is intentionally staged; final hygiene and link checks are recorded in the release verification report.
 - Patient IDs are unavailable; content grouping is heuristic. Near-similar patients/images could still cross groups. Unequal folds and pixel pooling influence aggregate interpretation. Small masks make single pixels important; mask area is not physical stone size. Short budget, no external cohort, no statistical significance claim and incomplete Focal CV limit conclusions.
 - Remaining experiment blocker: five-fold Focal Tversky requires new training because no resumable selected fold checkpoint exists. Remaining artifact limitation: new selected weights are local, not remotely accessible. Poor-fold causality is unresolved; no headline-improving rerun was performed.
 
 The audit/release completion claim applies to the requested non-training final pass, not to the unfinished Focal research experiment or the unrun paper-budget reproduction.
+
+The final backup refresh verified 280 files totaling 2,102,753,557 bytes locally,
+and skipped three unfinished historical checkpoint copies. Final process/GPU
+inspection found no real-data training job: GPU utilization 0%, 9/8188 MiB used.
+The training monitor is paused after this final pass because no job is running;
+this does not change Focal's pending status. The evidence-only closure commit
+adds post-push logs and documentation without changing the tested implementation.

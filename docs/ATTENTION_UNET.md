@@ -62,4 +62,34 @@ Largest-FP and lowest-Dice panels were inspected from saved masks: the model
 detects some annotated foreground but also predicts bright background structures;
 1226.tif misses all 57 foreground pixels (TP/FP/FN 0/511/57). These failures
 are retained. No training setting or epoch is changed using these outer results.
-Current [measured fold status](ATTENTION_RESULTS.md) is incomplete until five folds finish.
+The pilot-stage snapshot above is preserved; the experiment subsequently
+completed all five folds. [Final measured results](ATTENTION_RESULTS.md) replace
+the incomplete status. The full suite passed **80 tests**, 1166 upstream warnings,
+in **77.50 seconds**; [final test log](../reports/resources/attention_final_tests.txt).
+All 831 saved masks, five checkpoint hashes, histories, selection epochs and
+matched configurations passed independent checks. No real-data run failed or
+was retrained. The primary run's source commit remains `0de39f5`; the standalone
+records-only auditor was added afterward and is not an optimizer change.
+
+After all five folds complete, the committed records and binary masks can be
+audited without TensorFlow, raw images or checkpoint downloads:
+
+```sh
+python -m kssd.attention_audit --output runs/attention-records-audit.json
+```
+
+For the full local integrity check, also supply recovered weights and the
+official dataset. This checks all saved masks against original ground truth,
+without another model forward pass:
+
+```sh
+python -m kssd.attention_audit --checkpoints runs/persistent-backup-20261012/attention10fp32_20261012/attention_unet --data data/kssd2025/data --output runs/attention-full-audit.json
+```
+
+These commands require a complete five-fold export; they reject missing folds.
+Without weights/data they explicitly state which checks were not performed.
+Record aggregation alone:
+
+```sh
+python -m kssd.reporting --run runs/persistent-backup-20261012/attention10fp32_20261012/attention_unet --output runs/attention-summary-check.json
+```

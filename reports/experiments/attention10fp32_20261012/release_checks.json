@@ -1,0 +1,244 @@
+{
+  "status": "verified",
+  "staged_files_checked": 697,
+  "new_files_under_10_mib": true,
+  "prohibited_file_types_or_secret_patterns_found": false,
+  "raw_medical_data_committed": false,
+  "pngs_are_derived_prediction_masks_or_selected_qualitative_figures": true,
+  "new_h5_checkpoints_published": false,
+  "baseline_records_figures_dataset_manifest_and_splits_unchanged_since_pilot_commit": true,
+  "relative_links_verified": [
+    {
+      "source": "README.md",
+      "target": "reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/EVALUATION_REPRODUCTION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/VALIDATION_LOG.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/final_release_verification.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/BASELINE_RESULTS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/TRAINING.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/METRICS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/AUGMENTATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/ATTENTION_UNET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiments/attention10fp32_20261012/figures/comparison.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "docs/ATTENTION_UNET.md",
+      "target": "../reports/resources/attention_tests.txt"
+    },
+    {
+      "source": "docs/ATTENTION_UNET.md",
+      "target": "../reports/resources/attention_gpu_smoke.json"
+    },
+    {
+      "source": "docs/ATTENTION_UNET.md",
+      "target": "ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "docs/ATTENTION_UNET.md",
+      "target": "../reports/resources/attention_final_tests.txt"
+    },
+    {
+      "source": "docs/ATTENTION_RESULTS.md",
+      "target": "../reports/experiments/attention10fp32_20261012/"
+    },
+    {
+      "source": "docs/ATTENTION_RESULTS.md",
+      "target": "../reports/experiments/attention10fp32_20261012/independent_validation.json"
+    },
+    {
+      "source": "docs/ATTENTION_RESULTS.md",
+      "target": "ATTENTION_UNET.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/final_release_verification.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/resources/final_post_commit_tests.txt"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/ATTENTION_RESULTS.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/ATTENTION_UNET.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/AUGMENTATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "dataset/manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "splits.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "final_validation.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_inventory.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/local_run_snapshots"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "resources/transunet_amp_failure.txt"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "release_artifact_checks.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10fp32_final"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/index.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/DATASET.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "final_release_verification.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "resources/final_post_commit_tests.txt"
+    }
+  ]
+}

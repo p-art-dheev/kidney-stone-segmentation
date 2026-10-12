@@ -1,0 +1,148 @@
+{
+  "status": "complete",
+  "prediction_source": "Binary masks saved during the original single outer evaluation; no repeated outer forward pass",
+  "cases": [
+    {
+      "architecture": "attention_unet",
+      "fold": 3,
+      "criterion": "highest_dice",
+      "file": "attention_unet-highest_dice-128.png",
+      "id": "128.tif",
+      "stone_area": 21,
+      "tp": 21,
+      "fp": 0,
+      "fn": 0,
+      "tn": 262123,
+      "hard_mask_dice": 1.0,
+      "hard_mask_iou": 1.0,
+      "hard_mask_precision": 1.0,
+      "hard_mask_recall": 1.0
+    },
+    {
+      "architecture": "attention_unet",
+      "fold": 4,
+      "criterion": "lowest_dice",
+      "file": "attention_unet-lowest_dice-1012.png",
+      "id": "1012.tif",
+      "stone_area": 8,
+      "tp": 0,
+      "fp": 0,
+      "fn": 8,
+      "tn": 262136,
+      "hard_mask_dice": 0.0,
+      "hard_mask_iou": 0.0,
+      "hard_mask_precision": 0.0,
+      "hard_mask_recall": 0.0
+    },
+    {
+      "architecture": "attention_unet",
+      "fold": 4,
+      "criterion": "largest_fn",
+      "file": "attention_unet-largest_fn-1068.png",
+      "id": "1068.tif",
+      "stone_area": 629,
+      "tp": 0,
+      "fp": 4,
+      "fn": 629,
+      "tn": 261511,
+      "hard_mask_dice": 0.0,
+      "hard_mask_iou": 0.0,
+      "hard_mask_precision": 0.0,
+      "hard_mask_recall": 0.0
+    },
+    {
+      "architecture": "attention_unet",
+      "fold": 1,
+      "criterion": "largest_fp",
+      "file": "attention_unet-largest_fp-1143.png",
+      "id": "1143.tif",
+      "stone_area": 487,
+      "tp": 443,
+      "fp": 1344,
+      "fn": 44,
+      "tn": 260313,
+      "hard_mask_dice": 0.3896218117854002,
+      "hard_mask_iou": 0.2419442927362097,
+      "hard_mask_precision": 0.24790151091214327,
+      "hard_mask_recall": 0.9096509240246407
+    },
+    {
+      "architecture": "attention_unet",
+      "fold": 3,
+      "criterion": "smallest_area",
+      "file": "attention_unet-smallest_area-126.png",
+      "id": "126.tif",
+      "stone_area": 3,
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "tn": 262141,
+      "hard_mask_dice": 0.8,
+      "hard_mask_iou": 0.6666666666666666,
+      "hard_mask_precision": 1.0,
+      "hard_mask_recall": 0.6666666666666666
+    },
+    {
+      "architecture": "attention_unet",
+      "fold": 5,
+      "criterion": "middle_dice",
+      "file": "attention_unet-middle_dice-493.png",
+      "id": "493.tif",
+      "stone_area": 21,
+      "tp": 20,
+      "fp": 4,
+      "fn": 1,
+      "tn": 262119,
+      "hard_mask_dice": 0.8888888888888888,
+      "hard_mask_iou": 0.8,
+      "hard_mask_precision": 0.8333333333333334,
+      "hard_mask_recall": 0.9523809523809523
+    }
+  ],
+  "comparison_values": {
+    "modified_unet": {
+      "fold_mean": {
+        "hard_mask_dice": 0.7910017208405218,
+        "hard_mask_iou": 0.6589155611112197,
+        "hard_mask_precision": 0.829807556124536,
+        "hard_mask_recall": 0.7786031035633499
+      },
+      "fold_sample_std": {
+        "hard_mask_dice": 0.07238053301064735,
+        "hard_mask_iou": 0.09730821431345862,
+        "hard_mask_precision": 0.16208122908418168,
+        "hard_mask_recall": 0.07551062876642851
+      }
+    },
+    "attention_unet": {
+      "fold_mean": {
+        "hard_mask_dice": 0.7585382250463081,
+        "hard_mask_iou": 0.6515009043764499,
+        "hard_mask_precision": 0.789044568645448,
+        "hard_mask_recall": 0.7803405601117575
+      },
+      "fold_sample_std": {
+        "hard_mask_dice": 0.2205068932523625,
+        "hard_mask_iou": 0.2863887536576503,
+        "hard_mask_precision": 0.2620885249315064,
+        "hard_mask_recall": 0.19960092507528698
+      }
+    }
+  },
+  "checkpoint_hashes": {
+    "modified_unet": [
+      "ba71a4bda76bb74fc1eb55266d5cc17760f4c2d60ac3e216b1e2b2a357a0588b",
+      "8ea7f38f299ea66ac8f0d0cbe414b0520a6913a9f7248a9bef88043551370c21",
+      "7a2ed08a2ee645a14f4db9e913365a8251dd93f29d805dc624744754e3086ccd",
+      "2f2255dd6e30148bbbc7304499999cb85f1c3680f0aa202dc5555cbe06838161",
+      "4ace29fbf198b4ebde7ca17aa267eb756ad9f133933cc5c3d87b458f1f685e75"
+    ],
+    "attention_unet": [
+      "25830fd50270bd4bd7df11db75464eec05f68602dbebf17f36daa046bed2b624",
+      "843f66fa44fc426bae1a9da08e1f74618b20eaaa4abf01c4ab765f343943969c",
+      "44b782da1a44782dc3447096895c93a32b8f990f09b8ae96ad7388e06c4ec114",
+      "8bbeef5cf53c20484550d72112a5ddd4a728e7b1c3ae6c91539298d42998dbab",
+      "71b76bae7315075d3f6b27dbdc12c1b6bc5c045d424f9559ea3c50234ff01a39"
+    ]
+  }
+}

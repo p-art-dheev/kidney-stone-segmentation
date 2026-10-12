@@ -26,6 +26,12 @@ outer-fold pooled-pixel scores. These are not the paper's 150-epoch results.
 | U-Net++ | 0.3678 ± 0.2567 | 0.2490 ± 0.1894 | 0.3763 ± 0.2169 | 0.4317 ± 0.3622 |
 | U-Net3+ | 0.3230 ± 0.4535 | 0.2805 ± 0.4098 | 0.3561 ± 0.4892 | 0.3014 ± 0.4364 |
 | TransUNet | 0.4842 ± 0.3380 | 0.3749 ± 0.3166 | 0.5623 ± 0.3990 | 0.5063 ± 0.3042 |
+| Attention U-Net | 0.7585 ± 0.2205 | 0.6515 ± 0.2864 | 0.7890 ± 0.2621 | 0.7803 ± 0.1996 |
+
+The subsequently authorized Attention extension also completed five folds; its
+mean Dice is 0.0325 below Modified U-Net under this budget. All 831 saved binary
+masks and five local checkpoint identities passed independent checks; 80 tests
+passed. [Attention results and failure analysis](docs/ATTENTION_RESULTS.md).
 
 [Per-fold results](docs/BASELINE_RESULTS.md) and [comparison figure](reports/figures/baseline10fp32_final/comparison.png)
 retain zero/poor folds. Short training, tiny foreground, unequal heuristic content
@@ -66,6 +72,7 @@ continuous probabilities and is separate from binary metrics: [metric policy](do
 | U-Net++ | 1,967,713 | keras-unet-collection nested skips |
 | U-Net3+ | 2,374,583 | keras-unet-collection full-scale skips |
 | TransU-Net | 4,747,553 | Local library-based hybrid, embed 192, 4 heads, 3 transformer blocks |
+| Attention U-Net | 1,967,357 | Modified U-Net encoder/decoder with four additive spatial skip gates |
 
 The final 10-epoch configs use float32 and fresh seeded weights/optimizers per
 fold. Short mixed-precision GPU checks passed, but TransUNet developed NaN losses
@@ -152,14 +159,16 @@ contain no precomputed corrected results or hidden Kaggle training logic.
 
 ## Research-inspired experiment
 
-### Attention U-Net extension
+### Attention U-Net extension — complete
 
-Attention U-Net adds four additive spatial gates to Modified U-Net's skip
-connections, preserving its encoder/decoder and the frozen ten-epoch protocol.
-The implementation passed 77 tests and the full-size GPU smoke check. The
-retained fold-1 pilot passed validation; folds 2–5 are running automatically.
-No five-fold Attention mean is claimed until all records are complete. See
-[protocol](docs/ATTENTION_UNET.md) and [measured fold status](docs/ATTENTION_RESULTS.md).
+Four additive spatial skip gates preserve Modified U-Net’s encoder/decoder and training protocol. All five folds completed; the pilot is retained. All 831 binary masks and checkpoint identities passed independent checks.
+
+| Model | Dice | IoU | Precision | Recall |
+|---|---:|---:|---:|---:|
+| Modified U-Net | 0.7910 ± 0.0724 | 0.6589 ± 0.0973 | 0.8298 ± 0.1621 | 0.7786 ± 0.0755 |
+| Attention U-Net | 0.7585 ± 0.2205 | 0.6515 ± 0.2864 | 0.7890 ± 0.2621 | 0.7803 ± 0.1996 |
+
+See [full Attention results](docs/ATTENTION_RESULTS.md), [protocol](docs/ATTENTION_UNET.md) and [comparison figure](reports/experiments/attention10fp32_20261012/figures/comparison.png). This is a short-budget comparison, not a paper-budget reproduction or significance claim.
 
 ### Focal Tversky loss
 

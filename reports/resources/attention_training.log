@@ -1,0 +1,138 @@
+2026-10-12 18:22:34.097057: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-10-12 18:22:34.513524: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-10-12 18:22:36.744552: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791829359.023310     417 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5518 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4070 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+E0000 00:00:1791829368.168439     417 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inAttention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+2026-10-12 18:22:49.144319: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 92700
+{"architecture": "attention_unet", "parameters": 1967357, "training_batch_seconds": 11.618323722000001, "extra_training_batch_seconds": [], "training_steps": 1, "precision": "float32", "optimizer_class": "Adam", "optimizer_iterations": 1, "gpu_peak_allocated_bytes": 1277059840, "input_shape": [2, 512, 512, 1], "sample_ids": ["1.tif", "10.tif"], "seed": 43, "loss": 0.9990460872650146, "loss_function": "dice", "loss_parameters": {"smooth": 1e-06, "reduction": "per image then Keras batch mean"}, "passed": true, "scope": "1 optimizer updates on one fixed augmented batch and checkpoint round trip; NOT CV performance evidence"}
+2026-10-12 18:22:54.597236: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-10-12 18:22:54.655696: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-10-12 18:22:55.954783: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+ATTENTION_FOLD_START 1
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791829377.083025     641 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5518 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4070 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+Epoch 1/10
+2026-10-12 18:23:02.775029: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+E0000 00:00:1791829393.148275     641 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Attention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+2026-10-12 18:23:13.953506: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 92700
+223/223 - 45s - 203ms/step - hard_mask_dice: 0.0210 - hard_mask_iou: 0.0106 - hard_mask_precision: 0.0106 - hard_mask_recall: 0.9707 - loss: 0.9917 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9985
+Epoch 2/10
+223/223 - 33s - 148ms/step - hard_mask_dice: 0.2753 - hard_mask_iou: 0.1596 - hard_mask_precision: 0.1635 - hard_mask_recall: 0.8702 - loss: 0.8281 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9998
+Epoch 3/10
+223/223 - 34s - 155ms/step - hard_mask_dice: 0.4592 - hard_mask_iou: 0.2980 - hard_mask_precision: 0.3344 - hard_mask_recall: 0.7329 - loss: 0.5609 - val_hard_mask_dice: 0.0033 - val_hard_mask_iou: 0.0016 - val_hard_mask_precision: 0.0338 - val_hard_mask_recall: 0.0017 - val_loss: 0.9986
+Epoch 4/10
+223/223 - 36s - 160ms/step - hard_mask_dice: 0.1617 - hard_mask_iou: 0.0880 - hard_mask_precision: 0.1559 - hard_mask_recall: 0.1681 - loss: 0.8929 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9997
+Epoch 5/10
+223/223 - 36s - 163ms/step - hard_mask_dice: 0.0934 - hard_mask_iou: 0.0490 - hard_mask_precision: 0.0542 - hard_mask_recall: 0.3402 - loss: 0.8542 - val_hard_mask_dice: 0.0345 - val_hard_mask_iou: 0.0175 - val_hard_mask_precision: 0.0180 - val_hard_mask_recall: 0.4288 - val_loss: 0.9663
+Epoch 6/10
+223/223 - 37s - 168ms/step - hard_mask_dice: 0.1240 - hard_mask_iou: 0.0661 - hard_mask_precision: 0.0730 - hard_mask_recall: 0.4102 - loss: 0.8511 - val_hard_mask_dice: 0.2740 - val_hard_mask_iou: 0.1587 - val_hard_mask_precision: 0.2502 - val_hard_mask_recall: 0.3027 - val_loss: 0.7067
+Epoch 7/10
+223/223 - 38s - 171ms/step - hard_mask_dice: 0.4602 - hard_mask_iou: 0.2989 - hard_mask_precision: 0.3728 - hard_mask_recall: 0.6012 - loss: 0.5801 - val_hard_mask_dice: 0.3895 - val_hard_mask_iou: 0.2419 - val_hard_mask_precision: 0.2443 - val_hard_mask_recall: 0.9605 - val_loss: 0.5780
+Epoch 8/10
+223/223 - 38s - 171ms/step - hard_mask_dice: 0.6809 - hard_mask_iou: 0.5162 - hard_mask_precision: 0.6050 - hard_mask_recall: 0.7787 - loss: 0.3942 - val_hard_mask_dice: 0.4813 - val_hard_mask_iou: 0.3169 - val_hard_mask_precision: 0.4485 - val_hard_mask_recall: 0.5191 - val_loss: 0.5873
+Epoch 9/10
+223/223 - 39s - 176ms/step - hard_mask_dice: 0.7700 - hard_mask_iou: 0.6260 - hard_mask_precision: 0.7484 - hard_mask_recall: 0.7928 - loss: 0.3052 - val_hard_mask_dice: 0.5710 - val_hard_mask_iou: 0.3995 - val_hard_mask_precision: 0.6178 - val_hard_mask_recall: 0.5308 - val_loss: 0.4403
+Epoch 10/10
+223/223 - 40s - 178ms/step - hard_mask_dice: 0.8304 - hard_mask_iou: 0.7099 - hard_mask_precision: 0.8313 - hard_mask_recall: 0.8295 - loss: 0.2201 - val_hard_mask_dice: 0.4984 - val_hard_mask_iou: 0.3319 - val_hard_mask_precision: 0.8004 - val_hard_mask_recall: 0.3619 - val_loss: 0.5784
+ATTENTION_FOLD_VERIFIED 1 {'hard_mask_dice': 0.47454029485730104, 'hard_mask_iou': 0.31108018996339876, 'hard_mask_precision': 0.34446491374979066, 'hard_mask_recall': 0.7624555160142349} seconds=378.20
+ATTENTION_FOLD_START 2
+Epoch 1/10
+2026-10-12 18:29:53.103658: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+E0000 00:00:1791829806.071080     641 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Attention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+228/228 - 51s - 225ms/step - hard_mask_dice: 0.0402 - hard_mask_iou: 0.0205 - hard_mask_precision: 0.0205 - hard_mask_recall: 0.9374 - loss: 0.9730 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9993
+Epoch 2/10
+228/228 - 37s - 163ms/step - hard_mask_dice: 0.3620 - hard_mask_iou: 0.2210 - hard_mask_precision: 0.2456 - hard_mask_recall: 0.6877 - loss: 0.6842 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0000
+Epoch 3/10
+228/228 - 39s - 172ms/step - hard_mask_dice: 0.6394 - hard_mask_iou: 0.4699 - hard_mask_precision: 0.6853 - hard_mask_recall: 0.5992 - loss: 0.3515 - val_hard_mask_dice: 0.4160 - val_hard_mask_iou: 0.2626 - val_hard_mask_precision: 0.2693 - val_hard_mask_recall: 0.9132 - val_loss: 0.4713
+Epoch 4/10
+228/228 - 40s - 176ms/step - hard_mask_dice: 0.7414 - hard_mask_iou: 0.5891 - hard_mask_precision: 0.7711 - hard_mask_recall: 0.7140 - loss: 0.2777 - val_hard_mask_dice: 0.8358 - val_hard_mask_iou: 0.7179 - val_hard_mask_precision: 0.7718 - val_hard_mask_recall: 0.9114 - val_loss: 0.2522
+Epoch 5/10
+228/228 - 41s - 180ms/step - hard_mask_dice: 0.8699 - hard_mask_iou: 0.7698 - hard_mask_precision: 0.8922 - hard_mask_recall: 0.8487 - loss: 0.1728 - val_hard_mask_dice: 0.8694 - val_hard_mask_iou: 0.7690 - val_hard_mask_precision: 0.7924 - val_hard_mask_recall: 0.9631 - val_loss: 0.1791
+Epoch 6/10
+228/228 - 41s - 181ms/step - hard_mask_dice: 0.8437 - hard_mask_iou: 0.7296 - hard_mask_precision: 0.9049 - hard_mask_recall: 0.7902 - loss: 0.1909 - val_hard_mask_dice: 0.9501 - val_hard_mask_iou: 0.9049 - val_hard_mask_precision: 0.9259 - val_hard_mask_recall: 0.9756 - val_loss: 0.0951
+Epoch 7/10
+228/228 - 40s - 177ms/step - hard_mask_dice: 0.9094 - hard_mask_iou: 0.8339 - hard_mask_precision: 0.9400 - hard_mask_recall: 0.8808 - loss: 0.1285 - val_hard_mask_dice: 0.7485 - val_hard_mask_iou: 0.5981 - val_hard_mask_precision: 0.8682 - val_hard_mask_recall: 0.6579 - val_loss: 0.3310
+Epoch 8/10
+228/228 - 40s - 177ms/step - hard_mask_dice: 0.8986 - hard_mask_iou: 0.8158 - hard_mask_precision: 0.9275 - hard_mask_recall: 0.8714 - loss: 0.1284 - val_hard_mask_dice: 0.9110 - val_hard_mask_iou: 0.8365 - val_hard_mask_precision: 0.8542 - val_hard_mask_recall: 0.9758 - val_loss: 0.1138
+Epoch 9/10
+228/228 - 41s - 179ms/step - hard_mask_dice: 0.9274 - hard_mask_iou: 0.8646 - hard_mask_precision: 0.9470 - hard_mask_recall: 0.9086 - loss: 0.1065 - val_hard_mask_dice: 0.8882 - val_hard_mask_iou: 0.7989 - val_hard_mask_precision: 0.9868 - val_hard_mask_recall: 0.8075 - val_loss: 0.1591
+Epoch 10/10
+228/228 - 41s - 178ms/step - hard_mask_dice: 0.8951 - hard_mask_iou: 0.8101 - hard_mask_precision: 0.9046 - hard_mask_recall: 0.8858 - loss: 0.1318 - val_hard_mask_dice: 0.8663 - val_hard_mask_iou: 0.7641 - val_hard_mask_precision: 0.8862 - val_hard_mask_recall: 0.8473 - val_loss: 0.2145
+ATTENTION_FOLD_VERIFIED 2 {'hard_mask_dice': 0.7966443758386333, 'hard_mask_iou': 0.6620190738659028, 'hard_mask_precision': 0.8127365000222588, 'hard_mask_recall': 0.7811771250080229} seconds=411.91
+ATTENTION_FOLD_START 3
+Epoch 1/10
+2026-10-12 18:37:26.585444: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+E0000 00:00:1791830259.516009     641 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Attention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+333/333 - 67s - 200ms/step - hard_mask_dice: 0.0430 - hard_mask_iou: 0.0220 - hard_mask_precision: 0.0220 - hard_mask_recall: 0.9342 - loss: 0.9583 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9997
+Epoch 2/10
+333/333 - 55s - 166ms/step - hard_mask_dice: 0.4028 - hard_mask_iou: 0.2522 - hard_mask_precision: 0.2955 - hard_mask_recall: 0.6323 - loss: 0.5833 - val_hard_mask_dice: 0.0696 - val_hard_mask_iou: 0.0360 - val_hard_mask_precision: 0.0438 - val_hard_mask_recall: 0.1685 - val_loss: 0.8113
+Epoch 3/10
+333/333 - 58s - 173ms/step - hard_mask_dice: 0.5496 - hard_mask_iou: 0.3790 - hard_mask_precision: 0.4562 - hard_mask_recall: 0.6913 - loss: 0.4287 - val_hard_mask_dice: 0.5149 - val_hard_mask_iou: 0.3467 - val_hard_mask_precision: 0.5270 - val_hard_mask_recall: 0.5034 - val_loss: 0.5994
+Epoch 4/10
+333/333 - 58s - 173ms/step - hard_mask_dice: 0.7460 - hard_mask_iou: 0.5949 - hard_mask_precision: 0.7465 - hard_mask_recall: 0.7456 - loss: 0.2721 - val_hard_mask_dice: 0.5274 - val_hard_mask_iou: 0.3581 - val_hard_mask_precision: 0.3601 - val_hard_mask_recall: 0.9846 - val_loss: 0.4121
+Epoch 5/10
+333/333 - 59s - 178ms/step - hard_mask_dice: 0.7875 - hard_mask_iou: 0.6495 - hard_mask_precision: 0.7778 - hard_mask_recall: 0.7975 - loss: 0.2367 - val_hard_mask_dice: 0.7008 - val_hard_mask_iou: 0.5394 - val_hard_mask_precision: 0.6004 - val_hard_mask_recall: 0.8415 - val_loss: 0.4074
+Epoch 6/10
+333/333 - 58s - 175ms/step - hard_mask_dice: 0.8617 - hard_mask_iou: 0.7570 - hard_mask_precision: 0.8783 - hard_mask_recall: 0.8458 - loss: 0.1700 - val_hard_mask_dice: 0.9678 - val_hard_mask_iou: 0.9376 - val_hard_mask_precision: 0.9898 - val_hard_mask_recall: 0.9468 - val_loss: 0.1450
+Epoch 7/10
+333/333 - 58s - 174ms/step - hard_mask_dice: 0.8776 - hard_mask_iou: 0.7818 - hard_mask_precision: 0.8918 - hard_mask_recall: 0.8638 - loss: 0.1542 - val_hard_mask_dice: 0.9727 - val_hard_mask_iou: 0.9469 - val_hard_mask_precision: 0.9790 - val_hard_mask_recall: 0.9665 - val_loss: 0.1855
+Epoch 8/10
+333/333 - 58s - 173ms/step - hard_mask_dice: 0.8751 - hard_mask_iou: 0.7779 - hard_mask_precision: 0.8936 - hard_mask_recall: 0.8573 - loss: 0.1571 - val_hard_mask_dice: 0.8993 - val_hard_mask_iou: 0.8171 - val_hard_mask_precision: 0.8219 - val_hard_mask_recall: 0.9929 - val_loss: 0.1385
+Epoch 9/10
+333/333 - 58s - 174ms/step - hard_mask_dice: 0.8941 - hard_mask_iou: 0.8085 - hard_mask_precision: 0.9029 - hard_mask_recall: 0.8855 - loss: 0.1327 - val_hard_mask_dice: 0.9209 - val_hard_mask_iou: 0.8534 - val_hard_mask_precision: 0.8602 - val_hard_mask_recall: 0.9907 - val_loss: 0.1071
+Epoch 10/10
+333/333 - 58s - 174ms/step - hard_mask_dice: 0.9020 - hard_mask_iou: 0.8215 - hard_mask_precision: 0.9202 - hard_mask_recall: 0.8845 - loss: 0.1275 - val_hard_mask_dice: 0.1612 - val_hard_mask_iou: 0.0877 - val_hard_mask_precision: 0.0878 - val_hard_mask_recall: 0.9883 - val_loss: 0.7482
+ATTENTION_FOLD_VERIFIED 3 {'hard_mask_dice': 0.9424425504369404, 'hard_mask_iou': 0.8911502167814334, 'hard_mask_precision': 0.9885701352345385, 'hard_mask_recall': 0.9004277689017163} seconds=586.19
+ATTENTION_FOLD_START 4
+Epoch 1/10
+2026-10-12 18:47:34.703756: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+E0000 00:00:1791830868.511544     641 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Attention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+295/295 - 63s - 214ms/step - hard_mask_dice: 0.0256 - hard_mask_iou: 0.0130 - hard_mask_precision: 0.0130 - hard_mask_recall: 0.9717 - loss: 0.9900 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 0.9999
+Epoch 2/10
+295/295 - 51s - 173ms/step - hard_mask_dice: 0.3436 - hard_mask_iou: 0.2074 - hard_mask_precision: 0.2228 - hard_mask_recall: 0.7508 - loss: 0.6729 - val_hard_mask_dice: 0.1589 - val_hard_mask_iou: 0.0863 - val_hard_mask_precision: 0.3713 - val_hard_mask_recall: 0.1011 - val_loss: 0.9949
+Epoch 3/10
+295/295 - 51s - 173ms/step - hard_mask_dice: 0.7086 - hard_mask_iou: 0.5487 - hard_mask_precision: 0.7060 - hard_mask_recall: 0.7112 - loss: 0.3439 - val_hard_mask_dice: 0.4117 - val_hard_mask_iou: 0.2592 - val_hard_mask_precision: 0.3641 - val_hard_mask_recall: 0.4735 - val_loss: 0.6405
+Epoch 4/10
+295/295 - 52s - 175ms/step - hard_mask_dice: 0.8014 - hard_mask_iou: 0.6686 - hard_mask_precision: 0.8148 - hard_mask_recall: 0.7884 - loss: 0.2322 - val_hard_mask_dice: 0.2617 - val_hard_mask_iou: 0.1505 - val_hard_mask_precision: 0.4562 - val_hard_mask_recall: 0.1835 - val_loss: 0.7181
+Epoch 5/10
+295/295 - 51s - 174ms/step - hard_mask_dice: 0.8224 - hard_mask_iou: 0.6983 - hard_mask_precision: 0.8367 - hard_mask_recall: 0.8085 - loss: 0.2228 - val_hard_mask_dice: 0.8502 - val_hard_mask_iou: 0.7395 - val_hard_mask_precision: 0.7909 - val_hard_mask_recall: 0.9192 - val_loss: 0.3240
+Epoch 6/10
+295/295 - 51s - 171ms/step - hard_mask_dice: 0.8525 - hard_mask_iou: 0.7429 - hard_mask_precision: 0.8785 - hard_mask_recall: 0.8280 - loss: 0.1925 - val_hard_mask_dice: 0.5896 - val_hard_mask_iou: 0.4181 - val_hard_mask_precision: 0.8866 - val_hard_mask_recall: 0.4417 - val_loss: 0.3213
+Epoch 7/10
+295/295 - 52s - 177ms/step - hard_mask_dice: 0.8949 - hard_mask_iou: 0.8099 - hard_mask_precision: 0.9049 - hard_mask_recall: 0.8852 - loss: 0.1506 - val_hard_mask_dice: 0.6056 - val_hard_mask_iou: 0.4343 - val_hard_mask_precision: 0.5210 - val_hard_mask_recall: 0.7230 - val_loss: 0.3787
+Epoch 8/10
+295/295 - 52s - 178ms/step - hard_mask_dice: 0.8859 - hard_mask_iou: 0.7952 - hard_mask_precision: 0.8891 - hard_mask_recall: 0.8827 - loss: 0.1567 - val_hard_mask_dice: 0.5600 - val_hard_mask_iou: 0.3889 - val_hard_mask_precision: 0.5280 - val_hard_mask_recall: 0.5962 - val_loss: 0.4157
+Epoch 9/10
+295/295 - 52s - 177ms/step - hard_mask_dice: 0.9120 - hard_mask_iou: 0.8382 - hard_mask_precision: 0.9106 - hard_mask_recall: 0.9133 - loss: 0.1292 - val_hard_mask_dice: 0.6825 - val_hard_mask_iou: 0.5180 - val_hard_mask_precision: 0.5903 - val_hard_mask_recall: 0.8088 - val_loss: 0.3073
+Epoch 10/10
+295/295 - 52s - 177ms/step - hard_mask_dice: 0.9092 - hard_mask_iou: 0.8336 - hard_mask_precision: 0.9281 - hard_mask_recall: 0.8911 - loss: 0.1299 - val_hard_mask_dice: 0.8175 - val_hard_mask_iou: 0.6914 - val_hard_mask_precision: 0.8878 - val_hard_mask_recall: 0.7576 - val_loss: 0.1991
+ATTENTION_FOLD_VERIFIED 4 {'hard_mask_dice': 0.593771596406358, 'hard_mask_iou': 0.4222440642565347, 'hard_mask_precision': 0.8215011354129318, 'hard_mask_recall': 0.46489685492052757} seconds=527.52
+ATTENTION_FOLD_START 5
+Epoch 1/10
+2026-10-12 18:56:50.946820: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_12}}
+E0000 00:00:1791831424.177916     641 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Attention_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+303/303 - 64s - 210ms/step - hard_mask_dice: 0.0485 - hard_mask_iou: 0.0249 - hard_mask_precision: 0.0249 - hard_mask_recall: 0.9316 - loss: 0.9562 - val_hard_mask_dice: 5.0517e-04 - val_hard_mask_iou: 2.5265e-04 - val_hard_mask_precision: 3.5157e-04 - val_hard_mask_recall: 8.9714e-04 - val_loss: 0.9992
+Epoch 2/10
+303/303 - 53s - 175ms/step - hard_mask_dice: 0.4034 - hard_mask_iou: 0.2527 - hard_mask_precision: 0.2891 - hard_mask_recall: 0.6675 - loss: 0.5983 - val_hard_mask_dice: 0.0909 - val_hard_mask_iou: 0.0476 - val_hard_mask_precision: 0.8421 - val_hard_mask_recall: 0.0480 - val_loss: 0.8551
+Epoch 3/10
+303/303 - 55s - 180ms/step - hard_mask_dice: 0.6173 - hard_mask_iou: 0.4465 - hard_mask_precision: 0.5608 - hard_mask_recall: 0.6865 - loss: 0.4137 - val_hard_mask_dice: 0.6628 - val_hard_mask_iou: 0.4957 - val_hard_mask_precision: 0.5591 - val_hard_mask_recall: 0.8138 - val_loss: 0.2877
+Epoch 4/10
+303/303 - 54s - 180ms/step - hard_mask_dice: 0.7585 - hard_mask_iou: 0.6110 - hard_mask_precision: 0.7593 - hard_mask_recall: 0.7578 - loss: 0.2767 - val_hard_mask_dice: 0.7557 - val_hard_mask_iou: 0.6074 - val_hard_mask_precision: 0.8007 - val_hard_mask_recall: 0.7155 - val_loss: 0.2006
+Epoch 5/10
+303/303 - 54s - 177ms/step - hard_mask_dice: 0.8148 - hard_mask_iou: 0.6875 - hard_mask_precision: 0.8113 - hard_mask_recall: 0.8183 - loss: 0.2219 - val_hard_mask_dice: 0.7677 - val_hard_mask_iou: 0.6230 - val_hard_mask_precision: 0.7276 - val_hard_mask_recall: 0.8125 - val_loss: 0.1856
+Epoch 6/10
+303/303 - 55s - 182ms/step - hard_mask_dice: 0.8898 - hard_mask_iou: 0.8015 - hard_mask_precision: 0.8966 - hard_mask_recall: 0.8831 - loss: 0.1625 - val_hard_mask_dice: 0.8440 - val_hard_mask_iou: 0.7302 - val_hard_mask_precision: 0.9465 - val_hard_mask_recall: 0.7616 - val_loss: 0.1436
+Epoch 7/10
+303/303 - 56s - 183ms/step - hard_mask_dice: 0.8992 - hard_mask_iou: 0.8169 - hard_mask_precision: 0.9096 - hard_mask_recall: 0.8890 - loss: 0.1478 - val_hard_mask_dice: 0.8621 - val_hard_mask_iou: 0.7576 - val_hard_mask_precision: 0.9218 - val_hard_mask_recall: 0.8097 - val_loss: 0.1328
+Epoch 8/10
+303/303 - 55s - 180ms/step - hard_mask_dice: 0.8344 - hard_mask_iou: 0.7158 - hard_mask_precision: 0.8360 - hard_mask_recall: 0.8327 - loss: 0.1949 - val_hard_mask_dice: 0.5604 - val_hard_mask_iou: 0.3893 - val_hard_mask_precision: 0.4958 - val_hard_mask_recall: 0.6444 - val_loss: 0.3243
+Epoch 9/10
+303/303 - 55s - 182ms/step - hard_mask_dice: 0.9030 - hard_mask_iou: 0.8232 - hard_mask_precision: 0.9154 - hard_mask_recall: 0.8910 - loss: 0.1330 - val_hard_mask_dice: 0.8832 - val_hard_mask_iou: 0.7908 - val_hard_mask_precision: 0.9637 - val_hard_mask_recall: 0.8151 - val_loss: 0.1077
+Epoch 10/10
+303/303 - 55s - 181ms/step - hard_mask_dice: 0.8741 - hard_mask_iou: 0.7763 - hard_mask_precision: 0.8770 - hard_mask_recall: 0.8711 - loss: 0.1702 - val_hard_mask_dice: 0.8844 - val_hard_mask_iou: 0.7927 - val_hard_mask_precision: 0.9688 - val_hard_mask_recall: 0.8135 - val_loss: 0.1126
+ATTENTION_FOLD_VERIFIED 5 {'hard_mask_dice': 0.9852923076923077, 'hard_mask_iou': 0.9710109770149797, 'hard_mask_precision': 0.9779501588077205, 'hard_mask_recall': 0.9927455357142857} seconds=554.67
+ATTENTION_FIVE_FOLD_COMPLETE
+{"files_copied_or_verified": 1155, "bytes": 2248991473, "skipped_unfinished_checkpoints": 3, "destination": "/mnt/c/Users/charu/OneDrive/Desktop/End sem/mip/kidney-stone-segmentation/runs/persistent-backup-20261012"}

@@ -1,0 +1,40 @@
+{
+  "status": "complete",
+  "architecture": "attention_unet",
+  "pilot_fold": 1,
+  "pilot_reused_in_cv": true,
+  "outer_evaluations_per_fold": 1,
+  "completed_folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "configuration": {
+    "architecture": "attention_unet",
+    "epochs": 10,
+    "batch_size": 2,
+    "precision": "float32",
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "loss": "dice",
+    "threshold": 0.5,
+    "seed": 42,
+    "n_folds": 5,
+    "mask_threshold": 127,
+    "input_size": 512,
+    "early_stopping_patience": 0,
+    "augmentation": true,
+    "augmentation_parameters": {}
+  },
+  "active_fold": null,
+  "pilot_passed": true,
+  "last_fold_micro": {
+    "hard_mask_dice": 0.9852923076923077,
+    "hard_mask_iou": 0.9710109770149797,
+    "hard_mask_precision": 0.9779501588077205,
+    "hard_mask_recall": 0.9927455357142857
+  },
+  "wall_seconds": 2606.043662548065
+}

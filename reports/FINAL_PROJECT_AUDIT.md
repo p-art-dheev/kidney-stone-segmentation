@@ -1,18 +1,17 @@
 # Final project audit — Kidney Stone Segmentation
 
-## Attention U-Net extension after this release
+## Completed Attention U-Net extension
 
-The user subsequently authorized a matched Attention U-Net experiment. Its
-additive skip-gate implementation and mask-persistence regression checks passed
-77 tests. GPU smoke and the retained fold-1 pilot passed; automatic folds 2–5
-are underway. Available fold metrics: [Attention results](../docs/ATTENTION_RESULTS.md).
-This extension does not change the verified historical baseline results below.
-Current protocol/status: [Attention U-Net](../docs/ATTENTION_UNET.md). Completed
-Attention results will be added from saved evidence; they are not yet claimed.
+| Model | Dice | IoU | Precision | Recall |
+|---|---:|---:|---:|---:|
+| Modified U-Net | 0.7910 ± 0.0724 | 0.6589 ± 0.0973 | 0.8298 ± 0.1621 | 0.7786 ± 0.0755 |
+| Attention U-Net | 0.7585 ± 0.2205 | 0.6515 ± 0.2864 | 0.7890 ± 0.2621 | 0.7803 ± 0.1996 |
 
-## Release state
+Five complete ten-epoch folds, all 831 masks and five local checkpoint hashes are independently verified. Fold 1 is retained as the pilot and each outer fold was evaluated once. No prior model was retrained. Full per-fold metrics, runtimes and identities: [Attention results](../docs/ATTENTION_RESULTS.md); [protocol](../docs/ATTENTION_UNET.md). Previous four-model and Focal history below remains preserved.
 
-This final non-training completion pass verifies the saved 20-fold float32 baseline, publishes compact exploratory/partial evidence, completes qualitative review and reproducibility documentation, and adds an independent saved-record auditor. No new large training was started. The matched Focal Tversky CV remains pending because its existing run stopped before its first completed epoch and has no selected checkpoint. The baseline release is reviewable; the loss experiment is **not complete**.
+## Original four-model release state
+
+The preceding non-training completion pass verified the saved 20-fold float32 baseline, published compact exploratory/partial evidence, completed qualitative review and reproducibility documentation, and added an independent saved-record auditor. No new large training was started during that prior pass; the separately authorized Attention extension above has since completed. The matched Focal Tversky CV remains pending because its existing run stopped before its first completed epoch and has no selected checkpoint. The baseline release is reviewable; the loss experiment is **not complete**.
 
 The final-pass starting branch was `main` at `64227ac`, equal to `origin/main` after fetch; there were no stashes. Existing untracked exploratory reports and a Focal smoke report were preserved and included intentionally. Earlier completed source/audit tasks are retained in Git history. No user work was reset or removed. Git transport push authentication works; GitHub CLI API authentication is not configured. No existing LFS tracking or GitHub release workflow was found, so a new binary-checkpoint release was not invented.
 

@@ -55,3 +55,11 @@ the model largely misses the foreground despite its higher aggregate mean.
 Displayed sample-SD error bars can extend below zero and are not confidence
 intervals. Full baseline count verification and runtime provenance checks passed;
 all twenty records show actual float32/Adam and complete status.
+
+## Subsequently completed Attention U-Net extension
+
+The matched Attention extension completed five ten-epoch folds without
+retraining these four baselines. Dice 0.7585 ± 0.2205, IoU 0.6515 ± 0.2864,
+precision 0.7890 ± 0.2621, recall 0.7803 ± 0.1996. Its mean Dice is lower than
+Modified U-Net by 0.032463 under this budget; no significance claim follows.
+[Per-fold results, hashes, runtime and failures](ATTENTION_RESULTS.md).

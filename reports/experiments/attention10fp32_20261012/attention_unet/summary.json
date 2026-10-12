@@ -1,0 +1,186 @@
+{
+  "status": "complete",
+  "architecture": "attention_unet",
+  "configuration": {
+    "architecture": "attention_unet",
+    "epochs": 10,
+    "batch_size": 2,
+    "precision": "float32",
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "loss": "dice",
+    "threshold": 0.5,
+    "seed": 42,
+    "n_folds": 5,
+    "mask_threshold": 127,
+    "input_size": 512,
+    "early_stopping_patience": 0,
+    "augmentation": true,
+    "augmentation_parameters": {}
+  },
+  "dataset_fingerprint": "5fec0d38d1fd0386277a056cb1579235121f65a5da4fc3ac71abda8218db621f",
+  "n_folds": 5,
+  "fold_metrics": [
+    {
+      "fold": 1,
+      "seed": 43,
+      "selected_epoch": 9,
+      "micro": {
+        "hard_mask_dice": 0.47454029485730104,
+        "hard_mask_iou": 0.31108018996339876,
+        "hard_mask_precision": 0.34446491374979066,
+        "hard_mask_recall": 0.7624555160142349
+      },
+      "macro": {
+        "hard_mask_dice": 0.5805253082241839,
+        "hard_mask_iou": 0.47767327689399697,
+        "hard_mask_precision": 0.6180178560650913,
+        "hard_mask_recall": 0.7400643556340838
+      },
+      "counts": {
+        "tp": 20568,
+        "fp": 39142,
+        "fn": 6408,
+        "tn": 46857658
+      },
+      "parameters": 1967357,
+      "training_seconds": 378.204900604,
+      "checkpoint_sha256": "25830fd50270bd4bd7df11db75464eec05f68602dbebf17f36daa046bed2b624",
+      "epochs_completed": 10
+    },
+    {
+      "fold": 2,
+      "seed": 44,
+      "selected_epoch": 6,
+      "micro": {
+        "hard_mask_dice": 0.7966443758386333,
+        "hard_mask_iou": 0.6620190738659028,
+        "hard_mask_precision": 0.8127365000222588,
+        "hard_mask_recall": 0.7811771250080229
+      },
+      "macro": {
+        "hard_mask_dice": 0.7950876158528676,
+        "hard_mask_iou": 0.6948112153731171,
+        "hard_mask_precision": 0.7839015860966617,
+        "hard_mask_recall": 0.8624069795667451
+      },
+      "counts": {
+        "tp": 36513,
+        "fp": 8413,
+        "fn": 10228,
+        "tn": 73083022
+      },
+      "parameters": 1967357,
+      "training_seconds": 411.908717153,
+      "checkpoint_sha256": "843f66fa44fc426bae1a9da08e1f74618b20eaaa4abf01c4ab765f343943969c",
+      "epochs_completed": 10
+    },
+    {
+      "fold": 3,
+      "seed": 45,
+      "selected_epoch": 7,
+      "micro": {
+        "hard_mask_dice": 0.9424425504369404,
+        "hard_mask_iou": 0.8911502167814334,
+        "hard_mask_precision": 0.9885701352345385,
+        "hard_mask_recall": 0.9004277689017163
+      },
+      "macro": {
+        "hard_mask_dice": 0.9385072371716585,
+        "hard_mask_iou": 0.892015341548084,
+        "hard_mask_precision": 0.9641835393312223,
+        "hard_mask_recall": 0.9260680707141538
+      },
+      "counts": {
+        "tp": 17471,
+        "fp": 202,
+        "fn": 1932,
+        "tn": 30913387
+      },
+      "parameters": 1967357,
+      "training_seconds": 586.1873633350001,
+      "checkpoint_sha256": "44b782da1a44782dc3447096895c93a32b8f990f09b8ae96ad7388e06c4ec114",
+      "epochs_completed": 10
+    },
+    {
+      "fold": 4,
+      "seed": 46,
+      "selected_epoch": 5,
+      "micro": {
+        "hard_mask_dice": 0.593771596406358,
+        "hard_mask_iou": 0.4222440642565347,
+        "hard_mask_precision": 0.8215011354129318,
+        "hard_mask_recall": 0.46489685492052757
+      },
+      "macro": {
+        "hard_mask_dice": 0.6273572939810296,
+        "hard_mask_iou": 0.5567687597563911,
+        "hard_mask_precision": 0.7765610391280807,
+        "hard_mask_recall": 0.6052407841854592
+      },
+      "counts": {
+        "tp": 13747,
+        "fp": 2987,
+        "fn": 15823,
+        "tn": 45056211
+      },
+      "parameters": 1967357,
+      "training_seconds": 527.521771599,
+      "checkpoint_sha256": "8bbeef5cf53c20484550d72112a5ddd4a728e7b1c3ae6c91539298d42998dbab",
+      "epochs_completed": 10
+    },
+    {
+      "fold": 5,
+      "seed": 47,
+      "selected_epoch": 10,
+      "micro": {
+        "hard_mask_dice": 0.9852923076923077,
+        "hard_mask_iou": 0.9710109770149797,
+        "hard_mask_precision": 0.9779501588077205,
+        "hard_mask_recall": 0.9927455357142857
+      },
+      "macro": {
+        "hard_mask_dice": 0.953486817301436,
+        "hard_mask_iou": 0.9152715460636658,
+        "hard_mask_precision": 0.9338411131706262,
+        "hard_mask_recall": 0.9798539708489955
+      },
+      "counts": {
+        "tp": 16011,
+        "fp": 361,
+        "fn": 117,
+        "tn": 21741463
+      },
+      "parameters": 1967357,
+      "training_seconds": 554.6718979279999,
+      "checkpoint_sha256": "71b76bae7315075d3f6b27dbdc12c1b6bc5c045d424f9559ea3c50234ff01a39",
+      "epochs_completed": 10
+    }
+  ],
+  "fold_mean": {
+    "hard_mask_dice": 0.7585382250463081,
+    "hard_mask_iou": 0.6515009043764499,
+    "hard_mask_precision": 0.789044568645448,
+    "hard_mask_recall": 0.7803405601117575
+  },
+  "fold_sample_std": {
+    "hard_mask_dice": 0.2205068932523625,
+    "hard_mask_iou": 0.2863887536576503,
+    "hard_mask_precision": 0.2620885249315064,
+    "hard_mask_recall": 0.19960092507528698
+  },
+  "pooled_counts": {
+    "tp": 104310,
+    "fp": 51105,
+    "fn": 34508,
+    "tn": 217651741
+  },
+  "pooled_micro": {
+    "hard_mask_dice": 0.7090299184659776,
+    "hard_mask_iou": 0.549222579677027,
+    "hard_mask_precision": 0.6711707364154039,
+    "hard_mask_recall": 0.7514155224826752
+  },
+  "total_training_seconds": 2458.494650619,
+  "interpretation": "Measured outer content-group CV under recorded budget; no patient-independent or clinical claim"
+}

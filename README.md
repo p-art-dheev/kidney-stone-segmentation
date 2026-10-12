@@ -5,18 +5,30 @@ binary segmentation in exported axial CT images. Reference: Bouzon et al.,
 [*KSSD2025* (IEEE Access, 2025)](https://doi.org/10.1109/ACCESS.2025.3610027).
 The corrected protocol differs from the paper and historical notebooks.
 
-**Validation is in progress.** Shared metrics, preprocessing, grouped splits,
-checkpoint selection, augmentation and model weight round trips have been tested.
-All four models passed actual 512×512 CPU and GPU optimizer-step smoke checks.
-The full test suite passed 59 tests in both environments. A full Modified U-Net
-training/inner-selection epoch completed in 363.70 s on CPU and 110.47 s on GPU.
-The [verified WSL GPU environment](docs/GPU_ENVIRONMENT.md) includes exact dependencies.
-Corrected float32 five-fold baseline evaluations are complete. Measured fold-mean
-hard-mask Dice is 0.7910 for Modified U-Net, 0.3678 for U-Net++, 0.3230 for
-U-Net3+ and 0.4842 for TransUNet. These are preliminary ten-epoch results with
-substantial fold variability; the loss experiment and final audit remain pending.
-See [measured baseline results](docs/BASELINE_RESULTS.md).
-See the [validation log](docs/VALIDATION_LOG.md) for measured checks and open gates.
+**The final non-training baseline audit is complete.** All twenty saved float32
+folds, checkpoint hashes, counts, histories and matched configurations passed
+independent verification. All 29 result plots were reviewed. The matched Focal
+Tversky experiment is **pending**: its interrupted run has zero completed epochs
+and no selected fold checkpoint. No further training was started in this pass.
+The [central audit](reports/FINAL_PROJECT_AUDIT.md) records every completed,
+exploratory, failed and pending run. See the [experiment manifest](reports/experiment_manifest.json),
+[reproduction instructions](docs/EVALUATION_REPRODUCTION.md) and
+[validation log](docs/VALIDATION_LOG.md).
+
+Verified **10-epoch, batch-two** baseline: mean ± sample SD across five
+outer-fold pooled-pixel scores. These are not the paper's 150-epoch results.
+
+| Architecture | Dice | IoU | Precision | Recall |
+|---|---:|---:|---:|---:|
+| Modified U-Net | 0.7910 ± 0.0724 | 0.6589 ± 0.0973 | 0.8298 ± 0.1621 | 0.7786 ± 0.0755 |
+| U-Net++ | 0.3678 ± 0.2567 | 0.2490 ± 0.1894 | 0.3763 ± 0.2169 | 0.4317 ± 0.3622 |
+| U-Net3+ | 0.3230 ± 0.4535 | 0.2805 ± 0.4098 | 0.3561 ± 0.4892 | 0.3014 ± 0.4364 |
+| TransUNet | 0.4842 ± 0.3380 | 0.3749 ± 0.3166 | 0.5623 ± 0.3990 | 0.5063 ± 0.3042 |
+
+[Per-fold results](docs/BASELINE_RESULTS.md) and [comparison figure](reports/figures/baseline10fp32_final/comparison.png)
+retain zero/poor folds. Short training, tiny foreground, unequal heuristic content
+groups and unknown patient identities limit interpretation; no clinical readiness,
+statistical significance or external generalization is established.
 
 ## Dataset and protocol
 
@@ -146,7 +158,9 @@ the loss relative to the Dice baseline:
 python -m kssd.train --data data/kssd2025/data --config configs/focal_tversky/modified_unet.json --output runs/focal/modified_unet --require-gpu
 ```
 
-This experiment has **not** produced measured CV results. Its definition, source,
+This command requires a new training run; it was not executed in the final audit.
+The interrupted prior run produced **no** completed CV fold or selected checkpoint.
+Its definition, source,
 reduction choices and planned training-derived size bins are documented in
 [Focal Tversky](docs/FOCAL_TVERSKY.md). No novelty or improvement is claimed.
 
@@ -169,6 +183,26 @@ config, split IDs, hardware, source and dependencies. Share checkpoints through 
 artifact store if needed; publish compact validated tables/plots only after strict
 aggregation passes. No existing user assets or remote history have been removed.
 
+Canonical compact records are in `reports/experiments/baseline10fp32_final/`;
+figures are in `reports/figures/baseline10fp32_final/`. Current selected weights
+are **local only**, under WSL `/var/tmp/kssd-workspace-20261012/runs/baseline_fp32_final`
+and checksum-verified Windows backup `runs/persistent-backup-20261012/baseline_fp32_final`.
+OneDrive/off-device synchronization is unverified. A fresh clone can validate
+committed records without weights:
+
+```sh
+python -m kssd.final_audit --output runs/records-only-audit.json
+```
+
+To additionally verify recovered weights:
+
+```sh
+python -m kssd.final_audit --checkpoints runs/persistent-backup-20261012/baseline_fp32_final --output runs/checkpoint-audit.json
+```
+
+The [manifest](reports/experiment_manifest.json) lists all twenty checkpoint hashes
+and requirements. Historical `Results/` archives are different checkpoints.
+
 ## Legacy preliminary results — superseded and unvalidated
 
 | Model | Soft Dice | Soft IoU | Binary precision | Binary recall |
@@ -184,6 +218,6 @@ checkpoint and cannot support a model ranking. Old plots/archives are retained f
 provenance. All 20 archives passed finite-weight restoration checks; that establishes
 compatibility, not performance or defensible checkpoint selection.
 
-Remaining gates: corrected five-fold comparisons; matched
-loss experiment and size/error analysis; result-derived plots; final audit. No
-clinical readiness or external-hospital generalization is established.
+Remaining research work: new matched Focal training, loss comparison and its
+training-derived size/error analysis; paper-budget experiments remain unrun.
+The baseline comparison, figures and final non-training audit are complete.

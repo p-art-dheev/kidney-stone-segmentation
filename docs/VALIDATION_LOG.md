@@ -322,4 +322,26 @@ comparison, curves and prediction/error figures completed with re-evaluated coun
 checks; selected figures were visually inspected. All completed checkpoint files
 were SHA-256 verified in the local Windows backup (246 recorded files, 2.07 GB at
 that snapshot). Mixed-precision and other incomplete runs are separate and excluded.
-The matched Focal Tversky experiment and final audit still remain.
+The matched Focal Tversky experiment remained pending at this checkpoint.
+
+## Final non-training audit, 12 October 2026
+
+An independent saved-record auditor checked all 831 outer IDs per architecture,
+twenty complete ten-epoch histories, inner-only epoch selection, actual float32/
+Adam, optimizer update budgets, configuration compatibility, count-derived
+metrics and all twenty local checkpoint SHA-256 identities. All thirty figure/
+index file identities and deterministic case selections were checked. All 29
+plots (including all 24 prediction panels) were visually reviewed. Evidence:
+[final validation](../reports/final_validation.json) and
+[central audit](../reports/FINAL_PROJECT_AUDIT.md).
+
+The first full regression run passed 69 tests in 59.35 seconds. After two final
+guards were added, seven focused auditor tests passed in 0.95 seconds. Commands
+and logs are in reports/resources/final_tests.txt and final_audit_tests.txt;
+the post-push full run is recorded in the release verification report.
+
+Focal's previous process is absent, with zero complete epochs/folds and no H5
+selected checkpoint. Its disappearance has no recorded cause. GPU smoke passed,
+but cannot substitute for CV. No new real-data training was started; Focal
+comparison and its size-bin analysis are explicitly pending. New selected
+baseline weights have local verified copies, not a remote artifact release.

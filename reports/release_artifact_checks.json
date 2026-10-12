@@ -1,0 +1,255 @@
+{
+  "status": "verified",
+  "scope": "Exploratory saved records and release artifact hygiene; no training",
+  "exploratory": [
+    {
+      "architecture": "modified_unet",
+      "fold_mean": {
+        "hard_mask_dice": 0.8481589445329476,
+        "hard_mask_iou": 0.7451989045384757,
+        "hard_mask_precision": 0.9071176278893122,
+        "hard_mask_recall": 0.808258336142134
+      },
+      "fold_sample_std": {
+        "hard_mask_dice": 0.09313582090943366,
+        "hard_mask_iou": 0.13714433286415387,
+        "hard_mask_precision": 0.07521260136286305,
+        "hard_mask_recall": 0.15058892364338883
+      },
+      "verified_folds": 5,
+      "checkpoint_sha256": [
+        "b4d4ce3ddac1fc52c32dd572e144b2f1bdc1381e51f79248d63d806f688e71ae",
+        "ccec288ff50a7315ea10fe2cbef4c26a7263972b560e6be565cf3930085d6d00",
+        "721f6f659fa87e301173f35cbaf9b436d6dc6a5414097859628a0f0c0070b8ae",
+        "29449d0b6b319af7dbc6e6c643faf0e970098dcf650ddb5d66d26da92f1f450b",
+        "72b19f9ffddebdeab239428b91d11bf1b4fc1ccfdbcc81195bed9c068b39b859"
+      ],
+      "included_final_baseline": false
+    },
+    {
+      "architecture": "unetpp",
+      "fold_mean": {
+        "hard_mask_dice": 0.5307027130757951,
+        "hard_mask_iou": 0.41743957950843524,
+        "hard_mask_precision": 0.4741205232013058,
+        "hard_mask_recall": 0.6604147345502359
+      },
+      "fold_sample_std": {
+        "hard_mask_dice": 0.3408793811517592,
+        "hard_mask_iou": 0.3059743876214292,
+        "hard_mask_precision": 0.32826157084111585,
+        "hard_mask_recall": 0.3629170620522093
+      },
+      "verified_folds": 5,
+      "checkpoint_sha256": [
+        "ab0bdda78fba5923c14bec9f838d2c1e6a5a76316bc6bc28a0f3efe1539bc52d",
+        "adca485c62819438c559b2258d062b1a32b4c8cfc7d1797cbcf784bd13a166e7",
+        "cb9d5c31bafb2cf80d3a14105d63683d9078dddaa8d291eeef67791b1ad1bd09",
+        "7c93c9550fc14317a51a0ff26d76e077b551868c430bfc2708b6eb04e447a80a",
+        "1b6dde8678861a42c25cac28ae1fbbfbb6cef9f78a758f8281957aad028d7c48"
+      ],
+      "included_final_baseline": false
+    },
+    {
+      "architecture": "unet3plus",
+      "fold_mean": {
+        "hard_mask_dice": 0.06765013163943331,
+        "hard_mask_iou": 0.040710190121718136,
+        "hard_mask_precision": 0.17883340698188246,
+        "hard_mask_recall": 0.0417151986806164
+      },
+      "fold_sample_std": {
+        "hard_mask_dice": 0.1512702930325822,
+        "hard_mask_iou": 0.09103075248910218,
+        "hard_mask_precision": 0.3998836546593747,
+        "hard_mask_recall": 0.09327801994476781
+      },
+      "verified_folds": 5,
+      "checkpoint_sha256": [
+        "e79f149f13707427c9bc0f98804ba71251d11884a5e205eb88f744954642c42e",
+        "94c4faa22d558340ae8dc0da96ebd08bd512cd36410393fb4dab74c0ebfa3222",
+        "edb4b528cbf92bbde6d059b0672f2365997c34b1f8551c9cc334523d1b97da04",
+        "442dd5f238312851d03235424bc5cd47044f21850e0370a93c3682fc01773d7c",
+        "97c1d75f3dc545fefdfb7a8117185f9850067ca2b13135832f0549f4470bf98e"
+      ],
+      "included_final_baseline": false
+    }
+  ],
+  "relative_links_checked": [
+    {
+      "source": "README.md",
+      "target": "reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/EVALUATION_REPRODUCTION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/VALIDATION_LOG.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/BASELINE_RESULTS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/TRAINING.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/METRICS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/AUGMENTATION.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DATASET.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "README.md",
+      "target": "reports/experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/AUGMENTATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "dataset/manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "splits.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "final_validation.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_inventory.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/local_run_snapshots"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "resources/transunet_amp_failure.txt"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/GPU_ACCELERATION.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "release_artifact_checks.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10amp_verified"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiments/baseline10fp32_final"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/index.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "figures/baseline10fp32_final/comparison.png"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/FOCAL_TVERSKY.md"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "experiment_manifest.json"
+    },
+    {
+      "source": "reports/FINAL_PROJECT_AUDIT.md",
+      "target": "../docs/DATASET.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "../reports/experiment_manifest.json"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "DATASET.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "GPU_ENVIRONMENT.md"
+    },
+    {
+      "source": "docs/EVALUATION_REPRODUCTION.md",
+      "target": "FIGURES.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    },
+    {
+      "source": "docs/BASELINE_RESULTS.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/final_validation.json"
+    },
+    {
+      "source": "docs/VALIDATION_LOG.md",
+      "target": "../reports/FINAL_PROJECT_AUDIT.md"
+    }
+  ],
+  "manifest_paths_and_checkpoint_identities": "verified; local requirements explicitly labelled",
+  "staged_count": 102,
+  "staged_hygiene": "no new datasets, checkpoint dumps, env/cache/temp files, private-key/GitHub/AWS token patterns; all added files <10 MiB"
+}

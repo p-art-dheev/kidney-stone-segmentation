@@ -37,17 +37,20 @@ under ignored `runs/persistent-backup-20261012/`. Cloud sync is unverified.
 Earlier partial float32 and failed mixed-precision runs remain preserved separately.
 `reports/experiments/baseline10amp_verified/` contains exploratory mixed-precision
 results for three architectures; TransUNet failed before a complete first fold.
-Those runs are excluded from this table. The matched Focal Tversky comparison,
-full figure review and final audit are still pending.
+Those runs are excluded from this table. The matched Focal Tversky comparison
+requires new training. Full figure review and the final saved-record audit are
+complete: see [central audit](../reports/FINAL_PROJECT_AUDIT.md).
 
 Baseline comparison, all fold training/inner-selection curves, and deterministic
 highest/lowest-Dice, largest false-negative/false-positive, smallest-area and
 middle-Dice prediction panels are in `reports/figures/baseline10fp32_final/`.
 Generation reloaded each selected checkpoint using the original evaluation batch
 shape/order and verified displayed confusion counts against saved evaluations.
-The complete index records selection rules, source cases, metric values and file
-hashes. Comparison, U-Net3+ curves and a large-false-negative Modified U-Net case
-were visually inspected. The latter has TP/FP/FN 41/20/622 and Dice 0.1133:
+The index records selection rules, source cases, metric values and checkpoint
+hashes; [final validation](../reports/final_validation.json) additionally hashes
+all figure/index files. All four curve figures, the comparison and all 24
+prediction panels were visually inspected. A large-false-negative Modified U-Net
+case has TP/FP/FN 41/20/622 and Dice 0.1133:
 the model largely misses the foreground despite its higher aggregate mean.
 Displayed sample-SD error bars can extend below zero and are not confidence
 intervals. Full baseline count verification and runtime provenance checks passed;

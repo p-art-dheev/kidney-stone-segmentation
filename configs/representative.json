@@ -2,5 +2,6 @@
   "architecture": "modified_unet",
   "epochs": 1,
   "batch_size": 2,
-  "augmentation": true
+  "augmentation": true,
+  "precision": "mixed_float16"
 }

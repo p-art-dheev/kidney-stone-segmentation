@@ -50,9 +50,9 @@ continuous probabilities and is separate from binary metrics: [metric policy](do
 | U-Net3+ | 2,374,583 | keras-unet-collection full-scale skips |
 | TransU-Net | 4,747,553 | Local library-based hybrid, embed 192, 4 heads, 3 transformer blocks |
 
-All use float32 and fresh seeded weights/optimizers per fold. Float32 is a fixed
-protocol choice; a general claim that mixed precision causes sigmoid saturation
-has not been established. TransU-Net uses Keras Reshape layers for compatibility;
+The 10-epoch configs use mixed_float16 with float32 probabilities, losses and
+trainable variables, automatic loss scaling, and fresh seeded weights/optimizers
+per fold. All four passed full-resolution GPU checks at batch 2. TransU-Net uses Keras Reshape layers for compatibility;
 installed library source is never modified. This library variant is not claimed
 to exactly reproduce the original TransUNet authors' implementation.
 
@@ -68,8 +68,8 @@ are provided but have not run; memory feasibility must be verified first.
 Run commands from the repository root with Python **>=3.11**. The verified native
 CPU environment uses Python 3.13.5, TensorFlow 2.20.0 and Keras 3.13.2. Native Windows
 TensorFlow 2.20 is CPU-only; full experiments need a verified Linux/WSL CUDA environment.
-WSL Python 3.12 GPU dependencies are currently being installed; GPU training success
-is not assumed from hardware visibility.
+The isolated WSL Python 3.12 runtime has passed actual GPU training checks;
+see [GPU evidence](docs/GPU_ENVIRONMENT.md).
 
 ```sh
 python -m venv .venv
@@ -179,6 +179,6 @@ checkpoint and cannot support a model ranking. Old plots/archives are retained f
 provenance. All 20 archives passed finite-weight restoration checks; that establishes
 compatibility, not performance or defensible checkpoint selection.
 
-Remaining gates: verified GPU execution; corrected five-fold comparisons; matched
+Remaining gates: corrected five-fold comparisons; matched
 loss experiment and size/error analysis; result-derived plots; final audit. No
 clinical readiness or external-hospital generalization is established.

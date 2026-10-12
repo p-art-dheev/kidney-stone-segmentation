@@ -8,6 +8,7 @@ class ExperimentConfig:
     architecture: str='modified_unet'
     epochs: int=10
     batch_size: int=2
+    precision: str='float32'
     learning_rate: float=.001
     optimizer: str='adam'
     loss: str='dice'
@@ -21,6 +22,7 @@ class ExperimentConfig:
     augmentation_parameters: dict=field(default_factory=dict)
 
     def __post_init__(self):
+        if self.precision not in ['float32','mixed_float16']:raise ValueError('Unsupported precision')
         if self.architecture not in ARCHITECTURES:raise ValueError('Unknown architecture')
         if self.epochs<1 or self.batch_size<1 or self.learning_rate<=0:raise ValueError('Invalid training budget')
         if self.optimizer not in ['adam','sgd']:raise ValueError('Unsupported optimizer')

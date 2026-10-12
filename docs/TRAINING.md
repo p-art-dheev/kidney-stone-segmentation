@@ -38,7 +38,11 @@ final unbiased test. Each outer fold is evaluated once after loading the selecte
 hashes; clears the Keras session; seeds Python/NumPy/TensorFlow to 42+fold; enables
 deterministic TensorFlow ops; constructs a fresh model and optimizer with zero iterations.
 Set `PYTHONHASHSEED=42` **before** starting Python (setting it after launch has no effect).
-Models are float32. Train-only shuffling has an explicit seed; tested spatial transforms
+The 10-epoch configs use mixed_float16 computation with float32 model variables,
+output probabilities and losses, and Keras automatic dynamic loss scaling.
+Precision is recorded in configuration and runtime provenance; figure regeneration
+restores the same policy. The 150-epoch configs retain float32 and remain unrun.
+Train-only shuffling has an explicit seed; tested spatial transforms
 are enabled in the committed experiment configs (see AUGMENTATION.md). Streaming batches include the
 last incomplete batch. There is no training-state transfer across folds or architectures.
 

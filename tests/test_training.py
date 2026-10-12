@@ -42,8 +42,23 @@ def test_actual_final_batch_is_not_dropped():
 
 
 def test_invalid_configs():
-    for kwargs in [{'epochs':0},{'batch_size':0},{'threshold':2},{'optimizer':'unknown'}]:
+    for kwargs in [{'epochs':0},{'batch_size':0},{'threshold':2},{'optimizer':'unknown'},{'precision':'float16'}]:
         with pytest.raises(ValueError):ExperimentConfig(**kwargs)
+
+
+@pytest.mark.parametrize('architecture',ARCHITECTURES)
+def test_mixed_precision_keeps_probabilities_and_variables_float32(architecture):
+    try:
+        tf.keras.backend.clear_session();tf.keras.mixed_precision.set_global_policy('mixed_float16');set_seeds(43)
+        model=build_model(architecture,(32,32,1))
+        output=model(np.ones((1,32,32,1),dtype=np.float32),training=False).numpy()
+        assert output.dtype==np.float32 and np.isfinite(output).all()
+        assert all(str(v.dtype)=='float32' for v in model.trainable_variables)
+        assert output.min()>=0 and output.max()<=1
+        model.compile(optimizer=tf.keras.optimizers.Adam(),loss='mse')
+        assert isinstance(model.optimizer,tf.keras.mixed_precision.LossScaleOptimizer)
+    finally:
+        tf.keras.mixed_precision.set_global_policy('float32');tf.keras.backend.clear_session()
 
 
 def test_nested_runner_synthetic_end_to_end(tmp_path,monkeypatch):

@@ -12,5 +12,6 @@
   "input_size": 512,
   "early_stopping_patience": 0,
   "augmentation": true,
-  "augmentation_parameters": {}
+  "augmentation_parameters": {},
+  "precision": "mixed_float16"
 }

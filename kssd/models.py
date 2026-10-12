@@ -47,7 +47,9 @@ def transunet(input_shape):
     x=layers.Conv2D(FILTERS[-1],1,padding='valid',use_bias=False,name=f'{name}_conv_trans_after')(x)
     for i,(skip,filters) in enumerate(zip(skips[-2::-1],FILTERS[-2::-1])):
         x=UNET_right(x,[skip],filters,stack_num=2,activation='ReLU',unpool=True,batch_norm=True,name=f'{name}_up{i}')
-    return Model(inputs,CONV_output(x,1,kernel_size=1,activation='Sigmoid',name=f'{name}_output'),name='TransUNet_model')
+    x=CONV_output(x,1,kernel_size=1,activation=None,name=f'{name}_output')
+    x=layers.Activation('sigmoid',dtype='float32',name=f'{name}_output_activation')(x)
+    return Model(inputs,x,name='TransUNet_model')
 
 
 def build_model(architecture, input_shape=(512,512,1)):
@@ -57,9 +59,10 @@ def build_model(architecture, input_shape=(512,512,1)):
     if architecture=='transunet':return transunet(input_shape)
     from keras_unet_collection import models as kuc
     common=dict(input_size=input_shape,n_labels=1,stack_num_down=2,stack_num_up=2,
-                activation='ReLU',output_activation='Sigmoid',batch_norm=True,pool=True,unpool=True,
+                activation='ReLU',output_activation=None,batch_norm=True,pool=True,unpool=True,
                 deep_supervision=False,backbone=None)
     if architecture=='unetpp':model=kuc.unet_plus_2d(filter_num=FILTERS,name='UNetPP',**common)
     elif architecture=='unet3plus':model=kuc.unet_3plus_2d(filter_num_down=FILTERS,filter_num_skip=[22]*4,filter_num_aggregate=110,name='UNet3Plus',**common)
     else:raise ValueError(f'Unknown architecture: {architecture}')
-    return Model(model.inputs[0],model.outputs[0],name=model.name)
+    output=layers.Activation('sigmoid',dtype='float32',name=f'{model.outputs[0]._keras_history.operation.name}_activation')(model.outputs[0])
+    return Model(model.inputs[0],output,name=model.name)

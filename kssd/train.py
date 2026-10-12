@@ -78,7 +78,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
     output=Path(output)/f'fold-{fold_number}'
     if output.exists():raise ValueError(f'Output already exists: {output}; choose a new run directory')
     output.mkdir(parents=True)
-    tf.keras.mixed_precision.set_global_policy('float32')
+    tf.keras.mixed_precision.set_global_policy(config.precision)
     tf.keras.backend.clear_session();gc.collect();set_seeds(fold['seed'])
     model=build_model(config.architecture,(config.input_size,config.input_size,1))
     optimizer=(tf.keras.optimizers.Adam if config.optimizer=='adam' else tf.keras.optimizers.SGD)(learning_rate=config.learning_rate)
@@ -91,6 +91,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
     initial_hash=hashlib.sha256(b''.join(w.tobytes() for w in model.get_weights())).hexdigest()
     write_json(output/'provenance.json',{'config':config.to_dict(),'fold':fold,'dataset_fingerprint':splits['dataset_fingerprint'],
                                       'environment':environment(),'parameters':model.count_params(),'initial_weights_sha256':initial_hash,
+                                      'optimizer_class':type(model.optimizer).__name__,
                                       'checkpoint_policy':'max inner selection hard_mask_dice; earliest epoch wins ties',
                                       'status':'running'})
     checkpoint=output/'best.weights.h5'
@@ -102,6 +103,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
     history=model.fit(dataset(root,fold['train'],config,True,fold['seed']),
                       validation_data=dataset(root,fold['selection'],config),epochs=config.epochs,callbacks=callbacks,verbose=2)
     duration=time.perf_counter()-start
+    optimizer_updates=int(model.optimizer.iterations.numpy())
     write_json(output/'history.json',history.history)
     if not checkpoint.exists() or not all(np.isfinite(v).all() for v in history.history.values()):
         raise RuntimeError('Training did not produce finite histories and a checkpoint')
@@ -110,6 +112,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
     if not evaluate_outer:
         result={'status':'selection_only','selected_epoch':selected_epoch,'training_seconds':duration,
                 'epochs_completed':len(history.epoch),'configuration':config.to_dict()}
+        result['optimizer_updates']=optimizer_updates
         write_json(output/'selection_run.json',result)
         provenance=json.loads((output/'provenance.json').read_text(encoding='utf-8'))
         provenance.update({'status':'selection_only','selected_epoch':selected_epoch})
@@ -122,6 +125,7 @@ def run_fold(root,manifest,splits,config,fold_number,output,evaluate_outer=True)
                    'parameters':model.count_params(),'training_seconds':duration,'epochs_completed':len(history.epoch),
                    'outer_test_count':len(fold['test']),'inner_selection_count':len(fold['selection']),
                    'configuration':config.to_dict(),'dataset_fingerprint':splits['dataset_fingerprint'],'status':'complete'})
+    result['optimizer_updates']=optimizer_updates
     write_json(output/'evaluation.json',result)
     provenance=json.loads((output/'provenance.json').read_text(encoding='utf-8'))
     provenance.update({'status':'complete','selected_epoch':selected_epoch,'checkpoint_sha256':result['checkpoint_sha256']})

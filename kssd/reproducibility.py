@@ -33,4 +33,5 @@ def environment():
             'git_commit':git_commit,'git_dirty':dirty,'pythonhashseed':os.environ.get('PYTHONHASHSEED'),
             'source_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
             'all_installed_packages':{d.metadata['Name']:d.version for d in importlib.metadata.distributions()},
+            'precision_policy':tf.keras.mixed_precision.global_policy().name,
             'deterministic_ops':True}

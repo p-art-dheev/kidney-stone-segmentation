@@ -121,6 +121,7 @@ def generate(root,data,manifest,splits,output,architectures=None):
             local={name:row for name,row in chosen.items() if sample_folds[row['id']]['fold']==fold['fold']}
             if not local:continue
             tf.keras.backend.clear_session();gc.collect();set_seeds(fold['seed'])
+            tf.keras.mixed_precision.set_global_policy(summary['configuration'].get('precision','float32'))
             model=build_model(architecture)
             model.load_weights(run/f"fold-{fold['fold']}"/'best.weights.h5')
             for criterion,row in local.items():

@@ -1,3 +1,6 @@
 cache/
 checkpoints/
 results/*/predictions/
+results/*/matplotlib/
+results/*/resize_preview.png
+results/verification-tmp/

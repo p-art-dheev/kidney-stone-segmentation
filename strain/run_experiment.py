@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 
 def report(output, started, status):
     from strain.data import save
+    from strain.plot_history import plot
+    plot(output)
     rows = []
     for name in ['modified_unet','unet3plus','unetpp','transunet']:
         path = output/name/'result.json'

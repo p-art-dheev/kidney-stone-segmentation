@@ -1,0 +1,18 @@
+2026-10-13 16:58:44.558749: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-10-13 16:58:44.997631: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-10-13 16:58:47.527052: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/charu/OneDrive/Desktop/End sem/mip/kidney-stone-segmentation/strain/targeted/run.py", line 89, in <module>
+    main()
+  File "/mnt/c/Users/charu/OneDrive/Desktop/End sem/mip/kidney-stone-segmentation/strain/targeted/run.py", line 68, in main
+    worker(args);return
+    ^^^^^^^^^^^^
+  File "/mnt/c/Users/charu/OneDrive/Desktop/End sem/mip/kidney-stone-segmentation/strain/targeted/run.py", line 21, in worker
+    from strain.targeted.diagnose import diagnose,load_cached,MODELS
+  File "/mnt/c/Users/charu/OneDrive/Desktop/End sem/mip/kidney-stone-segmentation/strain/targeted/diagnose.py", line 149
+    print(json.dumps(dict(architecture=name, validation_common=common['micro'],
+         ^
+SyntaxError: '(' was never closed

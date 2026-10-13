@@ -1,0 +1,5332 @@
+{
+  "architecture": "transunet",
+  "checkpoint": "strain/checkpoints/experiment256_final_20261013/transunet.weights.h5",
+  "checkpoint_sha256": "b58bd57c4e53dfb48bd90ba986a051b49757046ca6a97cbfb10b047fb6be743b",
+  "parameters": 4600097,
+  "input_shape": [
+    null,
+    256,
+    256,
+    1
+  ],
+  "output_shape": [
+    null,
+    256,
+    256,
+    1
+  ],
+  "output_head": [
+    {
+      "name": "TransUNet_up3_conv_after_concat_1_activation",
+      "type": "ReLU",
+      "config": {
+        "name": "TransUNet_up3_conv_after_concat_1_activation",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "max_value": null,
+        "negative_slope": 0.0,
+        "threshold": 0.0
+      }
+    },
+    {
+      "name": "TransUNet_output",
+      "type": "Conv2D",
+      "config": {
+        "name": "TransUNet_output",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "filters": 1,
+        "kernel_size": [
+          1,
+          1
+        ],
+        "strides": [
+          1,
+          1
+        ],
+        "padding": "same",
+        "data_format": "channels_last",
+        "dilation_rate": [
+          1,
+          1
+        ],
+        "groups": 1,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "activity_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_output_activation",
+      "type": "Activation",
+      "config": {
+        "name": "TransUNet_output_activation",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "activation": "sigmoid"
+      }
+    }
+  ],
+  "transformer_layers": [
+    {
+      "name": "patch_extract_reshape",
+      "type": "Reshape",
+      "config": {
+        "name": "patch_extract_reshape",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "target_shape": [
+          256,
+          256
+        ]
+      }
+    },
+    {
+      "name": "patch_embedding",
+      "type": "patch_embedding",
+      "config": {
+        "name": "patch_embedding",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "num_patch": 256,
+        "embed_dim": 192
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_layer_norm_1",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_0_layer_norm_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_atten",
+      "type": "MultiHeadAttention",
+      "config": {
+        "name": "TransUNet_ViT_0_atten",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "num_heads": 4,
+        "key_dim": 192,
+        "value_dim": 192,
+        "dropout": 0.0,
+        "use_bias": true,
+        "output_shape": null,
+        "attention_axes": [
+          1
+        ],
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "activity_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "seed": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_skip_1",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_0_skip_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_layer_norm_2",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_0_layer_norm_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_dense_0",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_0_mlp_dense_0",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 384,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_activation_0",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_0_mlp_activation_0",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_dense_1",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_0_mlp_dense_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 192,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_activation_1",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_0_mlp_activation_1",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_0_skip_2",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_0_skip_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_layer_norm_1",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_1_layer_norm_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_atten",
+      "type": "MultiHeadAttention",
+      "config": {
+        "name": "TransUNet_ViT_1_atten",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "num_heads": 4,
+        "key_dim": 192,
+        "value_dim": 192,
+        "dropout": 0.0,
+        "use_bias": true,
+        "output_shape": null,
+        "attention_axes": [
+          1
+        ],
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "activity_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "seed": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_skip_1",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_1_skip_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_layer_norm_2",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_1_layer_norm_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_dense_0",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_1_mlp_dense_0",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 384,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_activation_0",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_1_mlp_activation_0",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_dense_1",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_1_mlp_dense_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 192,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_activation_1",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_1_mlp_activation_1",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_1_skip_2",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_1_skip_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_layer_norm_1",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_2_layer_norm_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_atten",
+      "type": "MultiHeadAttention",
+      "config": {
+        "name": "TransUNet_ViT_2_atten",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "num_heads": 4,
+        "key_dim": 192,
+        "value_dim": 192,
+        "dropout": 0.0,
+        "use_bias": true,
+        "output_shape": null,
+        "attention_axes": [
+          1
+        ],
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "activity_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "seed": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_skip_1",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_2_skip_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_layer_norm_2",
+      "type": "LayerNormalization",
+      "config": {
+        "name": "TransUNet_ViT_2_layer_norm_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "axis": [
+          -1
+        ],
+        "epsilon": 0.001,
+        "center": true,
+        "scale": true,
+        "rms_scaling": false,
+        "beta_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "gamma_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Ones",
+          "config": {},
+          "registered_name": null
+        },
+        "beta_regularizer": null,
+        "gamma_regularizer": null,
+        "beta_constraint": null,
+        "gamma_constraint": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_dense_0",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_2_mlp_dense_0",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 384,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_activation_0",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_2_mlp_activation_0",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_dense_1",
+      "type": "Dense",
+      "config": {
+        "name": "TransUNet_ViT_2_mlp_dense_1",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "units": 192,
+        "activation": "linear",
+        "use_bias": true,
+        "kernel_initializer": {
+          "module": "keras.initializers",
+          "class_name": "GlorotUniform",
+          "config": {
+            "seed": null
+          },
+          "registered_name": null
+        },
+        "bias_initializer": {
+          "module": "keras.initializers",
+          "class_name": "Zeros",
+          "config": {},
+          "registered_name": null
+        },
+        "kernel_regularizer": null,
+        "bias_regularizer": null,
+        "kernel_constraint": null,
+        "bias_constraint": null,
+        "quantization_config": null
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_activation_1",
+      "type": "GELU",
+      "config": {
+        "name": "TransUNet_ViT_2_mlp_activation_1",
+        "trainable": false,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "TransUNet_ViT_2_skip_2",
+      "type": "Add",
+      "config": {
+        "name": "TransUNet_ViT_2_skip_2",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        }
+      }
+    },
+    {
+      "name": "token_grid",
+      "type": "Reshape",
+      "config": {
+        "name": "token_grid",
+        "trainable": true,
+        "dtype": {
+          "module": "keras",
+          "class_name": "DTypePolicy",
+          "config": {
+            "name": "float32"
+          },
+          "registered_name": null
+        },
+        "target_shape": [
+          16,
+          16,
+          192
+        ]
+      }
+    }
+  ],
+  "layers": [
+    {
+      "name": "input_layer",
+      "type": "InputLayer"
+    },
+    {
+      "name": "TransUNet_down0_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down0_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down0_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down0_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down0_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down0_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down1_encode_maxpool",
+      "type": "MaxPooling2D"
+    },
+    {
+      "name": "TransUNet_down1_conv_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down1_conv_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down1_conv_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down1_conv_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down1_conv_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down1_conv_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down2_encode_maxpool",
+      "type": "MaxPooling2D"
+    },
+    {
+      "name": "TransUNet_down2_conv_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down2_conv_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down2_conv_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down2_conv_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down2_conv_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down2_conv_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down3_encode_maxpool",
+      "type": "MaxPooling2D"
+    },
+    {
+      "name": "TransUNet_down3_conv_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down3_conv_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down3_conv_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down3_conv_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down3_conv_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down3_conv_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down4_encode_maxpool",
+      "type": "MaxPooling2D"
+    },
+    {
+      "name": "TransUNet_down4_conv_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down4_conv_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down4_conv_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_down4_conv_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_down4_conv_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_down4_conv_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_conv_trans_before",
+      "type": "Conv2D"
+    },
+    {
+      "name": "patch_extract_reshape",
+      "type": "Reshape"
+    },
+    {
+      "name": "patch_embedding",
+      "type": "patch_embedding"
+    },
+    {
+      "name": "TransUNet_ViT_0_layer_norm_1",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_0_atten",
+      "type": "MultiHeadAttention"
+    },
+    {
+      "name": "TransUNet_ViT_0_skip_1",
+      "type": "Add"
+    },
+    {
+      "name": "TransUNet_ViT_0_layer_norm_2",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_dense_0",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_activation_0",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_dense_1",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_0_mlp_activation_1",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_0_skip_2",
+      "type": "Add"
+    },
+    {
+      "name": "TransUNet_ViT_1_layer_norm_1",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_1_atten",
+      "type": "MultiHeadAttention"
+    },
+    {
+      "name": "TransUNet_ViT_1_skip_1",
+      "type": "Add"
+    },
+    {
+      "name": "TransUNet_ViT_1_layer_norm_2",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_dense_0",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_activation_0",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_dense_1",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_1_mlp_activation_1",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_1_skip_2",
+      "type": "Add"
+    },
+    {
+      "name": "TransUNet_ViT_2_layer_norm_1",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_2_atten",
+      "type": "MultiHeadAttention"
+    },
+    {
+      "name": "TransUNet_ViT_2_skip_1",
+      "type": "Add"
+    },
+    {
+      "name": "TransUNet_ViT_2_layer_norm_2",
+      "type": "LayerNormalization"
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_dense_0",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_activation_0",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_dense_1",
+      "type": "Dense"
+    },
+    {
+      "name": "TransUNet_ViT_2_mlp_activation_1",
+      "type": "GELU"
+    },
+    {
+      "name": "TransUNet_ViT_2_skip_2",
+      "type": "Add"
+    },
+    {
+      "name": "token_grid",
+      "type": "Reshape"
+    },
+    {
+      "name": "TransUNet_conv_trans_after",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up0_decode_unpool",
+      "type": "UpSampling2D"
+    },
+    {
+      "name": "TransUNet_up0_conv_before_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up0_conv_before_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up0_conv_before_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up0_concat",
+      "type": "Concatenate"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up0_conv_after_concat_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up1_decode_unpool",
+      "type": "UpSampling2D"
+    },
+    {
+      "name": "TransUNet_up1_conv_before_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up1_conv_before_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up1_conv_before_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up1_concat",
+      "type": "Concatenate"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up1_conv_after_concat_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up2_decode_unpool",
+      "type": "UpSampling2D"
+    },
+    {
+      "name": "TransUNet_up2_conv_before_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up2_conv_before_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up2_conv_before_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up2_concat",
+      "type": "Concatenate"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up2_conv_after_concat_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up3_decode_unpool",
+      "type": "UpSampling2D"
+    },
+    {
+      "name": "TransUNet_up3_conv_before_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up3_conv_before_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up3_conv_before_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up3_concat",
+      "type": "Concatenate"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_0",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_0_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_0_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_1",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_1_bn",
+      "type": "BatchNormalization"
+    },
+    {
+      "name": "TransUNet_up3_conv_after_concat_1_activation",
+      "type": "ReLU"
+    },
+    {
+      "name": "TransUNet_output",
+      "type": "Conv2D"
+    },
+    {
+      "name": "TransUNet_output_activation",
+      "type": "Activation"
+    }
+  ],
+  "no_pretrained_backbone": true,
+  "no_deep_supervision": true,
+  "train": {
+    "common": {
+      "threshold": 0.5,
+      "counts": {
+        "tp": 2088,
+        "fp": 3686,
+        "fn": 546,
+        "tn": 3336016
+      },
+      "micro": {
+        "hard_mask_dice": 0.4966698382492864,
+        "hard_mask_iou": 0.330379746835443,
+        "hard_mask_precision": 0.36162105992379634,
+        "hard_mask_recall": 0.7927107061503417
+      },
+      "per_image": [
+        {
+          "id": "1001.tif",
+          "tp": 10,
+          "fp": 165,
+          "fn": 0,
+          "tn": 65361,
+          "hard_mask_dice": 0.10810810810810811,
+          "hard_mask_iou": 0.05714285714285714,
+          "hard_mask_precision": 0.05714285714285714,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "1002.tif",
+          "tp": 6,
+          "fp": 193,
+          "fn": 0,
+          "tn": 65337,
+          "hard_mask_dice": 0.05853658536585366,
+          "hard_mask_iou": 0.03015075376884422,
+          "hard_mask_precision": 0.03015075376884422,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "1136.tif",
+          "tp": 50,
+          "fp": 116,
+          "fn": 14,
+          "tn": 65356,
+          "hard_mask_dice": 0.43478260869565216,
+          "hard_mask_iou": 0.2777777777777778,
+          "hard_mask_precision": 0.30120481927710846,
+          "hard_mask_recall": 0.78125
+        },
+        {
+          "id": "1139.tif",
+          "tp": 106,
+          "fp": 618,
+          "fn": 6,
+          "tn": 64806,
+          "hard_mask_dice": 0.2535885167464115,
+          "hard_mask_iou": 0.14520547945205478,
+          "hard_mask_precision": 0.1464088397790055,
+          "hard_mask_recall": 0.9464285714285714
+        },
+        {
+          "id": "1140.tif",
+          "tp": 118,
+          "fp": 573,
+          "fn": 5,
+          "tn": 64840,
+          "hard_mask_dice": 0.28992628992628994,
+          "hard_mask_iou": 0.16954022988505746,
+          "hard_mask_precision": 0.170767004341534,
+          "hard_mask_recall": 0.959349593495935
+        },
+        {
+          "id": "1147.tif",
+          "tp": 57,
+          "fp": 3,
+          "fn": 35,
+          "tn": 65441,
+          "hard_mask_dice": 0.75,
+          "hard_mask_iou": 0.6,
+          "hard_mask_precision": 0.95,
+          "hard_mask_recall": 0.6195652173913043
+        },
+        {
+          "id": "1148.tif",
+          "tp": 44,
+          "fp": 1,
+          "fn": 29,
+          "tn": 65462,
+          "hard_mask_dice": 0.7457627118644068,
+          "hard_mask_iou": 0.5945945945945946,
+          "hard_mask_precision": 0.9777777777777777,
+          "hard_mask_recall": 0.6027397260273972
+        },
+        {
+          "id": "1163.tif",
+          "tp": 54,
+          "fp": 172,
+          "fn": 5,
+          "tn": 65305,
+          "hard_mask_dice": 0.37894736842105264,
+          "hard_mask_iou": 0.23376623376623376,
+          "hard_mask_precision": 0.23893805309734514,
+          "hard_mask_recall": 0.9152542372881356
+        },
+        {
+          "id": "1167.tif",
+          "tp": 50,
+          "fp": 46,
+          "fn": 9,
+          "tn": 65431,
+          "hard_mask_dice": 0.6451612903225806,
+          "hard_mask_iou": 0.47619047619047616,
+          "hard_mask_precision": 0.5208333333333334,
+          "hard_mask_recall": 0.847457627118644
+        },
+        {
+          "id": "1170.tif",
+          "tp": 35,
+          "fp": 0,
+          "fn": 9,
+          "tn": 65492,
+          "hard_mask_dice": 0.8860759493670886,
+          "hard_mask_iou": 0.7954545454545454,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.7954545454545454
+        },
+        {
+          "id": "1206.tif",
+          "tp": 42,
+          "fp": 19,
+          "fn": 29,
+          "tn": 65446,
+          "hard_mask_dice": 0.6363636363636364,
+          "hard_mask_iou": 0.4666666666666667,
+          "hard_mask_precision": 0.6885245901639344,
+          "hard_mask_recall": 0.5915492957746479
+        },
+        {
+          "id": "1209.tif",
+          "tp": 38,
+          "fp": 1,
+          "fn": 30,
+          "tn": 65467,
+          "hard_mask_dice": 0.7102803738317757,
+          "hard_mask_iou": 0.5507246376811594,
+          "hard_mask_precision": 0.9743589743589743,
+          "hard_mask_recall": 0.5588235294117647
+        },
+        {
+          "id": "1211.tif",
+          "tp": 20,
+          "fp": 0,
+          "fn": 21,
+          "tn": 65495,
+          "hard_mask_dice": 0.6557377049180327,
+          "hard_mask_iou": 0.4878048780487805,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.4878048780487805
+        },
+        {
+          "id": "1226.tif",
+          "tp": 15,
+          "fp": 91,
+          "fn": 0,
+          "tn": 65430,
+          "hard_mask_dice": 0.24793388429752067,
+          "hard_mask_iou": 0.14150943396226415,
+          "hard_mask_precision": 0.14150943396226415,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "1304.tif",
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "tn": 65535,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "1320.tif",
+          "tp": 17,
+          "fp": 32,
+          "fn": 3,
+          "tn": 65484,
+          "hard_mask_dice": 0.4927536231884058,
+          "hard_mask_iou": 0.3269230769230769,
+          "hard_mask_precision": 0.3469387755102041,
+          "hard_mask_recall": 0.85
+        },
+        {
+          "id": "1327.tif",
+          "tp": 12,
+          "fp": 2,
+          "fn": 0,
+          "tn": 65522,
+          "hard_mask_dice": 0.9230769230769231,
+          "hard_mask_iou": 0.8571428571428571,
+          "hard_mask_precision": 0.8571428571428571,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "144.tif",
+          "tp": 4,
+          "fp": 0,
+          "fn": 1,
+          "tn": 65531,
+          "hard_mask_dice": 0.8888888888888888,
+          "hard_mask_iou": 0.8,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.8
+        },
+        {
+          "id": "158.tif",
+          "tp": 5,
+          "fp": 2,
+          "fn": 2,
+          "tn": 65527,
+          "hard_mask_dice": 0.7142857142857143,
+          "hard_mask_iou": 0.5555555555555556,
+          "hard_mask_precision": 0.7142857142857143,
+          "hard_mask_recall": 0.7142857142857143
+        },
+        {
+          "id": "163.tif",
+          "tp": 10,
+          "fp": 3,
+          "fn": 0,
+          "tn": 65523,
+          "hard_mask_dice": 0.8695652173913043,
+          "hard_mask_iou": 0.7692307692307693,
+          "hard_mask_precision": 0.7692307692307693,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "177.tif",
+          "tp": 50,
+          "fp": 20,
+          "fn": 7,
+          "tn": 65459,
+          "hard_mask_dice": 0.7874015748031497,
+          "hard_mask_iou": 0.6493506493506493,
+          "hard_mask_precision": 0.7142857142857143,
+          "hard_mask_recall": 0.8771929824561403
+        },
+        {
+          "id": "212.tif",
+          "tp": 5,
+          "fp": 202,
+          "fn": 0,
+          "tn": 65329,
+          "hard_mask_dice": 0.04716981132075472,
+          "hard_mask_iou": 0.024154589371980676,
+          "hard_mask_precision": 0.024154589371980676,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "214.tif",
+          "tp": 3,
+          "fp": 211,
+          "fn": 0,
+          "tn": 65322,
+          "hard_mask_dice": 0.027649769585253458,
+          "hard_mask_iou": 0.014018691588785047,
+          "hard_mask_precision": 0.014018691588785047,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "279.tif",
+          "tp": 4,
+          "fp": 233,
+          "fn": 0,
+          "tn": 65299,
+          "hard_mask_dice": 0.03319502074688797,
+          "hard_mask_iou": 0.016877637130801686,
+          "hard_mask_precision": 0.016877637130801686,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "306.tif",
+          "tp": 125,
+          "fp": 0,
+          "fn": 63,
+          "tn": 65348,
+          "hard_mask_dice": 0.7987220447284346,
+          "hard_mask_iou": 0.6648936170212766,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.6648936170212766
+        },
+        {
+          "id": "311.tif",
+          "tp": 88,
+          "fp": 0,
+          "fn": 77,
+          "tn": 65371,
+          "hard_mask_dice": 0.6956521739130435,
+          "hard_mask_iou": 0.5333333333333333,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.5333333333333333
+        },
+        {
+          "id": "313.tif",
+          "tp": 110,
+          "fp": 0,
+          "fn": 32,
+          "tn": 65394,
+          "hard_mask_dice": 0.873015873015873,
+          "hard_mask_iou": 0.7746478873239436,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.7746478873239436
+        },
+        {
+          "id": "464.tif",
+          "tp": 5,
+          "fp": 2,
+          "fn": 5,
+          "tn": 65524,
+          "hard_mask_dice": 0.5882352941176471,
+          "hard_mask_iou": 0.4166666666666667,
+          "hard_mask_precision": 0.7142857142857143,
+          "hard_mask_recall": 0.5
+        },
+        {
+          "id": "474.tif",
+          "tp": 155,
+          "fp": 1,
+          "fn": 7,
+          "tn": 65373,
+          "hard_mask_dice": 0.9748427672955975,
+          "hard_mask_iou": 0.950920245398773,
+          "hard_mask_precision": 0.9935897435897436,
+          "hard_mask_recall": 0.9567901234567902
+        },
+        {
+          "id": "482.tif",
+          "tp": 146,
+          "fp": 1,
+          "fn": 30,
+          "tn": 65359,
+          "hard_mask_dice": 0.9040247678018576,
+          "hard_mask_iou": 0.8248587570621468,
+          "hard_mask_precision": 0.9931972789115646,
+          "hard_mask_recall": 0.8295454545454546
+        },
+        {
+          "id": "490.tif",
+          "tp": 42,
+          "fp": 1,
+          "fn": 3,
+          "tn": 65490,
+          "hard_mask_dice": 0.9545454545454546,
+          "hard_mask_iou": 0.9130434782608695,
+          "hard_mask_precision": 0.9767441860465116,
+          "hard_mask_recall": 0.9333333333333333
+        },
+        {
+          "id": "5.tif",
+          "tp": 29,
+          "fp": 0,
+          "fn": 7,
+          "tn": 65500,
+          "hard_mask_dice": 0.8923076923076924,
+          "hard_mask_iou": 0.8055555555555556,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.8055555555555556
+        },
+        {
+          "id": "620.tif",
+          "tp": 28,
+          "fp": 7,
+          "fn": 7,
+          "tn": 65494,
+          "hard_mask_dice": 0.8,
+          "hard_mask_iou": 0.6666666666666666,
+          "hard_mask_precision": 0.8,
+          "hard_mask_recall": 0.8
+        },
+        {
+          "id": "635.tif",
+          "tp": 93,
+          "fp": 1,
+          "fn": 16,
+          "tn": 65426,
+          "hard_mask_dice": 0.916256157635468,
+          "hard_mask_iou": 0.8454545454545455,
+          "hard_mask_precision": 0.9893617021276596,
+          "hard_mask_recall": 0.8532110091743119
+        },
+        {
+          "id": "641.tif",
+          "tp": 101,
+          "fp": 1,
+          "fn": 23,
+          "tn": 65411,
+          "hard_mask_dice": 0.8938053097345132,
+          "hard_mask_iou": 0.808,
+          "hard_mask_precision": 0.9901960784313726,
+          "hard_mask_recall": 0.8145161290322581
+        },
+        {
+          "id": "647.tif",
+          "tp": 96,
+          "fp": 0,
+          "fn": 13,
+          "tn": 65427,
+          "hard_mask_dice": 0.9365853658536586,
+          "hard_mask_iou": 0.8807339449541285,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.8807339449541285
+        },
+        {
+          "id": "653.tif",
+          "tp": 66,
+          "fp": 2,
+          "fn": 4,
+          "tn": 65464,
+          "hard_mask_dice": 0.9565217391304348,
+          "hard_mask_iou": 0.9166666666666666,
+          "hard_mask_precision": 0.9705882352941176,
+          "hard_mask_recall": 0.9428571428571428
+        },
+        {
+          "id": "658.tif",
+          "tp": 59,
+          "fp": 2,
+          "fn": 6,
+          "tn": 65469,
+          "hard_mask_dice": 0.9365079365079365,
+          "hard_mask_iou": 0.8805970149253731,
+          "hard_mask_precision": 0.9672131147540983,
+          "hard_mask_recall": 0.9076923076923077
+        },
+        {
+          "id": "662.tif",
+          "tp": 52,
+          "fp": 1,
+          "fn": 10,
+          "tn": 65473,
+          "hard_mask_dice": 0.9043478260869565,
+          "hard_mask_iou": 0.8253968253968254,
+          "hard_mask_precision": 0.9811320754716981,
+          "hard_mask_recall": 0.8387096774193549
+        },
+        {
+          "id": "677.tif",
+          "tp": 14,
+          "fp": 1,
+          "fn": 3,
+          "tn": 65518,
+          "hard_mask_dice": 0.875,
+          "hard_mask_iou": 0.7777777777777778,
+          "hard_mask_precision": 0.9333333333333333,
+          "hard_mask_recall": 0.8235294117647058
+        },
+        {
+          "id": "7.tif",
+          "tp": 30,
+          "fp": 4,
+          "fn": 9,
+          "tn": 65493,
+          "hard_mask_dice": 0.821917808219178,
+          "hard_mask_iou": 0.6976744186046512,
+          "hard_mask_precision": 0.8823529411764706,
+          "hard_mask_recall": 0.7692307692307693
+        },
+        {
+          "id": "777.tif",
+          "tp": 22,
+          "fp": 39,
+          "fn": 7,
+          "tn": 65468,
+          "hard_mask_dice": 0.4888888888888889,
+          "hard_mask_iou": 0.3235294117647059,
+          "hard_mask_precision": 0.36065573770491804,
+          "hard_mask_recall": 0.7586206896551724
+        },
+        {
+          "id": "789.tif",
+          "tp": 36,
+          "fp": 8,
+          "fn": 7,
+          "tn": 65485,
+          "hard_mask_dice": 0.8275862068965517,
+          "hard_mask_iou": 0.7058823529411765,
+          "hard_mask_precision": 0.8181818181818182,
+          "hard_mask_recall": 0.8372093023255814
+        },
+        {
+          "id": "798.tif",
+          "tp": 15,
+          "fp": 3,
+          "fn": 4,
+          "tn": 65514,
+          "hard_mask_dice": 0.8108108108108109,
+          "hard_mask_iou": 0.6818181818181818,
+          "hard_mask_precision": 0.8333333333333334,
+          "hard_mask_recall": 0.7894736842105263
+        },
+        {
+          "id": "860.tif",
+          "tp": 2,
+          "fp": 108,
+          "fn": 0,
+          "tn": 65426,
+          "hard_mask_dice": 0.03571428571428571,
+          "hard_mask_iou": 0.01818181818181818,
+          "hard_mask_precision": 0.01818181818181818,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "876.tif",
+          "tp": 2,
+          "fp": 1,
+          "fn": 3,
+          "tn": 65530,
+          "hard_mask_dice": 0.5,
+          "hard_mask_iou": 0.3333333333333333,
+          "hard_mask_precision": 0.6666666666666666,
+          "hard_mask_recall": 0.4
+        },
+        {
+          "id": "906.tif",
+          "tp": 0,
+          "fp": 173,
+          "fn": 1,
+          "tn": 65362,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "914.tif",
+          "tp": 0,
+          "fp": 171,
+          "fn": 1,
+          "tn": 65364,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "939.tif",
+          "tp": 11,
+          "fp": 172,
+          "fn": 0,
+          "tn": 65353,
+          "hard_mask_dice": 0.1134020618556701,
+          "hard_mask_iou": 0.060109289617486336,
+          "hard_mask_precision": 0.060109289617486336,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "988.tif",
+          "tp": 0,
+          "fp": 102,
+          "fn": 2,
+          "tn": 65432,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "990.tif",
+          "tp": 6,
+          "fp": 182,
+          "fn": 0,
+          "tn": 65348,
+          "hard_mask_dice": 0.061855670103092786,
+          "hard_mask_iou": 0.031914893617021274,
+          "hard_mask_precision": 0.031914893617021274,
+          "hard_mask_recall": 1.0
+        }
+      ],
+      "truth_foreground_percent": 0.07880716025829315,
+      "predicted_foreground_percent": 0.17275342754289216,
+      "false_positive_rate": 0.0011036912874262434
+    },
+    "probabilities": {
+      "all": {
+        "mean": 0.02571798302233219,
+        "quantiles": {
+          "0": 1.0006284355768003e-05,
+          "0.01": 6.158079486340284e-05,
+          "0.1": 0.00012112981858081184,
+          "0.5": 0.0003398529370315373,
+          "0.9": 0.08803523704409599,
+          "0.95": 0.09760652109980583,
+          "0.99": 0.11575390994548791,
+          "0.999": 0.9097042712569423,
+          "1": 0.9998723268508911
+        }
+      },
+      "true_foreground": {
+        "mean": 0.7738873362541199,
+        "quantiles": {
+          "0": 0.00016070356650743634,
+          "0.01": 0.00040464754012646157,
+          "0.1": 0.05744243301451207,
+          "0.5": 0.9846734702587128,
+          "0.9": 0.9992147326469422,
+          "0.95": 0.9994836479425431,
+          "0.99": 0.9997200858592987,
+          "0.999": 0.9998345137238502,
+          "1": 0.9998723268508911
+        }
+      },
+      "true_background": {
+        "mean": 0.02512790635228157,
+        "quantiles": {
+          "0": 1.0006284355768003e-05,
+          "0.01": 6.157210853416473e-05,
+          "0.1": 0.00012109985254937783,
+          "0.5": 0.0003388347540749237,
+          "0.9": 0.08794540613889694,
+          "0.95": 0.09745920635759828,
+          "0.99": 0.11502906680107117,
+          "0.999": 0.5881738207340513,
+          "1": 0.999077558517456
+        }
+      },
+      "histogram": {
+        "counts": [
+          2489831,
+          720332,
+          123259,
+          1103,
+          521,
+          390,
+          351,
+          278,
+          284,
+          213,
+          236,
+          226,
+          230,
+          245,
+          286,
+          267,
+          365,
+          458,
+          725,
+          2736
+        ],
+        "bins": [
+          0.0,
+          0.05,
+          0.1,
+          0.15000000000000002,
+          0.2,
+          0.25,
+          0.30000000000000004,
+          0.35000000000000003,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6000000000000001,
+          0.65,
+          0.7000000000000001,
+          0.75,
+          0.8,
+          0.8500000000000001,
+          0.9,
+          0.9500000000000001,
+          1.0
+        ]
+      }
+    },
+    "loss": 0.6334654688835144
+  },
+  "validation": {
+    "common": {
+      "threshold": 0.5,
+      "counts": {
+        "tp": 515,
+        "fp": 1573,
+        "fn": 175,
+        "tn": 1046313
+      },
+      "micro": {
+        "hard_mask_dice": 0.37077033837293016,
+        "hard_mask_iou": 0.2275740167918692,
+        "hard_mask_precision": 0.24664750957854406,
+        "hard_mask_recall": 0.7463768115942029
+      },
+      "per_image": [
+        {
+          "id": "1032.tif",
+          "tp": 33,
+          "fp": 1,
+          "fn": 28,
+          "tn": 65474,
+          "hard_mask_dice": 0.6947368421052632,
+          "hard_mask_iou": 0.532258064516129,
+          "hard_mask_precision": 0.9705882352941176,
+          "hard_mask_recall": 0.5409836065573771
+        },
+        {
+          "id": "1082.tif",
+          "tp": 19,
+          "fp": 0,
+          "fn": 50,
+          "tn": 65467,
+          "hard_mask_dice": 0.4318181818181818,
+          "hard_mask_iou": 0.2753623188405797,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.2753623188405797
+        },
+        {
+          "id": "1086.tif",
+          "tp": 18,
+          "fp": 101,
+          "fn": 2,
+          "tn": 65415,
+          "hard_mask_dice": 0.2589928057553957,
+          "hard_mask_iou": 0.1487603305785124,
+          "hard_mask_precision": 0.15126050420168066,
+          "hard_mask_recall": 0.9
+        },
+        {
+          "id": "1087.tif",
+          "tp": 13,
+          "fp": 150,
+          "fn": 0,
+          "tn": 65373,
+          "hard_mask_dice": 0.14772727272727273,
+          "hard_mask_iou": 0.07975460122699386,
+          "hard_mask_precision": 0.07975460122699386,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "231.tif",
+          "tp": 5,
+          "fp": 32,
+          "fn": 3,
+          "tn": 65496,
+          "hard_mask_dice": 0.2222222222222222,
+          "hard_mask_iou": 0.125,
+          "hard_mask_precision": 0.13513513513513514,
+          "hard_mask_recall": 0.625
+        },
+        {
+          "id": "289.tif",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "tn": 65534,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "322.tif",
+          "tp": 137,
+          "fp": 3,
+          "fn": 33,
+          "tn": 65363,
+          "hard_mask_dice": 0.8838709677419355,
+          "hard_mask_iou": 0.791907514450867,
+          "hard_mask_precision": 0.9785714285714285,
+          "hard_mask_recall": 0.8058823529411765
+        },
+        {
+          "id": "333.tif",
+          "tp": 89,
+          "fp": 336,
+          "fn": 25,
+          "tn": 65086,
+          "hard_mask_dice": 0.3302411873840445,
+          "hard_mask_iou": 0.19777777777777777,
+          "hard_mask_precision": 0.20941176470588235,
+          "hard_mask_recall": 0.7807017543859649
+        },
+        {
+          "id": "334.tif",
+          "tp": 81,
+          "fp": 310,
+          "fn": 18,
+          "tn": 65127,
+          "hard_mask_dice": 0.3306122448979592,
+          "hard_mask_iou": 0.1980440097799511,
+          "hard_mask_precision": 0.2071611253196931,
+          "hard_mask_recall": 0.8181818181818182
+        },
+        {
+          "id": "363.tif",
+          "tp": 34,
+          "fp": 149,
+          "fn": 2,
+          "tn": 65351,
+          "hard_mask_dice": 0.3105022831050228,
+          "hard_mask_iou": 0.1837837837837838,
+          "hard_mask_precision": 0.18579234972677597,
+          "hard_mask_recall": 0.9444444444444444
+        },
+        {
+          "id": "376.tif",
+          "tp": 27,
+          "fp": 53,
+          "fn": 0,
+          "tn": 65456,
+          "hard_mask_dice": 0.5046728971962616,
+          "hard_mask_iou": 0.3375,
+          "hard_mask_precision": 0.3375,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "390.tif",
+          "tp": 21,
+          "fp": 173,
+          "fn": 0,
+          "tn": 65342,
+          "hard_mask_dice": 0.19534883720930232,
+          "hard_mask_iou": 0.10824742268041238,
+          "hard_mask_precision": 0.10824742268041238,
+          "hard_mask_recall": 1.0
+        },
+        {
+          "id": "444.tif",
+          "tp": 9,
+          "fp": 6,
+          "fn": 4,
+          "tn": 65517,
+          "hard_mask_dice": 0.6428571428571429,
+          "hard_mask_iou": 0.47368421052631576,
+          "hard_mask_precision": 0.6,
+          "hard_mask_recall": 0.6923076923076923
+        },
+        {
+          "id": "751.tif",
+          "tp": 9,
+          "fp": 2,
+          "fn": 2,
+          "tn": 65523,
+          "hard_mask_dice": 0.8181818181818182,
+          "hard_mask_iou": 0.6923076923076923,
+          "hard_mask_precision": 0.8181818181818182,
+          "hard_mask_recall": 0.8181818181818182
+        },
+        {
+          "id": "868.tif",
+          "tp": 7,
+          "fp": 129,
+          "fn": 3,
+          "tn": 65397,
+          "hard_mask_dice": 0.0958904109589041,
+          "hard_mask_iou": 0.050359712230215826,
+          "hard_mask_precision": 0.051470588235294115,
+          "hard_mask_recall": 0.7
+        },
+        {
+          "id": "869.tif",
+          "tp": 13,
+          "fp": 128,
+          "fn": 3,
+          "tn": 65392,
+          "hard_mask_dice": 0.16560509554140126,
+          "hard_mask_iou": 0.09027777777777778,
+          "hard_mask_precision": 0.09219858156028368,
+          "hard_mask_recall": 0.8125
+        }
+      ],
+      "truth_foreground_percent": 0.06580352783203125,
+      "predicted_foreground_percent": 0.199127197265625,
+      "false_positive_rate": 0.0015011174879710197
+    },
+    "probabilities": {
+      "all": {
+        "mean": 0.026805855333805084,
+        "quantiles": {
+          "0": 6.493006367236376e-06,
+          "0.01": 6.814746848249342e-05,
+          "0.1": 0.00018635774176800624,
+          "0.5": 0.002464854042045772,
+          "0.9": 0.09516582638025284,
+          "0.95": 0.10126247070729733,
+          "0.99": 0.12032216042280197,
+          "0.999": 0.9026947289705302,
+          "1": 0.9997624754905701
+        }
+      },
+      "true_foreground": {
+        "mean": 0.7255622148513794,
+        "quantiles": {
+          "0": 0.0001264234451809898,
+          "0.01": 0.0002067348620039411,
+          "0.1": 0.012439314369112258,
+          "0.5": 0.9547516107559204,
+          "0.9": 0.9979999244213105,
+          "0.95": 0.9988870114088059,
+          "0.99": 0.9994018149375915,
+          "0.999": 0.9996794778704643,
+          "1": 0.9997624754905701
+        }
+      },
+      "true_background": {
+        "mean": 0.026345742866396904,
+        "quantiles": {
+          "0": 6.493006367236376e-06,
+          "0.01": 6.813928339397535e-05,
+          "0.1": 0.000186245481017977,
+          "0.5": 0.0024539311416447163,
+          "0.9": 0.09507713466882706,
+          "0.95": 0.10111565329134464,
+          "0.99": 0.11951255910098556,
+          "0.999": 0.7423024836182532,
+          "1": 0.9992013573646545
+        }
+      },
+      "histogram": {
+        "counts": [
+          812399,
+          178960,
+          52795,
+          1075,
+          461,
+          244,
+          167,
+          162,
+          119,
+          106,
+          120,
+          112,
+          110,
+          121,
+          120,
+          113,
+          142,
+          191,
+          294,
+          765
+        ],
+        "bins": [
+          0.0,
+          0.05,
+          0.1,
+          0.15000000000000002,
+          0.2,
+          0.25,
+          0.30000000000000004,
+          0.35000000000000003,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6000000000000001,
+          0.65,
+          0.7000000000000001,
+          0.75,
+          0.8,
+          0.8500000000000001,
+          0.9,
+          0.9500000000000001,
+          1.0
+        ]
+      }
+    },
+    "loss": 0.831861138343811,
+    "threshold_sweep": [
+      {
+        "threshold": 0.1,
+        "counts": {
+          "tp": 574,
+          "fp": 56643,
+          "fn": 116,
+          "tn": 991243
+        },
+        "micro": {
+          "hard_mask_dice": 0.019824891636589705,
+          "hard_mask_iou": 0.010011686114454153,
+          "hard_mask_precision": 0.010031983501406924,
+          "hard_mask_recall": 0.8318840579710145
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 40,
+            "fp": 9,
+            "fn": 21,
+            "tn": 65466,
+            "hard_mask_dice": 0.7272727272727273,
+            "hard_mask_iou": 0.5714285714285714,
+            "hard_mask_precision": 0.8163265306122449,
+            "hard_mask_recall": 0.6557377049180327
+          },
+          {
+            "id": "1082.tif",
+            "tp": 24,
+            "fp": 1,
+            "fn": 45,
+            "tn": 65466,
+            "hard_mask_dice": 0.5106382978723404,
+            "hard_mask_iou": 0.34285714285714286,
+            "hard_mask_precision": 0.96,
+            "hard_mask_recall": 0.34782608695652173
+          },
+          {
+            "id": "1086.tif",
+            "tp": 19,
+            "fp": 149,
+            "fn": 1,
+            "tn": 65367,
+            "hard_mask_dice": 0.20212765957446807,
+            "hard_mask_iou": 0.11242603550295859,
+            "hard_mask_precision": 0.1130952380952381,
+            "hard_mask_recall": 0.95
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 254,
+            "fn": 0,
+            "tn": 65269,
+            "hard_mask_dice": 0.09285714285714286,
+            "hard_mask_iou": 0.04868913857677903,
+            "hard_mask_precision": 0.04868913857677903,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 6,
+            "fp": 61,
+            "fn": 2,
+            "tn": 65467,
+            "hard_mask_dice": 0.16,
+            "hard_mask_iou": 0.08695652173913043,
+            "hard_mask_precision": 0.08955223880597014,
+            "hard_mask_recall": 0.75
+          },
+          {
+            "id": "289.tif",
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "tn": 65534,
+            "hard_mask_dice": 0.6666666666666666,
+            "hard_mask_iou": 0.5,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.5
+          },
+          {
+            "id": "322.tif",
+            "tp": 147,
+            "fp": 15,
+            "fn": 23,
+            "tn": 65351,
+            "hard_mask_dice": 0.8855421686746988,
+            "hard_mask_iou": 0.7945945945945946,
+            "hard_mask_precision": 0.9074074074074074,
+            "hard_mask_recall": 0.8647058823529412
+          },
+          {
+            "id": "333.tif",
+            "tp": 103,
+            "fp": 16482,
+            "fn": 11,
+            "tn": 48940,
+            "hard_mask_dice": 0.01233606802802563,
+            "hard_mask_iou": 0.006206314774644493,
+            "hard_mask_precision": 0.00621043111245101,
+            "hard_mask_recall": 0.9035087719298246
+          },
+          {
+            "id": "334.tif",
+            "tp": 94,
+            "fp": 16895,
+            "fn": 5,
+            "tn": 48542,
+            "hard_mask_dice": 0.01100187265917603,
+            "hard_mask_iou": 0.005531364010827351,
+            "hard_mask_precision": 0.005532991935958562,
+            "hard_mask_recall": 0.9494949494949495
+          },
+          {
+            "id": "363.tif",
+            "tp": 36,
+            "fp": 526,
+            "fn": 0,
+            "tn": 64974,
+            "hard_mask_dice": 0.12040133779264214,
+            "hard_mask_iou": 0.06405693950177936,
+            "hard_mask_precision": 0.06405693950177936,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 142,
+            "fn": 0,
+            "tn": 65367,
+            "hard_mask_dice": 0.2755102040816326,
+            "hard_mask_iou": 0.15976331360946747,
+            "hard_mask_precision": 0.15976331360946747,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 21664,
+            "fn": 0,
+            "tn": 43851,
+            "hard_mask_dice": 0.0019349488620657882,
+            "hard_mask_iou": 0.0009684113442471754,
+            "hard_mask_precision": 0.0009684113442471754,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 11,
+            "fp": 18,
+            "fn": 2,
+            "tn": 65505,
+            "hard_mask_dice": 0.5238095238095238,
+            "hard_mask_iou": 0.3548387096774194,
+            "hard_mask_precision": 0.3793103448275862,
+            "hard_mask_recall": 0.8461538461538461
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 10,
+            "fn": 2,
+            "tn": 65515,
+            "hard_mask_dice": 0.6,
+            "hard_mask_iou": 0.42857142857142855,
+            "hard_mask_precision": 0.47368421052631576,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 9,
+            "fp": 211,
+            "fn": 1,
+            "tn": 65315,
+            "hard_mask_dice": 0.0782608695652174,
+            "hard_mask_iou": 0.04072398190045249,
+            "hard_mask_precision": 0.04090909090909091,
+            "hard_mask_recall": 0.9
+          },
+          {
+            "id": "869.tif",
+            "tp": 14,
+            "fp": 206,
+            "fn": 2,
+            "tn": 65314,
+            "hard_mask_dice": 0.11864406779661017,
+            "hard_mask_iou": 0.06306306306306306,
+            "hard_mask_precision": 0.06363636363636363,
+            "hard_mask_recall": 0.875
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 5.456638336181641,
+        "false_positive_rate": 0.05405454410117131
+      },
+      {
+        "threshold": 0.2,
+        "counts": {
+          "tp": 550,
+          "fp": 2797,
+          "fn": 140,
+          "tn": 1045089
+        },
+        "micro": {
+          "hard_mask_dice": 0.2724795640326976,
+          "hard_mask_iou": 0.15772870662460567,
+          "hard_mask_precision": 0.16432626232446967,
+          "hard_mask_recall": 0.7971014492753623
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 36,
+            "fp": 5,
+            "fn": 25,
+            "tn": 65470,
+            "hard_mask_dice": 0.7058823529411765,
+            "hard_mask_iou": 0.5454545454545454,
+            "hard_mask_precision": 0.8780487804878049,
+            "hard_mask_recall": 0.5901639344262295
+          },
+          {
+            "id": "1082.tif",
+            "tp": 23,
+            "fp": 0,
+            "fn": 46,
+            "tn": 65467,
+            "hard_mask_dice": 0.5,
+            "hard_mask_iou": 0.3333333333333333,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.3333333333333333
+          },
+          {
+            "id": "1086.tif",
+            "tp": 19,
+            "fp": 130,
+            "fn": 1,
+            "tn": 65386,
+            "hard_mask_dice": 0.22485207100591717,
+            "hard_mask_iou": 0.12666666666666668,
+            "hard_mask_precision": 0.12751677852348994,
+            "hard_mask_recall": 0.95
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 206,
+            "fn": 0,
+            "tn": 65317,
+            "hard_mask_dice": 0.11206896551724138,
+            "hard_mask_iou": 0.0593607305936073,
+            "hard_mask_precision": 0.0593607305936073,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 6,
+            "fp": 51,
+            "fn": 2,
+            "tn": 65477,
+            "hard_mask_dice": 0.18461538461538463,
+            "hard_mask_iou": 0.1016949152542373,
+            "hard_mask_precision": 0.10526315789473684,
+            "hard_mask_recall": 0.75
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 143,
+            "fp": 10,
+            "fn": 27,
+            "tn": 65356,
+            "hard_mask_dice": 0.8854489164086687,
+            "hard_mask_iou": 0.7944444444444444,
+            "hard_mask_precision": 0.934640522875817,
+            "hard_mask_recall": 0.8411764705882353
+          },
+          {
+            "id": "333.tif",
+            "tp": 98,
+            "fp": 609,
+            "fn": 16,
+            "tn": 64813,
+            "hard_mask_dice": 0.2387332521315469,
+            "hard_mask_iou": 0.1355463347164592,
+            "hard_mask_precision": 0.13861386138613863,
+            "hard_mask_recall": 0.8596491228070176
+          },
+          {
+            "id": "334.tif",
+            "tp": 88,
+            "fp": 587,
+            "fn": 11,
+            "tn": 64850,
+            "hard_mask_dice": 0.22739018087855298,
+            "hard_mask_iou": 0.1282798833819242,
+            "hard_mask_precision": 0.13037037037037036,
+            "hard_mask_recall": 0.8888888888888888
+          },
+          {
+            "id": "363.tif",
+            "tp": 36,
+            "fp": 269,
+            "fn": 0,
+            "tn": 65231,
+            "hard_mask_dice": 0.21114369501466276,
+            "hard_mask_iou": 0.1180327868852459,
+            "hard_mask_precision": 0.1180327868852459,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 95,
+            "fn": 0,
+            "tn": 65414,
+            "hard_mask_dice": 0.3624161073825503,
+            "hard_mask_iou": 0.22131147540983606,
+            "hard_mask_precision": 0.22131147540983606,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 468,
+            "fn": 0,
+            "tn": 65047,
+            "hard_mask_dice": 0.08235294117647059,
+            "hard_mask_iou": 0.04294478527607362,
+            "hard_mask_precision": 0.04294478527607362,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 10,
+            "fp": 11,
+            "fn": 3,
+            "tn": 65512,
+            "hard_mask_dice": 0.5882352941176471,
+            "hard_mask_iou": 0.4166666666666667,
+            "hard_mask_precision": 0.47619047619047616,
+            "hard_mask_recall": 0.7692307692307693
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 6,
+            "fn": 2,
+            "tn": 65519,
+            "hard_mask_dice": 0.6923076923076923,
+            "hard_mask_iou": 0.5294117647058824,
+            "hard_mask_precision": 0.6,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 8,
+            "fp": 179,
+            "fn": 2,
+            "tn": 65347,
+            "hard_mask_dice": 0.08121827411167512,
+            "hard_mask_iou": 0.042328042328042326,
+            "hard_mask_precision": 0.0427807486631016,
+            "hard_mask_recall": 0.8
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 171,
+            "fn": 3,
+            "tn": 65349,
+            "hard_mask_dice": 0.13,
+            "hard_mask_iou": 0.06951871657754011,
+            "hard_mask_precision": 0.07065217391304347,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.3191947937011719,
+        "false_positive_rate": 0.002669183479882354
+      },
+      {
+        "threshold": 0.3,
+        "counts": {
+          "tp": 541,
+          "fp": 2101,
+          "fn": 149,
+          "tn": 1045785
+        },
+        "micro": {
+          "hard_mask_dice": 0.3247298919567827,
+          "hard_mask_iou": 0.19383733428878538,
+          "hard_mask_precision": 0.20476911430734293,
+          "hard_mask_recall": 0.7840579710144927
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 36,
+            "fp": 3,
+            "fn": 25,
+            "tn": 65472,
+            "hard_mask_dice": 0.72,
+            "hard_mask_iou": 0.5625,
+            "hard_mask_precision": 0.9230769230769231,
+            "hard_mask_recall": 0.5901639344262295
+          },
+          {
+            "id": "1082.tif",
+            "tp": 22,
+            "fp": 0,
+            "fn": 47,
+            "tn": 65467,
+            "hard_mask_dice": 0.4835164835164835,
+            "hard_mask_iou": 0.3188405797101449,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.3188405797101449
+          },
+          {
+            "id": "1086.tif",
+            "tp": 18,
+            "fp": 120,
+            "fn": 2,
+            "tn": 65396,
+            "hard_mask_dice": 0.22784810126582278,
+            "hard_mask_iou": 0.12857142857142856,
+            "hard_mask_precision": 0.13043478260869565,
+            "hard_mask_recall": 0.9
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 178,
+            "fn": 0,
+            "tn": 65345,
+            "hard_mask_dice": 0.12745098039215685,
+            "hard_mask_iou": 0.06806282722513089,
+            "hard_mask_precision": 0.06806282722513089,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 5,
+            "fp": 42,
+            "fn": 3,
+            "tn": 65486,
+            "hard_mask_dice": 0.18181818181818182,
+            "hard_mask_iou": 0.1,
+            "hard_mask_precision": 0.10638297872340426,
+            "hard_mask_recall": 0.625
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 142,
+            "fp": 7,
+            "fn": 28,
+            "tn": 65359,
+            "hard_mask_dice": 0.890282131661442,
+            "hard_mask_iou": 0.8022598870056498,
+            "hard_mask_precision": 0.9530201342281879,
+            "hard_mask_recall": 0.8352941176470589
+          },
+          {
+            "id": "333.tif",
+            "tp": 97,
+            "fp": 448,
+            "fn": 17,
+            "tn": 64974,
+            "hard_mask_dice": 0.2943854324734446,
+            "hard_mask_iou": 0.17259786476868327,
+            "hard_mask_precision": 0.1779816513761468,
+            "hard_mask_recall": 0.8508771929824561
+          },
+          {
+            "id": "334.tif",
+            "tp": 85,
+            "fp": 428,
+            "fn": 14,
+            "tn": 65009,
+            "hard_mask_dice": 0.2777777777777778,
+            "hard_mask_iou": 0.16129032258064516,
+            "hard_mask_precision": 0.16569200779727095,
+            "hard_mask_recall": 0.8585858585858586
+          },
+          {
+            "id": "363.tif",
+            "tp": 35,
+            "fp": 214,
+            "fn": 1,
+            "tn": 65286,
+            "hard_mask_dice": 0.24561403508771928,
+            "hard_mask_iou": 0.14,
+            "hard_mask_precision": 0.14056224899598393,
+            "hard_mask_recall": 0.9722222222222222
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 75,
+            "fn": 0,
+            "tn": 65434,
+            "hard_mask_dice": 0.4186046511627907,
+            "hard_mask_iou": 0.2647058823529412,
+            "hard_mask_precision": 0.2647058823529412,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 272,
+            "fn": 0,
+            "tn": 65243,
+            "hard_mask_dice": 0.1337579617834395,
+            "hard_mask_iou": 0.07167235494880546,
+            "hard_mask_precision": 0.07167235494880546,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 10,
+            "fp": 9,
+            "fn": 3,
+            "tn": 65514,
+            "hard_mask_dice": 0.625,
+            "hard_mask_iou": 0.45454545454545453,
+            "hard_mask_precision": 0.5263157894736842,
+            "hard_mask_recall": 0.7692307692307693
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 3,
+            "fn": 2,
+            "tn": 65522,
+            "hard_mask_dice": 0.782608695652174,
+            "hard_mask_iou": 0.6428571428571429,
+            "hard_mask_precision": 0.75,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 8,
+            "fp": 153,
+            "fn": 2,
+            "tn": 65373,
+            "hard_mask_dice": 0.0935672514619883,
+            "hard_mask_iou": 0.049079754601226995,
+            "hard_mask_precision": 0.049689440993788817,
+            "hard_mask_recall": 0.8
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 149,
+            "fn": 3,
+            "tn": 65371,
+            "hard_mask_dice": 0.14606741573033707,
+            "hard_mask_iou": 0.07878787878787878,
+            "hard_mask_precision": 0.08024691358024691,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.25196075439453125,
+        "false_positive_rate": 0.0020049890923249285
+      },
+      {
+        "threshold": 0.4,
+        "counts": {
+          "tp": 529,
+          "fp": 1784,
+          "fn": 161,
+          "tn": 1046102
+        },
+        "micro": {
+          "hard_mask_dice": 0.3523143523143523,
+          "hard_mask_iou": 0.21382376717865803,
+          "hard_mask_precision": 0.2287073065283182,
+          "hard_mask_recall": 0.7666666666666667
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 35,
+            "fp": 2,
+            "fn": 26,
+            "tn": 65473,
+            "hard_mask_dice": 0.7142857142857143,
+            "hard_mask_iou": 0.5555555555555556,
+            "hard_mask_precision": 0.9459459459459459,
+            "hard_mask_recall": 0.5737704918032787
+          },
+          {
+            "id": "1082.tif",
+            "tp": 20,
+            "fp": 0,
+            "fn": 49,
+            "tn": 65467,
+            "hard_mask_dice": 0.449438202247191,
+            "hard_mask_iou": 0.2898550724637681,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2898550724637681
+          },
+          {
+            "id": "1086.tif",
+            "tp": 18,
+            "fp": 110,
+            "fn": 2,
+            "tn": 65406,
+            "hard_mask_dice": 0.24324324324324326,
+            "hard_mask_iou": 0.13846153846153847,
+            "hard_mask_precision": 0.140625,
+            "hard_mask_recall": 0.9
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 164,
+            "fn": 0,
+            "tn": 65359,
+            "hard_mask_dice": 0.1368421052631579,
+            "hard_mask_iou": 0.07344632768361582,
+            "hard_mask_precision": 0.07344632768361582,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 5,
+            "fp": 37,
+            "fn": 3,
+            "tn": 65491,
+            "hard_mask_dice": 0.2,
+            "hard_mask_iou": 0.1111111111111111,
+            "hard_mask_precision": 0.11904761904761904,
+            "hard_mask_recall": 0.625
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 137,
+            "fp": 4,
+            "fn": 33,
+            "tn": 65362,
+            "hard_mask_dice": 0.8810289389067524,
+            "hard_mask_iou": 0.7873563218390804,
+            "hard_mask_precision": 0.9716312056737588,
+            "hard_mask_recall": 0.8058823529411765
+          },
+          {
+            "id": "333.tif",
+            "tp": 95,
+            "fp": 377,
+            "fn": 19,
+            "tn": 65045,
+            "hard_mask_dice": 0.3242320819112628,
+            "hard_mask_iou": 0.1934826883910387,
+            "hard_mask_precision": 0.20127118644067796,
+            "hard_mask_recall": 0.8333333333333334
+          },
+          {
+            "id": "334.tif",
+            "tp": 83,
+            "fp": 361,
+            "fn": 16,
+            "tn": 65076,
+            "hard_mask_dice": 0.30570902394106814,
+            "hard_mask_iou": 0.18043478260869567,
+            "hard_mask_precision": 0.18693693693693694,
+            "hard_mask_recall": 0.8383838383838383
+          },
+          {
+            "id": "363.tif",
+            "tp": 35,
+            "fp": 174,
+            "fn": 1,
+            "tn": 65326,
+            "hard_mask_dice": 0.2857142857142857,
+            "hard_mask_iou": 0.16666666666666666,
+            "hard_mask_precision": 0.1674641148325359,
+            "hard_mask_recall": 0.9722222222222222
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 63,
+            "fn": 0,
+            "tn": 65446,
+            "hard_mask_dice": 0.46153846153846156,
+            "hard_mask_iou": 0.3,
+            "hard_mask_precision": 0.3,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 205,
+            "fn": 0,
+            "tn": 65310,
+            "hard_mask_dice": 0.1700404858299595,
+            "hard_mask_iou": 0.09292035398230089,
+            "hard_mask_precision": 0.09292035398230089,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 10,
+            "fp": 8,
+            "fn": 3,
+            "tn": 65515,
+            "hard_mask_dice": 0.6451612903225806,
+            "hard_mask_iou": 0.47619047619047616,
+            "hard_mask_precision": 0.5555555555555556,
+            "hard_mask_recall": 0.7692307692307693
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 2,
+            "fn": 2,
+            "tn": 65523,
+            "hard_mask_dice": 0.8181818181818182,
+            "hard_mask_iou": 0.6923076923076923,
+            "hard_mask_precision": 0.8181818181818182,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 8,
+            "fp": 138,
+            "fn": 2,
+            "tn": 65388,
+            "hard_mask_dice": 0.10256410256410256,
+            "hard_mask_iou": 0.05405405405405406,
+            "hard_mask_precision": 0.0547945205479452,
+            "hard_mask_recall": 0.8
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 139,
+            "fn": 3,
+            "tn": 65381,
+            "hard_mask_dice": 0.15476190476190477,
+            "hard_mask_iou": 0.08387096774193549,
+            "hard_mask_precision": 0.08552631578947369,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.22058486938476562,
+        "false_positive_rate": 0.0017024752692563886
+      },
+      {
+        "threshold": 0.5,
+        "counts": {
+          "tp": 515,
+          "fp": 1573,
+          "fn": 175,
+          "tn": 1046313
+        },
+        "micro": {
+          "hard_mask_dice": 0.37077033837293016,
+          "hard_mask_iou": 0.2275740167918692,
+          "hard_mask_precision": 0.24664750957854406,
+          "hard_mask_recall": 0.7463768115942029
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 33,
+            "fp": 1,
+            "fn": 28,
+            "tn": 65474,
+            "hard_mask_dice": 0.6947368421052632,
+            "hard_mask_iou": 0.532258064516129,
+            "hard_mask_precision": 0.9705882352941176,
+            "hard_mask_recall": 0.5409836065573771
+          },
+          {
+            "id": "1082.tif",
+            "tp": 19,
+            "fp": 0,
+            "fn": 50,
+            "tn": 65467,
+            "hard_mask_dice": 0.4318181818181818,
+            "hard_mask_iou": 0.2753623188405797,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2753623188405797
+          },
+          {
+            "id": "1086.tif",
+            "tp": 18,
+            "fp": 101,
+            "fn": 2,
+            "tn": 65415,
+            "hard_mask_dice": 0.2589928057553957,
+            "hard_mask_iou": 0.1487603305785124,
+            "hard_mask_precision": 0.15126050420168066,
+            "hard_mask_recall": 0.9
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 150,
+            "fn": 0,
+            "tn": 65373,
+            "hard_mask_dice": 0.14772727272727273,
+            "hard_mask_iou": 0.07975460122699386,
+            "hard_mask_precision": 0.07975460122699386,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 5,
+            "fp": 32,
+            "fn": 3,
+            "tn": 65496,
+            "hard_mask_dice": 0.2222222222222222,
+            "hard_mask_iou": 0.125,
+            "hard_mask_precision": 0.13513513513513514,
+            "hard_mask_recall": 0.625
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 137,
+            "fp": 3,
+            "fn": 33,
+            "tn": 65363,
+            "hard_mask_dice": 0.8838709677419355,
+            "hard_mask_iou": 0.791907514450867,
+            "hard_mask_precision": 0.9785714285714285,
+            "hard_mask_recall": 0.8058823529411765
+          },
+          {
+            "id": "333.tif",
+            "tp": 89,
+            "fp": 336,
+            "fn": 25,
+            "tn": 65086,
+            "hard_mask_dice": 0.3302411873840445,
+            "hard_mask_iou": 0.19777777777777777,
+            "hard_mask_precision": 0.20941176470588235,
+            "hard_mask_recall": 0.7807017543859649
+          },
+          {
+            "id": "334.tif",
+            "tp": 81,
+            "fp": 310,
+            "fn": 18,
+            "tn": 65127,
+            "hard_mask_dice": 0.3306122448979592,
+            "hard_mask_iou": 0.1980440097799511,
+            "hard_mask_precision": 0.2071611253196931,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "363.tif",
+            "tp": 34,
+            "fp": 149,
+            "fn": 2,
+            "tn": 65351,
+            "hard_mask_dice": 0.3105022831050228,
+            "hard_mask_iou": 0.1837837837837838,
+            "hard_mask_precision": 0.18579234972677597,
+            "hard_mask_recall": 0.9444444444444444
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 53,
+            "fn": 0,
+            "tn": 65456,
+            "hard_mask_dice": 0.5046728971962616,
+            "hard_mask_iou": 0.3375,
+            "hard_mask_precision": 0.3375,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 173,
+            "fn": 0,
+            "tn": 65342,
+            "hard_mask_dice": 0.19534883720930232,
+            "hard_mask_iou": 0.10824742268041238,
+            "hard_mask_precision": 0.10824742268041238,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 9,
+            "fp": 6,
+            "fn": 4,
+            "tn": 65517,
+            "hard_mask_dice": 0.6428571428571429,
+            "hard_mask_iou": 0.47368421052631576,
+            "hard_mask_precision": 0.6,
+            "hard_mask_recall": 0.6923076923076923
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 2,
+            "fn": 2,
+            "tn": 65523,
+            "hard_mask_dice": 0.8181818181818182,
+            "hard_mask_iou": 0.6923076923076923,
+            "hard_mask_precision": 0.8181818181818182,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 7,
+            "fp": 129,
+            "fn": 3,
+            "tn": 65397,
+            "hard_mask_dice": 0.0958904109589041,
+            "hard_mask_iou": 0.050359712230215826,
+            "hard_mask_precision": 0.051470588235294115,
+            "hard_mask_recall": 0.7
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 128,
+            "fn": 3,
+            "tn": 65392,
+            "hard_mask_dice": 0.16560509554140126,
+            "hard_mask_iou": 0.09027777777777778,
+            "hard_mask_precision": 0.09219858156028368,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.199127197265625,
+        "false_positive_rate": 0.0015011174879710197
+      },
+      {
+        "threshold": 0.6,
+        "counts": {
+          "tp": 506,
+          "fp": 1350,
+          "fn": 184,
+          "tn": 1046536
+        },
+        "micro": {
+          "hard_mask_dice": 0.3974862529457973,
+          "hard_mask_iou": 0.24803921568627452,
+          "hard_mask_precision": 0.27262931034482757,
+          "hard_mask_recall": 0.7333333333333333
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 31,
+            "fp": 1,
+            "fn": 30,
+            "tn": 65474,
+            "hard_mask_dice": 0.6666666666666666,
+            "hard_mask_iou": 0.5,
+            "hard_mask_precision": 0.96875,
+            "hard_mask_recall": 0.5081967213114754
+          },
+          {
+            "id": "1082.tif",
+            "tp": 18,
+            "fp": 0,
+            "fn": 51,
+            "tn": 65467,
+            "hard_mask_dice": 0.41379310344827586,
+            "hard_mask_iou": 0.2608695652173913,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2608695652173913
+          },
+          {
+            "id": "1086.tif",
+            "tp": 18,
+            "fp": 91,
+            "fn": 2,
+            "tn": 65425,
+            "hard_mask_dice": 0.27906976744186046,
+            "hard_mask_iou": 0.16216216216216217,
+            "hard_mask_precision": 0.1651376146788991,
+            "hard_mask_recall": 0.9
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 129,
+            "fn": 0,
+            "tn": 65394,
+            "hard_mask_dice": 0.16774193548387098,
+            "hard_mask_iou": 0.09154929577464789,
+            "hard_mask_precision": 0.09154929577464789,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 5,
+            "fp": 30,
+            "fn": 3,
+            "tn": 65498,
+            "hard_mask_dice": 0.23255813953488372,
+            "hard_mask_iou": 0.13157894736842105,
+            "hard_mask_precision": 0.14285714285714285,
+            "hard_mask_recall": 0.625
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 134,
+            "fp": 3,
+            "fn": 36,
+            "tn": 65363,
+            "hard_mask_dice": 0.8729641693811075,
+            "hard_mask_iou": 0.7745664739884393,
+            "hard_mask_precision": 0.9781021897810219,
+            "hard_mask_recall": 0.788235294117647
+          },
+          {
+            "id": "333.tif",
+            "tp": 88,
+            "fp": 285,
+            "fn": 26,
+            "tn": 65137,
+            "hard_mask_dice": 0.3613963039014374,
+            "hard_mask_iou": 0.22055137844611528,
+            "hard_mask_precision": 0.2359249329758713,
+            "hard_mask_recall": 0.7719298245614035
+          },
+          {
+            "id": "334.tif",
+            "tp": 80,
+            "fp": 274,
+            "fn": 19,
+            "tn": 65163,
+            "hard_mask_dice": 0.35320088300220753,
+            "hard_mask_iou": 0.21447721179624665,
+            "hard_mask_precision": 0.22598870056497175,
+            "hard_mask_recall": 0.8080808080808081
+          },
+          {
+            "id": "363.tif",
+            "tp": 34,
+            "fp": 119,
+            "fn": 2,
+            "tn": 65381,
+            "hard_mask_dice": 0.35978835978835977,
+            "hard_mask_iou": 0.21935483870967742,
+            "hard_mask_precision": 0.2222222222222222,
+            "hard_mask_recall": 0.9444444444444444
+          },
+          {
+            "id": "376.tif",
+            "tp": 27,
+            "fp": 43,
+            "fn": 0,
+            "tn": 65466,
+            "hard_mask_dice": 0.5567010309278351,
+            "hard_mask_iou": 0.38571428571428573,
+            "hard_mask_precision": 0.38571428571428573,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 146,
+            "fn": 0,
+            "tn": 65369,
+            "hard_mask_dice": 0.22340425531914893,
+            "hard_mask_iou": 0.12574850299401197,
+            "hard_mask_precision": 0.12574850299401197,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 9,
+            "fp": 6,
+            "fn": 4,
+            "tn": 65517,
+            "hard_mask_dice": 0.6428571428571429,
+            "hard_mask_iou": 0.47368421052631576,
+            "hard_mask_precision": 0.6,
+            "hard_mask_recall": 0.6923076923076923
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65525,
+            "hard_mask_dice": 0.9,
+            "hard_mask_iou": 0.8181818181818182,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 6,
+            "fp": 111,
+            "fn": 4,
+            "tn": 65415,
+            "hard_mask_dice": 0.09448818897637795,
+            "hard_mask_iou": 0.049586776859504134,
+            "hard_mask_precision": 0.05128205128205128,
+            "hard_mask_recall": 0.6
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 112,
+            "fn": 3,
+            "tn": 65408,
+            "hard_mask_dice": 0.18439716312056736,
+            "hard_mask_iou": 0.1015625,
+            "hard_mask_precision": 0.104,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.177001953125,
+        "false_positive_rate": 0.0012883080793139711
+      },
+      {
+        "threshold": 0.7,
+        "counts": {
+          "tp": 488,
+          "fp": 1137,
+          "fn": 202,
+          "tn": 1046749
+        },
+        "micro": {
+          "hard_mask_dice": 0.4215982721382289,
+          "hard_mask_iou": 0.26710454296661196,
+          "hard_mask_precision": 0.30030769230769233,
+          "hard_mask_recall": 0.7072463768115942
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 31,
+            "fp": 1,
+            "fn": 30,
+            "tn": 65474,
+            "hard_mask_dice": 0.6666666666666666,
+            "hard_mask_iou": 0.5,
+            "hard_mask_precision": 0.96875,
+            "hard_mask_recall": 0.5081967213114754
+          },
+          {
+            "id": "1082.tif",
+            "tp": 15,
+            "fp": 0,
+            "fn": 54,
+            "tn": 65467,
+            "hard_mask_dice": 0.35714285714285715,
+            "hard_mask_iou": 0.21739130434782608,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.21739130434782608
+          },
+          {
+            "id": "1086.tif",
+            "tp": 17,
+            "fp": 80,
+            "fn": 3,
+            "tn": 65436,
+            "hard_mask_dice": 0.2905982905982906,
+            "hard_mask_iou": 0.17,
+            "hard_mask_precision": 0.17525773195876287,
+            "hard_mask_recall": 0.85
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 113,
+            "fn": 0,
+            "tn": 65410,
+            "hard_mask_dice": 0.18705035971223022,
+            "hard_mask_iou": 0.10317460317460317,
+            "hard_mask_precision": 0.10317460317460317,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 5,
+            "fp": 26,
+            "fn": 3,
+            "tn": 65502,
+            "hard_mask_dice": 0.2564102564102564,
+            "hard_mask_iou": 0.14705882352941177,
+            "hard_mask_precision": 0.16129032258064516,
+            "hard_mask_recall": 0.625
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 131,
+            "fp": 0,
+            "fn": 39,
+            "tn": 65366,
+            "hard_mask_dice": 0.8704318936877077,
+            "hard_mask_iou": 0.7705882352941177,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.7705882352941177
+          },
+          {
+            "id": "333.tif",
+            "tp": 84,
+            "fp": 233,
+            "fn": 30,
+            "tn": 65189,
+            "hard_mask_dice": 0.38979118329466356,
+            "hard_mask_iou": 0.2420749279538905,
+            "hard_mask_precision": 0.26498422712933756,
+            "hard_mask_recall": 0.7368421052631579
+          },
+          {
+            "id": "334.tif",
+            "tp": 77,
+            "fp": 221,
+            "fn": 22,
+            "tn": 65216,
+            "hard_mask_dice": 0.3879093198992443,
+            "hard_mask_iou": 0.240625,
+            "hard_mask_precision": 0.25838926174496646,
+            "hard_mask_recall": 0.7777777777777778
+          },
+          {
+            "id": "363.tif",
+            "tp": 33,
+            "fp": 90,
+            "fn": 3,
+            "tn": 65410,
+            "hard_mask_dice": 0.41509433962264153,
+            "hard_mask_iou": 0.2619047619047619,
+            "hard_mask_precision": 0.2682926829268293,
+            "hard_mask_recall": 0.9166666666666666
+          },
+          {
+            "id": "376.tif",
+            "tp": 25,
+            "fp": 36,
+            "fn": 2,
+            "tn": 65473,
+            "hard_mask_dice": 0.5681818181818182,
+            "hard_mask_iou": 0.3968253968253968,
+            "hard_mask_precision": 0.4098360655737705,
+            "hard_mask_recall": 0.9259259259259259
+          },
+          {
+            "id": "390.tif",
+            "tp": 21,
+            "fp": 129,
+            "fn": 0,
+            "tn": 65386,
+            "hard_mask_dice": 0.24561403508771928,
+            "hard_mask_iou": 0.14,
+            "hard_mask_precision": 0.14,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 9,
+            "fp": 6,
+            "fn": 4,
+            "tn": 65517,
+            "hard_mask_dice": 0.6428571428571429,
+            "hard_mask_iou": 0.47368421052631576,
+            "hard_mask_precision": 0.6,
+            "hard_mask_recall": 0.6923076923076923
+          },
+          {
+            "id": "751.tif",
+            "tp": 9,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65525,
+            "hard_mask_dice": 0.9,
+            "hard_mask_iou": 0.8181818181818182,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.8181818181818182
+          },
+          {
+            "id": "868.tif",
+            "tp": 5,
+            "fp": 102,
+            "fn": 5,
+            "tn": 65424,
+            "hard_mask_dice": 0.08547008547008547,
+            "hard_mask_iou": 0.044642857142857144,
+            "hard_mask_precision": 0.04672897196261682,
+            "hard_mask_recall": 0.5
+          },
+          {
+            "id": "869.tif",
+            "tp": 13,
+            "fp": 100,
+            "fn": 3,
+            "tn": 65420,
+            "hard_mask_dice": 0.20155038759689922,
+            "hard_mask_iou": 0.11206896551724138,
+            "hard_mask_precision": 0.11504424778761062,
+            "hard_mask_recall": 0.8125
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.15497207641601562,
+        "false_positive_rate": 0.0010850416934666558
+      },
+      {
+        "threshold": 0.8,
+        "counts": {
+          "tp": 462,
+          "fp": 930,
+          "fn": 228,
+          "tn": 1046956
+        },
+        "micro": {
+          "hard_mask_dice": 0.4438040345821326,
+          "hard_mask_iou": 0.2851851851851852,
+          "hard_mask_precision": 0.33189655172413796,
+          "hard_mask_recall": 0.6695652173913044
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 30,
+            "fp": 0,
+            "fn": 31,
+            "tn": 65475,
+            "hard_mask_dice": 0.6593406593406593,
+            "hard_mask_iou": 0.4918032786885246,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.4918032786885246
+          },
+          {
+            "id": "1082.tif",
+            "tp": 13,
+            "fp": 0,
+            "fn": 56,
+            "tn": 65467,
+            "hard_mask_dice": 0.3170731707317073,
+            "hard_mask_iou": 0.18840579710144928,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.18840579710144928
+          },
+          {
+            "id": "1086.tif",
+            "tp": 17,
+            "fp": 72,
+            "fn": 3,
+            "tn": 65444,
+            "hard_mask_dice": 0.3119266055045872,
+            "hard_mask_iou": 0.18478260869565216,
+            "hard_mask_precision": 0.19101123595505617,
+            "hard_mask_recall": 0.85
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 98,
+            "fn": 0,
+            "tn": 65425,
+            "hard_mask_dice": 0.20967741935483872,
+            "hard_mask_iou": 0.11711711711711711,
+            "hard_mask_precision": 0.11711711711711711,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 4,
+            "fp": 23,
+            "fn": 4,
+            "tn": 65505,
+            "hard_mask_dice": 0.22857142857142856,
+            "hard_mask_iou": 0.12903225806451613,
+            "hard_mask_precision": 0.14814814814814814,
+            "hard_mask_recall": 0.5
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 126,
+            "fp": 0,
+            "fn": 44,
+            "tn": 65366,
+            "hard_mask_dice": 0.8513513513513513,
+            "hard_mask_iou": 0.7411764705882353,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.7411764705882353
+          },
+          {
+            "id": "333.tif",
+            "tp": 78,
+            "fp": 186,
+            "fn": 36,
+            "tn": 65236,
+            "hard_mask_dice": 0.4126984126984127,
+            "hard_mask_iou": 0.26,
+            "hard_mask_precision": 0.29545454545454547,
+            "hard_mask_recall": 0.6842105263157895
+          },
+          {
+            "id": "334.tif",
+            "tp": 72,
+            "fp": 180,
+            "fn": 27,
+            "tn": 65257,
+            "hard_mask_dice": 0.41025641025641024,
+            "hard_mask_iou": 0.25806451612903225,
+            "hard_mask_precision": 0.2857142857142857,
+            "hard_mask_recall": 0.7272727272727273
+          },
+          {
+            "id": "363.tif",
+            "tp": 33,
+            "fp": 68,
+            "fn": 3,
+            "tn": 65432,
+            "hard_mask_dice": 0.48175182481751827,
+            "hard_mask_iou": 0.3173076923076923,
+            "hard_mask_precision": 0.32673267326732675,
+            "hard_mask_recall": 0.9166666666666666
+          },
+          {
+            "id": "376.tif",
+            "tp": 23,
+            "fp": 25,
+            "fn": 4,
+            "tn": 65484,
+            "hard_mask_dice": 0.6133333333333333,
+            "hard_mask_iou": 0.4423076923076923,
+            "hard_mask_precision": 0.4791666666666667,
+            "hard_mask_recall": 0.8518518518518519
+          },
+          {
+            "id": "390.tif",
+            "tp": 20,
+            "fp": 103,
+            "fn": 1,
+            "tn": 65412,
+            "hard_mask_dice": 0.2777777777777778,
+            "hard_mask_iou": 0.16129032258064516,
+            "hard_mask_precision": 0.16260162601626016,
+            "hard_mask_recall": 0.9523809523809523
+          },
+          {
+            "id": "444.tif",
+            "tp": 8,
+            "fp": 3,
+            "fn": 5,
+            "tn": 65520,
+            "hard_mask_dice": 0.6666666666666666,
+            "hard_mask_iou": 0.5,
+            "hard_mask_precision": 0.7272727272727273,
+            "hard_mask_recall": 0.6153846153846154
+          },
+          {
+            "id": "751.tif",
+            "tp": 8,
+            "fp": 0,
+            "fn": 3,
+            "tn": 65525,
+            "hard_mask_dice": 0.8421052631578947,
+            "hard_mask_iou": 0.7272727272727273,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.7272727272727273
+          },
+          {
+            "id": "868.tif",
+            "tp": 5,
+            "fp": 87,
+            "fn": 5,
+            "tn": 65439,
+            "hard_mask_dice": 0.09803921568627451,
+            "hard_mask_iou": 0.05154639175257732,
+            "hard_mask_precision": 0.05434782608695652,
+            "hard_mask_recall": 0.5
+          },
+          {
+            "id": "869.tif",
+            "tp": 12,
+            "fp": 85,
+            "fn": 4,
+            "tn": 65435,
+            "hard_mask_dice": 0.21238938053097345,
+            "hard_mask_iou": 0.1188118811881188,
+            "hard_mask_precision": 0.12371134020618557,
+            "hard_mask_recall": 0.75
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.13275146484375,
+        "false_positive_rate": 0.0008875011213051802
+      },
+      {
+        "threshold": 0.9,
+        "counts": {
+          "tp": 408,
+          "fp": 651,
+          "fn": 282,
+          "tn": 1047235
+        },
+        "micro": {
+          "hard_mask_dice": 0.4665523156089194,
+          "hard_mask_iou": 0.3042505592841163,
+          "hard_mask_precision": 0.38526912181303113,
+          "hard_mask_recall": 0.591304347826087
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 27,
+            "fp": 0,
+            "fn": 34,
+            "tn": 65475,
+            "hard_mask_dice": 0.6136363636363636,
+            "hard_mask_iou": 0.4426229508196721,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.4426229508196721
+          },
+          {
+            "id": "1082.tif",
+            "tp": 11,
+            "fp": 0,
+            "fn": 58,
+            "tn": 65467,
+            "hard_mask_dice": 0.275,
+            "hard_mask_iou": 0.15942028985507245,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.15942028985507245
+          },
+          {
+            "id": "1086.tif",
+            "tp": 16,
+            "fp": 55,
+            "fn": 4,
+            "tn": 65461,
+            "hard_mask_dice": 0.3516483516483517,
+            "hard_mask_iou": 0.21333333333333335,
+            "hard_mask_precision": 0.22535211267605634,
+            "hard_mask_recall": 0.8
+          },
+          {
+            "id": "1087.tif",
+            "tp": 13,
+            "fp": 86,
+            "fn": 0,
+            "tn": 65437,
+            "hard_mask_dice": 0.23214285714285715,
+            "hard_mask_iou": 0.13131313131313133,
+            "hard_mask_precision": 0.13131313131313133,
+            "hard_mask_recall": 1.0
+          },
+          {
+            "id": "231.tif",
+            "tp": 1,
+            "fp": 18,
+            "fn": 7,
+            "tn": 65510,
+            "hard_mask_dice": 0.07407407407407407,
+            "hard_mask_iou": 0.038461538461538464,
+            "hard_mask_precision": 0.05263157894736842,
+            "hard_mask_recall": 0.125
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 120,
+            "fp": 0,
+            "fn": 50,
+            "tn": 65366,
+            "hard_mask_dice": 0.8275862068965517,
+            "hard_mask_iou": 0.7058823529411765,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.7058823529411765
+          },
+          {
+            "id": "333.tif",
+            "tp": 67,
+            "fp": 120,
+            "fn": 47,
+            "tn": 65302,
+            "hard_mask_dice": 0.44518272425249167,
+            "hard_mask_iou": 0.2863247863247863,
+            "hard_mask_precision": 0.3582887700534759,
+            "hard_mask_recall": 0.5877192982456141
+          },
+          {
+            "id": "334.tif",
+            "tp": 62,
+            "fp": 110,
+            "fn": 37,
+            "tn": 65327,
+            "hard_mask_dice": 0.4575645756457565,
+            "hard_mask_iou": 0.2966507177033493,
+            "hard_mask_precision": 0.36046511627906974,
+            "hard_mask_recall": 0.6262626262626263
+          },
+          {
+            "id": "363.tif",
+            "tp": 30,
+            "fp": 42,
+            "fn": 6,
+            "tn": 65458,
+            "hard_mask_dice": 0.5555555555555556,
+            "hard_mask_iou": 0.38461538461538464,
+            "hard_mask_precision": 0.4166666666666667,
+            "hard_mask_recall": 0.8333333333333334
+          },
+          {
+            "id": "376.tif",
+            "tp": 18,
+            "fp": 19,
+            "fn": 9,
+            "tn": 65490,
+            "hard_mask_dice": 0.5625,
+            "hard_mask_iou": 0.391304347826087,
+            "hard_mask_precision": 0.4864864864864865,
+            "hard_mask_recall": 0.6666666666666666
+          },
+          {
+            "id": "390.tif",
+            "tp": 19,
+            "fp": 69,
+            "fn": 2,
+            "tn": 65446,
+            "hard_mask_dice": 0.3486238532110092,
+            "hard_mask_iou": 0.2111111111111111,
+            "hard_mask_precision": 0.2159090909090909,
+            "hard_mask_recall": 0.9047619047619048
+          },
+          {
+            "id": "444.tif",
+            "tp": 7,
+            "fp": 2,
+            "fn": 6,
+            "tn": 65521,
+            "hard_mask_dice": 0.6363636363636364,
+            "hard_mask_iou": 0.4666666666666667,
+            "hard_mask_precision": 0.7777777777777778,
+            "hard_mask_recall": 0.5384615384615384
+          },
+          {
+            "id": "751.tif",
+            "tp": 6,
+            "fp": 0,
+            "fn": 5,
+            "tn": 65525,
+            "hard_mask_dice": 0.7058823529411765,
+            "hard_mask_iou": 0.5454545454545454,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.5454545454545454
+          },
+          {
+            "id": "868.tif",
+            "tp": 3,
+            "fp": 66,
+            "fn": 7,
+            "tn": 65460,
+            "hard_mask_dice": 0.0759493670886076,
+            "hard_mask_iou": 0.039473684210526314,
+            "hard_mask_precision": 0.043478260869565216,
+            "hard_mask_recall": 0.3
+          },
+          {
+            "id": "869.tif",
+            "tp": 8,
+            "fp": 64,
+            "fn": 8,
+            "tn": 65456,
+            "hard_mask_dice": 0.18181818181818182,
+            "hard_mask_iou": 0.1,
+            "hard_mask_precision": 0.1111111111111111,
+            "hard_mask_recall": 0.5
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.10099411010742188,
+        "false_positive_rate": 0.0006212507849136261
+      },
+      {
+        "threshold": 0.95,
+        "counts": {
+          "tp": 354,
+          "fp": 411,
+          "fn": 336,
+          "tn": 1047475
+        },
+        "micro": {
+          "hard_mask_dice": 0.4865979381443299,
+          "hard_mask_iou": 0.3215258855585831,
+          "hard_mask_precision": 0.4627450980392157,
+          "hard_mask_recall": 0.5130434782608696
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 23,
+            "fp": 0,
+            "fn": 38,
+            "tn": 65475,
+            "hard_mask_dice": 0.5476190476190477,
+            "hard_mask_iou": 0.3770491803278688,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.3770491803278688
+          },
+          {
+            "id": "1082.tif",
+            "tp": 7,
+            "fp": 0,
+            "fn": 62,
+            "tn": 65467,
+            "hard_mask_dice": 0.18421052631578946,
+            "hard_mask_iou": 0.10144927536231885,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.10144927536231885
+          },
+          {
+            "id": "1086.tif",
+            "tp": 13,
+            "fp": 48,
+            "fn": 7,
+            "tn": 65468,
+            "hard_mask_dice": 0.32098765432098764,
+            "hard_mask_iou": 0.19117647058823528,
+            "hard_mask_precision": 0.21311475409836064,
+            "hard_mask_recall": 0.65
+          },
+          {
+            "id": "1087.tif",
+            "tp": 12,
+            "fp": 73,
+            "fn": 1,
+            "tn": 65450,
+            "hard_mask_dice": 0.24489795918367346,
+            "hard_mask_iou": 0.13953488372093023,
+            "hard_mask_precision": 0.1411764705882353,
+            "hard_mask_recall": 0.9230769230769231
+          },
+          {
+            "id": "231.tif",
+            "tp": 0,
+            "fp": 13,
+            "fn": 8,
+            "tn": 65515,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 117,
+            "fp": 0,
+            "fn": 53,
+            "tn": 65366,
+            "hard_mask_dice": 0.8153310104529616,
+            "hard_mask_iou": 0.6882352941176471,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.6882352941176471
+          },
+          {
+            "id": "333.tif",
+            "tp": 52,
+            "fp": 63,
+            "fn": 62,
+            "tn": 65359,
+            "hard_mask_dice": 0.45414847161572053,
+            "hard_mask_iou": 0.2937853107344633,
+            "hard_mask_precision": 0.45217391304347826,
+            "hard_mask_recall": 0.45614035087719296
+          },
+          {
+            "id": "334.tif",
+            "tp": 52,
+            "fp": 60,
+            "fn": 47,
+            "tn": 65377,
+            "hard_mask_dice": 0.4928909952606635,
+            "hard_mask_iou": 0.3270440251572327,
+            "hard_mask_precision": 0.4642857142857143,
+            "hard_mask_recall": 0.5252525252525253
+          },
+          {
+            "id": "363.tif",
+            "tp": 29,
+            "fp": 15,
+            "fn": 7,
+            "tn": 65485,
+            "hard_mask_dice": 0.725,
+            "hard_mask_iou": 0.5686274509803921,
+            "hard_mask_precision": 0.6590909090909091,
+            "hard_mask_recall": 0.8055555555555556
+          },
+          {
+            "id": "376.tif",
+            "tp": 16,
+            "fp": 12,
+            "fn": 11,
+            "tn": 65497,
+            "hard_mask_dice": 0.5818181818181818,
+            "hard_mask_iou": 0.41025641025641024,
+            "hard_mask_precision": 0.5714285714285714,
+            "hard_mask_recall": 0.5925925925925926
+          },
+          {
+            "id": "390.tif",
+            "tp": 17,
+            "fp": 42,
+            "fn": 4,
+            "tn": 65473,
+            "hard_mask_dice": 0.425,
+            "hard_mask_iou": 0.2698412698412698,
+            "hard_mask_precision": 0.288135593220339,
+            "hard_mask_recall": 0.8095238095238095
+          },
+          {
+            "id": "444.tif",
+            "tp": 4,
+            "fp": 1,
+            "fn": 9,
+            "tn": 65522,
+            "hard_mask_dice": 0.4444444444444444,
+            "hard_mask_iou": 0.2857142857142857,
+            "hard_mask_precision": 0.8,
+            "hard_mask_recall": 0.3076923076923077
+          },
+          {
+            "id": "751.tif",
+            "tp": 6,
+            "fp": 0,
+            "fn": 5,
+            "tn": 65525,
+            "hard_mask_dice": 0.7058823529411765,
+            "hard_mask_iou": 0.5454545454545454,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.5454545454545454
+          },
+          {
+            "id": "868.tif",
+            "tp": 2,
+            "fp": 44,
+            "fn": 8,
+            "tn": 65482,
+            "hard_mask_dice": 0.07142857142857142,
+            "hard_mask_iou": 0.037037037037037035,
+            "hard_mask_precision": 0.043478260869565216,
+            "hard_mask_recall": 0.2
+          },
+          {
+            "id": "869.tif",
+            "tp": 4,
+            "fp": 40,
+            "fn": 12,
+            "tn": 65480,
+            "hard_mask_dice": 0.13333333333333333,
+            "hard_mask_iou": 0.07142857142857142,
+            "hard_mask_precision": 0.09090909090909091,
+            "hard_mask_recall": 0.25
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.07295608520507812,
+        "false_positive_rate": 0.00039221823748003125
+      },
+      {
+        "threshold": 0.975,
+        "counts": {
+          "tp": 287,
+          "fp": 270,
+          "fn": 403,
+          "tn": 1047616
+        },
+        "micro": {
+          "hard_mask_dice": 0.4603047313552526,
+          "hard_mask_iou": 0.2989583333333333,
+          "hard_mask_precision": 0.5152603231597845,
+          "hard_mask_recall": 0.41594202898550725
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 21,
+            "fp": 0,
+            "fn": 40,
+            "tn": 65475,
+            "hard_mask_dice": 0.5121951219512195,
+            "hard_mask_iou": 0.3442622950819672,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.3442622950819672
+          },
+          {
+            "id": "1082.tif",
+            "tp": 4,
+            "fp": 0,
+            "fn": 65,
+            "tn": 65467,
+            "hard_mask_dice": 0.1095890410958904,
+            "hard_mask_iou": 0.057971014492753624,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.057971014492753624
+          },
+          {
+            "id": "1086.tif",
+            "tp": 13,
+            "fp": 39,
+            "fn": 7,
+            "tn": 65477,
+            "hard_mask_dice": 0.3611111111111111,
+            "hard_mask_iou": 0.22033898305084745,
+            "hard_mask_precision": 0.25,
+            "hard_mask_recall": 0.65
+          },
+          {
+            "id": "1087.tif",
+            "tp": 11,
+            "fp": 57,
+            "fn": 2,
+            "tn": 65466,
+            "hard_mask_dice": 0.2716049382716049,
+            "hard_mask_iou": 0.15714285714285714,
+            "hard_mask_precision": 0.16176470588235295,
+            "hard_mask_recall": 0.8461538461538461
+          },
+          {
+            "id": "231.tif",
+            "tp": 0,
+            "fp": 9,
+            "fn": 8,
+            "tn": 65519,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 105,
+            "fp": 0,
+            "fn": 65,
+            "tn": 65366,
+            "hard_mask_dice": 0.7636363636363637,
+            "hard_mask_iou": 0.6176470588235294,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.6176470588235294
+          },
+          {
+            "id": "333.tif",
+            "tp": 41,
+            "fp": 35,
+            "fn": 73,
+            "tn": 65387,
+            "hard_mask_dice": 0.43157894736842106,
+            "hard_mask_iou": 0.2751677852348993,
+            "hard_mask_precision": 0.5394736842105263,
+            "hard_mask_recall": 0.35964912280701755
+          },
+          {
+            "id": "334.tif",
+            "tp": 31,
+            "fp": 35,
+            "fn": 68,
+            "tn": 65402,
+            "hard_mask_dice": 0.37575757575757573,
+            "hard_mask_iou": 0.23134328358208955,
+            "hard_mask_precision": 0.4696969696969697,
+            "hard_mask_recall": 0.31313131313131315
+          },
+          {
+            "id": "363.tif",
+            "tp": 20,
+            "fp": 3,
+            "fn": 16,
+            "tn": 65497,
+            "hard_mask_dice": 0.6779661016949152,
+            "hard_mask_iou": 0.5128205128205128,
+            "hard_mask_precision": 0.8695652173913043,
+            "hard_mask_recall": 0.5555555555555556
+          },
+          {
+            "id": "376.tif",
+            "tp": 13,
+            "fp": 6,
+            "fn": 14,
+            "tn": 65503,
+            "hard_mask_dice": 0.5652173913043478,
+            "hard_mask_iou": 0.3939393939393939,
+            "hard_mask_precision": 0.6842105263157895,
+            "hard_mask_recall": 0.48148148148148145
+          },
+          {
+            "id": "390.tif",
+            "tp": 14,
+            "fp": 28,
+            "fn": 7,
+            "tn": 65487,
+            "hard_mask_dice": 0.4444444444444444,
+            "hard_mask_iou": 0.2857142857142857,
+            "hard_mask_precision": 0.3333333333333333,
+            "hard_mask_recall": 0.6666666666666666
+          },
+          {
+            "id": "444.tif",
+            "tp": 3,
+            "fp": 0,
+            "fn": 10,
+            "tn": 65523,
+            "hard_mask_dice": 0.375,
+            "hard_mask_iou": 0.23076923076923078,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.23076923076923078
+          },
+          {
+            "id": "751.tif",
+            "tp": 6,
+            "fp": 0,
+            "fn": 5,
+            "tn": 65525,
+            "hard_mask_dice": 0.7058823529411765,
+            "hard_mask_iou": 0.5454545454545454,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.5454545454545454
+          },
+          {
+            "id": "868.tif",
+            "tp": 1,
+            "fp": 30,
+            "fn": 9,
+            "tn": 65496,
+            "hard_mask_dice": 0.04878048780487805,
+            "hard_mask_iou": 0.025,
+            "hard_mask_precision": 0.03225806451612903,
+            "hard_mask_recall": 0.1
+          },
+          {
+            "id": "869.tif",
+            "tp": 4,
+            "fp": 28,
+            "fn": 12,
+            "tn": 65492,
+            "hard_mask_dice": 0.16666666666666666,
+            "hard_mask_iou": 0.09090909090909091,
+            "hard_mask_precision": 0.125,
+            "hard_mask_recall": 0.25
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.053119659423828125,
+        "false_positive_rate": 0.00025766161586279426
+      },
+      {
+        "threshold": 0.99,
+        "counts": {
+          "tp": 179,
+          "fp": 128,
+          "fn": 511,
+          "tn": 1047758
+        },
+        "micro": {
+          "hard_mask_dice": 0.35907723169508526,
+          "hard_mask_iou": 0.21882640586797067,
+          "hard_mask_precision": 0.5830618892508144,
+          "hard_mask_recall": 0.2594202898550725
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 17,
+            "fp": 0,
+            "fn": 44,
+            "tn": 65475,
+            "hard_mask_dice": 0.4358974358974359,
+            "hard_mask_iou": 0.2786885245901639,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2786885245901639
+          },
+          {
+            "id": "1082.tif",
+            "tp": 2,
+            "fp": 0,
+            "fn": 67,
+            "tn": 65467,
+            "hard_mask_dice": 0.056338028169014086,
+            "hard_mask_iou": 0.028985507246376812,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.028985507246376812
+          },
+          {
+            "id": "1086.tif",
+            "tp": 9,
+            "fp": 21,
+            "fn": 11,
+            "tn": 65495,
+            "hard_mask_dice": 0.36,
+            "hard_mask_iou": 0.21951219512195122,
+            "hard_mask_precision": 0.3,
+            "hard_mask_recall": 0.45
+          },
+          {
+            "id": "1087.tif",
+            "tp": 9,
+            "fp": 39,
+            "fn": 4,
+            "tn": 65484,
+            "hard_mask_dice": 0.29508196721311475,
+            "hard_mask_iou": 0.17307692307692307,
+            "hard_mask_precision": 0.1875,
+            "hard_mask_recall": 0.6923076923076923
+          },
+          {
+            "id": "231.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 8,
+            "tn": 65528,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 90,
+            "fp": 0,
+            "fn": 80,
+            "tn": 65366,
+            "hard_mask_dice": 0.6923076923076923,
+            "hard_mask_iou": 0.5294117647058824,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.5294117647058824
+          },
+          {
+            "id": "333.tif",
+            "tp": 9,
+            "fp": 13,
+            "fn": 105,
+            "tn": 65409,
+            "hard_mask_dice": 0.1323529411764706,
+            "hard_mask_iou": 0.07086614173228346,
+            "hard_mask_precision": 0.4090909090909091,
+            "hard_mask_recall": 0.07894736842105263
+          },
+          {
+            "id": "334.tif",
+            "tp": 6,
+            "fp": 14,
+            "fn": 93,
+            "tn": 65423,
+            "hard_mask_dice": 0.10084033613445378,
+            "hard_mask_iou": 0.05309734513274336,
+            "hard_mask_precision": 0.3,
+            "hard_mask_recall": 0.06060606060606061
+          },
+          {
+            "id": "363.tif",
+            "tp": 13,
+            "fp": 2,
+            "fn": 23,
+            "tn": 65498,
+            "hard_mask_dice": 0.5098039215686274,
+            "hard_mask_iou": 0.34210526315789475,
+            "hard_mask_precision": 0.8666666666666667,
+            "hard_mask_recall": 0.3611111111111111
+          },
+          {
+            "id": "376.tif",
+            "tp": 8,
+            "fp": 4,
+            "fn": 19,
+            "tn": 65505,
+            "hard_mask_dice": 0.41025641025641024,
+            "hard_mask_iou": 0.25806451612903225,
+            "hard_mask_precision": 0.6666666666666666,
+            "hard_mask_recall": 0.2962962962962963
+          },
+          {
+            "id": "390.tif",
+            "tp": 10,
+            "fp": 11,
+            "fn": 11,
+            "tn": 65504,
+            "hard_mask_dice": 0.47619047619047616,
+            "hard_mask_iou": 0.3125,
+            "hard_mask_precision": 0.47619047619047616,
+            "hard_mask_recall": 0.47619047619047616
+          },
+          {
+            "id": "444.tif",
+            "tp": 2,
+            "fp": 0,
+            "fn": 11,
+            "tn": 65523,
+            "hard_mask_dice": 0.26666666666666666,
+            "hard_mask_iou": 0.15384615384615385,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.15384615384615385
+          },
+          {
+            "id": "751.tif",
+            "tp": 3,
+            "fp": 0,
+            "fn": 8,
+            "tn": 65525,
+            "hard_mask_dice": 0.42857142857142855,
+            "hard_mask_iou": 0.2727272727272727,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2727272727272727
+          },
+          {
+            "id": "868.tif",
+            "tp": 0,
+            "fp": 11,
+            "fn": 10,
+            "tn": 65515,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "869.tif",
+            "tp": 1,
+            "fp": 13,
+            "fn": 15,
+            "tn": 65507,
+            "hard_mask_dice": 0.06666666666666667,
+            "hard_mask_iou": 0.034482758620689655,
+            "hard_mask_precision": 0.07142857142857142,
+            "hard_mask_recall": 0.0625
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.029277801513671875,
+        "false_positive_rate": 0.00012215069196458393
+      },
+      {
+        "threshold": 0.995,
+        "counts": {
+          "tp": 127,
+          "fp": 57,
+          "fn": 563,
+          "tn": 1047829
+        },
+        "micro": {
+          "hard_mask_dice": 0.2906178489702517,
+          "hard_mask_iou": 0.17001338688085676,
+          "hard_mask_precision": 0.6902173913043478,
+          "hard_mask_recall": 0.18405797101449275
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 14,
+            "fp": 0,
+            "fn": 47,
+            "tn": 65475,
+            "hard_mask_dice": 0.37333333333333335,
+            "hard_mask_iou": 0.22950819672131148,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.22950819672131148
+          },
+          {
+            "id": "1082.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 69,
+            "tn": 65467,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "1086.tif",
+            "tp": 8,
+            "fp": 13,
+            "fn": 12,
+            "tn": 65503,
+            "hard_mask_dice": 0.3902439024390244,
+            "hard_mask_iou": 0.24242424242424243,
+            "hard_mask_precision": 0.38095238095238093,
+            "hard_mask_recall": 0.4
+          },
+          {
+            "id": "1087.tif",
+            "tp": 8,
+            "fp": 24,
+            "fn": 5,
+            "tn": 65499,
+            "hard_mask_dice": 0.35555555555555557,
+            "hard_mask_iou": 0.21621621621621623,
+            "hard_mask_precision": 0.25,
+            "hard_mask_recall": 0.6153846153846154
+          },
+          {
+            "id": "231.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 8,
+            "tn": 65528,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 70,
+            "fp": 0,
+            "fn": 100,
+            "tn": 65366,
+            "hard_mask_dice": 0.5833333333333334,
+            "hard_mask_iou": 0.4117647058823529,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.4117647058823529
+          },
+          {
+            "id": "333.tif",
+            "tp": 0,
+            "fp": 5,
+            "fn": 114,
+            "tn": 65417,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "334.tif",
+            "tp": 0,
+            "fp": 6,
+            "fn": 99,
+            "tn": 65431,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "363.tif",
+            "tp": 10,
+            "fp": 1,
+            "fn": 26,
+            "tn": 65499,
+            "hard_mask_dice": 0.425531914893617,
+            "hard_mask_iou": 0.2702702702702703,
+            "hard_mask_precision": 0.9090909090909091,
+            "hard_mask_recall": 0.2777777777777778
+          },
+          {
+            "id": "376.tif",
+            "tp": 7,
+            "fp": 0,
+            "fn": 20,
+            "tn": 65509,
+            "hard_mask_dice": 0.4117647058823529,
+            "hard_mask_iou": 0.25925925925925924,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.25925925925925924
+          },
+          {
+            "id": "390.tif",
+            "tp": 6,
+            "fp": 1,
+            "fn": 15,
+            "tn": 65514,
+            "hard_mask_dice": 0.42857142857142855,
+            "hard_mask_iou": 0.2727272727272727,
+            "hard_mask_precision": 0.8571428571428571,
+            "hard_mask_recall": 0.2857142857142857
+          },
+          {
+            "id": "444.tif",
+            "tp": 1,
+            "fp": 0,
+            "fn": 12,
+            "tn": 65523,
+            "hard_mask_dice": 0.14285714285714285,
+            "hard_mask_iou": 0.07692307692307693,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.07692307692307693
+          },
+          {
+            "id": "751.tif",
+            "tp": 3,
+            "fp": 0,
+            "fn": 8,
+            "tn": 65525,
+            "hard_mask_dice": 0.42857142857142855,
+            "hard_mask_iou": 0.2727272727272727,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.2727272727272727
+          },
+          {
+            "id": "868.tif",
+            "tp": 0,
+            "fp": 3,
+            "fn": 10,
+            "tn": 65523,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "869.tif",
+            "tp": 0,
+            "fp": 4,
+            "fn": 16,
+            "tn": 65516,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.017547607421875,
+        "false_positive_rate": 5.439523001547878e-05
+      },
+      {
+        "threshold": 0.999,
+        "counts": {
+          "tp": 27,
+          "fp": 1,
+          "fn": 663,
+          "tn": 1047885
+        },
+        "micro": {
+          "hard_mask_dice": 0.07520891364902507,
+          "hard_mask_iou": 0.03907380607814761,
+          "hard_mask_precision": 0.9642857142857143,
+          "hard_mask_recall": 0.0391304347826087
+        },
+        "per_image": [
+          {
+            "id": "1032.tif",
+            "tp": 7,
+            "fp": 0,
+            "fn": 54,
+            "tn": 65475,
+            "hard_mask_dice": 0.20588235294117646,
+            "hard_mask_iou": 0.11475409836065574,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.11475409836065574
+          },
+          {
+            "id": "1082.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 69,
+            "tn": 65467,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "1086.tif",
+            "tp": 3,
+            "fp": 0,
+            "fn": 17,
+            "tn": 65516,
+            "hard_mask_dice": 0.2608695652173913,
+            "hard_mask_iou": 0.15,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.15
+          },
+          {
+            "id": "1087.tif",
+            "tp": 4,
+            "fp": 0,
+            "fn": 9,
+            "tn": 65523,
+            "hard_mask_dice": 0.47058823529411764,
+            "hard_mask_iou": 0.3076923076923077,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.3076923076923077
+          },
+          {
+            "id": "231.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 8,
+            "tn": 65528,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "289.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "tn": 65534,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "322.tif",
+            "tp": 13,
+            "fp": 0,
+            "fn": 157,
+            "tn": 65366,
+            "hard_mask_dice": 0.14207650273224043,
+            "hard_mask_iou": 0.07647058823529412,
+            "hard_mask_precision": 1.0,
+            "hard_mask_recall": 0.07647058823529412
+          },
+          {
+            "id": "333.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 114,
+            "tn": 65422,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "334.tif",
+            "tp": 0,
+            "fp": 1,
+            "fn": 99,
+            "tn": 65436,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "363.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 36,
+            "tn": 65500,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "376.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 27,
+            "tn": 65509,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "390.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 21,
+            "tn": 65515,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "444.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 13,
+            "tn": 65523,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "751.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "tn": 65525,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "868.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 10,
+            "tn": 65526,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          },
+          {
+            "id": "869.tif",
+            "tp": 0,
+            "fp": 0,
+            "fn": 16,
+            "tn": 65520,
+            "hard_mask_dice": 0.0,
+            "hard_mask_iou": 0.0,
+            "hard_mask_precision": 0.0,
+            "hard_mask_recall": 0.0
+          }
+        ],
+        "truth_foreground_percent": 0.06580352783203125,
+        "predicted_foreground_percent": 0.0026702880859375,
+        "false_positive_rate": 9.54302280973312e-07
+      }
+    ],
+    "best_calibrated": {
+      "threshold": 0.95,
+      "counts": {
+        "tp": 354,
+        "fp": 411,
+        "fn": 336,
+        "tn": 1047475
+      },
+      "micro": {
+        "hard_mask_dice": 0.4865979381443299,
+        "hard_mask_iou": 0.3215258855585831,
+        "hard_mask_precision": 0.4627450980392157,
+        "hard_mask_recall": 0.5130434782608696
+      },
+      "per_image": [
+        {
+          "id": "1032.tif",
+          "tp": 23,
+          "fp": 0,
+          "fn": 38,
+          "tn": 65475,
+          "hard_mask_dice": 0.5476190476190477,
+          "hard_mask_iou": 0.3770491803278688,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.3770491803278688
+        },
+        {
+          "id": "1082.tif",
+          "tp": 7,
+          "fp": 0,
+          "fn": 62,
+          "tn": 65467,
+          "hard_mask_dice": 0.18421052631578946,
+          "hard_mask_iou": 0.10144927536231885,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.10144927536231885
+        },
+        {
+          "id": "1086.tif",
+          "tp": 13,
+          "fp": 48,
+          "fn": 7,
+          "tn": 65468,
+          "hard_mask_dice": 0.32098765432098764,
+          "hard_mask_iou": 0.19117647058823528,
+          "hard_mask_precision": 0.21311475409836064,
+          "hard_mask_recall": 0.65
+        },
+        {
+          "id": "1087.tif",
+          "tp": 12,
+          "fp": 73,
+          "fn": 1,
+          "tn": 65450,
+          "hard_mask_dice": 0.24489795918367346,
+          "hard_mask_iou": 0.13953488372093023,
+          "hard_mask_precision": 0.1411764705882353,
+          "hard_mask_recall": 0.9230769230769231
+        },
+        {
+          "id": "231.tif",
+          "tp": 0,
+          "fp": 13,
+          "fn": 8,
+          "tn": 65515,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "289.tif",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "tn": 65534,
+          "hard_mask_dice": 0.0,
+          "hard_mask_iou": 0.0,
+          "hard_mask_precision": 0.0,
+          "hard_mask_recall": 0.0
+        },
+        {
+          "id": "322.tif",
+          "tp": 117,
+          "fp": 0,
+          "fn": 53,
+          "tn": 65366,
+          "hard_mask_dice": 0.8153310104529616,
+          "hard_mask_iou": 0.6882352941176471,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.6882352941176471
+        },
+        {
+          "id": "333.tif",
+          "tp": 52,
+          "fp": 63,
+          "fn": 62,
+          "tn": 65359,
+          "hard_mask_dice": 0.45414847161572053,
+          "hard_mask_iou": 0.2937853107344633,
+          "hard_mask_precision": 0.45217391304347826,
+          "hard_mask_recall": 0.45614035087719296
+        },
+        {
+          "id": "334.tif",
+          "tp": 52,
+          "fp": 60,
+          "fn": 47,
+          "tn": 65377,
+          "hard_mask_dice": 0.4928909952606635,
+          "hard_mask_iou": 0.3270440251572327,
+          "hard_mask_precision": 0.4642857142857143,
+          "hard_mask_recall": 0.5252525252525253
+        },
+        {
+          "id": "363.tif",
+          "tp": 29,
+          "fp": 15,
+          "fn": 7,
+          "tn": 65485,
+          "hard_mask_dice": 0.725,
+          "hard_mask_iou": 0.5686274509803921,
+          "hard_mask_precision": 0.6590909090909091,
+          "hard_mask_recall": 0.8055555555555556
+        },
+        {
+          "id": "376.tif",
+          "tp": 16,
+          "fp": 12,
+          "fn": 11,
+          "tn": 65497,
+          "hard_mask_dice": 0.5818181818181818,
+          "hard_mask_iou": 0.41025641025641024,
+          "hard_mask_precision": 0.5714285714285714,
+          "hard_mask_recall": 0.5925925925925926
+        },
+        {
+          "id": "390.tif",
+          "tp": 17,
+          "fp": 42,
+          "fn": 4,
+          "tn": 65473,
+          "hard_mask_dice": 0.425,
+          "hard_mask_iou": 0.2698412698412698,
+          "hard_mask_precision": 0.288135593220339,
+          "hard_mask_recall": 0.8095238095238095
+        },
+        {
+          "id": "444.tif",
+          "tp": 4,
+          "fp": 1,
+          "fn": 9,
+          "tn": 65522,
+          "hard_mask_dice": 0.4444444444444444,
+          "hard_mask_iou": 0.2857142857142857,
+          "hard_mask_precision": 0.8,
+          "hard_mask_recall": 0.3076923076923077
+        },
+        {
+          "id": "751.tif",
+          "tp": 6,
+          "fp": 0,
+          "fn": 5,
+          "tn": 65525,
+          "hard_mask_dice": 0.7058823529411765,
+          "hard_mask_iou": 0.5454545454545454,
+          "hard_mask_precision": 1.0,
+          "hard_mask_recall": 0.5454545454545454
+        },
+        {
+          "id": "868.tif",
+          "tp": 2,
+          "fp": 44,
+          "fn": 8,
+          "tn": 65482,
+          "hard_mask_dice": 0.07142857142857142,
+          "hard_mask_iou": 0.037037037037037035,
+          "hard_mask_precision": 0.043478260869565216,
+          "hard_mask_recall": 0.2
+        },
+        {
+          "id": "869.tif",
+          "tp": 4,
+          "fp": 40,
+          "fn": 12,
+          "tn": 65480,
+          "hard_mask_dice": 0.13333333333333333,
+          "hard_mask_iou": 0.07142857142857142,
+          "hard_mask_precision": 0.09090909090909091,
+          "hard_mask_recall": 0.25
+        }
+      ],
+      "truth_foreground_percent": 0.06580352783203125,
+      "predicted_foreground_percent": 0.07295608520507812,
+      "false_positive_rate": 0.00039221823748003125
+    }
+  },
+  "previous_history_summary": {
+    "initial_lr": 0.0010000000474974513,
+    "final_lr": 9.999999747378752e-06,
+    "first_floor_epoch": 93,
+    "training_loss_initial": 1.1552629470825195,
+    "training_loss_final": 0.6364293098449707,
+    "validation_loss_initial": 1.162663459777832,
+    "validation_loss_final": 0.813040018081665
+  },
+  "independent_metric_check_passed": true
+}

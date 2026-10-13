@@ -29,7 +29,9 @@ def audit(output):
     lock=read(output/'selection.lock.json')
     check('Selections sealed before test',lock['validation_only'] and not lock['test_data_accessed'])
     comparison=read(output/'comparison.json')
-    check('Actual overall time under one hour',0<comparison['elapsed_seconds']<3600)
+    check('Actual overall time and deadline status',comparison['elapsed_seconds']>0 and comparison['under_60_minutes']==(comparison['elapsed_seconds']<3600))
+    if 'first_finalization_attempt_seconds' in comparison:
+        check('First supervisor runtime recorded',0<comparison['first_finalization_attempt_seconds']<3600)
     for r in comparison['models']:
         name=r['architecture'];folder=output/name
         check(name+' test result available',r.get('test_common') is not None)

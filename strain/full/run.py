@@ -158,7 +158,8 @@ def worker(args):
             start=time.monotonic();p=predictions(model,test[0]);duration=time.monotonic()-start
             common=evaluate_probabilities(test[1],p,splits['test'],.5)
             calibrated=evaluate_probabilities(test[1],p,splits['test'],selection['validation_calibrated']['threshold'])
-            result=dict(**selection,test_common=common,test_calibrated=calibrated,evaluation_seconds=duration,
+            result=dict(**{k:v for k,v in selection.items() if k!='test_data_accessed'},
+                test_common=common,test_calibrated=calibrated,evaluation_seconds=duration,
                 test_data_accessed=True,inference_scope='One prediction pass; same probabilities for both thresholds')
             save(output/name/'result.json',result)
             del model

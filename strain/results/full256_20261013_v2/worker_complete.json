@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 1783.755301612,
+  "errors": {
+    "unetpp": "TypeError(\"dict() got multiple values for keyword argument 'test_data_accessed'\")",
+    "transunet": "TypeError(\"dict() got multiple values for keyword argument 'test_data_accessed'\")",
+    "modified_unet": "TypeError(\"dict() got multiple values for keyword argument 'test_data_accessed'\")",
+    "unet3plus": "TypeError(\"dict() got multiple values for keyword argument 'test_data_accessed'\")"
+  }
+}

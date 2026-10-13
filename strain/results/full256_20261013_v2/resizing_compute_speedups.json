@@ -1,0 +1,9 @@
+{
+  "speedups": {
+    "modified_unet": 1.9104622479625575,
+    "unet3plus": 3.380979788979727,
+    "unetpp": 2.085874655811632,
+    "transunet": 2.3120712106886865
+  },
+  "evidence": "Existing matched 256/512 compute pilots, same cached training samples upsampled for 512; not an accuracy comparison"
+}

@@ -1,0 +1,42 @@
+{
+  "status": "verified",
+  "branch": "main",
+  "local_head": "7f2088a5bb3ee59ce07a4d899188cd83023eda0d",
+  "live_remote_main": "7f2088a5bb3ee59ce07a4d899188cd83023eda0d",
+  "remote": "https://github.com/p-art-dheev/kidney-stone-segmentation.git",
+  "phases": [
+    {
+      "commit": "3ae3188b8fc7eaf9de1ac2faa13b4b3f0867a71c",
+      "message": "Audit all course requirements and independently verify existing experiment evidence",
+      "push_verified": true
+    },
+    {
+      "commit": "7f2088a5bb3ee59ce07a4d899188cd83023eda0d",
+      "message": "Deliver audited Elsevier CAS report, Beamer slides and presentation preparation brief",
+      "push_verified": true
+    }
+  ],
+  "committed_pdf_identities": {
+    "report": {
+      "pages": 18,
+      "bytes": 4276777,
+      "sha256": "e953cccf9eaec4a63711730fa341c0766ecc4ed75b7333c9aec527abbd0af253"
+    },
+    "presentation": {
+      "pages": 15,
+      "bytes": 1760649,
+      "sha256": "35c0ae37c3986d47f57fd0eb2d496fc23b883d3edd91434dd0504877d4431220"
+    }
+  },
+  "upstream_template_committed_bytes_match_archive": true,
+  "upstream_template_sha256": {
+    "cas-sc.cls": "5030545ed09c770afa31004817bf8626ca7f311cf795e6c2825ecae113bb42e9",
+    "cas-common.sty": "e95a01f4b33531d01ade231669fcc1e42f52193dddcb22ead5b63240eb952f8f",
+    "cas-model2-names.bst": "6f6204eb7670d762042ab363c2d05cf87196052bfbdf6dbee51a1327a8ce479a",
+    "README": "d1e082d558435c263a24fa62f36e9f25a6189cfa63373036f74d404847125b4b"
+  },
+  "working_tree_before_evidence_commit": [
+    "?? scripts/verify_release.py"
+  ],
+  "scope": "Published source/PDF package verification; final evidence-only closure has its own later commit hash."
+}

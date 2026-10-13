@@ -1,0 +1,4 @@
+{
+  "verified": true,
+  "notes": "Inspected smallest, median-area and largest original/resized overlays: alignment preserved and binary labels confirmed. No whole mask vanished. Lost components are documented without editing labels."
+}

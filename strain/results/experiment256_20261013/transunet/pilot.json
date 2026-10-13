@@ -1,0 +1,41 @@
+{
+  "architecture": "transunet",
+  "measurements": [
+    {
+      "size": 256,
+      "batch": 2,
+      "precision": "float32",
+      "init_seconds": 1.43440778599998,
+      "step_seconds": [
+        15.631137773000006,
+        0.06067672400001811,
+        0.050444703000039226
+      ],
+      "steady_step_seconds": 0.05556071350002867,
+      "validation_batch_seconds": 1.208786525999983,
+      "memory": {
+        "current": 240392192,
+        "peak": 604493824
+      }
+    },
+    {
+      "size": 512,
+      "batch": 2,
+      "precision": "float32",
+      "init_seconds": 1.9739006960000438,
+      "step_seconds": [
+        15.026443245999985,
+        0.1179303210000171,
+        0.12173287100000607
+      ],
+      "steady_step_seconds": 0.11983159600001159,
+      "validation_batch_seconds": 0.9245339009999611,
+      "memory": {
+        "current": 250716672,
+        "peak": 1716067840
+      }
+    }
+  ],
+  "measured_speedup": 2.1567684871424437,
+  "note": "512 timing uses upsampled cached train pairs; compute comparison only, not accuracy comparison"
+}

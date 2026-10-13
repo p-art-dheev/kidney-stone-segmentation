@@ -44,7 +44,8 @@ def worker(args):
     import tensorflow as tf
     from strain.train import pilot, train_model
     from strain.config import ARCHITECTURES
-    from kssd.reproducibility import environment
+    import importlib.metadata
+    import platform
     started = args.started
     deadline = started + args.budget - 50
     gpus = tf.config.list_physical_devices('GPU')
@@ -53,7 +54,11 @@ def worker(args):
     for gpu in gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
     output = Path(args.output)
-    save(output/'environment.json', environment())
+    save(output/'environment.json', dict(python=platform.python_version(),
+        versions={name:importlib.metadata.version(name) for name in
+            ['tensorflow','keras','numpy','scipy','Pillow','keras-unet-collection']},
+        gpu_details=[tf.config.experimental.get_device_details(g) for g in gpus],
+        build=tf.sysconfig.get_build_info(), seed=20261013, deterministic=True))
     save(output/'gpu.txt.json', dict(nvidia_smi=subprocess.check_output(
         ['nvidia-smi','--query-gpu=name,memory.total,memory.free,driver_version','--format=csv'],text=True)))
     arrays, splits = prepare(args.data, output)

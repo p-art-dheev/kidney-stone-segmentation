@@ -1,0 +1,7 @@
+{
+  "test_policy": "Final checkpoint selection uses validation only; preliminary test evidence is retained but is not used for selection.",
+  "reason": "Validation-only review showed premature early stopping with 13 batches per epoch. Added 60-epoch warm-up. No preliminary test scores were inspected to choose this change.",
+  "shared_budget_seconds": 3600,
+  "preliminary_run": "experiment256_20261013",
+  "shared_started_monotonic": 2.43360158
+}

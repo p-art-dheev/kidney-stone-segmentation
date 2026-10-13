@@ -10,7 +10,8 @@ The supervisor includes preprocessing, runtime imports, all four timing pilots,
 training, validation, testing and report generation in its 3600-second budget.
 It terminates its worker early enough to write partial results before the deadline.
 Each model gets an equal share of remaining time and at most 150 epochs, with
-18-epoch validation Dice patience. Inspect `resize_preview.png` before training,
+18-epoch validation Dice patience after a 60-epoch warm-up (only 13 batches per
+epoch; allow BatchNorm running statistics to settle). Inspect `resize_preview.png` before training,
 then write `preview_verified.json` in the result directory with inspection notes.
 No training starts before this marker. This inspection time counts toward the budget.
 

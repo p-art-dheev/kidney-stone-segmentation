@@ -4,6 +4,7 @@ FRACTION = 0.10
 BATCH = 4
 MAX_EPOCHS = 150
 PATIENCE = 18
+EARLY_STOPPING_WARMUP = 60
 BUDGET_SECONDS = 3600
 THRESHOLD = 0.5
 ARCHITECTURES = ['modified_unet', 'unet3plus', 'unetpp', 'transunet']

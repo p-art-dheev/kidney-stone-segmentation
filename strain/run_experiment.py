@@ -114,7 +114,7 @@ def main():
     if args.worker:
         worker(args)
         return
-    started = time.monotonic()
+    started = args.started if args.started is not None else time.monotonic()
     output.mkdir(parents=True, exist_ok=False)
     env = dict(os.environ, PYTHONHASHSEED='20261013', TF_NUM_INTRAOP_THREADS='2',
                TF_NUM_INTEROP_THREADS='2', MPLCONFIGDIR=str(output/'matplotlib'))

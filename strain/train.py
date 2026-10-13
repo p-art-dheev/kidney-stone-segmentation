@@ -130,7 +130,8 @@ def train_model(architecture, arrays, splits, output, checkpoint, end, timing):
         tf.keras.callbacks.CSVLogger(str(output/'history.csv')),
         tf.keras.callbacks.ModelCheckpoint(str(checkpoint), monitor='val_hard_mask_dice',
             mode='max', save_best_only=True, save_weights_only=True),
-        tf.keras.callbacks.EarlyStopping(monitor='val_hard_mask_dice', mode='max', patience=PATIENCE),
+        tf.keras.callbacks.EarlyStopping(monitor='val_hard_mask_dice', mode='max', patience=PATIENCE,
+            start_from_epoch=EARLY_STOPPING_WARMUP),
         tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=.5, patience=6, min_lr=1e-5)]
     fit_start = time.monotonic()
     history = model.fit(dataset(arrays['train'], True), validation_data=dataset(arrays['validation']),
@@ -150,7 +151,8 @@ def train_model(architecture, arrays, splits, output, checkpoint, end, timing):
         training_including_validation_seconds=duration, epoch_seconds=deadline.epoch_seconds,
         checkpoint=str(checkpoint), checkpoint_reload_verified=True,
         loss='per-image Dice + 0.25 mean pixel binary cross entropy', optimizer='Adam 0.001; plateau LR',
-        precision='float32', batch_size=BATCH, input_shape=[256,256,1], seed=SEED, threshold=THRESHOLD)
+        precision='float32', batch_size=BATCH, input_shape=[256,256,1], seed=SEED, threshold=THRESHOLD,
+        early_stopping_warmup=EARLY_STOPPING_WARMUP)
     if time.monotonic() < end:
         evaluation_start = time.monotonic()
         result['test'] = evaluate(model, arrays['test'], splits['test'])

@@ -1,0 +1,57 @@
+{
+  "measurements": [
+    {
+      "precision": "mixed_float16",
+      "batch": 8,
+      "stable": true,
+      "step_seconds": [
+        18.17375034599999,
+        0.12631562100000338,
+        0.114152335,
+        0.104005997999991,
+        0.08730704399999922,
+        0.08507490799999573,
+        0.09723857199999486,
+        0.08342207500000143
+      ],
+      "validation_seconds": 3.031095487999991,
+      "estimated_epoch_seconds": 8.08007103299984,
+      "memory": {
+        "current": 37353216,
+        "peak": 1778395392
+      },
+      "optimizer": "LossScaleOptimizer",
+      "total_seconds": 22.43726691799999
+    },
+    {
+      "precision": "mixed_float16",
+      "batch": 16,
+      "stable": true,
+      "step_seconds": [
+        14.946464496000004,
+        0.16256944099998805,
+        0.15756207000001154,
+        0.16000559200000453,
+        0.16754373800000621,
+        0.15391171999999642,
+        0.15918272999999772,
+        0.14993942599997467
+      ],
+      "validation_seconds": 1.7086710910000136,
+      "estimated_epoch_seconds": 6.184665225666379,
+      "memory": {
+        "current": 67560448,
+        "peak": 3675898880
+      },
+      "optimizer": "LossScaleOptimizer",
+      "total_seconds": 18.29535967000001
+    },
+    {
+      "precision": "mixed_float16",
+      "batch": 32,
+      "stable": false,
+      "error": "ResourceExhaustedError()"
+    }
+  ],
+  "updates_discarded": true
+}

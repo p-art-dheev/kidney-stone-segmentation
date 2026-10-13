@@ -1,5 +1,19 @@
 # Completed model files
 
+All five models now have explicit Python entry points in [models/](models/README.md):
+
+| Model | Named model file |
+|---|---|
+| Modified U-Net | [modified_unet.py](models/modified_unet.py) |
+| U-Net3+ | [unet3plus.py](models/unet3plus.py) |
+| U-Net++ | [unetpp.py](models/unetpp.py) |
+| TransUNet | [transunet.py](models/transunet.py) |
+| Attention U-Net | [attention_unet.py](models/attention_unet.py) |
+
+Each exposes `build()` for fresh weights and `load_best()` for the completed
+checkpoint. The [model guide](models/README.md) explains architecture, weights,
+training runners, epoch logs, curves and final metrics.
+
 The completed four-model run is **full256_20261013_v2**. All four models completed 20
 additional epochs. Each model has its own output folder. Architecture entry
 points share `kssd/models.py`; U-Net3+ and U-Net++ use the installed

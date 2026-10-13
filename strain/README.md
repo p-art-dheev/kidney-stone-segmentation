@@ -1,5 +1,9 @@
 # Isolated fast experiment
 
+The [five clearly named model files](models/README.md) provide `build()` and
+`load_best()` entry points for Modified U-Net, U-Net3+, U-Net++, TransUNet and
+Attention U-Net, with an explanation of every output file.
+
 Attention U-Net has completed [50 epochs](results/attention256_50epochs_20261014_v2/report.md)
 on the complete frozen training partition. Its [runner and protocol](attention/README.md)
 reuse the verified preprocessing and held-out evaluation. The file index below

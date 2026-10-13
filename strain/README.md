@@ -1,6 +1,11 @@
 # Isolated fast experiment
 
-The authoritative completed comparison is `results/experiment256_final_20261013/`.
+The latest completed four-model run is [full256_20261013_v2](results/full256_20261013_v2/report.md).
+Open the [completed model file index](COMPLETED_MODELS.md) to find each model's
+architecture entry point, results, loss/metric logs, curves and checkpoint.
+Training and evaluation code for this run is in [full/](full/README.md).
+
+The earlier subset comparison is `results/experiment256_final_20261013/`.
 The earlier `experiment256_20261013/` is retained preliminary evidence and was
 superseded after a validation-only stopping-protocol amendment. The shared clock
 included both attempts: 1748.75 seconds (29 minutes 9 seconds). All four final

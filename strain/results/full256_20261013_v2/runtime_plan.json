@@ -1,0 +1,15 @@
+{
+  "epoch_budget": 20,
+  "requested_epochs": 20,
+  "available_training_seconds": 2442.0168493366978,
+  "estimated_total_fit_seconds": 1070.0298300100098,
+  "safety_multiplier": 1.7,
+  "pilot_overhead_estimate": 88.71225991800252,
+  "no_training_images_removed": true,
+  "viable_models": [
+    "unetpp",
+    "transunet",
+    "modified_unet",
+    "unet3plus"
+  ]
+}

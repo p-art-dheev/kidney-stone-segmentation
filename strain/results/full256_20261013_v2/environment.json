@@ -1,0 +1,14 @@
+{
+  "tensorflow": "2.20.0",
+  "keras": "3.13.2",
+  "gpu_details": [
+    {
+      "compute_capability": [
+        8,
+        9
+      ],
+      "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    }
+  ],
+  "nvidia_smi": "name, memory.free [MiB], driver_version\nNVIDIA GeForce RTX 4070 Laptop GPU, 7940 MiB, 580.88\n"
+}

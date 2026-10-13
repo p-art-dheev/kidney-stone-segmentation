@@ -28,10 +28,10 @@ def worker(args):
     if not gpus:raise RuntimeError('GPU required; no full training started')
     for g in gpus:tf.config.experimental.set_memory_growth(g,True)
     protection=protected();save(output/'protected_files.json',protection)
-    save(output/'config.json',dict(seed=20261013,input_size=256,target_epochs=50,
+    save(output/'config.json',dict(seed=20261013,input_size=256,target_epochs=args.epochs,
         shared_budget_seconds=args.budget,warm_start=True,precision='float32',
         threshold=.5,validation_interval=1,models=MODELS,
-        candidate_losses=['dice_bce','fp_tversky_bce'],candidate_epochs=5,
+        candidate_losses=['dice_bce','fp_tversky_bce'],candidate_epochs=args.trial_epochs,
         candidate_learning_rate=3e-4,reference_learning_rate=1e-4,
         checkpoint_objective='maximum pooled validation Dice at common threshold 0.5',
         order='prioritize U-Net++ and TransUNet',
@@ -46,6 +46,18 @@ def worker(args):
     for name in MODELS:
         folder=output/name;folder.mkdir(exist_ok=True)
         try:
+            if args.resume_from:
+                prior=Path(args.resume_from)
+                assert json.loads((prior/'protected_files.json').read_text())==protection
+                baseline[name]=json.loads((prior/name/'baseline_validation.json').read_text())
+                measured=json.loads((prior/name/'pilot.json').read_text())
+                timings[name]=dict(batch=measured['selected_batch'],estimated_epoch_seconds=measured['estimated_epoch_seconds'])
+                shutil.copy2(prior/name/'baseline_validation.json',folder/'baseline_validation.json')
+                shutil.copy2(prior/name/'pilot.json',folder/'pilot.json')
+                if (prior/name/'diagnostics').exists():
+                    shutil.copytree(prior/name/'diagnostics',folder/'diagnostics')
+                save(folder/'reused_pilot.json',dict(source=str(prior),weights_hash_verified=True,updates_discarded=True))
+                continue
             if name in ['unetpp','transunet']:
                 diagnose(name,arrays,splits,args.data,folder/'diagnostics')
                 diag=json.loads((folder/'diagnostics/diagnosis.json').read_text())
@@ -61,10 +73,10 @@ def worker(args):
             errors[name]=repr(error);save(output/'errors.json',errors)
     viable=[n for n in MODELS if n in timings]
     if not viable:raise RuntimeError('Every timing pilot failed')
-    pilot_overhead=sum(10*timings[n]['estimated_epoch_seconds'] for n in viable if n in ['unetpp','transunet'])
+    pilot_overhead=sum(2*args.trial_epochs*timings[n]['estimated_epoch_seconds'] for n in viable if n in ['unetpp','transunet'])
     available=end-time.monotonic()-180-pilot_overhead
-    epoch_budget=min(50,max(1,int(available/(1.7*sum(timings[n]['estimated_epoch_seconds'] for n in viable)))))
-    save(output/'runtime_plan.json',dict(epoch_budget=epoch_budget,requested_epochs=50,
+    epoch_budget=min(args.epochs,max(1,int(available/(1.7*sum(timings[n]['estimated_epoch_seconds'] for n in viable)))))
+    save(output/'runtime_plan.json',dict(epoch_budget=epoch_budget,requested_epochs=args.epochs,
         available_training_seconds=available,estimated_total_fit_seconds=sum(
         epoch_budget*timings[n]['estimated_epoch_seconds'] for n in viable),
         safety_multiplier=1.7,pilot_overhead_estimate=pilot_overhead,
@@ -84,7 +96,7 @@ def worker(args):
                     if time.monotonic()>model_end-90:break
                     stage=fit_stage(name,arrays,splits,folder/candidate_kind,
                         Path('strain/checkpoints')/output.name/(name+'.'+candidate_kind+'.best.weights.h5'),
-                        checkpoints[name],candidate_kind,lr,batch,5,model_end,baseline_dice,short=True)
+                        checkpoints[name],candidate_kind,lr,batch,args.trial_epochs,model_end,baseline_dice,short=True)
                     candidates.append(stage)
                 if candidates:
                     winner=max(candidates,key=lambda r:r['validation']['micro']['hard_mask_dice'])
@@ -157,7 +169,7 @@ def worker(args):
     save(output/'worker_complete.json',dict(elapsed_seconds=time.monotonic()-args.started,errors=errors))
 
 
-def report(output,started,status,budget):
+def report(output,started,status,budget,deadline_unix=None):
     from strain.data import save
     from strain.plot_history import plot
     plot(output)
@@ -165,9 +177,10 @@ def report(output,started,status,budget):
     for name in ['modified_unet','unet3plus','unetpp','transunet']:
         p=output/name/'result.json'
         models.append(json.loads(p.read_text()) if p.exists() else dict(architecture=name,status='incomplete',test_common=None))
-    elapsed=time.monotonic()-started
+    attempt_elapsed=time.monotonic()-started
+    elapsed=time.time()-(deadline_unix-3600) if deadline_unix else attempt_elapsed
     save(output/'comparison.json',dict(models=models,elapsed_seconds=elapsed,supervisor_status=status,
-        budget_seconds=budget,under_60_minutes=elapsed<3600,
+        budget_seconds=budget,attempt_elapsed_seconds=attempt_elapsed,under_60_minutes=elapsed<3600,
         primary='Held-out test, threshold 0.5, pooled pixel counts',
         secondary='Validation-calibrated threshold, >=85% of common validation recall',
         limitations='Content groups are not patient IDs. Expanded test differs from previous small-subset table. Warm-started models, not fresh initialization.'))
@@ -189,25 +202,32 @@ def report(output,started,status,budget):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--data',required=True);parser.add_argument('--output',required=True)
     parser.add_argument('--budget',type=float,default=3600);parser.add_argument('--worker',action='store_true')
+    parser.add_argument('--epochs',type=int,default=50);parser.add_argument('--trial-epochs',type=int,default=5)
+    parser.add_argument('--resume-from');parser.add_argument('--deadline-unix',type=float)
     parser.add_argument('--started',type=float);args=parser.parse_args()
     output=Path(args.output).resolve()
     if not output.is_relative_to(Path('strain/results').resolve()):raise ValueError('Output must be inside strain/results')
     if not 120<=args.budget<=3600:raise ValueError('Budget must be 120–3600 seconds')
     args.output=str(output)
     if args.worker:worker(args);return
+    if args.deadline_unix:args.budget=min(args.budget,args.deadline_unix-time.time())
+    if args.budget<120:raise RuntimeError('Original deadline has insufficient remaining time')
     started=time.monotonic();output.mkdir(parents=True,exist_ok=False)
     (output/'.gitignore').write_text('**/examples.png\n**/probabilities.npz\nmatplotlib/\nresize_preview.png\n')
     env=dict(os.environ,PYTHONHASHSEED='20261013',TF_NUM_INTRAOP_THREADS='2',TF_NUM_INTEROP_THREADS='2',
         MPLCONFIGDIR=str(output/'matplotlib'))
     cmd=[sys.executable,'-m','strain.full.run','--worker','--data',args.data,'--output',str(output),
-        '--budget',str(args.budget),'--started',str(started)]
+        '--budget',str(args.budget),'--started',str(started),
+        '--epochs',str(args.epochs),'--trial-epochs',str(args.trial_epochs)]
+    if args.resume_from:cmd+=['--resume-from',args.resume_from]
+    if args.deadline_unix:cmd+=['--deadline-unix',str(args.deadline_unix)]
     with (output/'worker.log').open('w') as log:
         child=subprocess.Popen(cmd,stdout=log,stderr=subprocess.STDOUT,env=env)
         try:
             code=child.wait(timeout=args.budget-35);status='finished' if code==0 else f'worker_exit_{code}'
         except subprocess.TimeoutExpired:
             child.kill();child.wait();status='hard_deadline_terminated'
-    report(output,started,status,args.budget)
+    report(output,started,status,args.budget,args.deadline_unix)
     print((output/'summary.md').read_text())
 
 

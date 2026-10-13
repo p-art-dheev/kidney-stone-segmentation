@@ -1,0 +1,10 @@
+{
+  "training_was_waiting_for_plan": true,
+  "confirmed_gpu_memory_used_mib": 9,
+  "historical_checkpoints_and_logs_preserved": true,
+  "supervisor_pid": 301,
+  "confirmed_gpu_utilization_percent": 0,
+  "confirmed_project_processes_remaining": 0,
+  "stopped_worker_pid": 338,
+  "action": "SIGTERM to the diagnostic worker; supervisor exited after worker termination"
+}

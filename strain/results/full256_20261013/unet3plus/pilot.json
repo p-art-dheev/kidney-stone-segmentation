@@ -1,0 +1,42 @@
+{
+  "architecture": "unet3plus",
+  "initialization_seconds": 2.4371606480000025,
+  "measurements": [
+    {
+      "batch": 4,
+      "steps_seconds": [
+        16.01676387500001,
+        0.21332472400001734,
+        0.21285996000000296
+      ],
+      "validation_seconds": 10.275557747999983,
+      "estimated_epoch_seconds": 34.56808473600114,
+      "memory": {
+        "current": 92011008,
+        "peak": 2762616832
+      }
+    },
+    {
+      "batch": 8,
+      "steps_seconds": [
+        10.158956305999993,
+        0.4632809520000194,
+        0.4672342229999913
+      ],
+      "validation_seconds": 6.354884427999991,
+      "estimated_epoch_seconds": 32.874566915500296,
+      "memory": {
+        "current": 92025088,
+        "peak": 5382624256
+      }
+    },
+    {
+      "batch": 16,
+      "error": "ResourceExhaustedError()"
+    }
+  ],
+  "selected_batch": 8,
+  "estimated_epoch_seconds": 32.874566915500296,
+  "precision": "float32",
+  "pilot_updates_discarded": true
+}

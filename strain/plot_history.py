@@ -16,6 +16,8 @@ def plot(output):
         labels = ['Loss','Dice','IoU','Precision','Recall']
         best = 1 + max(range(len(history['val_hard_mask_dice'])),
                        key=lambda i: history['val_hard_mask_dice'][i])
+        selection=path.parent/'selection.json'
+        if selection.exists():best=json.loads(selection.read_text())['best_validation_epoch']
         for ax, key, label in zip(axes.flat, keys, labels):
             ax.plot(epochs, history[key], label='Training')
             ax.plot(epochs, history['val_'+key], label='Validation')

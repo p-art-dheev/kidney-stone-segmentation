@@ -1,0 +1,31 @@
+{
+  "models": [
+    {
+      "architecture": "modified_unet",
+      "status": "incomplete",
+      "test_common": null
+    },
+    {
+      "architecture": "unet3plus",
+      "status": "incomplete",
+      "test_common": null
+    },
+    {
+      "architecture": "unetpp",
+      "status": "incomplete",
+      "test_common": null
+    },
+    {
+      "architecture": "transunet",
+      "status": "incomplete",
+      "test_common": null
+    }
+  ],
+  "elapsed_seconds": 279.60608867999997,
+  "supervisor_status": "finished",
+  "budget_seconds": 3600,
+  "under_60_minutes": true,
+  "primary": "Held-out test, threshold 0.5, pooled pixel counts",
+  "secondary": "Validation-calibrated threshold, >=85% of common validation recall",
+  "limitations": "Content groups are not patient IDs. Expanded test differs from previous small-subset table. Warm-started models, not fresh initialization."
+}

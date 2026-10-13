@@ -1,0 +1,26 @@
+{
+  "seed": 20261013,
+  "input_size": 256,
+  "target_epochs": 50,
+  "shared_budget_seconds": 3600.0,
+  "warm_start": true,
+  "precision": "float32",
+  "threshold": 0.5,
+  "validation_interval": 1,
+  "models": [
+    "unetpp",
+    "transunet",
+    "modified_unet",
+    "unet3plus"
+  ],
+  "candidate_losses": [
+    "dice_bce",
+    "fp_tversky_bce"
+  ],
+  "candidate_epochs": 5,
+  "candidate_learning_rate": 0.0003,
+  "reference_learning_rate": 0.0001,
+  "checkpoint_objective": "maximum pooled validation Dice at common threshold 0.5",
+  "order": "prioritize U-Net++ and TransUNet",
+  "mixed_precision_decision": "Prior AMP failures; retain measured stable float32"
+}

@@ -1,0 +1,52 @@
+{
+  "architecture": "modified_unet",
+  "initialization_seconds": 2.722156735999988,
+  "measurements": [
+    {
+      "batch": 4,
+      "steps_seconds": [
+        8.45964984699998,
+        0.05243650200000616,
+        0.05186667399999578
+      ],
+      "validation_seconds": 3.478457112000001,
+      "estimated_epoch_seconds": 9.423738144000112,
+      "memory": {
+        "current": 58970112,
+        "peak": 569839616
+      }
+    },
+    {
+      "batch": 8,
+      "steps_seconds": [
+        4.393863269999997,
+        0.0828470399999901,
+        0.08648056899997414
+      ],
+      "validation_seconds": 1.5513730719999899,
+      "estimated_epoch_seconds": 6.377209928498971,
+      "memory": {
+        "current": 58981376,
+        "peak": 1073495040
+      }
+    },
+    {
+      "batch": 16,
+      "steps_seconds": [
+        0.25418731099998126,
+        0.1618793829999845,
+        0.16594126900000106
+      ],
+      "validation_seconds": 1.0881484779999937,
+      "estimated_epoch_seconds": 5.841547931999784,
+      "memory": {
+        "current": 58981632,
+        "peak": 2147761408
+      }
+    }
+  ],
+  "selected_batch": 16,
+  "estimated_epoch_seconds": 5.841547931999784,
+  "precision": "float32",
+  "pilot_updates_discarded": true
+}

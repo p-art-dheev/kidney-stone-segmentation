@@ -39,6 +39,7 @@ def dataset(arrays,batch,training=False):
     ds=tf.data.Dataset.from_tensor_slices(arrays)
     if training:
         ds=ds.shuffle(len(arrays[0]),SEED,reshuffle_each_iteration=True)
+        @tf.autograph.experimental.do_not_convert
         def augment(x,y):
             pair=tf.concat([x,y],-1)
             pair=tf.image.random_flip_left_right(pair,seed=SEED)

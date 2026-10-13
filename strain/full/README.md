@@ -23,7 +23,9 @@ source image, mask, main training module or historical checkpoint is modified.
 Warm-start each architecture from its own preserved 256-pixel checkpoint.
 Verify that all original fitting IDs are inside the expanded training partition.
 No pretrained backbone is added and no architecture is replaced. The target
-is 50 additional epochs, not 50 epochs from fresh initialization. Baseline
+defaults to 50 additional epochs, not 50 epochs from fresh initialization. The
+user authorized reducing this to 20 epochs (`--epochs 20`) with three-epoch
+loss trials (`--trial-epochs 3`) to finish sooner. Baseline
 weights remain eligible at epoch zero if fine-tuning never improves validation.
 
 Measure stable batch sizes 4/8/16 with real backward passes and full validation;
@@ -45,7 +47,7 @@ order gives U-Net++/TransUNet priority if time becomes tight.
 Keep one best validation checkpoint, plus the necessary latest stage weights
 for continuation. Selected-trajectory training/validation loss and all four
 hard-mask metrics are logged to CSV/JSON and plotted without dataset-size labels.
-Losing five-epoch trials remain separately labelled, not silently merged into
+Losing loss trials remain separately labelled, not silently merged into
 the selected trajectory's epoch count. CSV and plot epoch numbers start at one.
 
 Seal all checkpoints and calibration choices before loading any test image or
@@ -63,3 +65,22 @@ training/validation data. Raw CT diagnostic panels stay local; compact numeric
 evidence and curves can be committed. Historical file hashes are verified at
 completion. Actual elapsed time, partial epochs, errors, validation and test
 results are recorded explicitly.
+
+The first full attempt completed integrity checks and GPU timing pilots but
+failed before any fitting epoch: editing an imported source file invalidated
+AutoGraph's source location for the nested augmentation function. The restart
+disables unnecessary AutoGraph conversion for that TensorFlow-only function,
+rechecks input integrity and reuses measured pilots only after verifying the
+historical checkpoint hashes. Source files are kept fixed while training runs.
+The original absolute deadline is retained with `--deadline-unix`; the reported
+overall elapsed time includes the failed attempt and restart delay.
+
+Restart command used for this experiment:
+
+```bash
+/var/tmp/kssd-gpu312-20261012/bin/python -m strain.full.run --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/full256_20261013_v2 --epochs 20 --trial-epochs 3 --resume-from strain/results/full256_20261013 --deadline-unix 1791915111
+```
+
+Loss trials start from the same historical weights and fresh Adam state. The
+winning trial continues from its latest weights with a fresh Adam optimizer;
+its best validation checkpoint remains eligible throughout continuation.

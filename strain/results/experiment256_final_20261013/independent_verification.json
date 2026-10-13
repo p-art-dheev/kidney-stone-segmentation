@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "models": [
+    {
+      "architecture": "modified_unet",
+      "passed": true,
+      "checkpoint_sha256": "940adefa02eec7b7b65d8689e25e95d840b3a544433cc037f587589bd7757c08",
+      "epochs": 79,
+      "best_epoch": 57,
+      "test_images": 16
+    },
+    {
+      "architecture": "unet3plus",
+      "passed": true,
+      "checkpoint_sha256": "808f4c9c4c338b4c9b5c926c0679d2e0d4605fc5b9b214763dedefa6d8ba9105",
+      "epochs": 117,
+      "best_epoch": 99,
+      "test_images": 16
+    },
+    {
+      "architecture": "unetpp",
+      "passed": true,
+      "checkpoint_sha256": "3a43fc0af6f3be428fcb30c2b99c38c970f1f3746271419765f2841e5522c4a9",
+      "epochs": 80,
+      "best_epoch": 48,
+      "test_images": 16
+    },
+    {
+      "architecture": "transunet",
+      "passed": true,
+      "checkpoint_sha256": "b58bd57c4e53dfb48bd90ba986a051b49757046ca6a97cbfb10b047fb6be743b",
+      "epochs": 96,
+      "best_epoch": 78,
+      "test_images": 16
+    }
+  ],
+  "shared_elapsed_seconds": 1748.747854053,
+  "checks": [
+    "exact held-out IDs",
+    "cached mask areas",
+    "total pixel counts",
+    "per-image and pooled metrics",
+    "macro means",
+    "finite histories",
+    "earliest best validation checkpoint",
+    "checkpoint hashes",
+    "shared one-hour budget"
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "architecture": "unet3plus",
+  "status": "complete",
+  "epochs_completed": 19,
+  "allocated_epochs": 150,
+  "best_validation_epoch": 1,
+  "best_validation_dice": 0.0,
+  "training_including_validation_seconds": 88.27493867300001,
+  "epoch_seconds": [
+    24.109367771999985,
+    3.3080604109999854,
+    3.381476948999989,
+    3.4415298769999936,
+    3.366479121999987,
+    3.3791658730000336,
+    3.3545952800000123,
+    3.457563806000053,
+    3.4131159149999917,
+    3.4395664369999963,
+    3.4977538890000233,
+    3.615691850000019,
+    3.518947403000027,
+    3.5438502629999675,
+    3.5639204610000093,
+    3.5523827600000004,
+    3.5873483270000293,
+    3.6485281590000227,
+    3.703542812999956
+  ],
+  "checkpoint": "strain/checkpoints/experiment256_20261013/unet3plus.weights.h5",
+  "checkpoint_reload_verified": true,
+  "loss": "per-image Dice + 0.25 mean pixel binary cross entropy",
+  "optimizer": "Adam 0.001; plateau LR",
+  "precision": "float32",
+  "batch_size": 4,
+  "input_shape": [
+    256,
+    256,
+    1
+  ],
+  "seed": 20261013,
+  "threshold": 0.5,
+  "test": {
+    "micro": {
+      "hard_mask_dice": 0.0,
+      "hard_mask_iou": 0.0,
+      "hard_mask_precision": 0.0,
+      "hard_mask_recall": 0.0
+    },
+    "counts": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 219,
+      "tn": 1048357
+    },
+    "per_image": [
+      {
+        "id": "1351.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "tn": 65534,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "1353.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "tn": 65532,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "16.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "tn": 65532,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "23.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 6,
+        "tn": 65530,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "27.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "tn": 65533,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "272.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "tn": 65533,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "505.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 38,
+        "tn": 65498,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "509.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 28,
+        "tn": 65508,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "511.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 22,
+        "tn": 65514,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "519.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 31,
+        "tn": 65505,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "827.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "tn": 65531,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "831.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 15,
+        "tn": 65521,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "835.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 20,
+        "tn": 65516,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "839.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "tn": 65520,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "840.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "tn": 65522,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      },
+      {
+        "id": "933.tif",
+        "tp": 0,
+        "fp": 0,
+        "fn": 8,
+        "tn": 65528,
+        "hard_mask_dice": 0.0,
+        "hard_mask_iou": 0.0,
+        "hard_mask_precision": 0.0,
+        "hard_mask_recall": 0.0
+      }
+    ],
+    "macro": {
+      "hard_mask_dice": 0.0,
+      "hard_mask_iou": 0.0,
+      "hard_mask_precision": 0.0,
+      "hard_mask_recall": 0.0
+    }
+  },
+  "evaluation_seconds": 0.8085948319999829,
+  "total_model_seconds": 94.48461469600005,
+  "memory": {
+    "current": 244445952,
+    "peak": 2878309632
+  }
+}

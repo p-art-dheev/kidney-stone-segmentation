@@ -1,0 +1,101 @@
+{
+  "original_dataset_modified": false,
+  "local_checkpoints": [
+    {
+      "bytes": 23558088,
+      "path": "strain/checkpoints/experiment256_final_20261013/modified_unet.weights.h5"
+    },
+    {
+      "bytes": 55604048,
+      "path": "strain/checkpoints/experiment256_final_20261013/transunet.weights.h5"
+    },
+    {
+      "bytes": 28865728,
+      "path": "strain/checkpoints/experiment256_final_20261013/unet3plus.weights.h5"
+    },
+    {
+      "bytes": 23837928,
+      "path": "strain/checkpoints/experiment256_final_20261013/unetpp.weights.h5"
+    }
+  ],
+  "original_pipeline_modified": false,
+  "evidence_files": [
+    "strain/results/experiment256_20261013/comparison.json",
+    "strain/results/experiment256_20261013/environment.json",
+    "strain/results/experiment256_20261013/gpu.txt.json",
+    "strain/results/experiment256_20261013/modified_unet/history.csv",
+    "strain/results/experiment256_20261013/modified_unet/history.json",
+    "strain/results/experiment256_20261013/modified_unet/pilot.json",
+    "strain/results/experiment256_20261013/modified_unet/result.json",
+    "strain/results/experiment256_20261013/preprocessing.json",
+    "strain/results/experiment256_20261013/preview_ready.json",
+    "strain/results/experiment256_20261013/preview_verified.json",
+    "strain/results/experiment256_20261013/splits.json",
+    "strain/results/experiment256_20261013/summary.md",
+    "strain/results/experiment256_20261013/transunet/history.csv",
+    "strain/results/experiment256_20261013/transunet/pilot.json",
+    "strain/results/experiment256_20261013/unet3plus/history.csv",
+    "strain/results/experiment256_20261013/unet3plus/history.json",
+    "strain/results/experiment256_20261013/unet3plus/pilot.json",
+    "strain/results/experiment256_20261013/unet3plus/result.json",
+    "strain/results/experiment256_20261013/unetpp/history.csv",
+    "strain/results/experiment256_20261013/unetpp/history.json",
+    "strain/results/experiment256_20261013/unetpp/pilot.json",
+    "strain/results/experiment256_20261013/unetpp/result.json",
+    "strain/results/experiment256_20261013/worker.log",
+    "strain/results/experiment256_final_20261013/comparison.json",
+    "strain/results/experiment256_final_20261013/environment.json",
+    "strain/results/experiment256_final_20261013/gpu.txt.json",
+    "strain/results/experiment256_final_20261013/independent_verification.json",
+    "strain/results/experiment256_final_20261013/modified_unet/history.csv",
+    "strain/results/experiment256_final_20261013/modified_unet/history.json",
+    "strain/results/experiment256_final_20261013/modified_unet/pilot.json",
+    "strain/results/experiment256_final_20261013/modified_unet/result.json",
+    "strain/results/experiment256_final_20261013/modified_unet/training_curves.png",
+    "strain/results/experiment256_final_20261013/preprocessing.json",
+    "strain/results/experiment256_final_20261013/preview_ready.json",
+    "strain/results/experiment256_final_20261013/preview_verified.json",
+    "strain/results/experiment256_final_20261013/protocol_amendment.json",
+    "strain/results/experiment256_final_20261013/splits.json",
+    "strain/results/experiment256_final_20261013/summary.md",
+    "strain/results/experiment256_final_20261013/transunet/history.csv",
+    "strain/results/experiment256_final_20261013/transunet/history.json",
+    "strain/results/experiment256_final_20261013/transunet/pilot.json",
+    "strain/results/experiment256_final_20261013/transunet/result.json",
+    "strain/results/experiment256_final_20261013/transunet/training_curves.png",
+    "strain/results/experiment256_final_20261013/unet3plus/history.csv",
+    "strain/results/experiment256_final_20261013/unet3plus/history.json",
+    "strain/results/experiment256_final_20261013/unet3plus/pilot.json",
+    "strain/results/experiment256_final_20261013/unet3plus/result.json",
+    "strain/results/experiment256_final_20261013/unet3plus/training_curves.png",
+    "strain/results/experiment256_final_20261013/unetpp/history.csv",
+    "strain/results/experiment256_final_20261013/unetpp/history.json",
+    "strain/results/experiment256_final_20261013/unetpp/pilot.json",
+    "strain/results/experiment256_final_20261013/unetpp/result.json",
+    "strain/results/experiment256_final_20261013/unetpp/training_curves.png",
+    "strain/results/experiment256_final_20261013/worker.log",
+    "strain/results/experiment256_final_20261013/worker_complete.json",
+    "strain/results/verification-final.log",
+    "strain/results/verification.log",
+    "strain/results/experiment256_final_20261013/file_inventory.json"
+  ],
+  "cache_directories": [
+    "strain/cache/experiment256_20261013",
+    "strain/cache/experiment256_final_20261013"
+  ],
+  "source_files": [
+    "strain/.gitignore",
+    "strain/INSPECTION.md",
+    "strain/README.md",
+    "strain/__init__.py",
+    "strain/config.py",
+    "strain/data.py",
+    "strain/plot_history.py",
+    "strain/run_experiment.py",
+    "strain/test_verification.py",
+    "strain/train.py",
+    "strain/verify_results.py"
+  ],
+  "final_run": "strain/results/experiment256_final_20261013",
+  "rerun_command": "python -m strain.run_experiment --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/experiment256_rerun --reuse-verified-preview strain/results/experiment256_final_20261013"
+}

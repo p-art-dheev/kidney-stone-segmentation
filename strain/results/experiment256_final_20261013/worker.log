@@ -1,0 +1,755 @@
+2026-10-13 16:22:31.194981: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-10-13 16:22:31.271161: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-10-13 16:22:32.946938: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791908611.348463    1676 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 5518 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4070 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+E0000 00:00:1791908619.730440    1676 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inModified_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+2026-10-13 16:23:40.438282: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 92700
+WARNING:tensorflow:5 out of the last 9 calls to <function TensorFlowTrainer._make_function.<locals>.one_step_on_data at 0x75ab86596160> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 12 calls to <function TensorFlowTrainer._make_function.<locals>.one_step_on_data at 0x75ab7c925d00> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+Epoch 1/150
+E0000 00:00:1791908744.911967    1676 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/Modified_UNet_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+13/13 - 13s - 1s/step - hard_mask_dice: 0.0052 - hard_mask_iou: 0.0026 - hard_mask_precision: 0.0026 - hard_mask_recall: 0.6678 - loss: 1.1454 - val_hard_mask_dice: 0.0011 - val_hard_mask_iou: 5.3345e-04 - val_hard_mask_precision: 5.3368e-04 - val_hard_mask_recall: 0.5594 - val_loss: 1.1804 - learning_rate: 0.0010
+Epoch 2/150
+13/13 - 1s - 105ms/step - hard_mask_dice: 0.0286 - hard_mask_iou: 0.0145 - hard_mask_precision: 0.0153 - hard_mask_recall: 0.2236 - loss: 1.0978 - val_hard_mask_dice: 0.0013 - val_hard_mask_iou: 6.4442e-04 - val_hard_mask_precision: 6.4456e-04 - val_hard_mask_recall: 0.7420 - val_loss: 2.1672 - learning_rate: 0.0010
+Epoch 3/150
+13/13 - 1s - 97ms/step - hard_mask_dice: 0.0734 - hard_mask_iou: 0.0381 - hard_mask_precision: 0.0440 - hard_mask_recall: 0.2229 - loss: 1.0804 - val_hard_mask_dice: 0.0014 - val_hard_mask_iou: 6.9650e-04 - val_hard_mask_precision: 6.9650e-04 - val_hard_mask_recall: 1.0000 - val_loss: 1.9815 - learning_rate: 0.0010
+Epoch 4/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.0904 - hard_mask_iou: 0.0473 - hard_mask_precision: 0.0560 - hard_mask_recall: 0.2339 - loss: 1.0717 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0895 - learning_rate: 0.0010
+Epoch 5/150
+13/13 - 1s - 59ms/step - hard_mask_dice: 0.1719 - hard_mask_iou: 0.0940 - hard_mask_precision: 0.1160 - hard_mask_recall: 0.3318 - loss: 1.0622 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0689 - learning_rate: 0.0010
+Epoch 6/150
+13/13 - 1s - 62ms/step - hard_mask_dice: 0.2616 - hard_mask_iou: 0.1505 - hard_mask_precision: 0.1743 - hard_mask_recall: 0.5239 - loss: 1.0542 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0531 - learning_rate: 0.0010
+Epoch 7/150
+13/13 - 1s - 60ms/step - hard_mask_dice: 0.2309 - hard_mask_iou: 0.1305 - hard_mask_precision: 0.1398 - hard_mask_recall: 0.6629 - loss: 1.0481 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0393 - learning_rate: 0.0010
+Epoch 8/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.2743 - hard_mask_iou: 0.1589 - hard_mask_precision: 0.1631 - hard_mask_recall: 0.8614 - loss: 1.0406 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0292 - learning_rate: 0.0010
+Epoch 9/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.4014 - hard_mask_iou: 0.2511 - hard_mask_precision: 0.2598 - hard_mask_recall: 0.8819 - loss: 1.0333 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0249 - learning_rate: 0.0010
+Epoch 10/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.2160 - hard_mask_iou: 0.1211 - hard_mask_precision: 0.1245 - hard_mask_recall: 0.8181 - loss: 1.0305 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0242 - learning_rate: 0.0010
+Epoch 11/150
+13/13 - 1s - 63ms/step - hard_mask_dice: 0.3156 - hard_mask_iou: 0.1874 - hard_mask_precision: 0.1894 - hard_mask_recall: 0.9453 - loss: 1.0236 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0245 - learning_rate: 0.0010
+Epoch 12/150
+13/13 - 1s - 66ms/step - hard_mask_dice: 0.4114 - hard_mask_iou: 0.2590 - hard_mask_precision: 0.2699 - hard_mask_recall: 0.8656 - loss: 1.0186 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0235 - learning_rate: 0.0010
+Epoch 13/150
+13/13 - 1s - 63ms/step - hard_mask_dice: 0.2967 - hard_mask_iou: 0.1742 - hard_mask_precision: 0.1766 - hard_mask_recall: 0.9271 - loss: 1.0142 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0229 - learning_rate: 0.0010
+Epoch 14/150
+13/13 - 1s - 63ms/step - hard_mask_dice: 0.4332 - hard_mask_iou: 0.2765 - hard_mask_precision: 0.2809 - hard_mask_recall: 0.9461 - loss: 1.0087 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0216 - learning_rate: 0.0010
+Epoch 15/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.4159 - hard_mask_iou: 0.2625 - hard_mask_precision: 0.2651 - hard_mask_recall: 0.9639 - loss: 1.0039 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0193 - learning_rate: 0.0010
+Epoch 16/150
+13/13 - 1s - 60ms/step - hard_mask_dice: 0.4652 - hard_mask_iou: 0.3031 - hard_mask_precision: 0.3047 - hard_mask_recall: 0.9822 - loss: 0.9989 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0168 - learning_rate: 0.0010
+Epoch 17/150
+13/13 - 1s - 62ms/step - hard_mask_dice: 0.2801 - hard_mask_iou: 0.1629 - hard_mask_precision: 0.1650 - hard_mask_recall: 0.9267 - loss: 0.9970 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0167 - learning_rate: 0.0010
+Epoch 18/150
+13/13 - 1s - 62ms/step - hard_mask_dice: 0.3591 - hard_mask_iou: 0.2188 - hard_mask_precision: 0.2205 - hard_mask_recall: 0.9666 - loss: 0.9903 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0165 - learning_rate: 0.0010
+Epoch 19/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.4261 - hard_mask_iou: 0.2707 - hard_mask_precision: 0.2728 - hard_mask_recall: 0.9727 - loss: 0.9844 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0138 - learning_rate: 0.0010
+Epoch 20/150
+13/13 - 1s - 74ms/step - hard_mask_dice: 0.4959 - hard_mask_iou: 0.3297 - hard_mask_precision: 0.3323 - hard_mask_recall: 0.9768 - loss: 0.9777 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0080 - learning_rate: 0.0010
+Epoch 21/150
+13/13 - 1s - 62ms/step - hard_mask_dice: 0.5594 - hard_mask_iou: 0.3883 - hard_mask_precision: 0.3905 - hard_mask_recall: 0.9856 - loss: 0.9689 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0087 - learning_rate: 0.0010
+Epoch 22/150
+13/13 - 1s - 62ms/step - hard_mask_dice: 0.4274 - hard_mask_iou: 0.2718 - hard_mask_precision: 0.2759 - hard_mask_recall: 0.9484 - loss: 0.9629 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0083 - learning_rate: 0.0010
+Epoch 23/150
+13/13 - 1s - 63ms/step - hard_mask_dice: 0.2820 - hard_mask_iou: 0.1641 - hard_mask_precision: 0.1660 - hard_mask_recall: 0.9362 - loss: 0.9576 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0082 - learning_rate: 0.0010
+Epoch 24/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.3703 - hard_mask_iou: 0.2272 - hard_mask_precision: 0.2311 - hard_mask_recall: 0.9309 - loss: 0.9436 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0056 - learning_rate: 0.0010
+Epoch 25/150
+13/13 - 1s - 61ms/step - hard_mask_dice: 0.4876 - hard_mask_iou: 0.3224 - hard_mask_precision: 0.3285 - hard_mask_recall: 0.9450 - loss: 0.9254 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0035 - learning_rate: 0.0010
+Epoch 26/150
+13/13 - 1s - 110ms/step - hard_mask_dice: 0.3563 - hard_mask_iou: 0.2167 - hard_mask_precision: 0.2250 - hard_mask_recall: 0.8557 - loss: 0.9214 - val_hard_mask_dice: 0.0045 - val_hard_mask_iou: 0.0023 - val_hard_mask_precision: 0.0023 - val_hard_mask_recall: 0.3942 - val_loss: 1.0551 - learning_rate: 0.0010
+Epoch 27/150
+13/13 - 1s - 64ms/step - hard_mask_dice: 0.5525 - hard_mask_iou: 0.3817 - hard_mask_precision: 0.3966 - hard_mask_recall: 0.9104 - loss: 0.8827 - val_hard_mask_dice: 0.0034 - val_hard_mask_iou: 0.0017 - val_hard_mask_precision: 0.0017 - val_hard_mask_recall: 0.9913 - val_loss: 1.3896 - learning_rate: 0.0010
+Epoch 28/150
+13/13 - 1s - 63ms/step - hard_mask_dice: 0.6552 - hard_mask_iou: 0.4872 - hard_mask_precision: 0.5056 - hard_mask_recall: 0.9305 - loss: 0.8367 - val_hard_mask_dice: 0.0024 - val_hard_mask_iou: 0.0012 - val_hard_mask_precision: 0.0012 - val_hard_mask_recall: 1.0000 - val_loss: 2.0975 - learning_rate: 0.0010
+Epoch 29/150
+13/13 - 1s - 66ms/step - hard_mask_dice: 0.7559 - hard_mask_iou: 0.6076 - hard_mask_precision: 0.6259 - hard_mask_recall: 0.9541 - loss: 0.7745 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0023 - learning_rate: 0.0010
+Epoch 30/150
+13/13 - 1s - 66ms/step - hard_mask_dice: 0.7562 - hard_mask_iou: 0.6080 - hard_mask_precision: 0.6389 - hard_mask_recall: 0.9263 - loss: 0.7104 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0010 - learning_rate: 0.0010
+Epoch 31/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.7250 - hard_mask_iou: 0.5686 - hard_mask_precision: 0.6064 - hard_mask_recall: 0.9013 - loss: 0.6529 - val_hard_mask_dice: 0.0033 - val_hard_mask_iou: 0.0016 - val_hard_mask_precision: 0.0016 - val_hard_mask_recall: 1.0000 - val_loss: 1.6172 - learning_rate: 0.0010
+Epoch 32/150
+13/13 - 2s - 130ms/step - hard_mask_dice: 0.6324 - hard_mask_iou: 0.4624 - hard_mask_precision: 0.5009 - hard_mask_recall: 0.8576 - loss: 0.6354 - val_hard_mask_dice: 0.0069 - val_hard_mask_iou: 0.0035 - val_hard_mask_precision: 0.0087 - val_hard_mask_recall: 0.0058 - val_loss: 0.9949 - learning_rate: 0.0010
+Epoch 33/150
+13/13 - 1s - 69ms/step - hard_mask_dice: 0.7541 - hard_mask_iou: 0.6053 - hard_mask_precision: 0.6708 - hard_mask_recall: 0.8610 - loss: 0.5706 - val_hard_mask_dice: 0.0045 - val_hard_mask_iou: 0.0022 - val_hard_mask_precision: 0.0022 - val_hard_mask_recall: 0.9928 - val_loss: 1.3663 - learning_rate: 0.0010
+Epoch 34/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.6211 - hard_mask_iou: 0.4505 - hard_mask_precision: 0.5013 - hard_mask_recall: 0.8162 - loss: 0.5825 - val_hard_mask_dice: 0.0010 - val_hard_mask_iou: 5.0234e-04 - val_hard_mask_precision: 5.2010e-04 - val_hard_mask_recall: 0.0145 - val_loss: 1.0169 - learning_rate: 0.0010
+Epoch 35/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.6950 - hard_mask_iou: 0.5326 - hard_mask_precision: 0.6418 - hard_mask_recall: 0.7578 - loss: 0.5279 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0291 - learning_rate: 0.0010
+Epoch 36/150
+13/13 - 1s - 101ms/step - hard_mask_dice: 0.7188 - hard_mask_iou: 0.5610 - hard_mask_precision: 0.6282 - hard_mask_recall: 0.8398 - loss: 0.4787 - val_hard_mask_dice: 0.0086 - val_hard_mask_iou: 0.0043 - val_hard_mask_precision: 0.0043 - val_hard_mask_recall: 0.4754 - val_loss: 1.0510 - learning_rate: 0.0010
+Epoch 37/150
+13/13 - 1s - 102ms/step - hard_mask_dice: 0.7367 - hard_mask_iou: 0.5831 - hard_mask_precision: 0.7384 - hard_mask_recall: 0.7350 - loss: 0.4566 - val_hard_mask_dice: 0.1337 - val_hard_mask_iou: 0.0716 - val_hard_mask_precision: 0.5909 - val_hard_mask_recall: 0.0754 - val_loss: 0.8910 - learning_rate: 0.0010
+Epoch 38/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.7418 - hard_mask_iou: 0.5895 - hard_mask_precision: 0.6315 - hard_mask_recall: 0.8986 - loss: 0.4351 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0013 - learning_rate: 0.0010
+Epoch 39/150
+13/13 - 1s - 65ms/step - hard_mask_dice: 0.8021 - hard_mask_iou: 0.6696 - hard_mask_precision: 0.8236 - hard_mask_recall: 0.7817 - loss: 0.3711 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0018 - learning_rate: 0.0010
+Epoch 40/150
+13/13 - 1s - 110ms/step - hard_mask_dice: 0.8362 - hard_mask_iou: 0.7185 - hard_mask_precision: 0.8470 - hard_mask_recall: 0.8257 - loss: 0.3458 - val_hard_mask_dice: 0.1730 - val_hard_mask_iou: 0.0947 - val_hard_mask_precision: 0.1632 - val_hard_mask_recall: 0.1841 - val_loss: 0.9187 - learning_rate: 0.0010
+Epoch 41/150
+13/13 - 1s - 104ms/step - hard_mask_dice: 0.8652 - hard_mask_iou: 0.7624 - hard_mask_precision: 0.8584 - hard_mask_recall: 0.8721 - loss: 0.3118 - val_hard_mask_dice: 0.2941 - val_hard_mask_iou: 0.1724 - val_hard_mask_precision: 0.1871 - val_hard_mask_recall: 0.6870 - val_loss: 0.8482 - learning_rate: 0.0010
+Epoch 42/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.8551 - hard_mask_iou: 0.7469 - hard_mask_precision: 0.8361 - hard_mask_recall: 0.8751 - loss: 0.2990 - val_hard_mask_dice: 0.2935 - val_hard_mask_iou: 0.1720 - val_hard_mask_precision: 0.8000 - val_hard_mask_recall: 0.1797 - val_loss: 0.7260 - learning_rate: 0.0010
+Epoch 43/150
+13/13 - 1s - 69ms/step - hard_mask_dice: 0.8304 - hard_mask_iou: 0.7100 - hard_mask_precision: 0.8798 - hard_mask_recall: 0.7863 - loss: 0.2925 - val_hard_mask_dice: 0.2832 - val_hard_mask_iou: 0.1650 - val_hard_mask_precision: 0.9913 - val_hard_mask_recall: 0.1652 - val_loss: 0.7386 - learning_rate: 0.0010
+Epoch 44/150
+13/13 - 1s - 65ms/step - hard_mask_dice: 0.8201 - hard_mask_iou: 0.6951 - hard_mask_precision: 0.7545 - hard_mask_recall: 0.8983 - loss: 0.2886 - val_hard_mask_dice: 0.0191 - val_hard_mask_iou: 0.0096 - val_hard_mask_precision: 0.0097 - val_hard_mask_recall: 0.8551 - val_loss: 1.0112 - learning_rate: 0.0010
+Epoch 45/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.8277 - hard_mask_iou: 0.7060 - hard_mask_precision: 0.8953 - hard_mask_recall: 0.7696 - loss: 0.2581 - val_hard_mask_dice: 0.2120 - val_hard_mask_iou: 0.1185 - val_hard_mask_precision: 0.2583 - val_hard_mask_recall: 0.1797 - val_loss: 0.8012 - learning_rate: 0.0010
+Epoch 46/150
+13/13 - 1s - 110ms/step - hard_mask_dice: 0.8716 - hard_mask_iou: 0.7725 - hard_mask_precision: 0.8758 - hard_mask_recall: 0.8675 - loss: 0.2997 - val_hard_mask_dice: 0.5336 - val_hard_mask_iou: 0.3639 - val_hard_mask_precision: 0.4707 - val_hard_mask_recall: 0.6159 - val_loss: 0.6197 - learning_rate: 0.0010
+Epoch 47/150
+13/13 - 1s - 66ms/step - hard_mask_dice: 0.8231 - hard_mask_iou: 0.6994 - hard_mask_precision: 0.8452 - hard_mask_recall: 0.8022 - loss: 0.3094 - val_hard_mask_dice: 0.3588 - val_hard_mask_iou: 0.2186 - val_hard_mask_precision: 0.3333 - val_hard_mask_recall: 0.3884 - val_loss: 0.6358 - learning_rate: 0.0010
+Epoch 48/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.8806 - hard_mask_iou: 0.7867 - hard_mask_precision: 0.9024 - hard_mask_recall: 0.8599 - loss: 0.2447 - val_hard_mask_dice: 0.4168 - val_hard_mask_iou: 0.2633 - val_hard_mask_precision: 0.5644 - val_hard_mask_recall: 0.3304 - val_loss: 0.5109 - learning_rate: 0.0010
+Epoch 49/150
+13/13 - 1s - 115ms/step - hard_mask_dice: 0.8693 - hard_mask_iou: 0.7689 - hard_mask_precision: 0.9068 - hard_mask_recall: 0.8349 - loss: 0.2504 - val_hard_mask_dice: 0.6297 - val_hard_mask_iou: 0.4595 - val_hard_mask_precision: 0.8460 - val_hard_mask_recall: 0.5014 - val_loss: 0.4386 - learning_rate: 0.0010
+Epoch 50/150
+13/13 - 2s - 124ms/step - hard_mask_dice: 0.8752 - hard_mask_iou: 0.7781 - hard_mask_precision: 0.8517 - hard_mask_recall: 0.9002 - loss: 0.2208 - val_hard_mask_dice: 0.7517 - val_hard_mask_iou: 0.6022 - val_hard_mask_precision: 0.9095 - val_hard_mask_recall: 0.6406 - val_loss: 0.4128 - learning_rate: 0.0010
+Epoch 51/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.8767 - hard_mask_iou: 0.7805 - hard_mask_precision: 0.9091 - hard_mask_recall: 0.8466 - loss: 0.1944 - val_hard_mask_dice: 0.7497 - val_hard_mask_iou: 0.5996 - val_hard_mask_precision: 0.6872 - val_hard_mask_recall: 0.8246 - val_loss: 0.3569 - learning_rate: 0.0010
+Epoch 52/150
+13/13 - 1s - 108ms/step - hard_mask_dice: 0.8854 - hard_mask_iou: 0.7944 - hard_mask_precision: 0.9029 - hard_mask_recall: 0.8686 - loss: 0.1970 - val_hard_mask_dice: 0.7908 - val_hard_mask_iou: 0.6540 - val_hard_mask_precision: 0.8683 - val_hard_mask_recall: 0.7261 - val_loss: 0.3291 - learning_rate: 0.0010
+Epoch 53/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.9138 - hard_mask_iou: 0.8414 - hard_mask_precision: 0.8999 - hard_mask_recall: 0.9282 - loss: 0.1789 - val_hard_mask_dice: 0.7798 - val_hard_mask_iou: 0.6390 - val_hard_mask_precision: 0.9539 - val_hard_mask_recall: 0.6594 - val_loss: 0.4006 - learning_rate: 0.0010
+Epoch 54/150
+13/13 - 1s - 107ms/step - hard_mask_dice: 0.9138 - hard_mask_iou: 0.8413 - hard_mask_precision: 0.9263 - hard_mask_recall: 0.9017 - loss: 0.1969 - val_hard_mask_dice: 0.8000 - val_hard_mask_iou: 0.6667 - val_hard_mask_precision: 0.9520 - val_hard_mask_recall: 0.6899 - val_loss: 0.3419 - learning_rate: 0.0010
+Epoch 55/150
+13/13 - 1s - 67ms/step - hard_mask_dice: 0.8977 - hard_mask_iou: 0.8144 - hard_mask_precision: 0.9096 - hard_mask_recall: 0.8861 - loss: 0.1767 - val_hard_mask_dice: 0.7700 - val_hard_mask_iou: 0.6261 - val_hard_mask_precision: 0.9490 - val_hard_mask_recall: 0.6478 - val_loss: 0.3566 - learning_rate: 0.0010
+Epoch 56/150
+13/13 - 1s - 106ms/step - hard_mask_dice: 0.9078 - hard_mask_iou: 0.8312 - hard_mask_precision: 0.9145 - hard_mask_recall: 0.9013 - loss: 0.1704 - val_hard_mask_dice: 0.8094 - val_hard_mask_iou: 0.6799 - val_hard_mask_precision: 0.9677 - val_hard_mask_recall: 0.6957 - val_loss: 0.3355 - learning_rate: 0.0010
+Epoch 57/150
+13/13 - 1s - 109ms/step - hard_mask_dice: 0.8993 - hard_mask_iou: 0.8170 - hard_mask_precision: 0.9352 - hard_mask_recall: 0.8660 - loss: 0.1825 - val_hard_mask_dice: 0.8388 - val_hard_mask_iou: 0.7224 - val_hard_mask_precision: 0.8869 - val_hard_mask_recall: 0.7957 - val_loss: 0.2763 - learning_rate: 0.0010
+Epoch 58/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.9179 - hard_mask_iou: 0.8482 - hard_mask_precision: 0.8856 - hard_mask_recall: 0.9525 - loss: 0.1636 - val_hard_mask_dice: 0.8062 - val_hard_mask_iou: 0.6753 - val_hard_mask_precision: 0.9201 - val_hard_mask_recall: 0.7174 - val_loss: 0.3157 - learning_rate: 0.0010
+Epoch 59/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.9219 - hard_mask_iou: 0.8552 - hard_mask_precision: 0.9225 - hard_mask_recall: 0.9214 - loss: 0.1529 - val_hard_mask_dice: 0.7313 - val_hard_mask_iou: 0.5764 - val_hard_mask_precision: 0.9470 - val_hard_mask_recall: 0.5957 - val_loss: 0.3871 - learning_rate: 0.0010
+Epoch 60/150
+13/13 - 1s - 69ms/step - hard_mask_dice: 0.9080 - hard_mask_iou: 0.8315 - hard_mask_precision: 0.9016 - hard_mask_recall: 0.9146 - loss: 0.1631 - val_hard_mask_dice: 0.8313 - val_hard_mask_iou: 0.7112 - val_hard_mask_precision: 0.9017 - val_hard_mask_recall: 0.7710 - val_loss: 0.2890 - learning_rate: 0.0010
+Epoch 61/150
+13/13 - 1s - 68ms/step - hard_mask_dice: 0.8992 - hard_mask_iou: 0.8169 - hard_mask_precision: 0.9338 - hard_mask_recall: 0.8671 - loss: 0.1648 - val_hard_mask_dice: 0.8215 - val_hard_mask_iou: 0.6971 - val_hard_mask_precision: 0.8363 - val_hard_mask_recall: 0.8072 - val_loss: 0.3024 - learning_rate: 0.0010
+Epoch 62/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.8982 - hard_mask_iou: 0.8152 - hard_mask_precision: 0.8781 - hard_mask_recall: 0.9191 - loss: 0.2010 - val_hard_mask_dice: 0.4351 - val_hard_mask_iou: 0.2780 - val_hard_mask_precision: 0.8590 - val_hard_mask_recall: 0.2913 - val_loss: 0.5429 - learning_rate: 0.0010
+Epoch 63/150
+13/13 - 1s - 71ms/step - hard_mask_dice: 0.9015 - hard_mask_iou: 0.8207 - hard_mask_precision: 0.9229 - hard_mask_recall: 0.8812 - loss: 0.1996 - val_hard_mask_dice: 0.7178 - val_hard_mask_iou: 0.5599 - val_hard_mask_precision: 0.5964 - val_hard_mask_recall: 0.9014 - val_loss: 0.3718 - learning_rate: 0.0010
+Epoch 64/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.8881 - hard_mask_iou: 0.7988 - hard_mask_precision: 0.9209 - hard_mask_recall: 0.8576 - loss: 0.1900 - val_hard_mask_dice: 0.4920 - val_hard_mask_iou: 0.3262 - val_hard_mask_precision: 0.3286 - val_hard_mask_recall: 0.9783 - val_loss: 0.6397 - learning_rate: 5.0000e-04
+Epoch 65/150
+13/13 - 1s - 71ms/step - hard_mask_dice: 0.8928 - hard_mask_iou: 0.8063 - hard_mask_precision: 0.9158 - hard_mask_recall: 0.8709 - loss: 0.1706 - val_hard_mask_dice: 0.6291 - val_hard_mask_iou: 0.4589 - val_hard_mask_precision: 0.4708 - val_hard_mask_recall: 0.9478 - val_loss: 0.5517 - learning_rate: 5.0000e-04
+Epoch 66/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.9043 - hard_mask_iou: 0.8253 - hard_mask_precision: 0.8994 - hard_mask_recall: 0.9093 - loss: 0.1547 - val_hard_mask_dice: 0.6955 - val_hard_mask_iou: 0.5331 - val_hard_mask_precision: 0.5672 - val_hard_mask_recall: 0.8986 - val_loss: 0.4295 - learning_rate: 5.0000e-04
+Epoch 67/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.9134 - hard_mask_iou: 0.8407 - hard_mask_precision: 0.9134 - hard_mask_recall: 0.9134 - loss: 0.1609 - val_hard_mask_dice: 0.7294 - val_hard_mask_iou: 0.5741 - val_hard_mask_precision: 0.6335 - val_hard_mask_recall: 0.8594 - val_loss: 0.3932 - learning_rate: 5.0000e-04
+Epoch 68/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.9159 - hard_mask_iou: 0.8449 - hard_mask_precision: 0.9135 - hard_mask_recall: 0.9184 - loss: 0.1439 - val_hard_mask_dice: 0.7626 - val_hard_mask_iou: 0.6162 - val_hard_mask_precision: 0.7261 - val_hard_mask_recall: 0.8029 - val_loss: 0.3771 - learning_rate: 5.0000e-04
+Epoch 69/150
+13/13 - 1s - 73ms/step - hard_mask_dice: 0.9117 - hard_mask_iou: 0.8378 - hard_mask_precision: 0.9301 - hard_mask_recall: 0.8941 - loss: 0.1630 - val_hard_mask_dice: 0.7573 - val_hard_mask_iou: 0.6094 - val_hard_mask_precision: 0.7261 - val_hard_mask_recall: 0.7913 - val_loss: 0.3831 - learning_rate: 5.0000e-04
+Epoch 70/150
+13/13 - 1s - 88ms/step - hard_mask_dice: 0.9185 - hard_mask_iou: 0.8492 - hard_mask_precision: 0.9174 - hard_mask_recall: 0.9195 - loss: 0.1477 - val_hard_mask_dice: 0.7928 - val_hard_mask_iou: 0.6567 - val_hard_mask_precision: 0.7899 - val_hard_mask_recall: 0.7957 - val_loss: 0.3543 - learning_rate: 2.5000e-04
+Epoch 71/150
+13/13 - 1s - 78ms/step - hard_mask_dice: 0.9220 - hard_mask_iou: 0.8553 - hard_mask_precision: 0.9173 - hard_mask_recall: 0.9267 - loss: 0.1381 - val_hard_mask_dice: 0.8035 - val_hard_mask_iou: 0.6716 - val_hard_mask_precision: 0.8161 - val_hard_mask_recall: 0.7913 - val_loss: 0.3394 - learning_rate: 2.5000e-04
+Epoch 72/150
+13/13 - 1s - 77ms/step - hard_mask_dice: 0.9149 - hard_mask_iou: 0.8432 - hard_mask_precision: 0.9234 - hard_mask_recall: 0.9066 - loss: 0.1550 - val_hard_mask_dice: 0.7905 - val_hard_mask_iou: 0.6536 - val_hard_mask_precision: 0.8110 - val_hard_mask_recall: 0.7710 - val_loss: 0.3608 - learning_rate: 2.5000e-04
+Epoch 73/150
+13/13 - 1s - 76ms/step - hard_mask_dice: 0.9169 - hard_mask_iou: 0.8466 - hard_mask_precision: 0.9335 - hard_mask_recall: 0.9009 - loss: 0.1542 - val_hard_mask_dice: 0.7919 - val_hard_mask_iou: 0.6556 - val_hard_mask_precision: 0.8157 - val_hard_mask_recall: 0.7696 - val_loss: 0.3542 - learning_rate: 2.5000e-04
+Epoch 74/150
+13/13 - 1s - 73ms/step - hard_mask_dice: 0.9193 - hard_mask_iou: 0.8507 - hard_mask_precision: 0.9237 - hard_mask_recall: 0.9150 - loss: 0.1505 - val_hard_mask_dice: 0.8024 - val_hard_mask_iou: 0.6700 - val_hard_mask_precision: 0.8232 - val_hard_mask_recall: 0.7826 - val_loss: 0.3350 - learning_rate: 2.5000e-04
+Epoch 75/150
+13/13 - 1s - 75ms/step - hard_mask_dice: 0.9171 - hard_mask_iou: 0.8469 - hard_mask_precision: 0.9335 - hard_mask_recall: 0.9013 - loss: 0.1455 - val_hard_mask_dice: 0.7994 - val_hard_mask_iou: 0.6658 - val_hard_mask_precision: 0.8333 - val_hard_mask_recall: 0.7681 - val_loss: 0.3347 - learning_rate: 2.5000e-04
+Epoch 76/150
+13/13 - 1s - 73ms/step - hard_mask_dice: 0.9119 - hard_mask_iou: 0.8380 - hard_mask_precision: 0.9353 - hard_mask_recall: 0.8895 - loss: 0.1520 - val_hard_mask_dice: 0.8071 - val_hard_mask_iou: 0.6766 - val_hard_mask_precision: 0.8235 - val_hard_mask_recall: 0.7913 - val_loss: 0.3386 - learning_rate: 1.2500e-04
+Epoch 77/150
+13/13 - 1s - 70ms/step - hard_mask_dice: 0.9162 - hard_mask_iou: 0.8453 - hard_mask_precision: 0.9369 - hard_mask_recall: 0.8964 - loss: 0.1374 - val_hard_mask_dice: 0.8009 - val_hard_mask_iou: 0.6679 - val_hard_mask_precision: 0.8092 - val_hard_mask_recall: 0.7928 - val_loss: 0.3386 - learning_rate: 1.2500e-04
+Epoch 78/150
+13/13 - 1s - 72ms/step - hard_mask_dice: 0.9208 - hard_mask_iou: 0.8531 - hard_mask_precision: 0.9286 - hard_mask_recall: 0.9131 - loss: 0.1476 - val_hard_mask_dice: 0.7940 - val_hard_mask_iou: 0.6584 - val_hard_mask_precision: 0.7786 - val_hard_mask_recall: 0.8101 - val_loss: 0.3416 - learning_rate: 1.2500e-04
+Epoch 79/150
+13/13 - 1s - 71ms/step - hard_mask_dice: 0.9197 - hard_mask_iou: 0.8514 - hard_mask_precision: 0.9284 - hard_mask_recall: 0.9112 - loss: 0.1398 - val_hard_mask_dice: 0.7890 - val_hard_mask_iou: 0.6515 - val_hard_mask_precision: 0.7689 - val_hard_mask_recall: 0.8101 - val_loss: 0.3505 - learning_rate: 1.2500e-04
+Epoch 1/150
+13/13 - 28s - 2s/step - hard_mask_dice: 0.0137 - hard_mask_iou: 0.0069 - hard_mask_precision: 0.0072 - hard_mask_recall: 0.1762 - loss: 1.0076 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1117 - learning_rate: 0.0010
+Epoch 2/150
+13/13 - 3s - 262ms/step - hard_mask_dice: 0.2318 - hard_mask_iou: 0.1311 - hard_mask_precision: 0.1587 - hard_mask_recall: 0.4301 - loss: 0.8851 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0430 - learning_rate: 0.0010
+Epoch 3/150
+13/13 - 4s - 276ms/step - hard_mask_dice: 0.3501 - hard_mask_iou: 0.2122 - hard_mask_precision: 0.2595 - hard_mask_recall: 0.5380 - loss: 0.7082 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0024 - learning_rate: 0.0010
+Epoch 4/150
+13/13 - 3s - 266ms/step - hard_mask_dice: 0.5341 - hard_mask_iou: 0.3644 - hard_mask_precision: 0.4882 - hard_mask_recall: 0.5896 - loss: 0.5469 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0062 - learning_rate: 0.0010
+Epoch 5/150
+13/13 - 4s - 277ms/step - hard_mask_dice: 0.5838 - hard_mask_iou: 0.4122 - hard_mask_precision: 0.6079 - hard_mask_recall: 0.5615 - loss: 0.4921 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0041 - learning_rate: 0.0010
+Epoch 6/150
+13/13 - 3s - 269ms/step - hard_mask_dice: 0.5867 - hard_mask_iou: 0.4151 - hard_mask_precision: 0.6188 - hard_mask_recall: 0.5577 - loss: 0.5130 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0052 - learning_rate: 0.0010
+Epoch 7/150
+13/13 - 4s - 274ms/step - hard_mask_dice: 0.6616 - hard_mask_iou: 0.4943 - hard_mask_precision: 0.5537 - hard_mask_recall: 0.8216 - loss: 0.4739 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0070 - learning_rate: 0.0010
+Epoch 8/150
+13/13 - 4s - 284ms/step - hard_mask_dice: 0.7286 - hard_mask_iou: 0.5731 - hard_mask_precision: 0.6934 - hard_mask_recall: 0.7677 - loss: 0.4226 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0050 - learning_rate: 0.0010
+Epoch 9/150
+13/13 - 4s - 292ms/step - hard_mask_dice: 0.7403 - hard_mask_iou: 0.5877 - hard_mask_precision: 0.7689 - hard_mask_recall: 0.7137 - loss: 0.4374 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0027 - learning_rate: 0.0010
+Epoch 10/150
+13/13 - 5s - 419ms/step - hard_mask_dice: 0.8155 - hard_mask_iou: 0.6884 - hard_mask_precision: 0.7911 - hard_mask_recall: 0.8413 - loss: 0.3164 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0041 - learning_rate: 5.0000e-04
+Epoch 11/150
+13/13 - 4s - 304ms/step - hard_mask_dice: 0.8318 - hard_mask_iou: 0.7120 - hard_mask_precision: 0.8601 - hard_mask_recall: 0.8052 - loss: 0.2674 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0053 - learning_rate: 5.0000e-04
+Epoch 12/150
+13/13 - 4s - 303ms/step - hard_mask_dice: 0.8499 - hard_mask_iou: 0.7390 - hard_mask_precision: 0.8302 - hard_mask_recall: 0.8705 - loss: 0.2844 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0042 - learning_rate: 5.0000e-04
+Epoch 13/150
+13/13 - 4s - 306ms/step - hard_mask_dice: 0.8279 - hard_mask_iou: 0.7063 - hard_mask_precision: 0.8570 - hard_mask_recall: 0.8007 - loss: 0.2604 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0017 - learning_rate: 5.0000e-04
+Epoch 14/150
+13/13 - 4s - 305ms/step - hard_mask_dice: 0.8817 - hard_mask_iou: 0.7884 - hard_mask_precision: 0.8822 - hard_mask_recall: 0.8812 - loss: 0.2259 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0042 - learning_rate: 5.0000e-04
+Epoch 15/150
+13/13 - 4s - 310ms/step - hard_mask_dice: 0.8629 - hard_mask_iou: 0.7589 - hard_mask_precision: 0.8730 - hard_mask_recall: 0.8531 - loss: 0.2461 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0052 - learning_rate: 5.0000e-04
+Epoch 16/150
+13/13 - 4s - 323ms/step - hard_mask_dice: 0.8617 - hard_mask_iou: 0.7571 - hard_mask_precision: 0.8575 - hard_mask_recall: 0.8660 - loss: 0.2312 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0038 - learning_rate: 5.0000e-04
+Epoch 17/150
+13/13 - 5s - 381ms/step - hard_mask_dice: 0.8681 - hard_mask_iou: 0.7669 - hard_mask_precision: 0.9001 - hard_mask_recall: 0.8383 - loss: 0.2374 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0053 - learning_rate: 5.0000e-04
+Epoch 18/150
+13/13 - 5s - 389ms/step - hard_mask_dice: 0.8533 - hard_mask_iou: 0.7441 - hard_mask_precision: 0.8656 - hard_mask_recall: 0.8413 - loss: 0.2240 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0034 - learning_rate: 5.0000e-04
+Epoch 19/150
+13/13 - 4s - 342ms/step - hard_mask_dice: 0.8608 - hard_mask_iou: 0.7556 - hard_mask_precision: 0.8808 - hard_mask_recall: 0.8417 - loss: 0.2064 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0026 - learning_rate: 5.0000e-04
+Epoch 20/150
+13/13 - 5s - 401ms/step - hard_mask_dice: 0.8273 - hard_mask_iou: 0.7054 - hard_mask_precision: 0.7461 - hard_mask_recall: 0.9282 - loss: 0.2577 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0022 - learning_rate: 2.5000e-04
+Epoch 21/150
+13/13 - 6s - 449ms/step - hard_mask_dice: 0.8773 - hard_mask_iou: 0.7814 - hard_mask_precision: 0.9165 - hard_mask_recall: 0.8413 - loss: 0.2120 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0022 - learning_rate: 2.5000e-04
+Epoch 22/150
+13/13 - 5s - 370ms/step - hard_mask_dice: 0.8963 - hard_mask_iou: 0.8122 - hard_mask_precision: 0.8852 - hard_mask_recall: 0.9077 - loss: 0.1744 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0025 - learning_rate: 2.5000e-04
+Epoch 23/150
+13/13 - 5s - 387ms/step - hard_mask_dice: 0.8832 - hard_mask_iou: 0.7908 - hard_mask_precision: 0.8751 - hard_mask_recall: 0.8914 - loss: 0.1908 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0026 - learning_rate: 2.5000e-04
+Epoch 24/150
+13/13 - 4s - 338ms/step - hard_mask_dice: 0.8935 - hard_mask_iou: 0.8075 - hard_mask_precision: 0.9015 - hard_mask_recall: 0.8857 - loss: 0.1747 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0027 - learning_rate: 2.5000e-04
+Epoch 25/150
+13/13 - 5s - 366ms/step - hard_mask_dice: 0.8926 - hard_mask_iou: 0.8060 - hard_mask_precision: 0.8910 - hard_mask_recall: 0.8941 - loss: 0.1696 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0028 - learning_rate: 2.5000e-04
+Epoch 26/150
+13/13 - 5s - 366ms/step - hard_mask_dice: 0.9046 - hard_mask_iou: 0.8258 - hard_mask_precision: 0.8767 - hard_mask_recall: 0.9343 - loss: 0.1511 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0029 - learning_rate: 1.2500e-04
+Epoch 27/150
+13/13 - 5s - 391ms/step - hard_mask_dice: 0.9005 - hard_mask_iou: 0.8190 - hard_mask_precision: 0.9203 - hard_mask_recall: 0.8815 - loss: 0.1557 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0028 - learning_rate: 1.2500e-04
+Epoch 28/150
+13/13 - 6s - 431ms/step - hard_mask_dice: 0.8964 - hard_mask_iou: 0.8123 - hard_mask_precision: 0.8894 - hard_mask_recall: 0.9036 - loss: 0.1698 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0032 - learning_rate: 1.2500e-04
+Epoch 29/150
+13/13 - 5s - 421ms/step - hard_mask_dice: 0.9090 - hard_mask_iou: 0.8332 - hard_mask_precision: 0.8881 - hard_mask_recall: 0.9309 - loss: 0.1447 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0031 - learning_rate: 1.2500e-04
+Epoch 30/150
+13/13 - 5s - 409ms/step - hard_mask_dice: 0.9005 - hard_mask_iou: 0.8190 - hard_mask_precision: 0.9379 - hard_mask_recall: 0.8660 - loss: 0.1720 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 1.2500e-04
+Epoch 31/150
+13/13 - 5s - 393ms/step - hard_mask_dice: 0.9055 - hard_mask_iou: 0.8272 - hard_mask_precision: 0.8831 - hard_mask_recall: 0.9290 - loss: 0.1500 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 1.2500e-04
+Epoch 32/150
+13/13 - 4s - 345ms/step - hard_mask_dice: 0.9095 - hard_mask_iou: 0.8340 - hard_mask_precision: 0.9167 - hard_mask_recall: 0.9024 - loss: 0.1710 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 6.2500e-05
+Epoch 33/150
+13/13 - 4s - 345ms/step - hard_mask_dice: 0.9061 - hard_mask_iou: 0.8283 - hard_mask_precision: 0.9113 - hard_mask_recall: 0.9009 - loss: 0.1522 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 6.2500e-05
+Epoch 34/150
+13/13 - 6s - 435ms/step - hard_mask_dice: 0.9093 - hard_mask_iou: 0.8336 - hard_mask_precision: 0.9312 - hard_mask_recall: 0.8884 - loss: 0.1489 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 6.2500e-05
+Epoch 35/150
+13/13 - 5s - 392ms/step - hard_mask_dice: 0.9076 - hard_mask_iou: 0.8308 - hard_mask_precision: 0.9207 - hard_mask_recall: 0.8948 - loss: 0.1248 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0033 - learning_rate: 6.2500e-05
+Epoch 36/150
+13/13 - 6s - 438ms/step - hard_mask_dice: 0.9099 - hard_mask_iou: 0.8347 - hard_mask_precision: 0.9110 - hard_mask_recall: 0.9089 - loss: 0.1479 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0028 - learning_rate: 6.2500e-05
+Epoch 37/150
+13/13 - 6s - 458ms/step - hard_mask_dice: 0.9139 - hard_mask_iou: 0.8415 - hard_mask_precision: 0.9210 - hard_mask_recall: 0.9070 - loss: 0.1356 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0007 - learning_rate: 6.2500e-05
+Epoch 38/150
+13/13 - 7s - 538ms/step - hard_mask_dice: 0.9108 - hard_mask_iou: 0.8361 - hard_mask_precision: 0.9189 - hard_mask_recall: 0.9028 - loss: 0.1546 - val_hard_mask_dice: 0.0029 - val_hard_mask_iou: 0.0014 - val_hard_mask_precision: 1.0000 - val_hard_mask_recall: 0.0014 - val_loss: 0.9897 - learning_rate: 6.2500e-05
+Epoch 39/150
+13/13 - 7s - 502ms/step - hard_mask_dice: 0.9066 - hard_mask_iou: 0.8292 - hard_mask_precision: 0.8977 - hard_mask_recall: 0.9157 - loss: 0.1661 - val_hard_mask_dice: 0.0144 - val_hard_mask_iou: 0.0072 - val_hard_mask_precision: 1.0000 - val_hard_mask_recall: 0.0072 - val_loss: 0.9812 - learning_rate: 6.2500e-05
+Epoch 40/150
+13/13 - 6s - 430ms/step - hard_mask_dice: 0.9095 - hard_mask_iou: 0.8340 - hard_mask_precision: 0.9151 - hard_mask_recall: 0.9039 - loss: 0.1440 - val_hard_mask_dice: 0.0201 - val_hard_mask_iou: 0.0101 - val_hard_mask_precision: 0.8750 - val_hard_mask_recall: 0.0101 - val_loss: 0.9687 - learning_rate: 6.2500e-05
+Epoch 41/150
+13/13 - 6s - 451ms/step - hard_mask_dice: 0.9065 - hard_mask_iou: 0.8291 - hard_mask_precision: 0.9186 - hard_mask_recall: 0.8948 - loss: 0.1541 - val_hard_mask_dice: 0.0714 - val_hard_mask_iou: 0.0370 - val_hard_mask_precision: 0.6842 - val_hard_mask_recall: 0.0377 - val_loss: 0.9337 - learning_rate: 6.2500e-05
+Epoch 42/150
+13/13 - 6s - 461ms/step - hard_mask_dice: 0.9155 - hard_mask_iou: 0.8442 - hard_mask_precision: 0.9094 - hard_mask_recall: 0.9218 - loss: 0.1547 - val_hard_mask_dice: 0.1155 - val_hard_mask_iou: 0.0613 - val_hard_mask_precision: 0.6111 - val_hard_mask_recall: 0.0638 - val_loss: 0.8903 - learning_rate: 6.2500e-05
+Epoch 43/150
+13/13 - 8s - 579ms/step - hard_mask_dice: 0.9076 - hard_mask_iou: 0.8308 - hard_mask_precision: 0.9093 - hard_mask_recall: 0.9058 - loss: 0.1539 - val_hard_mask_dice: 0.1525 - val_hard_mask_iou: 0.0825 - val_hard_mask_precision: 0.7024 - val_hard_mask_recall: 0.0855 - val_loss: 0.8714 - learning_rate: 6.2500e-05
+Epoch 44/150
+13/13 - 6s - 444ms/step - hard_mask_dice: 0.9116 - hard_mask_iou: 0.8375 - hard_mask_precision: 0.9315 - hard_mask_recall: 0.8926 - loss: 0.1272 - val_hard_mask_dice: 0.2665 - val_hard_mask_iou: 0.1537 - val_hard_mask_precision: 0.7762 - val_hard_mask_recall: 0.1609 - val_loss: 0.7978 - learning_rate: 6.2500e-05
+Epoch 45/150
+13/13 - 6s - 478ms/step - hard_mask_dice: 0.9135 - hard_mask_iou: 0.8408 - hard_mask_precision: 0.9106 - hard_mask_recall: 0.9165 - loss: 0.1550 - val_hard_mask_dice: 0.3593 - val_hard_mask_iou: 0.2190 - val_hard_mask_precision: 0.8533 - val_hard_mask_recall: 0.2275 - val_loss: 0.7336 - learning_rate: 6.2500e-05
+Epoch 46/150
+13/13 - 6s - 456ms/step - hard_mask_dice: 0.9158 - hard_mask_iou: 0.8447 - hard_mask_precision: 0.9129 - hard_mask_recall: 0.9188 - loss: 0.1493 - val_hard_mask_dice: 0.4537 - val_hard_mask_iou: 0.2934 - val_hard_mask_precision: 0.8554 - val_hard_mask_recall: 0.3087 - val_loss: 0.6369 - learning_rate: 6.2500e-05
+Epoch 47/150
+13/13 - 6s - 427ms/step - hard_mask_dice: 0.9149 - hard_mask_iou: 0.8431 - hard_mask_precision: 0.9137 - hard_mask_recall: 0.9161 - loss: 0.1440 - val_hard_mask_dice: 0.4896 - val_hard_mask_iou: 0.3242 - val_hard_mask_precision: 0.8613 - val_hard_mask_recall: 0.3420 - val_loss: 0.6142 - learning_rate: 6.2500e-05
+Epoch 48/150
+13/13 - 6s - 475ms/step - hard_mask_dice: 0.9164 - hard_mask_iou: 0.8457 - hard_mask_precision: 0.9171 - hard_mask_recall: 0.9157 - loss: 0.1375 - val_hard_mask_dice: 0.5112 - val_hard_mask_iou: 0.3434 - val_hard_mask_precision: 0.8596 - val_hard_mask_recall: 0.3638 - val_loss: 0.6131 - learning_rate: 6.2500e-05
+Epoch 49/150
+13/13 - 5s - 423ms/step - hard_mask_dice: 0.9060 - hard_mask_iou: 0.8281 - hard_mask_precision: 0.9276 - hard_mask_recall: 0.8853 - loss: 0.1576 - val_hard_mask_dice: 0.5277 - val_hard_mask_iou: 0.3584 - val_hard_mask_precision: 0.8647 - val_hard_mask_recall: 0.3797 - val_loss: 0.5581 - learning_rate: 6.2500e-05
+Epoch 50/150
+13/13 - 4s - 323ms/step - hard_mask_dice: 0.9134 - hard_mask_iou: 0.8407 - hard_mask_precision: 0.9056 - hard_mask_recall: 0.9214 - loss: 0.1367 - val_hard_mask_dice: 0.5157 - val_hard_mask_iou: 0.3475 - val_hard_mask_precision: 0.8610 - val_hard_mask_recall: 0.3681 - val_loss: 0.5521 - learning_rate: 6.2500e-05
+Epoch 51/150
+13/13 - 4s - 340ms/step - hard_mask_dice: 0.9094 - hard_mask_iou: 0.8339 - hard_mask_precision: 0.9277 - hard_mask_recall: 0.8918 - loss: 0.1723 - val_hard_mask_dice: 0.5072 - val_hard_mask_iou: 0.3398 - val_hard_mask_precision: 0.8697 - val_hard_mask_recall: 0.3580 - val_loss: 0.5412 - learning_rate: 6.2500e-05
+Epoch 52/150
+13/13 - 8s - 612ms/step - hard_mask_dice: 0.9093 - hard_mask_iou: 0.8337 - hard_mask_precision: 0.8940 - hard_mask_recall: 0.9252 - loss: 0.1500 - val_hard_mask_dice: 0.6340 - val_hard_mask_iou: 0.4641 - val_hard_mask_precision: 0.8491 - val_hard_mask_recall: 0.5058 - val_loss: 0.4439 - learning_rate: 6.2500e-05
+Epoch 53/150
+13/13 - 4s - 336ms/step - hard_mask_dice: 0.9113 - hard_mask_iou: 0.8371 - hard_mask_precision: 0.9000 - hard_mask_recall: 0.9229 - loss: 0.1548 - val_hard_mask_dice: 0.6081 - val_hard_mask_iou: 0.4369 - val_hard_mask_precision: 0.8726 - val_hard_mask_recall: 0.4667 - val_loss: 0.4686 - learning_rate: 6.2500e-05
+Epoch 54/150
+13/13 - 4s - 334ms/step - hard_mask_dice: 0.9120 - hard_mask_iou: 0.8382 - hard_mask_precision: 0.9339 - hard_mask_recall: 0.8910 - loss: 0.1299 - val_hard_mask_dice: 0.5828 - val_hard_mask_iou: 0.4112 - val_hard_mask_precision: 0.8776 - val_hard_mask_recall: 0.4362 - val_loss: 0.4770 - learning_rate: 6.2500e-05
+Epoch 55/150
+13/13 - 6s - 448ms/step - hard_mask_dice: 0.9144 - hard_mask_iou: 0.8422 - hard_mask_precision: 0.9230 - hard_mask_recall: 0.9058 - loss: 0.1346 - val_hard_mask_dice: 0.6043 - val_hard_mask_iou: 0.4330 - val_hard_mask_precision: 0.8522 - val_hard_mask_recall: 0.4681 - val_loss: 0.4618 - learning_rate: 6.2500e-05
+Epoch 56/150
+13/13 - 5s - 382ms/step - hard_mask_dice: 0.9081 - hard_mask_iou: 0.8317 - hard_mask_precision: 0.8970 - hard_mask_recall: 0.9195 - loss: 0.1316 - val_hard_mask_dice: 0.6216 - val_hard_mask_iou: 0.4509 - val_hard_mask_precision: 0.8416 - val_hard_mask_recall: 0.4928 - val_loss: 0.4408 - learning_rate: 6.2500e-05
+Epoch 57/150
+13/13 - 5s - 381ms/step - hard_mask_dice: 0.9126 - hard_mask_iou: 0.8393 - hard_mask_precision: 0.9195 - hard_mask_recall: 0.9058 - loss: 0.1375 - val_hard_mask_dice: 0.5189 - val_hard_mask_iou: 0.3503 - val_hard_mask_precision: 0.8789 - val_hard_mask_recall: 0.3681 - val_loss: 0.4943 - learning_rate: 6.2500e-05
+Epoch 58/150
+13/13 - 5s - 423ms/step - hard_mask_dice: 0.9071 - hard_mask_iou: 0.8300 - hard_mask_precision: 0.9271 - hard_mask_recall: 0.8880 - loss: 0.1294 - val_hard_mask_dice: 0.5404 - val_hard_mask_iou: 0.3703 - val_hard_mask_precision: 0.8457 - val_hard_mask_recall: 0.3971 - val_loss: 0.4792 - learning_rate: 6.2500e-05
+Epoch 59/150
+13/13 - 6s - 428ms/step - hard_mask_dice: 0.9131 - hard_mask_iou: 0.8400 - hard_mask_precision: 0.8994 - hard_mask_recall: 0.9271 - loss: 0.1454 - val_hard_mask_dice: 0.5698 - val_hard_mask_iou: 0.3984 - val_hard_mask_precision: 0.8162 - val_hard_mask_recall: 0.4377 - val_loss: 0.4395 - learning_rate: 6.2500e-05
+Epoch 60/150
+13/13 - 6s - 463ms/step - hard_mask_dice: 0.9045 - hard_mask_iou: 0.8257 - hard_mask_precision: 0.8976 - hard_mask_recall: 0.9115 - loss: 0.1343 - val_hard_mask_dice: 0.5591 - val_hard_mask_iou: 0.3880 - val_hard_mask_precision: 0.8291 - val_hard_mask_recall: 0.4217 - val_loss: 0.4429 - learning_rate: 6.2500e-05
+Epoch 61/150
+13/13 - 6s - 466ms/step - hard_mask_dice: 0.9054 - hard_mask_iou: 0.8272 - hard_mask_precision: 0.9307 - hard_mask_recall: 0.8815 - loss: 0.1556 - val_hard_mask_dice: 0.5388 - val_hard_mask_iou: 0.3687 - val_hard_mask_precision: 0.8576 - val_hard_mask_recall: 0.3928 - val_loss: 0.4737 - learning_rate: 6.2500e-05
+Epoch 62/150
+13/13 - 6s - 432ms/step - hard_mask_dice: 0.9114 - hard_mask_iou: 0.8372 - hard_mask_precision: 0.9294 - hard_mask_recall: 0.8941 - loss: 0.1416 - val_hard_mask_dice: 0.5929 - val_hard_mask_iou: 0.4214 - val_hard_mask_precision: 0.8264 - val_hard_mask_recall: 0.4623 - val_loss: 0.4357 - learning_rate: 6.2500e-05
+Epoch 63/150
+13/13 - 8s - 607ms/step - hard_mask_dice: 0.9151 - hard_mask_iou: 0.8435 - hard_mask_precision: 0.9156 - hard_mask_recall: 0.9146 - loss: 0.1249 - val_hard_mask_dice: 0.6627 - val_hard_mask_iou: 0.4955 - val_hard_mask_precision: 0.8126 - val_hard_mask_recall: 0.5594 - val_loss: 0.3909 - learning_rate: 6.2500e-05
+Epoch 64/150
+13/13 - 5s - 386ms/step - hard_mask_dice: 0.9146 - hard_mask_iou: 0.8427 - hard_mask_precision: 0.8985 - hard_mask_recall: 0.9313 - loss: 0.1230 - val_hard_mask_dice: 0.6526 - val_hard_mask_iou: 0.4844 - val_hard_mask_precision: 0.8267 - val_hard_mask_recall: 0.5391 - val_loss: 0.3878 - learning_rate: 6.2500e-05
+Epoch 65/150
+13/13 - 5s - 388ms/step - hard_mask_dice: 0.9123 - hard_mask_iou: 0.8387 - hard_mask_precision: 0.9207 - hard_mask_recall: 0.9039 - loss: 0.1486 - val_hard_mask_dice: 0.6279 - val_hard_mask_iou: 0.4577 - val_hard_mask_precision: 0.8398 - val_hard_mask_recall: 0.5014 - val_loss: 0.4084 - learning_rate: 6.2500e-05
+Epoch 66/150
+13/13 - 6s - 430ms/step - hard_mask_dice: 0.9133 - hard_mask_iou: 0.8404 - hard_mask_precision: 0.9272 - hard_mask_recall: 0.8998 - loss: 0.1239 - val_hard_mask_dice: 0.6315 - val_hard_mask_iou: 0.4614 - val_hard_mask_precision: 0.8248 - val_hard_mask_recall: 0.5116 - val_loss: 0.4149 - learning_rate: 6.2500e-05
+Epoch 67/150
+13/13 - 6s - 454ms/step - hard_mask_dice: 0.9172 - hard_mask_iou: 0.8470 - hard_mask_precision: 0.9156 - hard_mask_recall: 0.9188 - loss: 0.1176 - val_hard_mask_dice: 0.6516 - val_hard_mask_iou: 0.4832 - val_hard_mask_precision: 0.8166 - val_hard_mask_recall: 0.5420 - val_loss: 0.3903 - learning_rate: 6.2500e-05
+Epoch 68/150
+13/13 - 6s - 438ms/step - hard_mask_dice: 0.9119 - hard_mask_iou: 0.8381 - hard_mask_precision: 0.9161 - hard_mask_recall: 0.9077 - loss: 0.1246 - val_hard_mask_dice: 0.6257 - val_hard_mask_iou: 0.4553 - val_hard_mask_precision: 0.8125 - val_hard_mask_recall: 0.5087 - val_loss: 0.4116 - learning_rate: 6.2500e-05
+Epoch 69/150
+13/13 - 5s - 422ms/step - hard_mask_dice: 0.9170 - hard_mask_iou: 0.8467 - hard_mask_precision: 0.9264 - hard_mask_recall: 0.9077 - loss: 0.1174 - val_hard_mask_dice: 0.6258 - val_hard_mask_iou: 0.4554 - val_hard_mask_precision: 0.8282 - val_hard_mask_recall: 0.5029 - val_loss: 0.4073 - learning_rate: 6.2500e-05
+Epoch 70/150
+13/13 - 5s - 381ms/step - hard_mask_dice: 0.9137 - hard_mask_iou: 0.8411 - hard_mask_precision: 0.8922 - hard_mask_recall: 0.9362 - loss: 0.1247 - val_hard_mask_dice: 0.5929 - val_hard_mask_iou: 0.4214 - val_hard_mask_precision: 0.8264 - val_hard_mask_recall: 0.4623 - val_loss: 0.4119 - learning_rate: 6.2500e-05
+Epoch 71/150
+13/13 - 5s - 419ms/step - hard_mask_dice: 0.9144 - hard_mask_iou: 0.8423 - hard_mask_precision: 0.9042 - hard_mask_recall: 0.9248 - loss: 0.1185 - val_hard_mask_dice: 0.5578 - val_hard_mask_iou: 0.3868 - val_hard_mask_precision: 0.8466 - val_hard_mask_recall: 0.4159 - val_loss: 0.4412 - learning_rate: 3.1250e-05
+Epoch 72/150
+13/13 - 6s - 442ms/step - hard_mask_dice: 0.9157 - hard_mask_iou: 0.8446 - hard_mask_precision: 0.9327 - hard_mask_recall: 0.8994 - loss: 0.1327 - val_hard_mask_dice: 0.5744 - val_hard_mask_iou: 0.4029 - val_hard_mask_precision: 0.8408 - val_hard_mask_recall: 0.4362 - val_loss: 0.4263 - learning_rate: 3.1250e-05
+Epoch 73/150
+13/13 - 6s - 474ms/step - hard_mask_dice: 0.9131 - hard_mask_iou: 0.8402 - hard_mask_precision: 0.9310 - hard_mask_recall: 0.8960 - loss: 0.1245 - val_hard_mask_dice: 0.6013 - val_hard_mask_iou: 0.4299 - val_hard_mask_precision: 0.8451 - val_hard_mask_recall: 0.4667 - val_loss: 0.4081 - learning_rate: 3.1250e-05
+Epoch 74/150
+13/13 - 7s - 546ms/step - hard_mask_dice: 0.9126 - hard_mask_iou: 0.8393 - hard_mask_precision: 0.9195 - hard_mask_recall: 0.9058 - loss: 0.1226 - val_hard_mask_dice: 0.6684 - val_hard_mask_iou: 0.5020 - val_hard_mask_precision: 0.8467 - val_hard_mask_recall: 0.5522 - val_loss: 0.3710 - learning_rate: 3.1250e-05
+Epoch 75/150
+13/13 - 4s - 332ms/step - hard_mask_dice: 0.9115 - hard_mask_iou: 0.8375 - hard_mask_precision: 0.9019 - hard_mask_recall: 0.9214 - loss: 0.1285 - val_hard_mask_dice: 0.6206 - val_hard_mask_iou: 0.4499 - val_hard_mask_precision: 0.8337 - val_hard_mask_recall: 0.4942 - val_loss: 0.3940 - learning_rate: 3.1250e-05
+Epoch 76/150
+13/13 - 4s - 333ms/step - hard_mask_dice: 0.9181 - hard_mask_iou: 0.8486 - hard_mask_precision: 0.9126 - hard_mask_recall: 0.9237 - loss: 0.1267 - val_hard_mask_dice: 0.6044 - val_hard_mask_iou: 0.4331 - val_hard_mask_precision: 0.8342 - val_hard_mask_recall: 0.4739 - val_loss: 0.4113 - learning_rate: 3.1250e-05
+Epoch 77/150
+13/13 - 5s - 350ms/step - hard_mask_dice: 0.9157 - hard_mask_iou: 0.8445 - hard_mask_precision: 0.9202 - hard_mask_recall: 0.9112 - loss: 0.1104 - val_hard_mask_dice: 0.6432 - val_hard_mask_iou: 0.4740 - val_hard_mask_precision: 0.8202 - val_hard_mask_recall: 0.5290 - val_loss: 0.3918 - learning_rate: 3.1250e-05
+Epoch 78/150
+13/13 - 6s - 456ms/step - hard_mask_dice: 0.9167 - hard_mask_iou: 0.8462 - hard_mask_precision: 0.9207 - hard_mask_recall: 0.9127 - loss: 0.1237 - val_hard_mask_dice: 0.6551 - val_hard_mask_iou: 0.4870 - val_hard_mask_precision: 0.8210 - val_hard_mask_recall: 0.5449 - val_loss: 0.3827 - learning_rate: 3.1250e-05
+Epoch 79/150
+13/13 - 6s - 454ms/step - hard_mask_dice: 0.9193 - hard_mask_iou: 0.8506 - hard_mask_precision: 0.9179 - hard_mask_recall: 0.9207 - loss: 0.1118 - val_hard_mask_dice: 0.6667 - val_hard_mask_iou: 0.5000 - val_hard_mask_precision: 0.8155 - val_hard_mask_recall: 0.5638 - val_loss: 0.3779 - learning_rate: 3.1250e-05
+Epoch 80/150
+13/13 - 5s - 410ms/step - hard_mask_dice: 0.9204 - hard_mask_iou: 0.8526 - hard_mask_precision: 0.9020 - hard_mask_recall: 0.9396 - loss: 0.1255 - val_hard_mask_dice: 0.6359 - val_hard_mask_iou: 0.4661 - val_hard_mask_precision: 0.8211 - val_hard_mask_recall: 0.5188 - val_loss: 0.3873 - learning_rate: 3.1250e-05
+Epoch 81/150
+13/13 - 5s - 386ms/step - hard_mask_dice: 0.9140 - hard_mask_iou: 0.8416 - hard_mask_precision: 0.9223 - hard_mask_recall: 0.9058 - loss: 0.1296 - val_hard_mask_dice: 0.6298 - val_hard_mask_iou: 0.4596 - val_hard_mask_precision: 0.8190 - val_hard_mask_recall: 0.5116 - val_loss: 0.3942 - learning_rate: 1.5625e-05
+Epoch 82/150
+13/13 - 6s - 488ms/step - hard_mask_dice: 0.9165 - hard_mask_iou: 0.8459 - hard_mask_precision: 0.9247 - hard_mask_recall: 0.9085 - loss: 0.1350 - val_hard_mask_dice: 0.6586 - val_hard_mask_iou: 0.4910 - val_hard_mask_precision: 0.8190 - val_hard_mask_recall: 0.5507 - val_loss: 0.3763 - learning_rate: 1.5625e-05
+Epoch 83/150
+13/13 - 6s - 439ms/step - hard_mask_dice: 0.9155 - hard_mask_iou: 0.8442 - hard_mask_precision: 0.9196 - hard_mask_recall: 0.9115 - loss: 0.1172 - val_hard_mask_dice: 0.6638 - val_hard_mask_iou: 0.4968 - val_hard_mask_precision: 0.8161 - val_hard_mask_recall: 0.5594 - val_loss: 0.3728 - learning_rate: 1.5625e-05
+Epoch 84/150
+13/13 - 5s - 422ms/step - hard_mask_dice: 0.9204 - hard_mask_iou: 0.8526 - hard_mask_precision: 0.9209 - hard_mask_recall: 0.9199 - loss: 0.1282 - val_hard_mask_dice: 0.6632 - val_hard_mask_iou: 0.4961 - val_hard_mask_precision: 0.8143 - val_hard_mask_recall: 0.5594 - val_loss: 0.3760 - learning_rate: 1.5625e-05
+Epoch 85/150
+13/13 - 9s - 662ms/step - hard_mask_dice: 0.9188 - hard_mask_iou: 0.8498 - hard_mask_precision: 0.9184 - hard_mask_recall: 0.9191 - loss: 0.1361 - val_hard_mask_dice: 0.6712 - val_hard_mask_iou: 0.5051 - val_hard_mask_precision: 0.8140 - val_hard_mask_recall: 0.5710 - val_loss: 0.3760 - learning_rate: 1.5625e-05
+Epoch 86/150
+13/13 - 4s - 325ms/step - hard_mask_dice: 0.9159 - hard_mask_iou: 0.8448 - hard_mask_precision: 0.9203 - hard_mask_recall: 0.9115 - loss: 0.1249 - val_hard_mask_dice: 0.6689 - val_hard_mask_iou: 0.5026 - val_hard_mask_precision: 0.8133 - val_hard_mask_recall: 0.5681 - val_loss: 0.3768 - learning_rate: 1.5625e-05
+Epoch 87/150
+13/13 - 7s - 554ms/step - hard_mask_dice: 0.9172 - hard_mask_iou: 0.8470 - hard_mask_precision: 0.9156 - hard_mask_recall: 0.9188 - loss: 0.1178 - val_hard_mask_dice: 0.6723 - val_hard_mask_iou: 0.5064 - val_hard_mask_precision: 0.8144 - val_hard_mask_recall: 0.5725 - val_loss: 0.3746 - learning_rate: 1.0000e-05
+Epoch 88/150
+13/13 - 5s - 366ms/step - hard_mask_dice: 0.9173 - hard_mask_iou: 0.8472 - hard_mask_precision: 0.9192 - hard_mask_recall: 0.9153 - loss: 0.1210 - val_hard_mask_dice: 0.6632 - val_hard_mask_iou: 0.4961 - val_hard_mask_precision: 0.8143 - val_hard_mask_recall: 0.5594 - val_loss: 0.3821 - learning_rate: 1.0000e-05
+Epoch 89/150
+13/13 - 8s - 595ms/step - hard_mask_dice: 0.9175 - hard_mask_iou: 0.8476 - hard_mask_precision: 0.9275 - hard_mask_recall: 0.9077 - loss: 0.1265 - val_hard_mask_dice: 0.6740 - val_hard_mask_iou: 0.5083 - val_hard_mask_precision: 0.8135 - val_hard_mask_recall: 0.5754 - val_loss: 0.3785 - learning_rate: 1.0000e-05
+Epoch 90/150
+13/13 - 5s - 360ms/step - hard_mask_dice: 0.9196 - hard_mask_iou: 0.8512 - hard_mask_precision: 0.9205 - hard_mask_recall: 0.9188 - loss: 0.1185 - val_hard_mask_dice: 0.6734 - val_hard_mask_iou: 0.5077 - val_hard_mask_precision: 0.8089 - val_hard_mask_recall: 0.5768 - val_loss: 0.3797 - learning_rate: 1.0000e-05
+Epoch 91/150
+13/13 - 9s - 690ms/step - hard_mask_dice: 0.9194 - hard_mask_iou: 0.8508 - hard_mask_precision: 0.9211 - hard_mask_recall: 0.9176 - loss: 0.1105 - val_hard_mask_dice: 0.6756 - val_hard_mask_iou: 0.5102 - val_hard_mask_precision: 0.8040 - val_hard_mask_recall: 0.5826 - val_loss: 0.3786 - learning_rate: 1.0000e-05
+Epoch 92/150
+13/13 - 7s - 570ms/step - hard_mask_dice: 0.9175 - hard_mask_iou: 0.8476 - hard_mask_precision: 0.9166 - hard_mask_recall: 0.9184 - loss: 0.1216 - val_hard_mask_dice: 0.6784 - val_hard_mask_iou: 0.5133 - val_hard_mask_precision: 0.8064 - val_hard_mask_recall: 0.5855 - val_loss: 0.3767 - learning_rate: 1.0000e-05
+Epoch 93/150
+13/13 - 4s - 323ms/step - hard_mask_dice: 0.9200 - hard_mask_iou: 0.8518 - hard_mask_precision: 0.9189 - hard_mask_recall: 0.9210 - loss: 0.1202 - val_hard_mask_dice: 0.6746 - val_hard_mask_iou: 0.5090 - val_hard_mask_precision: 0.8122 - val_hard_mask_recall: 0.5768 - val_loss: 0.3766 - learning_rate: 1.0000e-05
+Epoch 94/150
+13/13 - 5s - 353ms/step - hard_mask_dice: 0.9142 - hard_mask_iou: 0.8420 - hard_mask_precision: 0.9220 - hard_mask_recall: 0.9066 - loss: 0.1304 - val_hard_mask_dice: 0.6740 - val_hard_mask_iou: 0.5083 - val_hard_mask_precision: 0.8165 - val_hard_mask_recall: 0.5739 - val_loss: 0.3765 - learning_rate: 1.0000e-05
+Epoch 95/150
+13/13 - 6s - 463ms/step - hard_mask_dice: 0.9140 - hard_mask_iou: 0.8417 - hard_mask_precision: 0.9240 - hard_mask_recall: 0.9043 - loss: 0.1154 - val_hard_mask_dice: 0.6746 - val_hard_mask_iou: 0.5090 - val_hard_mask_precision: 0.8152 - val_hard_mask_recall: 0.5754 - val_loss: 0.3743 - learning_rate: 1.0000e-05
+Epoch 96/150
+13/13 - 7s - 520ms/step - hard_mask_dice: 0.9175 - hard_mask_iou: 0.8475 - hard_mask_precision: 0.9302 - hard_mask_recall: 0.9051 - loss: 0.1090 - val_hard_mask_dice: 0.6785 - val_hard_mask_iou: 0.5134 - val_hard_mask_precision: 0.8150 - val_hard_mask_recall: 0.5812 - val_loss: 0.3742 - learning_rate: 1.0000e-05
+Epoch 97/150
+13/13 - 6s - 499ms/step - hard_mask_dice: 0.9175 - hard_mask_iou: 0.8475 - hard_mask_precision: 0.9255 - hard_mask_recall: 0.9096 - loss: 0.1365 - val_hard_mask_dice: 0.6807 - val_hard_mask_iou: 0.5160 - val_hard_mask_precision: 0.8129 - val_hard_mask_recall: 0.5855 - val_loss: 0.3749 - learning_rate: 1.0000e-05
+Epoch 98/150
+13/13 - 6s - 431ms/step - hard_mask_dice: 0.9205 - hard_mask_iou: 0.8527 - hard_mask_precision: 0.9245 - hard_mask_recall: 0.9165 - loss: 0.1267 - val_hard_mask_dice: 0.6813 - val_hard_mask_iou: 0.5166 - val_hard_mask_precision: 0.8145 - val_hard_mask_recall: 0.5855 - val_loss: 0.3716 - learning_rate: 1.0000e-05
+Epoch 99/150
+13/13 - 6s - 491ms/step - hard_mask_dice: 0.9164 - hard_mask_iou: 0.8457 - hard_mask_precision: 0.9213 - hard_mask_recall: 0.9115 - loss: 0.1262 - val_hard_mask_dice: 0.6874 - val_hard_mask_iou: 0.5237 - val_hard_mask_precision: 0.8180 - val_hard_mask_recall: 0.5928 - val_loss: 0.3648 - learning_rate: 1.0000e-05
+Epoch 100/150
+13/13 - 4s - 327ms/step - hard_mask_dice: 0.9176 - hard_mask_iou: 0.8477 - hard_mask_precision: 0.9116 - hard_mask_recall: 0.9237 - loss: 0.1147 - val_hard_mask_dice: 0.6863 - val_hard_mask_iou: 0.5224 - val_hard_mask_precision: 0.8176 - val_hard_mask_recall: 0.5913 - val_loss: 0.3622 - learning_rate: 1.0000e-05
+Epoch 101/150
+13/13 - 5s - 349ms/step - hard_mask_dice: 0.9190 - hard_mask_iou: 0.8501 - hard_mask_precision: 0.9099 - hard_mask_recall: 0.9282 - loss: 0.1051 - val_hard_mask_dice: 0.6752 - val_hard_mask_iou: 0.5096 - val_hard_mask_precision: 0.8169 - val_hard_mask_recall: 0.5754 - val_loss: 0.3700 - learning_rate: 1.0000e-05
+Epoch 102/150
+13/13 - 5s - 367ms/step - hard_mask_dice: 0.9170 - hard_mask_iou: 0.8466 - hard_mask_precision: 0.9159 - hard_mask_recall: 0.9180 - loss: 0.1178 - val_hard_mask_dice: 0.6672 - val_hard_mask_iou: 0.5006 - val_hard_mask_precision: 0.8142 - val_hard_mask_recall: 0.5652 - val_loss: 0.3734 - learning_rate: 1.0000e-05
+Epoch 103/150
+13/13 - 5s - 392ms/step - hard_mask_dice: 0.9178 - hard_mask_iou: 0.8481 - hard_mask_precision: 0.9097 - hard_mask_recall: 0.9260 - loss: 0.1281 - val_hard_mask_dice: 0.6712 - val_hard_mask_iou: 0.5051 - val_hard_mask_precision: 0.8111 - val_hard_mask_recall: 0.5725 - val_loss: 0.3709 - learning_rate: 1.0000e-05
+Epoch 104/150
+13/13 - 6s - 473ms/step - hard_mask_dice: 0.9203 - hard_mask_iou: 0.8523 - hard_mask_precision: 0.9077 - hard_mask_recall: 0.9332 - loss: 0.1293 - val_hard_mask_dice: 0.6581 - val_hard_mask_iou: 0.4904 - val_hard_mask_precision: 0.8080 - val_hard_mask_recall: 0.5551 - val_loss: 0.3752 - learning_rate: 1.0000e-05
+Epoch 105/150
+13/13 - 6s - 461ms/step - hard_mask_dice: 0.9174 - hard_mask_iou: 0.8473 - hard_mask_precision: 0.9160 - hard_mask_recall: 0.9188 - loss: 0.1265 - val_hard_mask_dice: 0.6434 - val_hard_mask_iou: 0.4742 - val_hard_mask_precision: 0.8106 - val_hard_mask_recall: 0.5333 - val_loss: 0.3830 - learning_rate: 1.0000e-05
+Epoch 106/150
+13/13 - 6s - 455ms/step - hard_mask_dice: 0.9212 - hard_mask_iou: 0.8539 - hard_mask_precision: 0.9283 - hard_mask_recall: 0.9142 - loss: 0.1228 - val_hard_mask_dice: 0.6415 - val_hard_mask_iou: 0.4723 - val_hard_mask_precision: 0.8115 - val_hard_mask_recall: 0.5304 - val_loss: 0.3840 - learning_rate: 1.0000e-05
+Epoch 107/150
+13/13 - 5s - 420ms/step - hard_mask_dice: 0.9198 - hard_mask_iou: 0.8516 - hard_mask_precision: 0.9205 - hard_mask_recall: 0.9191 - loss: 0.1215 - val_hard_mask_dice: 0.6592 - val_hard_mask_iou: 0.4916 - val_hard_mask_precision: 0.8145 - val_hard_mask_recall: 0.5536 - val_loss: 0.3775 - learning_rate: 1.0000e-05
+Epoch 108/150
+13/13 - 6s - 499ms/step - hard_mask_dice: 0.9259 - hard_mask_iou: 0.8621 - hard_mask_precision: 0.9240 - hard_mask_recall: 0.9279 - loss: 0.1193 - val_hard_mask_dice: 0.6632 - val_hard_mask_iou: 0.4961 - val_hard_mask_precision: 0.8143 - val_hard_mask_recall: 0.5594 - val_loss: 0.3746 - learning_rate: 1.0000e-05
+Epoch 109/150
+13/13 - 6s - 440ms/step - hard_mask_dice: 0.9254 - hard_mask_iou: 0.8612 - hard_mask_precision: 0.9275 - hard_mask_recall: 0.9233 - loss: 0.1050 - val_hard_mask_dice: 0.6638 - val_hard_mask_iou: 0.4968 - val_hard_mask_precision: 0.8161 - val_hard_mask_recall: 0.5594 - val_loss: 0.3742 - learning_rate: 1.0000e-05
+Epoch 110/150
+13/13 - 6s - 435ms/step - hard_mask_dice: 0.9220 - hard_mask_iou: 0.8552 - hard_mask_precision: 0.9199 - hard_mask_recall: 0.9241 - loss: 0.1177 - val_hard_mask_dice: 0.6695 - val_hard_mask_iou: 0.5032 - val_hard_mask_precision: 0.8180 - val_hard_mask_recall: 0.5667 - val_loss: 0.3689 - learning_rate: 1.0000e-05
+Epoch 111/150
+13/13 - 6s - 431ms/step - hard_mask_dice: 0.9161 - hard_mask_iou: 0.8452 - hard_mask_precision: 0.9180 - hard_mask_recall: 0.9142 - loss: 0.1123 - val_hard_mask_dice: 0.6735 - val_hard_mask_iou: 0.5077 - val_hard_mask_precision: 0.8208 - val_hard_mask_recall: 0.5710 - val_loss: 0.3659 - learning_rate: 1.0000e-05
+Epoch 112/150
+13/13 - 6s - 437ms/step - hard_mask_dice: 0.9221 - hard_mask_iou: 0.8554 - hard_mask_precision: 0.9235 - hard_mask_recall: 0.9207 - loss: 0.1089 - val_hard_mask_dice: 0.6763 - val_hard_mask_iou: 0.5110 - val_hard_mask_precision: 0.8233 - val_hard_mask_recall: 0.5739 - val_loss: 0.3648 - learning_rate: 1.0000e-05
+Epoch 113/150
+13/13 - 6s - 424ms/step - hard_mask_dice: 0.9210 - hard_mask_iou: 0.8535 - hard_mask_precision: 0.9310 - hard_mask_recall: 0.9112 - loss: 0.1289 - val_hard_mask_dice: 0.6786 - val_hard_mask_iou: 0.5136 - val_hard_mask_precision: 0.8271 - val_hard_mask_recall: 0.5754 - val_loss: 0.3632 - learning_rate: 1.0000e-05
+Epoch 114/150
+13/13 - 6s - 464ms/step - hard_mask_dice: 0.9181 - hard_mask_iou: 0.8486 - hard_mask_precision: 0.9235 - hard_mask_recall: 0.9127 - loss: 0.1210 - val_hard_mask_dice: 0.6836 - val_hard_mask_iou: 0.5193 - val_hard_mask_precision: 0.8241 - val_hard_mask_recall: 0.5841 - val_loss: 0.3602 - learning_rate: 1.0000e-05
+Epoch 115/150
+13/13 - 5s - 416ms/step - hard_mask_dice: 0.9237 - hard_mask_iou: 0.8583 - hard_mask_precision: 0.9230 - hard_mask_recall: 0.9244 - loss: 0.1091 - val_hard_mask_dice: 0.6868 - val_hard_mask_iou: 0.5230 - val_hard_mask_precision: 0.8164 - val_hard_mask_recall: 0.5928 - val_loss: 0.3612 - learning_rate: 1.0000e-05
+Epoch 116/150
+13/13 - 5s - 407ms/step - hard_mask_dice: 0.9231 - hard_mask_iou: 0.8572 - hard_mask_precision: 0.9165 - hard_mask_recall: 0.9298 - loss: 0.0983 - val_hard_mask_dice: 0.6824 - val_hard_mask_iou: 0.5179 - val_hard_mask_precision: 0.8149 - val_hard_mask_recall: 0.5870 - val_loss: 0.3655 - learning_rate: 1.0000e-05
+Epoch 117/150
+13/13 - 5s - 398ms/step - hard_mask_dice: 0.9207 - hard_mask_iou: 0.8531 - hard_mask_precision: 0.9133 - hard_mask_recall: 0.9282 - loss: 0.1270 - val_hard_mask_dice: 0.6655 - val_hard_mask_iou: 0.4987 - val_hard_mask_precision: 0.8151 - val_hard_mask_recall: 0.5623 - val_loss: 0.3746 - learning_rate: 1.0000e-05
+Epoch 1/150
+13/13 - 19s - 1s/step - hard_mask_dice: 0.0017 - hard_mask_iou: 8.7399e-04 - hard_mask_precision: 8.7792e-04 - hard_mask_recall: 0.1636 - loss: 1.1361 - val_hard_mask_dice: 0.0014 - val_hard_mask_iou: 7.1611e-04 - val_hard_mask_precision: 7.1611e-04 - val_hard_mask_recall: 1.0000 - val_loss: 1.2160 - learning_rate: 0.0010
+Epoch 2/150
+13/13 - 1s - 84ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0779 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1077 - learning_rate: 0.0010
+Epoch 3/150
+13/13 - 1s - 77ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0600 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0969 - learning_rate: 0.0010
+Epoch 4/150
+13/13 - 1s - 83ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0531 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1083 - learning_rate: 0.0010
+Epoch 5/150
+13/13 - 1s - 92ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0470 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0956 - learning_rate: 0.0010
+Epoch 6/150
+13/13 - 1s - 84ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0423 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1077 - learning_rate: 0.0010
+Epoch 7/150
+13/13 - 1s - 78ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0385 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0809 - learning_rate: 0.0010
+Epoch 8/150
+13/13 - 1s - 79ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0349 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0539 - learning_rate: 0.0010
+Epoch 9/150
+13/13 - 1s - 78ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0318 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0503 - learning_rate: 0.0010
+Epoch 10/150
+13/13 - 1s - 78ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0292 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0399 - learning_rate: 0.0010
+Epoch 11/150
+13/13 - 1s - 77ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0267 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0347 - learning_rate: 0.0010
+Epoch 12/150
+13/13 - 1s - 79ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0244 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0324 - learning_rate: 0.0010
+Epoch 13/150
+13/13 - 1s - 80ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0222 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0289 - learning_rate: 0.0010
+Epoch 14/150
+13/13 - 1s - 81ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0200 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0265 - learning_rate: 0.0010
+Epoch 15/150
+13/13 - 1s - 89ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0189 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0228 - learning_rate: 0.0010
+Epoch 16/150
+13/13 - 1s - 81ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0176 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0183 - learning_rate: 0.0010
+Epoch 17/150
+13/13 - 1s - 78ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0163 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0111 - learning_rate: 0.0010
+Epoch 18/150
+13/13 - 1s - 79ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0148 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0143 - learning_rate: 0.0010
+Epoch 19/150
+13/13 - 1s - 82ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0136 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0102 - learning_rate: 0.0010
+Epoch 20/150
+13/13 - 1s - 85ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0124 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0081 - learning_rate: 0.0010
+Epoch 21/150
+13/13 - 1s - 83ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0112 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0147 - learning_rate: 0.0010
+Epoch 22/150
+13/13 - 2s - 142ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0134 - val_hard_mask_dice: 0.0087 - val_hard_mask_iou: 0.0044 - val_hard_mask_precision: 0.0044 - val_hard_mask_recall: 0.6348 - val_loss: 1.0425 - learning_rate: 0.0010
+Epoch 23/150
+13/13 - 1s - 87ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0126 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0543 - learning_rate: 0.0010
+Epoch 24/150
+13/13 - 1s - 89ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0102 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0778 - learning_rate: 0.0010
+Epoch 25/150
+13/13 - 1s - 86ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0086 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0206 - learning_rate: 0.0010
+Epoch 26/150
+13/13 - 1s - 87ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0080 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0208 - learning_rate: 0.0010
+Epoch 27/150
+13/13 - 1s - 88ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0071 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0139 - learning_rate: 5.0000e-04
+Epoch 28/150
+13/13 - 1s - 87ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0062 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0106 - learning_rate: 5.0000e-04
+Epoch 29/150
+13/13 - 1s - 87ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0061 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0137 - learning_rate: 5.0000e-04
+Epoch 30/150
+13/13 - 1s - 90ms/step - hard_mask_dice: 0.0000e+00 - hard_mask_iou: 0.0000e+00 - hard_mask_precision: 0.0000e+00 - hard_mask_recall: 0.0000e+00 - loss: 1.0046 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0077 - learning_rate: 5.0000e-04
+Epoch 31/150
+13/13 - 1s - 93ms/step - hard_mask_dice: 0.0030 - hard_mask_iou: 0.0015 - hard_mask_precision: 0.0976 - hard_mask_recall: 0.0015 - loss: 1.0022 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0063 - learning_rate: 5.0000e-04
+Epoch 32/150
+13/13 - 1s - 108ms/step - hard_mask_dice: 0.0338 - hard_mask_iou: 0.0172 - hard_mask_precision: 0.0184 - hard_mask_recall: 0.2050 - loss: 1.0020 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0063 - learning_rate: 5.0000e-04
+Epoch 33/150
+13/13 - 1s - 92ms/step - hard_mask_dice: 0.0531 - hard_mask_iou: 0.0273 - hard_mask_precision: 0.0310 - hard_mask_recall: 0.1868 - loss: 1.0013 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0049 - learning_rate: 5.0000e-04
+Epoch 34/150
+13/13 - 1s - 88ms/step - hard_mask_dice: 0.0803 - hard_mask_iou: 0.0418 - hard_mask_precision: 0.0439 - hard_mask_recall: 0.4681 - loss: 0.9938 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0038 - learning_rate: 5.0000e-04
+Epoch 35/150
+13/13 - 1s - 89ms/step - hard_mask_dice: 0.1241 - hard_mask_iou: 0.0662 - hard_mask_precision: 0.0680 - hard_mask_recall: 0.7126 - loss: 0.9834 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0047 - learning_rate: 5.0000e-04
+Epoch 36/150
+13/13 - 2s - 166ms/step - hard_mask_dice: 0.1514 - hard_mask_iou: 0.0819 - hard_mask_precision: 0.0841 - hard_mask_recall: 0.7601 - loss: 0.9759 - val_hard_mask_dice: 0.3528 - val_hard_mask_iou: 0.2142 - val_hard_mask_precision: 0.2401 - val_hard_mask_recall: 0.6652 - val_loss: 0.9829 - learning_rate: 5.0000e-04
+Epoch 37/150
+13/13 - 1s - 91ms/step - hard_mask_dice: 0.2511 - hard_mask_iou: 0.1436 - hard_mask_precision: 0.1490 - hard_mask_recall: 0.7984 - loss: 0.9643 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0041 - learning_rate: 5.0000e-04
+Epoch 38/150
+13/13 - 1s - 90ms/step - hard_mask_dice: 0.2844 - hard_mask_iou: 0.1658 - hard_mask_precision: 0.1722 - hard_mask_recall: 0.8170 - loss: 0.9541 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0034 - learning_rate: 5.0000e-04
+Epoch 39/150
+13/13 - 1s - 95ms/step - hard_mask_dice: 0.2640 - hard_mask_iou: 0.1520 - hard_mask_precision: 0.1567 - hard_mask_recall: 0.8356 - loss: 0.9463 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0029 - learning_rate: 5.0000e-04
+Epoch 40/150
+13/13 - 1s - 92ms/step - hard_mask_dice: 0.2299 - hard_mask_iou: 0.1299 - hard_mask_precision: 0.1329 - hard_mask_recall: 0.8523 - loss: 0.9421 - val_hard_mask_dice: 0.0241 - val_hard_mask_iou: 0.0122 - val_hard_mask_precision: 0.0714 - val_hard_mask_recall: 0.0145 - val_loss: 1.0014 - learning_rate: 5.0000e-04
+Epoch 41/150
+13/13 - 1s - 93ms/step - hard_mask_dice: 0.3053 - hard_mask_iou: 0.1802 - hard_mask_precision: 0.1873 - hard_mask_recall: 0.8250 - loss: 0.9305 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0058 - learning_rate: 5.0000e-04
+Epoch 42/150
+13/13 - 1s - 95ms/step - hard_mask_dice: 0.3510 - hard_mask_iou: 0.2129 - hard_mask_precision: 0.2228 - hard_mask_recall: 0.8269 - loss: 0.9160 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0014 - learning_rate: 5.0000e-04
+Epoch 43/150
+13/13 - 1s - 101ms/step - hard_mask_dice: 0.3243 - hard_mask_iou: 0.1936 - hard_mask_precision: 0.2032 - hard_mask_recall: 0.8026 - loss: 0.9096 - val_hard_mask_dice: 0.1502 - val_hard_mask_iou: 0.0812 - val_hard_mask_precision: 0.2133 - val_hard_mask_recall: 0.1159 - val_loss: 0.9868 - learning_rate: 2.5000e-04
+Epoch 44/150
+13/13 - 1s - 100ms/step - hard_mask_dice: 0.3397 - hard_mask_iou: 0.2046 - hard_mask_precision: 0.2164 - hard_mask_recall: 0.7904 - loss: 0.9044 - val_hard_mask_dice: 0.2765 - val_hard_mask_iou: 0.1605 - val_hard_mask_precision: 0.3200 - val_hard_mask_recall: 0.2435 - val_loss: 0.9691 - learning_rate: 2.5000e-04
+Epoch 45/150
+13/13 - 1s - 107ms/step - hard_mask_dice: 0.3433 - hard_mask_iou: 0.2072 - hard_mask_precision: 0.2147 - hard_mask_recall: 0.8554 - loss: 0.8921 - val_hard_mask_dice: 0.2829 - val_hard_mask_iou: 0.1647 - val_hard_mask_precision: 0.3777 - val_hard_mask_recall: 0.2261 - val_loss: 0.9642 - learning_rate: 2.5000e-04
+Epoch 46/150
+13/13 - 2s - 127ms/step - hard_mask_dice: 0.4006 - hard_mask_iou: 0.2505 - hard_mask_precision: 0.2665 - hard_mask_recall: 0.8064 - loss: 0.8827 - val_hard_mask_dice: 0.2687 - val_hard_mask_iou: 0.1552 - val_hard_mask_precision: 0.4433 - val_hard_mask_recall: 0.1928 - val_loss: 0.9676 - learning_rate: 2.5000e-04
+Epoch 47/150
+13/13 - 2s - 159ms/step - hard_mask_dice: 0.4395 - hard_mask_iou: 0.2816 - hard_mask_precision: 0.3024 - hard_mask_recall: 0.8041 - loss: 0.8715 - val_hard_mask_dice: 0.3642 - val_hard_mask_iou: 0.2226 - val_hard_mask_precision: 0.2850 - val_hard_mask_recall: 0.5043 - val_loss: 0.9341 - learning_rate: 2.5000e-04
+Epoch 48/150
+13/13 - 2s - 187ms/step - hard_mask_dice: 0.3494 - hard_mask_iou: 0.2117 - hard_mask_precision: 0.2227 - hard_mask_recall: 0.8106 - loss: 0.8776 - val_hard_mask_dice: 0.4164 - val_hard_mask_iou: 0.2629 - val_hard_mask_precision: 0.3827 - val_hard_mask_recall: 0.4565 - val_loss: 0.9271 - learning_rate: 2.5000e-04
+Epoch 49/150
+13/13 - 1s - 93ms/step - hard_mask_dice: 0.4057 - hard_mask_iou: 0.2545 - hard_mask_precision: 0.2693 - hard_mask_recall: 0.8227 - loss: 0.8576 - val_hard_mask_dice: 0.2286 - val_hard_mask_iou: 0.1291 - val_hard_mask_precision: 0.4350 - val_hard_mask_recall: 0.1551 - val_loss: 0.9689 - learning_rate: 2.5000e-04
+Epoch 50/150
+13/13 - 1s - 100ms/step - hard_mask_dice: 0.3548 - hard_mask_iou: 0.2157 - hard_mask_precision: 0.2260 - hard_mask_recall: 0.8250 - loss: 0.8596 - val_hard_mask_dice: 0.2883 - val_hard_mask_iou: 0.1685 - val_hard_mask_precision: 0.1830 - val_hard_mask_recall: 0.6797 - val_loss: 0.9053 - learning_rate: 2.5000e-04
+Epoch 51/150
+13/13 - 1s - 97ms/step - hard_mask_dice: 0.3950 - hard_mask_iou: 0.2461 - hard_mask_precision: 0.2624 - hard_mask_recall: 0.7984 - loss: 0.8516 - val_hard_mask_dice: 0.3556 - val_hard_mask_iou: 0.2163 - val_hard_mask_precision: 0.4529 - val_hard_mask_recall: 0.2928 - val_loss: 0.9422 - learning_rate: 2.5000e-04
+Epoch 52/150
+13/13 - 1s - 99ms/step - hard_mask_dice: 0.4426 - hard_mask_iou: 0.2842 - hard_mask_precision: 0.3074 - hard_mask_recall: 0.7897 - loss: 0.8315 - val_hard_mask_dice: 0.2908 - val_hard_mask_iou: 0.1701 - val_hard_mask_precision: 0.2314 - val_hard_mask_recall: 0.3913 - val_loss: 0.9241 - learning_rate: 2.5000e-04
+Epoch 53/150
+13/13 - 2s - 123ms/step - hard_mask_dice: 0.4323 - hard_mask_iou: 0.2757 - hard_mask_precision: 0.2938 - hard_mask_recall: 0.8178 - loss: 0.8215 - val_hard_mask_dice: 0.2712 - val_hard_mask_iou: 0.1568 - val_hard_mask_precision: 0.2351 - val_hard_mask_recall: 0.3203 - val_loss: 0.9388 - learning_rate: 2.5000e-04
+Epoch 54/150
+13/13 - 1s - 108ms/step - hard_mask_dice: 0.4496 - hard_mask_iou: 0.2900 - hard_mask_precision: 0.3161 - hard_mask_recall: 0.7783 - loss: 0.8195 - val_hard_mask_dice: 0.2999 - val_hard_mask_iou: 0.1764 - val_hard_mask_precision: 0.2055 - val_hard_mask_recall: 0.5551 - val_loss: 0.9103 - learning_rate: 2.5000e-04
+Epoch 55/150
+13/13 - 1s - 88ms/step - hard_mask_dice: 0.4470 - hard_mask_iou: 0.2879 - hard_mask_precision: 0.3155 - hard_mask_recall: 0.7665 - loss: 0.8180 - val_hard_mask_dice: 0.2016 - val_hard_mask_iou: 0.1121 - val_hard_mask_precision: 0.1174 - val_hard_mask_recall: 0.7116 - val_loss: 0.9150 - learning_rate: 2.5000e-04
+Epoch 56/150
+13/13 - 2s - 124ms/step - hard_mask_dice: 0.4168 - hard_mask_iou: 0.2633 - hard_mask_precision: 0.2775 - hard_mask_recall: 0.8368 - loss: 0.8071 - val_hard_mask_dice: 0.3006 - val_hard_mask_iou: 0.1769 - val_hard_mask_precision: 0.5685 - val_hard_mask_recall: 0.2043 - val_loss: 0.9559 - learning_rate: 2.5000e-04
+Epoch 57/150
+13/13 - 1s - 97ms/step - hard_mask_dice: 0.4729 - hard_mask_iou: 0.3097 - hard_mask_precision: 0.3537 - hard_mask_recall: 0.7134 - loss: 0.8017 - val_hard_mask_dice: 0.2593 - val_hard_mask_iou: 0.1489 - val_hard_mask_precision: 0.1928 - val_hard_mask_recall: 0.3957 - val_loss: 0.9258 - learning_rate: 1.2500e-04
+Epoch 58/150
+13/13 - 1s - 110ms/step - hard_mask_dice: 0.4709 - hard_mask_iou: 0.3079 - hard_mask_precision: 0.3248 - hard_mask_recall: 0.8557 - loss: 0.7808 - val_hard_mask_dice: 0.3310 - val_hard_mask_iou: 0.1983 - val_hard_mask_precision: 0.3647 - val_hard_mask_recall: 0.3029 - val_loss: 0.9407 - learning_rate: 1.2500e-04
+Epoch 59/150
+13/13 - 1s - 87ms/step - hard_mask_dice: 0.5092 - hard_mask_iou: 0.3415 - hard_mask_precision: 0.3862 - hard_mask_recall: 0.7472 - loss: 0.7754 - val_hard_mask_dice: 0.3217 - val_hard_mask_iou: 0.1917 - val_hard_mask_precision: 0.4022 - val_hard_mask_recall: 0.2681 - val_loss: 0.9438 - learning_rate: 1.2500e-04
+Epoch 60/150
+13/13 - 1s - 98ms/step - hard_mask_dice: 0.4917 - hard_mask_iou: 0.3260 - hard_mask_precision: 0.3536 - hard_mask_recall: 0.8071 - loss: 0.7748 - val_hard_mask_dice: 0.3475 - val_hard_mask_iou: 0.2103 - val_hard_mask_precision: 0.4184 - val_hard_mask_recall: 0.2971 - val_loss: 0.9370 - learning_rate: 1.2500e-04
+Epoch 61/150
+13/13 - 1s - 93ms/step - hard_mask_dice: 0.4934 - hard_mask_iou: 0.3275 - hard_mask_precision: 0.3615 - hard_mask_recall: 0.7768 - loss: 0.7754 - val_hard_mask_dice: 0.3495 - val_hard_mask_iou: 0.2117 - val_hard_mask_precision: 0.3029 - val_hard_mask_recall: 0.4130 - val_loss: 0.9067 - learning_rate: 1.2500e-04
+Epoch 62/150
+13/13 - 1s - 102ms/step - hard_mask_dice: 0.5020 - hard_mask_iou: 0.3351 - hard_mask_precision: 0.3703 - hard_mask_recall: 0.7790 - loss: 0.7695 - val_hard_mask_dice: 0.3736 - val_hard_mask_iou: 0.2297 - val_hard_mask_precision: 0.3461 - val_hard_mask_recall: 0.4058 - val_loss: 0.8936 - learning_rate: 1.2500e-04
+Epoch 63/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.5183 - hard_mask_iou: 0.3498 - hard_mask_precision: 0.3936 - hard_mask_recall: 0.7585 - loss: 0.7678 - val_hard_mask_dice: 0.3397 - val_hard_mask_iou: 0.2046 - val_hard_mask_precision: 0.3320 - val_hard_mask_recall: 0.3478 - val_loss: 0.9126 - learning_rate: 1.2500e-04
+Epoch 64/150
+13/13 - 1s - 106ms/step - hard_mask_dice: 0.5220 - hard_mask_iou: 0.3531 - hard_mask_precision: 0.3967 - hard_mask_recall: 0.7627 - loss: 0.7588 - val_hard_mask_dice: 0.1955 - val_hard_mask_iou: 0.1084 - val_hard_mask_precision: 0.6695 - val_hard_mask_recall: 0.1145 - val_loss: 0.9694 - learning_rate: 1.2500e-04
+Epoch 65/150
+13/13 - 1s - 88ms/step - hard_mask_dice: 0.5182 - hard_mask_iou: 0.3497 - hard_mask_precision: 0.3917 - hard_mask_recall: 0.7654 - loss: 0.7521 - val_hard_mask_dice: 0.3370 - val_hard_mask_iou: 0.2027 - val_hard_mask_precision: 0.3048 - val_hard_mask_recall: 0.3768 - val_loss: 0.9047 - learning_rate: 1.2500e-04
+Epoch 66/150
+13/13 - 1s - 90ms/step - hard_mask_dice: 0.5272 - hard_mask_iou: 0.3580 - hard_mask_precision: 0.3899 - hard_mask_recall: 0.8140 - loss: 0.7465 - val_hard_mask_dice: 0.3302 - val_hard_mask_iou: 0.1978 - val_hard_mask_precision: 0.3944 - val_hard_mask_recall: 0.2841 - val_loss: 0.9169 - learning_rate: 1.2500e-04
+Epoch 67/150
+13/13 - 1s - 97ms/step - hard_mask_dice: 0.5538 - hard_mask_iou: 0.3830 - hard_mask_precision: 0.4598 - hard_mask_recall: 0.6963 - loss: 0.7482 - val_hard_mask_dice: 0.3587 - val_hard_mask_iou: 0.2186 - val_hard_mask_precision: 0.4124 - val_hard_mask_recall: 0.3174 - val_loss: 0.9126 - learning_rate: 1.2500e-04
+Epoch 68/150
+13/13 - 1s - 100ms/step - hard_mask_dice: 0.5208 - hard_mask_iou: 0.3521 - hard_mask_precision: 0.3844 - hard_mask_recall: 0.8075 - loss: 0.7407 - val_hard_mask_dice: 0.2576 - val_hard_mask_iou: 0.1478 - val_hard_mask_precision: 0.5665 - val_hard_mask_recall: 0.1667 - val_loss: 0.9540 - learning_rate: 1.2500e-04
+Epoch 69/150
+13/13 - 1s - 89ms/step - hard_mask_dice: 0.5428 - hard_mask_iou: 0.3725 - hard_mask_precision: 0.4268 - hard_mask_recall: 0.7453 - loss: 0.7427 - val_hard_mask_dice: 0.3023 - val_hard_mask_iou: 0.1780 - val_hard_mask_precision: 0.5802 - val_hard_mask_recall: 0.2043 - val_loss: 0.9403 - learning_rate: 6.2500e-05
+Epoch 70/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.5502 - hard_mask_iou: 0.3795 - hard_mask_precision: 0.4217 - hard_mask_recall: 0.7912 - loss: 0.7344 - val_hard_mask_dice: 0.3411 - val_hard_mask_iou: 0.2056 - val_hard_mask_precision: 0.3687 - val_hard_mask_recall: 0.3174 - val_loss: 0.9088 - learning_rate: 6.2500e-05
+Epoch 71/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.5589 - hard_mask_iou: 0.3878 - hard_mask_precision: 0.4400 - hard_mask_recall: 0.7658 - loss: 0.7265 - val_hard_mask_dice: 0.3463 - val_hard_mask_iou: 0.2094 - val_hard_mask_precision: 0.3750 - val_hard_mask_recall: 0.3217 - val_loss: 0.9057 - learning_rate: 6.2500e-05
+Epoch 72/150
+13/13 - 1s - 100ms/step - hard_mask_dice: 0.5371 - hard_mask_iou: 0.3672 - hard_mask_precision: 0.4132 - hard_mask_recall: 0.7673 - loss: 0.7328 - val_hard_mask_dice: 0.3056 - val_hard_mask_iou: 0.1804 - val_hard_mask_precision: 0.2658 - val_hard_mask_recall: 0.3594 - val_loss: 0.8999 - learning_rate: 6.2500e-05
+Epoch 73/150
+13/13 - 2s - 175ms/step - hard_mask_dice: 0.5476 - hard_mask_iou: 0.3770 - hard_mask_precision: 0.4213 - hard_mask_recall: 0.7821 - loss: 0.7211 - val_hard_mask_dice: 0.3206 - val_hard_mask_iou: 0.1909 - val_hard_mask_precision: 0.4693 - val_hard_mask_recall: 0.2435 - val_loss: 0.9175 - learning_rate: 6.2500e-05
+Epoch 74/150
+13/13 - 1s - 100ms/step - hard_mask_dice: 0.5705 - hard_mask_iou: 0.3990 - hard_mask_precision: 0.4552 - hard_mask_recall: 0.7639 - loss: 0.7200 - val_hard_mask_dice: 0.3241 - val_hard_mask_iou: 0.1934 - val_hard_mask_precision: 0.3676 - val_hard_mask_recall: 0.2899 - val_loss: 0.9097 - learning_rate: 6.2500e-05
+Epoch 75/150
+13/13 - 2s - 120ms/step - hard_mask_dice: 0.5891 - hard_mask_iou: 0.4175 - hard_mask_precision: 0.4853 - hard_mask_recall: 0.7494 - loss: 0.7183 - val_hard_mask_dice: 0.3339 - val_hard_mask_iou: 0.2004 - val_hard_mask_precision: 0.4050 - val_hard_mask_recall: 0.2841 - val_loss: 0.9080 - learning_rate: 3.1250e-05
+Epoch 76/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.5751 - hard_mask_iou: 0.4036 - hard_mask_precision: 0.4536 - hard_mask_recall: 0.7855 - loss: 0.7143 - val_hard_mask_dice: 0.3286 - val_hard_mask_iou: 0.1966 - val_hard_mask_precision: 0.3390 - val_hard_mask_recall: 0.3188 - val_loss: 0.8948 - learning_rate: 3.1250e-05
+Epoch 77/150
+13/13 - 1s - 101ms/step - hard_mask_dice: 0.5928 - hard_mask_iou: 0.4213 - hard_mask_precision: 0.4701 - hard_mask_recall: 0.8022 - loss: 0.7094 - val_hard_mask_dice: 0.3264 - val_hard_mask_iou: 0.1950 - val_hard_mask_precision: 0.3664 - val_hard_mask_recall: 0.2942 - val_loss: 0.8928 - learning_rate: 3.1250e-05
+Epoch 78/150
+13/13 - 1s - 104ms/step - hard_mask_dice: 0.5848 - hard_mask_iou: 0.4132 - hard_mask_precision: 0.4652 - hard_mask_recall: 0.7870 - loss: 0.7122 - val_hard_mask_dice: 0.3179 - val_hard_mask_iou: 0.1890 - val_hard_mask_precision: 0.3229 - val_hard_mask_recall: 0.3130 - val_loss: 0.8939 - learning_rate: 3.1250e-05
+Epoch 79/150
+13/13 - 1s - 96ms/step - hard_mask_dice: 0.5788 - hard_mask_iou: 0.4073 - hard_mask_precision: 0.4614 - hard_mask_recall: 0.7764 - loss: 0.7091 - val_hard_mask_dice: 0.3271 - val_hard_mask_iou: 0.1955 - val_hard_mask_precision: 0.3967 - val_hard_mask_recall: 0.2783 - val_loss: 0.9050 - learning_rate: 3.1250e-05
+Epoch 80/150
+13/13 - 1s - 114ms/step - hard_mask_dice: 0.6085 - hard_mask_iou: 0.4373 - hard_mask_precision: 0.4971 - hard_mask_recall: 0.7844 - loss: 0.7015 - val_hard_mask_dice: 0.3314 - val_hard_mask_iou: 0.1986 - val_hard_mask_precision: 0.3771 - val_hard_mask_recall: 0.2957 - val_loss: 0.9016 - learning_rate: 3.1250e-05
+Epoch 1/150
+13/13 - 30s - 2s/step - hard_mask_dice: 0.0042 - hard_mask_iou: 0.0021 - hard_mask_precision: 0.0021 - hard_mask_recall: 0.7931 - loss: 1.1553 - val_hard_mask_dice: 0.0258 - val_hard_mask_iou: 0.0131 - val_hard_mask_precision: 0.0131 - val_hard_mask_recall: 0.8812 - val_loss: 1.1627 - learning_rate: 0.0010
+Epoch 2/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.0327 - hard_mask_iou: 0.0166 - hard_mask_precision: 0.0167 - hard_mask_recall: 0.7168 - loss: 1.0919 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1313 - learning_rate: 0.0010
+Epoch 3/150
+13/13 - 2s - 179ms/step - hard_mask_dice: 0.1045 - hard_mask_iou: 0.0551 - hard_mask_precision: 0.0557 - hard_mask_recall: 0.8345 - loss: 1.0677 - val_hard_mask_dice: 0.1083 - val_hard_mask_iou: 0.0573 - val_hard_mask_precision: 0.1522 - val_hard_mask_recall: 0.0841 - val_loss: 1.1368 - learning_rate: 0.0010
+Epoch 4/150
+13/13 - 1s - 99ms/step - hard_mask_dice: 0.1809 - hard_mask_iou: 0.0994 - hard_mask_precision: 0.1009 - hard_mask_recall: 0.8724 - loss: 1.0565 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1238 - learning_rate: 0.0010
+Epoch 5/150
+13/13 - 1s - 103ms/step - hard_mask_dice: 0.3228 - hard_mask_iou: 0.1925 - hard_mask_precision: 0.1969 - hard_mask_recall: 0.8945 - loss: 1.0443 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1099 - learning_rate: 0.0010
+Epoch 6/150
+13/13 - 1s - 105ms/step - hard_mask_dice: 0.3690 - hard_mask_iou: 0.2262 - hard_mask_precision: 0.2308 - hard_mask_recall: 0.9195 - loss: 1.0372 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.1044 - learning_rate: 0.0010
+Epoch 7/150
+13/13 - 1s - 105ms/step - hard_mask_dice: 0.1991 - hard_mask_iou: 0.1106 - hard_mask_precision: 0.1140 - hard_mask_recall: 0.7882 - loss: 1.0374 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0972 - learning_rate: 0.0010
+Epoch 8/150
+13/13 - 1s - 107ms/step - hard_mask_dice: 0.2338 - hard_mask_iou: 0.1324 - hard_mask_precision: 0.1348 - hard_mask_recall: 0.8823 - loss: 1.0334 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0785 - learning_rate: 0.0010
+Epoch 9/150
+13/13 - 1s - 106ms/step - hard_mask_dice: 0.3407 - hard_mask_iou: 0.2054 - hard_mask_precision: 0.2090 - hard_mask_recall: 0.9226 - loss: 1.0245 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0621 - learning_rate: 0.0010
+Epoch 10/150
+13/13 - 1s - 106ms/step - hard_mask_dice: 0.3036 - hard_mask_iou: 0.1789 - hard_mask_precision: 0.1824 - hard_mask_recall: 0.9039 - loss: 1.0207 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0546 - learning_rate: 0.0010
+Epoch 11/150
+13/13 - 1s - 105ms/step - hard_mask_dice: 0.4819 - hard_mask_iou: 0.3174 - hard_mask_precision: 0.3213 - hard_mask_recall: 0.9636 - loss: 1.0148 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0613 - learning_rate: 0.0010
+Epoch 12/150
+13/13 - 1s - 110ms/step - hard_mask_dice: 0.4474 - hard_mask_iou: 0.2881 - hard_mask_precision: 0.2948 - hard_mask_recall: 0.9275 - loss: 1.0113 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0499 - learning_rate: 0.0010
+Epoch 13/150
+13/13 - 2s - 137ms/step - hard_mask_dice: 0.2486 - hard_mask_iou: 0.1420 - hard_mask_precision: 0.1429 - hard_mask_recall: 0.9533 - loss: 1.0102 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0304 - learning_rate: 0.0010
+Epoch 14/150
+13/13 - 2s - 119ms/step - hard_mask_dice: 0.4116 - hard_mask_iou: 0.2591 - hard_mask_precision: 0.2638 - hard_mask_recall: 0.9362 - loss: 1.0045 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0165 - learning_rate: 0.0010
+Epoch 15/150
+13/13 - 1s - 113ms/step - hard_mask_dice: 0.4688 - hard_mask_iou: 0.3062 - hard_mask_precision: 0.3108 - hard_mask_recall: 0.9533 - loss: 1.0001 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0124 - learning_rate: 0.0010
+Epoch 16/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.4236 - hard_mask_iou: 0.2687 - hard_mask_precision: 0.2731 - hard_mask_recall: 0.9434 - loss: 0.9979 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0154 - learning_rate: 0.0010
+Epoch 17/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.2994 - hard_mask_iou: 0.1760 - hard_mask_precision: 0.1794 - hard_mask_recall: 0.9036 - loss: 0.9944 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0107 - learning_rate: 0.0010
+Epoch 18/150
+13/13 - 2s - 175ms/step - hard_mask_dice: 0.3995 - hard_mask_iou: 0.2496 - hard_mask_precision: 0.2529 - hard_mask_recall: 0.9503 - loss: 0.9884 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0127 - learning_rate: 0.0010
+Epoch 19/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.4370 - hard_mask_iou: 0.2796 - hard_mask_precision: 0.2860 - hard_mask_recall: 0.9248 - loss: 0.9818 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0032 - learning_rate: 0.0010
+Epoch 20/150
+13/13 - 2s - 117ms/step - hard_mask_dice: 0.3618 - hard_mask_iou: 0.2209 - hard_mask_precision: 0.2234 - hard_mask_recall: 0.9514 - loss: 0.9564 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0077 - learning_rate: 0.0010
+Epoch 21/150
+13/13 - 1s - 113ms/step - hard_mask_dice: 0.3058 - hard_mask_iou: 0.1805 - hard_mask_precision: 0.1872 - hard_mask_recall: 0.8330 - loss: 0.9690 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0044 - learning_rate: 0.0010
+Epoch 22/150
+13/13 - 2s - 122ms/step - hard_mask_dice: 0.1842 - hard_mask_iou: 0.1015 - hard_mask_precision: 0.1048 - hard_mask_recall: 0.7616 - loss: 0.9683 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0058 - learning_rate: 0.0010
+Epoch 23/150
+13/13 - 1s - 114ms/step - hard_mask_dice: 0.1788 - hard_mask_iou: 0.0981 - hard_mask_precision: 0.0999 - hard_mask_recall: 0.8516 - loss: 0.9392 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0125 - learning_rate: 0.0010
+Epoch 24/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.1562 - hard_mask_iou: 0.0847 - hard_mask_precision: 0.0871 - hard_mask_recall: 0.7585 - loss: 0.9454 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0322 - learning_rate: 0.0010
+Epoch 25/150
+13/13 - 2s - 116ms/step - hard_mask_dice: 0.1925 - hard_mask_iou: 0.1065 - hard_mask_precision: 0.1091 - hard_mask_recall: 0.8166 - loss: 0.9277 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0319 - learning_rate: 0.0010
+Epoch 26/150
+13/13 - 2s - 123ms/step - hard_mask_dice: 0.2064 - hard_mask_iou: 0.1151 - hard_mask_precision: 0.1179 - hard_mask_recall: 0.8257 - loss: 0.8921 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0630 - learning_rate: 5.0000e-04
+Epoch 27/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.2643 - hard_mask_iou: 0.1523 - hard_mask_precision: 0.1599 - hard_mask_recall: 0.7608 - loss: 0.8689 - val_hard_mask_dice: 0.0102 - val_hard_mask_iou: 0.0051 - val_hard_mask_precision: 0.0084 - val_hard_mask_recall: 0.0130 - val_loss: 1.0009 - learning_rate: 5.0000e-04
+Epoch 28/150
+13/13 - 3s - 226ms/step - hard_mask_dice: 0.2876 - hard_mask_iou: 0.1680 - hard_mask_precision: 0.1748 - hard_mask_recall: 0.8102 - loss: 0.8703 - val_hard_mask_dice: 0.2394 - val_hard_mask_iou: 0.1360 - val_hard_mask_precision: 0.3914 - val_hard_mask_recall: 0.1725 - val_loss: 0.9899 - learning_rate: 5.0000e-04
+Epoch 29/150
+13/13 - 1s - 111ms/step - hard_mask_dice: 0.2735 - hard_mask_iou: 0.1584 - hard_mask_precision: 0.1653 - hard_mask_recall: 0.7920 - loss: 0.8462 - val_hard_mask_dice: 0.0000e+00 - val_hard_mask_iou: 0.0000e+00 - val_hard_mask_precision: 0.0000e+00 - val_hard_mask_recall: 0.0000e+00 - val_loss: 1.0044 - learning_rate: 5.0000e-04
+Epoch 30/150
+13/13 - 1s - 113ms/step - hard_mask_dice: 0.2014 - hard_mask_iou: 0.1120 - hard_mask_precision: 0.1153 - hard_mask_recall: 0.7973 - loss: 0.8795 - val_hard_mask_dice: 0.1407 - val_hard_mask_iou: 0.0757 - val_hard_mask_precision: 0.0829 - val_hard_mask_recall: 0.4652 - val_loss: 0.9970 - learning_rate: 5.0000e-04
+Epoch 31/150
+13/13 - 2s - 140ms/step - hard_mask_dice: 0.2514 - hard_mask_iou: 0.1438 - hard_mask_precision: 0.1489 - hard_mask_recall: 0.8049 - loss: 0.8441 - val_hard_mask_dice: 0.2308 - val_hard_mask_iou: 0.1304 - val_hard_mask_precision: 0.2727 - val_hard_mask_recall: 0.2000 - val_loss: 0.9844 - learning_rate: 5.0000e-04
+Epoch 32/150
+13/13 - 3s - 216ms/step - hard_mask_dice: 0.3118 - hard_mask_iou: 0.1847 - hard_mask_precision: 0.1919 - hard_mask_recall: 0.8318 - loss: 0.8459 - val_hard_mask_dice: 0.2802 - val_hard_mask_iou: 0.1630 - val_hard_mask_precision: 0.2971 - val_hard_mask_recall: 0.2652 - val_loss: 0.9886 - learning_rate: 5.0000e-04
+Epoch 33/150
+13/13 - 1s - 113ms/step - hard_mask_dice: 0.2961 - hard_mask_iou: 0.1737 - hard_mask_precision: 0.1787 - hard_mask_recall: 0.8618 - loss: 0.8277 - val_hard_mask_dice: 0.1180 - val_hard_mask_iou: 0.0627 - val_hard_mask_precision: 0.0769 - val_hard_mask_recall: 0.2536 - val_loss: 0.9974 - learning_rate: 5.0000e-04
+Epoch 34/150
+13/13 - 1s - 115ms/step - hard_mask_dice: 0.3175 - hard_mask_iou: 0.1887 - hard_mask_precision: 0.1947 - hard_mask_recall: 0.8610 - loss: 0.8129 - val_hard_mask_dice: 0.1220 - val_hard_mask_iou: 0.0650 - val_hard_mask_precision: 0.0741 - val_hard_mask_recall: 0.3449 - val_loss: 1.0016 - learning_rate: 5.0000e-04
+Epoch 35/150
+13/13 - 2s - 119ms/step - hard_mask_dice: 0.2984 - hard_mask_iou: 0.1753 - hard_mask_precision: 0.1790 - hard_mask_recall: 0.8952 - loss: 0.8132 - val_hard_mask_dice: 0.2661 - val_hard_mask_iou: 0.1535 - val_hard_mask_precision: 0.2338 - val_hard_mask_recall: 0.3087 - val_loss: 1.0109 - learning_rate: 5.0000e-04
+Epoch 36/150
+13/13 - 2s - 117ms/step - hard_mask_dice: 0.3014 - hard_mask_iou: 0.1774 - hard_mask_precision: 0.1821 - hard_mask_recall: 0.8732 - loss: 0.8354 - val_hard_mask_dice: 0.1988 - val_hard_mask_iou: 0.1104 - val_hard_mask_precision: 0.1409 - val_hard_mask_recall: 0.3377 - val_loss: 1.0049 - learning_rate: 5.0000e-04
+Epoch 37/150
+13/13 - 2s - 116ms/step - hard_mask_dice: 0.2804 - hard_mask_iou: 0.1631 - hard_mask_precision: 0.1668 - hard_mask_recall: 0.8789 - loss: 0.8232 - val_hard_mask_dice: 0.1941 - val_hard_mask_iou: 0.1075 - val_hard_mask_precision: 0.1516 - val_hard_mask_recall: 0.2696 - val_loss: 1.0263 - learning_rate: 5.0000e-04
+Epoch 38/150
+13/13 - 2s - 122ms/step - hard_mask_dice: 0.2398 - hard_mask_iou: 0.1363 - hard_mask_precision: 0.1404 - hard_mask_recall: 0.8231 - loss: 0.8052 - val_hard_mask_dice: 0.1784 - val_hard_mask_iou: 0.0979 - val_hard_mask_precision: 0.1114 - val_hard_mask_recall: 0.4478 - val_loss: 1.0067 - learning_rate: 2.5000e-04
+Epoch 39/150
+13/13 - 1s - 115ms/step - hard_mask_dice: 0.2491 - hard_mask_iou: 0.1423 - hard_mask_precision: 0.1447 - hard_mask_recall: 0.8933 - loss: 0.7978 - val_hard_mask_dice: 0.2334 - val_hard_mask_iou: 0.1321 - val_hard_mask_precision: 0.1502 - val_hard_mask_recall: 0.5232 - val_loss: 0.9919 - learning_rate: 2.5000e-04
+Epoch 40/150
+13/13 - 2s - 120ms/step - hard_mask_dice: 0.2840 - hard_mask_iou: 0.1655 - hard_mask_precision: 0.1688 - hard_mask_recall: 0.8948 - loss: 0.7998 - val_hard_mask_dice: 0.2459 - val_hard_mask_iou: 0.1402 - val_hard_mask_precision: 0.1567 - val_hard_mask_recall: 0.5710 - val_loss: 0.9926 - learning_rate: 2.5000e-04
+Epoch 41/150
+13/13 - 2s - 119ms/step - hard_mask_dice: 0.2595 - hard_mask_iou: 0.1491 - hard_mask_precision: 0.1511 - hard_mask_recall: 0.9169 - loss: 0.8079 - val_hard_mask_dice: 0.1465 - val_hard_mask_iou: 0.0791 - val_hard_mask_precision: 0.0823 - val_hard_mask_recall: 0.6696 - val_loss: 1.0031 - learning_rate: 2.5000e-04
+Epoch 42/150
+13/13 - 2s - 118ms/step - hard_mask_dice: 0.2098 - hard_mask_iou: 0.1172 - hard_mask_precision: 0.1183 - hard_mask_recall: 0.9279 - loss: 0.7978 - val_hard_mask_dice: 0.1271 - val_hard_mask_iou: 0.0679 - val_hard_mask_precision: 0.0709 - val_hard_mask_recall: 0.6116 - val_loss: 1.0006 - learning_rate: 2.5000e-04
+Epoch 43/150
+13/13 - 2s - 123ms/step - hard_mask_dice: 0.2416 - hard_mask_iou: 0.1374 - hard_mask_precision: 0.1396 - hard_mask_recall: 0.8952 - loss: 0.7908 - val_hard_mask_dice: 0.1705 - val_hard_mask_iou: 0.0932 - val_hard_mask_precision: 0.0997 - val_hard_mask_recall: 0.5870 - val_loss: 0.9996 - learning_rate: 2.5000e-04
+Epoch 44/150
+13/13 - 2s - 121ms/step - hard_mask_dice: 0.2919 - hard_mask_iou: 0.1709 - hard_mask_precision: 0.1739 - hard_mask_recall: 0.9070 - loss: 0.7727 - val_hard_mask_dice: 0.1764 - val_hard_mask_iou: 0.0968 - val_hard_mask_precision: 0.1024 - val_hard_mask_recall: 0.6362 - val_loss: 0.9975 - learning_rate: 1.2500e-04
+Epoch 45/150
+13/13 - 2s - 121ms/step - hard_mask_dice: 0.2578 - hard_mask_iou: 0.1480 - hard_mask_precision: 0.1496 - hard_mask_recall: 0.9320 - loss: 0.7730 - val_hard_mask_dice: 0.1737 - val_hard_mask_iou: 0.0951 - val_hard_mask_precision: 0.0994 - val_hard_mask_recall: 0.6884 - val_loss: 0.9952 - learning_rate: 1.2500e-04
+Epoch 46/150
+13/13 - 2s - 123ms/step - hard_mask_dice: 0.2779 - hard_mask_iou: 0.1614 - hard_mask_precision: 0.1632 - hard_mask_recall: 0.9358 - loss: 0.7541 - val_hard_mask_dice: 0.1972 - val_hard_mask_iou: 0.1094 - val_hard_mask_precision: 0.1156 - val_hard_mask_recall: 0.6710 - val_loss: 0.9940 - learning_rate: 1.2500e-04
+Epoch 47/150
+13/13 - 2s - 153ms/step - hard_mask_dice: 0.2895 - hard_mask_iou: 0.1692 - hard_mask_precision: 0.1712 - hard_mask_recall: 0.9366 - loss: 0.7408 - val_hard_mask_dice: 0.2055 - val_hard_mask_iou: 0.1145 - val_hard_mask_precision: 0.1213 - val_hard_mask_recall: 0.6725 - val_loss: 0.9960 - learning_rate: 1.2500e-04
+Epoch 48/150
+13/13 - 2s - 127ms/step - hard_mask_dice: 0.3141 - hard_mask_iou: 0.1863 - hard_mask_precision: 0.1899 - hard_mask_recall: 0.9070 - loss: 0.7807 - val_hard_mask_dice: 0.2168 - val_hard_mask_iou: 0.1216 - val_hard_mask_precision: 0.1285 - val_hard_mask_recall: 0.6928 - val_loss: 0.9678 - learning_rate: 1.2500e-04
+Epoch 49/150
+13/13 - 4s - 288ms/step - hard_mask_dice: 0.3060 - hard_mask_iou: 0.1806 - hard_mask_precision: 0.1826 - hard_mask_recall: 0.9438 - loss: 0.7460 - val_hard_mask_dice: 0.3344 - val_hard_mask_iou: 0.2008 - val_hard_mask_precision: 0.2467 - val_hard_mask_recall: 0.5188 - val_loss: 0.9173 - learning_rate: 1.2500e-04
+Epoch 50/150
+13/13 - 3s - 263ms/step - hard_mask_dice: 0.3524 - hard_mask_iou: 0.2139 - hard_mask_precision: 0.2181 - hard_mask_recall: 0.9172 - loss: 0.7546 - val_hard_mask_dice: 0.3427 - val_hard_mask_iou: 0.2068 - val_hard_mask_precision: 0.3005 - val_hard_mask_recall: 0.3986 - val_loss: 0.9153 - learning_rate: 1.2500e-04
+Epoch 51/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.3008 - hard_mask_iou: 0.1770 - hard_mask_precision: 0.1833 - hard_mask_recall: 0.8375 - loss: 0.7525 - val_hard_mask_dice: 0.1882 - val_hard_mask_iou: 0.1039 - val_hard_mask_precision: 0.1112 - val_hard_mask_recall: 0.6116 - val_loss: 0.9615 - learning_rate: 1.2500e-04
+Epoch 52/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.2923 - hard_mask_iou: 0.1712 - hard_mask_precision: 0.1738 - hard_mask_recall: 0.9188 - loss: 0.7385 - val_hard_mask_dice: 0.1803 - val_hard_mask_iou: 0.0991 - val_hard_mask_precision: 0.1054 - val_hard_mask_recall: 0.6217 - val_loss: 0.9959 - learning_rate: 1.2500e-04
+Epoch 53/150
+13/13 - 2s - 119ms/step - hard_mask_dice: 0.3496 - hard_mask_iou: 0.2118 - hard_mask_precision: 0.2165 - hard_mask_recall: 0.9074 - loss: 0.7173 - val_hard_mask_dice: 0.2049 - val_hard_mask_iou: 0.1141 - val_hard_mask_precision: 0.1240 - val_hard_mask_recall: 0.5899 - val_loss: 0.9927 - learning_rate: 1.2500e-04
+Epoch 54/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.3557 - hard_mask_iou: 0.2164 - hard_mask_precision: 0.2213 - hard_mask_recall: 0.9058 - loss: 0.7134 - val_hard_mask_dice: 0.2436 - val_hard_mask_iou: 0.1387 - val_hard_mask_precision: 0.1531 - val_hard_mask_recall: 0.5957 - val_loss: 0.9372 - learning_rate: 1.2500e-04
+Epoch 55/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.3422 - hard_mask_iou: 0.2064 - hard_mask_precision: 0.2130 - hard_mask_recall: 0.8705 - loss: 0.7259 - val_hard_mask_dice: 0.2603 - val_hard_mask_iou: 0.1496 - val_hard_mask_precision: 0.1642 - val_hard_mask_recall: 0.6275 - val_loss: 0.9271 - learning_rate: 1.2500e-04
+Epoch 56/150
+13/13 - 2s - 126ms/step - hard_mask_dice: 0.3446 - hard_mask_iou: 0.2082 - hard_mask_precision: 0.2119 - hard_mask_recall: 0.9218 - loss: 0.6960 - val_hard_mask_dice: 0.2378 - val_hard_mask_iou: 0.1350 - val_hard_mask_precision: 0.1451 - val_hard_mask_recall: 0.6580 - val_loss: 0.9649 - learning_rate: 1.2500e-04
+Epoch 57/150
+13/13 - 2s - 124ms/step - hard_mask_dice: 0.3836 - hard_mask_iou: 0.2373 - hard_mask_precision: 0.2436 - hard_mask_recall: 0.9021 - loss: 0.6973 - val_hard_mask_dice: 0.2553 - val_hard_mask_iou: 0.1463 - val_hard_mask_precision: 0.1589 - val_hard_mask_recall: 0.6493 - val_loss: 0.9557 - learning_rate: 6.2500e-05
+Epoch 58/150
+13/13 - 2s - 127ms/step - hard_mask_dice: 0.3586 - hard_mask_iou: 0.2185 - hard_mask_precision: 0.2237 - hard_mask_recall: 0.9032 - loss: 0.7421 - val_hard_mask_dice: 0.2724 - val_hard_mask_iou: 0.1577 - val_hard_mask_precision: 0.1692 - val_hard_mask_recall: 0.6971 - val_loss: 0.9369 - learning_rate: 6.2500e-05
+Epoch 59/150
+13/13 - 2s - 127ms/step - hard_mask_dice: 0.3694 - hard_mask_iou: 0.2265 - hard_mask_precision: 0.2305 - hard_mask_recall: 0.9290 - loss: 0.7075 - val_hard_mask_dice: 0.2839 - val_hard_mask_iou: 0.1654 - val_hard_mask_precision: 0.1802 - val_hard_mask_recall: 0.6681 - val_loss: 0.9405 - learning_rate: 6.2500e-05
+Epoch 60/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.3774 - hard_mask_iou: 0.2326 - hard_mask_precision: 0.2397 - hard_mask_recall: 0.8876 - loss: 0.6859 - val_hard_mask_dice: 0.2863 - val_hard_mask_iou: 0.1671 - val_hard_mask_precision: 0.1814 - val_hard_mask_recall: 0.6797 - val_loss: 0.9096 - learning_rate: 6.2500e-05
+Epoch 61/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.3392 - hard_mask_iou: 0.2042 - hard_mask_precision: 0.2084 - hard_mask_recall: 0.9104 - loss: 0.7091 - val_hard_mask_dice: 0.2830 - val_hard_mask_iou: 0.1649 - val_hard_mask_precision: 0.1786 - val_hard_mask_recall: 0.6812 - val_loss: 0.9274 - learning_rate: 6.2500e-05
+Epoch 62/150
+13/13 - 2s - 131ms/step - hard_mask_dice: 0.3612 - hard_mask_iou: 0.2204 - hard_mask_precision: 0.2268 - hard_mask_recall: 0.8869 - loss: 0.6834 - val_hard_mask_dice: 0.2623 - val_hard_mask_iou: 0.1509 - val_hard_mask_precision: 0.1607 - val_hard_mask_recall: 0.7130 - val_loss: 0.9361 - learning_rate: 6.2500e-05
+Epoch 63/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.3892 - hard_mask_iou: 0.2416 - hard_mask_precision: 0.2480 - hard_mask_recall: 0.9036 - loss: 0.6879 - val_hard_mask_dice: 0.2637 - val_hard_mask_iou: 0.1519 - val_hard_mask_precision: 0.1613 - val_hard_mask_recall: 0.7217 - val_loss: 0.9403 - learning_rate: 6.2500e-05
+Epoch 64/150
+13/13 - 2s - 125ms/step - hard_mask_dice: 0.4175 - hard_mask_iou: 0.2638 - hard_mask_precision: 0.2724 - hard_mask_recall: 0.8933 - loss: 0.6824 - val_hard_mask_dice: 0.2663 - val_hard_mask_iou: 0.1536 - val_hard_mask_precision: 0.1636 - val_hard_mask_recall: 0.7145 - val_loss: 0.9432 - learning_rate: 6.2500e-05
+Epoch 65/150
+13/13 - 2s - 159ms/step - hard_mask_dice: 0.4216 - hard_mask_iou: 0.2671 - hard_mask_precision: 0.2748 - hard_mask_recall: 0.9051 - loss: 0.6704 - val_hard_mask_dice: 0.2672 - val_hard_mask_iou: 0.1542 - val_hard_mask_precision: 0.1618 - val_hard_mask_recall: 0.7667 - val_loss: 0.9268 - learning_rate: 6.2500e-05
+Epoch 66/150
+13/13 - 2s - 134ms/step - hard_mask_dice: 0.4211 - hard_mask_iou: 0.2667 - hard_mask_precision: 0.2724 - hard_mask_recall: 0.9271 - loss: 0.6700 - val_hard_mask_dice: 0.2925 - val_hard_mask_iou: 0.1713 - val_hard_mask_precision: 0.1830 - val_hard_mask_recall: 0.7275 - val_loss: 0.9018 - learning_rate: 6.2500e-05
+Epoch 67/150
+13/13 - 2s - 126ms/step - hard_mask_dice: 0.4335 - hard_mask_iou: 0.2767 - hard_mask_precision: 0.2885 - hard_mask_recall: 0.8721 - loss: 0.6773 - val_hard_mask_dice: 0.2989 - val_hard_mask_iou: 0.1757 - val_hard_mask_precision: 0.1890 - val_hard_mask_recall: 0.7145 - val_loss: 0.8950 - learning_rate: 6.2500e-05
+Epoch 68/150
+13/13 - 2s - 131ms/step - hard_mask_dice: 0.4257 - hard_mask_iou: 0.2704 - hard_mask_precision: 0.2756 - hard_mask_recall: 0.9343 - loss: 0.6780 - val_hard_mask_dice: 0.2918 - val_hard_mask_iou: 0.1708 - val_hard_mask_precision: 0.1805 - val_hard_mask_recall: 0.7609 - val_loss: 0.8833 - learning_rate: 6.2500e-05
+Epoch 69/150
+13/13 - 2s - 134ms/step - hard_mask_dice: 0.4394 - hard_mask_iou: 0.2815 - hard_mask_precision: 0.2899 - hard_mask_recall: 0.9074 - loss: 0.6715 - val_hard_mask_dice: 0.2979 - val_hard_mask_iou: 0.1750 - val_hard_mask_precision: 0.1870 - val_hard_mask_recall: 0.7319 - val_loss: 0.8810 - learning_rate: 6.2500e-05
+Epoch 70/150
+13/13 - 2s - 154ms/step - hard_mask_dice: 0.4347 - hard_mask_iou: 0.2777 - hard_mask_precision: 0.2878 - hard_mask_recall: 0.8880 - loss: 0.6677 - val_hard_mask_dice: 0.2992 - val_hard_mask_iou: 0.1759 - val_hard_mask_precision: 0.1855 - val_hard_mask_recall: 0.7725 - val_loss: 0.8716 - learning_rate: 6.2500e-05
+Epoch 71/150
+13/13 - 2s - 131ms/step - hard_mask_dice: 0.4485 - hard_mask_iou: 0.2890 - hard_mask_precision: 0.2947 - hard_mask_recall: 0.9374 - loss: 0.6737 - val_hard_mask_dice: 0.3020 - val_hard_mask_iou: 0.1779 - val_hard_mask_precision: 0.1885 - val_hard_mask_recall: 0.7594 - val_loss: 0.8845 - learning_rate: 6.2500e-05
+Epoch 72/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.4788 - hard_mask_iou: 0.3148 - hard_mask_precision: 0.3257 - hard_mask_recall: 0.9039 - loss: 0.6727 - val_hard_mask_dice: 0.2952 - val_hard_mask_iou: 0.1732 - val_hard_mask_precision: 0.1852 - val_hard_mask_recall: 0.7275 - val_loss: 0.8785 - learning_rate: 6.2500e-05
+Epoch 73/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.4371 - hard_mask_iou: 0.2797 - hard_mask_precision: 0.2883 - hard_mask_recall: 0.9039 - loss: 0.6679 - val_hard_mask_dice: 0.2916 - val_hard_mask_iou: 0.1707 - val_hard_mask_precision: 0.1786 - val_hard_mask_recall: 0.7928 - val_loss: 0.8453 - learning_rate: 6.2500e-05
+Epoch 74/150
+13/13 - 2s - 133ms/step - hard_mask_dice: 0.4653 - hard_mask_iou: 0.3032 - hard_mask_precision: 0.3116 - hard_mask_recall: 0.9180 - loss: 0.6304 - val_hard_mask_dice: 0.3126 - val_hard_mask_iou: 0.1853 - val_hard_mask_precision: 0.1982 - val_hard_mask_recall: 0.7391 - val_loss: 0.8151 - learning_rate: 6.2500e-05
+Epoch 75/150
+13/13 - 2s - 141ms/step - hard_mask_dice: 0.4525 - hard_mask_iou: 0.2924 - hard_mask_precision: 0.3003 - hard_mask_recall: 0.9172 - loss: 0.6538 - val_hard_mask_dice: 0.2948 - val_hard_mask_iou: 0.1729 - val_hard_mask_precision: 0.1816 - val_hard_mask_recall: 0.7826 - val_loss: 0.8700 - learning_rate: 6.2500e-05
+Epoch 76/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.4362 - hard_mask_iou: 0.2790 - hard_mask_precision: 0.2871 - hard_mask_recall: 0.9077 - loss: 0.6468 - val_hard_mask_dice: 0.3082 - val_hard_mask_iou: 0.1822 - val_hard_mask_precision: 0.1930 - val_hard_mask_recall: 0.7638 - val_loss: 0.8705 - learning_rate: 6.2500e-05
+Epoch 77/150
+13/13 - 2s - 175ms/step - hard_mask_dice: 0.4463 - hard_mask_iou: 0.2872 - hard_mask_precision: 0.2938 - hard_mask_recall: 0.9282 - loss: 0.6416 - val_hard_mask_dice: 0.3381 - val_hard_mask_iou: 0.2035 - val_hard_mask_precision: 0.2158 - val_hard_mask_recall: 0.7812 - val_loss: 0.8391 - learning_rate: 6.2500e-05
+Epoch 78/150
+13/13 - 4s - 281ms/step - hard_mask_dice: 0.4526 - hard_mask_iou: 0.2925 - hard_mask_precision: 0.2987 - hard_mask_recall: 0.9339 - loss: 0.6338 - val_hard_mask_dice: 0.3708 - val_hard_mask_iou: 0.2276 - val_hard_mask_precision: 0.2466 - val_hard_mask_recall: 0.7464 - val_loss: 0.8319 - learning_rate: 6.2500e-05
+Epoch 79/150
+13/13 - 2s - 134ms/step - hard_mask_dice: 0.4938 - hard_mask_iou: 0.3279 - hard_mask_precision: 0.3397 - hard_mask_recall: 0.9039 - loss: 0.6503 - val_hard_mask_dice: 0.3679 - val_hard_mask_iou: 0.2254 - val_hard_mask_precision: 0.2455 - val_hard_mask_recall: 0.7333 - val_loss: 0.8290 - learning_rate: 6.2500e-05
+Epoch 80/150
+13/13 - 2s - 151ms/step - hard_mask_dice: 0.4767 - hard_mask_iou: 0.3129 - hard_mask_precision: 0.3225 - hard_mask_recall: 0.9134 - loss: 0.6121 - val_hard_mask_dice: 0.3606 - val_hard_mask_iou: 0.2200 - val_hard_mask_precision: 0.2340 - val_hard_mask_recall: 0.7855 - val_loss: 0.8263 - learning_rate: 6.2500e-05
+Epoch 81/150
+13/13 - 2s - 142ms/step - hard_mask_dice: 0.4452 - hard_mask_iou: 0.2863 - hard_mask_precision: 0.2913 - hard_mask_recall: 0.9434 - loss: 0.6501 - val_hard_mask_dice: 0.3474 - val_hard_mask_iou: 0.2102 - val_hard_mask_precision: 0.2226 - val_hard_mask_recall: 0.7913 - val_loss: 0.8315 - learning_rate: 3.1250e-05
+Epoch 82/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.4943 - hard_mask_iou: 0.3283 - hard_mask_precision: 0.3365 - hard_mask_recall: 0.9305 - loss: 0.6369 - val_hard_mask_dice: 0.3524 - val_hard_mask_iou: 0.2139 - val_hard_mask_precision: 0.2283 - val_hard_mask_recall: 0.7725 - val_loss: 0.8407 - learning_rate: 3.1250e-05
+Epoch 83/150
+13/13 - 2s - 121ms/step - hard_mask_dice: 0.4774 - hard_mask_iou: 0.3135 - hard_mask_precision: 0.3265 - hard_mask_recall: 0.8872 - loss: 0.6320 - val_hard_mask_dice: 0.3399 - val_hard_mask_iou: 0.2048 - val_hard_mask_precision: 0.2191 - val_hard_mask_recall: 0.7580 - val_loss: 0.8585 - learning_rate: 3.1250e-05
+Epoch 84/150
+13/13 - 2s - 124ms/step - hard_mask_dice: 0.5013 - hard_mask_iou: 0.3345 - hard_mask_precision: 0.3430 - hard_mask_recall: 0.9313 - loss: 0.6477 - val_hard_mask_dice: 0.3064 - val_hard_mask_iou: 0.1809 - val_hard_mask_precision: 0.1903 - val_hard_mask_recall: 0.7855 - val_loss: 0.8896 - learning_rate: 3.1250e-05
+Epoch 85/150
+13/13 - 2s - 130ms/step - hard_mask_dice: 0.4800 - hard_mask_iou: 0.3158 - hard_mask_precision: 0.3245 - hard_mask_recall: 0.9218 - loss: 0.6169 - val_hard_mask_dice: 0.3167 - val_hard_mask_iou: 0.1881 - val_hard_mask_precision: 0.1998 - val_hard_mask_recall: 0.7623 - val_loss: 0.9037 - learning_rate: 3.1250e-05
+Epoch 86/150
+13/13 - 2s - 132ms/step - hard_mask_dice: 0.4942 - hard_mask_iou: 0.3282 - hard_mask_precision: 0.3431 - hard_mask_recall: 0.8827 - loss: 0.6426 - val_hard_mask_dice: 0.3288 - val_hard_mask_iou: 0.1968 - val_hard_mask_precision: 0.2088 - val_hard_mask_recall: 0.7739 - val_loss: 0.8803 - learning_rate: 3.1250e-05
+Epoch 87/150
+13/13 - 2s - 133ms/step - hard_mask_dice: 0.4913 - hard_mask_iou: 0.3256 - hard_mask_precision: 0.3362 - hard_mask_recall: 0.9115 - loss: 0.6143 - val_hard_mask_dice: 0.3301 - val_hard_mask_iou: 0.1977 - val_hard_mask_precision: 0.2089 - val_hard_mask_recall: 0.7855 - val_loss: 0.8669 - learning_rate: 1.5625e-05
+Epoch 88/150
+13/13 - 2s - 134ms/step - hard_mask_dice: 0.4704 - hard_mask_iou: 0.3075 - hard_mask_precision: 0.3154 - hard_mask_recall: 0.9248 - loss: 0.6372 - val_hard_mask_dice: 0.3319 - val_hard_mask_iou: 0.1990 - val_hard_mask_precision: 0.2104 - val_hard_mask_recall: 0.7855 - val_loss: 0.8595 - learning_rate: 1.5625e-05
+Epoch 89/150
+13/13 - 2s - 134ms/step - hard_mask_dice: 0.4755 - hard_mask_iou: 0.3119 - hard_mask_precision: 0.3204 - hard_mask_recall: 0.9214 - loss: 0.6245 - val_hard_mask_dice: 0.3318 - val_hard_mask_iou: 0.1989 - val_hard_mask_precision: 0.2106 - val_hard_mask_recall: 0.7812 - val_loss: 0.8561 - learning_rate: 1.5625e-05
+Epoch 90/150
+13/13 - 2s - 141ms/step - hard_mask_dice: 0.5345 - hard_mask_iou: 0.3647 - hard_mask_precision: 0.3797 - hard_mask_recall: 0.9024 - loss: 0.6510 - val_hard_mask_dice: 0.3356 - val_hard_mask_iou: 0.2017 - val_hard_mask_precision: 0.2139 - val_hard_mask_recall: 0.7783 - val_loss: 0.8556 - learning_rate: 1.5625e-05
+Epoch 91/150
+13/13 - 3s - 239ms/step - hard_mask_dice: 0.5122 - hard_mask_iou: 0.3443 - hard_mask_precision: 0.3566 - hard_mask_recall: 0.9089 - loss: 0.6144 - val_hard_mask_dice: 0.3372 - val_hard_mask_iou: 0.2028 - val_hard_mask_precision: 0.2152 - val_hard_mask_recall: 0.7783 - val_loss: 0.8560 - learning_rate: 1.5625e-05
+Epoch 92/150
+13/13 - 2s - 137ms/step - hard_mask_dice: 0.5093 - hard_mask_iou: 0.3416 - hard_mask_precision: 0.3565 - hard_mask_recall: 0.8914 - loss: 0.6151 - val_hard_mask_dice: 0.3374 - val_hard_mask_iou: 0.2029 - val_hard_mask_precision: 0.2146 - val_hard_mask_recall: 0.7884 - val_loss: 0.8532 - learning_rate: 1.5625e-05
+Epoch 93/150
+13/13 - 2s - 129ms/step - hard_mask_dice: 0.5126 - hard_mask_iou: 0.3446 - hard_mask_precision: 0.3537 - hard_mask_recall: 0.9309 - loss: 0.6474 - val_hard_mask_dice: 0.3481 - val_hard_mask_iou: 0.2108 - val_hard_mask_precision: 0.2237 - val_hard_mask_recall: 0.7841 - val_loss: 0.8362 - learning_rate: 1.0000e-05
+Epoch 94/150
+13/13 - 2s - 128ms/step - hard_mask_dice: 0.5234 - hard_mask_iou: 0.3545 - hard_mask_precision: 0.3663 - hard_mask_recall: 0.9165 - loss: 0.6301 - val_hard_mask_dice: 0.3545 - val_hard_mask_iou: 0.2154 - val_hard_mask_precision: 0.2295 - val_hard_mask_recall: 0.7783 - val_loss: 0.8325 - learning_rate: 1.0000e-05
+Epoch 95/150
+13/13 - 2s - 135ms/step - hard_mask_dice: 0.4899 - hard_mask_iou: 0.3244 - hard_mask_precision: 0.3321 - hard_mask_recall: 0.9332 - loss: 0.6434 - val_hard_mask_dice: 0.3563 - val_hard_mask_iou: 0.2168 - val_hard_mask_precision: 0.2315 - val_hard_mask_recall: 0.7725 - val_loss: 0.8220 - learning_rate: 1.0000e-05
+Epoch 96/150
+13/13 - 2s - 141ms/step - hard_mask_dice: 0.4954 - hard_mask_iou: 0.3293 - hard_mask_precision: 0.3389 - hard_mask_recall: 0.9207 - loss: 0.6364 - val_hard_mask_dice: 0.3629 - val_hard_mask_iou: 0.2217 - val_hard_mask_precision: 0.2380 - val_hard_mask_recall: 0.7638 - val_loss: 0.8130 - learning_rate: 1.0000e-05

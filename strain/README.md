@@ -1,5 +1,11 @@
 # Isolated fast experiment
 
+The authoritative completed comparison is `results/experiment256_final_20261013/`.
+The earlier `experiment256_20261013/` is retained preliminary evidence and was
+superseded after a validation-only stopping-protocol amendment. The shared clock
+included both attempts: 1748.75 seconds (29 minutes 9 seconds). All four final
+models completed, with 28 relevant checks and the independent result audit passing.
+
 Run from the repository root in the existing CUDA TensorFlow environment:
 
 ```bash
@@ -48,6 +54,9 @@ plateau scheduler. This is a fixed fair protocol, not a hyperparameter sweep.
 Select the highest pooled validation Dice checkpoint (earliest ties), reload
 and check reproducible inference, then evaluate test once at threshold 0.5.
 Save epoch training/validation loss and all four metrics in CSV and JSON.
+Keras CSV epoch indices start at zero; plots label epochs starting at one.
+Each model's `training_curves.png` contains loss, Dice, IoU, precision and recall,
+with training/validation lines and the selected epoch, without dataset-size labels.
 Final metrics pool TP/FP/FN across all held-out test pixels; per-image metrics
 are also saved. Empty truth and prediction yield Dice/IoU 1; precision/recall
 with zero denominators are 0. Macro and micro aggregation stay separate.

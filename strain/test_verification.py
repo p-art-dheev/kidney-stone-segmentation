@@ -47,3 +47,17 @@ def test_supervisor_rejects_budget_above_one_hour(monkeypatch):
     monkeypatch.setattr(sys, 'argv', ['experiment', '--data', 'unused', '--budget', '3601'])
     with pytest.raises(ValueError, match='Budget'):
         main()
+
+
+def test_augmentation_preserves_pairing_and_validation_is_deterministic():
+    from kssd.reproducibility import set_seeds
+    from strain.train import dataset
+    set_seeds(20261013)
+    x = np.zeros((5,256,256,1), dtype=np.float32)
+    x[:, 20:30, 80:90] = 1
+    for images, masks in dataset((x,x.copy()), training=True):
+        np.testing.assert_array_equal(images.numpy(), masks.numpy())
+        assert np.isin(masks.numpy(), [0,1]).all()
+    batches = list(dataset((x,x.copy())))
+    assert [len(images) for images, _ in batches] == [4,1]
+    np.testing.assert_array_equal(np.concatenate([b[0].numpy() for b in batches]), x)

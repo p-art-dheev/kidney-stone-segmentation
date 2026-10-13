@@ -1,4 +1,4 @@
-...........................                                              [100%]
+............................                                             [100%]
 =============================== warnings summary ===============================
 ../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64
   /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
@@ -32,4 +32,4 @@ tests/test_losses.py: 2 warnings
     return np.array(x)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-27 passed, 33 warnings in 12.53s
+28 passed, 33 warnings in 21.74s

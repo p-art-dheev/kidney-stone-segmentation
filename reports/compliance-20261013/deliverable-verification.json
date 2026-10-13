@@ -1,0 +1,26 @@
+{
+  "status": "verified",
+  "checks": [
+    "CAS source",
+    "Beamer source and 15 pages",
+    "all referenced inputs and figures exist",
+    "generated data matches original five-fold records",
+    "all fold table scores match canonical rounding",
+    "250 aggregate epochs across 25 runs",
+    "46 figure identities match",
+    "no unresolved citation token"
+  ],
+  "pdfs": {
+    "report": {
+      "pages": 18,
+      "bytes": 4276777,
+      "sha256": "e953cccf9eaec4a63711730fa341c0766ecc4ed75b7333c9aec527abbd0af253"
+    },
+    "presentation": {
+      "pages": 15,
+      "bytes": 1760649,
+      "sha256": "35c0ae37c3986d47f57fd0eb2d496fc23b883d3edd91434dd0504877d4431220"
+    }
+  },
+  "visual_review": "All 18 report pages and all 15 slides visually inspected; final changed pages/slides re-rendered and inspected; no clipped text, overlapping labels or missing required views"
+}

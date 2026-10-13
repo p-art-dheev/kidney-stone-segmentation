@@ -57,3 +57,57 @@ the final deliverable verification updates the status after compilation.
 The project is initially partially ready. Missing human information remains
 blocked even after a technically complete draft is generated. Training experiments
 must not be represented as paper-equivalent or patient-independent evaluation.
+
+## Final verified status after deliverable generation
+
+The tables above preserve the starting audit. This final status supersedes the
+initial status for submission assessment. See `FINAL_AUDIT_REPORT.md` for the
+20 acceptance answers and `reports/compliance-20261013/` for fresh verification.
+
+| ID | Final status | Verified evidence or remaining action |
+|---|---|---|
+| G01 | PASS | presentation/main.tex uses beamer; compiled PDF has 15 pages, all visually inspected. |
+| G02 | PASS | Matching complete report/presentation references.bib; article BibTeX resolved successfully. |
+| G03 | PARTIAL | Code/tests/locked runtime and records reproducible; new inference needs official data and unpublished selected weights. |
+| G04 | PASS | report/main.tex uses official cas-sc 2.4; compiled 18-page PDF, bibliography, tables and figures included. Author facts tracked separately. |
+| G05 | BLOCKED | Group ID, every name/roll number still unavailable. Explicit placeholders in both titles; do not submit as complete. |
+| G06 | PARTIAL | Fifteen slides and ten-minute rehearsal plan prepared; actual talk duration/Q&A not measured. |
+| G07 | PASS | Report Introduction and slide 1 give attributed motivation and the pixel-level task. |
+| G08 | PASS | Dataset manifest freshly regenerated: all 838 pairs match the frozen manifest exactly, 831 eligible. |
+| G09 | PASS | Report Dataset, split table and slide 2 accurately show content-group outer/inner protocol and binary labels. |
+| G10 | PASS | Report objectives and metric equations; slide 2 defines Dice/IoU and shared threshold. |
+| G11 | PASS | Full eight-author IEEE Access citation, year, title, pages and DOI verified from primary PDF. |
+| G12 | PASS | Attributed Fig.5 redrawing plus detailed code-specific blocks; baseline-architecture.png. |
+| G13 | PASS | report/tables/paper.tex and slide 6 compare verified literature/local Dice and IoU; protocols distinguished. |
+| G14 | PASS | Three full Input/GT/Prediction cases with supplemental crops/insets; saved-mask counts rechecked. |
+| G15 | PASS | Existing shared implementation passes 80-test fresh regression; full saved experiment integrity passes. |
+| G16 | UNVERIFIED | Demonstration command and working code available; actual classroom run remains the team's responsibility. |
+| G17 | PASS | Original CSV log images, training/inner loss and Dice curves included in slides 8-9 and full article. |
+| G18 | PASS | Exact settings from provenance appear in report config table and slide 9; 250 aggregate epochs across 25 runs, ten per fold. |
+| G19 | PASS | Report section 10 and slides 10-11 define paper-inspired baseline and four-gate local adaptation. |
+| G20 | PASS | attention-architecture.png and explicit gate equation represent implemented same-resolution skip gating. |
+| G21 | PASS | Independent comparison verifies architecture-only config difference, same frozen split and fold seeds/settings. |
+| G22 | PASS | Conditional requirement evaluated: no mean improvement claimed; individual gate ablation is future work. |
+| G23 | PASS | Actual negative deltas/failures discussed; possible causes labelled hypotheses, with concrete next studies. |
+| G24 | PASS | Full article has abstract, keywords, introduction, literature/replication, methodology, results, modification, discussion, conclusion and references. |
+| G25 | BLOCKED | Actual personal contributions unavailable; dedicated report section and slide placeholder require team facts. |
+| G26 | PASS | Every table captioned; figures labelled; all PDF pages/slides visually reviewed, slide variants improve small labels. |
+| G27 | PASS | Base, architecture, attention, Focal, dataset and template citations supported by primary source metadata. |
+| G28 | UNVERIFIED | Exam deadline and lecture writing material not supplied; neither timely submission nor lecture-specific compliance asserted. |
+| G29 | BLOCKED | Member roster and speaking roles unknown; participation cannot be verified from source artifacts. |
+| G30 | PARTIAL | Prior methods attributed and measured provenance retained; individual human authorship/contribution confirmation remains. |
+| U01 | PASS | Current inventory: 2,892 starting tracked files, 18 notebook cells; preserved archive and claim-source classifications. |
+| U02 | PASS | Shared hard metrics, boundary/empty/missed/FP/perfect/overlap tests pass in fresh full suite. |
+| U03 | PASS | All 25 histories/checkpoint selections and local weight hashes verified; no outer epoch selection. |
+| U04 | PASS | Fresh dataset manifest equals frozen one; pairs, dimensions, palette decoding, binary areas, duplicates and groups validated. |
+| U05 | PASS | Training-only paired geometry/noise and no validation transforms confirmed in tested pipeline. |
+| U06 | PASS | Four-model canonical records recomputed across 20 complete folds; zeros retained. |
+| U07 | PARTIAL | Extended run unexecuted; 72.95 GPU-hour linear estimate disclosed, not a measurement or completed result. |
+| U08 | PASS | Existing completed Attention modification retained under the master prompt's alternative option; Focal outcomes explicitly unavailable. |
+| U09 | PASS | Full CAS article plus 15-slide preparation brief, ready tables A-E, exact sources and examiner Q&A. Human facts remain separate blockers. |
+| U10 | PASS | Phase audit and completed deliverable package committed/pushed; live remote SHA verified in release evidence and final chat. |
+
+Final readiness remains **PARTIAL**, because missing human requirements,
+classroom/submission verification and turnkey weight availability cannot be
+resolved by generating a PDF. No clinical, significance or patient-independent
+claim is introduced.

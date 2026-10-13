@@ -1,0 +1,7 @@
+# Preserve official vendored template bytes and their upstream whitespace.
+report/cas-sc.cls -text -whitespace
+report/cas-common.sty -text -whitespace
+report/cas-model2-names.bst -text -whitespace
+report/README -text -whitespace
+# Raw compiler diagnostic output may contain trailing spaces.
+reports/compliance-20261013/*build.txt -whitespace

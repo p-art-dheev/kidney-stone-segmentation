@@ -1,0 +1,15 @@
+\small
+\begin{longtable}{lrrrrrr}
+\caption{Matched executed settings. All models use seed 42 with fold seeds 43-47, augmentation and prediction threshold 0.5.}\\
+\toprule
+Architecture & Epochs & Batch & Precision & Optimizer & LR & Loss\\\midrule
+\endfirsthead
+\toprule
+Architecture & Epochs & Batch & Precision & Optimizer & LR & Loss\\\midrule
+\endhead
+Modified U-Net & 10 & 2 & float32 & Adam & 0.001 & Dice\\
+U-Net++ & 10 & 2 & float32 & Adam & 0.001 & Dice\\
+U-Net3+ & 10 & 2 & float32 & Adam & 0.001 & Dice\\
+TransUNet & 10 & 2 & float32 & Adam & 0.001 & Dice\\
+Attention U-Net & 10 & 2 & float32 & Adam & 0.001 & Dice\\
+\bottomrule\end{longtable}\normalsize

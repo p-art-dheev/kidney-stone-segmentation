@@ -1,0 +1,7 @@
+{
+  "status": "verified",
+  "fresh_manifest_matches_frozen": true,
+  "pairs": 838,
+  "empty_masks": 0,
+  "source": "kssd.validate_data; all decoded image/mask hashes, dimensions, binary areas and duplicate clusters recomputed"
+}

@@ -1,0 +1,36 @@
+note: Running TeX ...
+warning: main.tex:38: 
+Missing character: There is no 7 ("37) in font nullfont!
+warning: could not represent character "7" (0x37) in font "nullfont"
+warning:   you may need to load the `fontspec` package and use (e.g.) \setmainfont to
+warning:   choose a different font that covers the unrepresentable character(s)
+warning: main.tex:60: 
+Missing character: There is no 1 ("31) in font nullfont!
+warning: could not represent character "1" (0x31) in font "nullfont"
+warning: main.tex:60: Missing character: There is no 2 ("32) in font nullfont!
+warning: could not represent character "2" (0x32) in font "nullfont"
+warning: main.tex:163: 
+Missing character: There is no 1 ("31) in font nullfont!
+warning: could not represent character "1" (0x31) in font "nullfont"
+warning: main.tex:163: Missing character: There is no 7 ("37) in font nullfont!
+warning: could not represent character "7" (0x37) in font "nullfont"
+note: Rerunning TeX because "main.aux" changed ...
+warning: main.tex:38: 
+Missing character: There is no 7 ("37) in font nullfont!
+warning: could not represent character "7" (0x37) in font "nullfont"
+warning:   you may need to load the `fontspec` package and use (e.g.) \setmainfont to
+warning:   choose a different font that covers the unrepresentable character(s)
+warning: main.tex:60: 
+Missing character: There is no 1 ("31) in font nullfont!
+warning: could not represent character "1" (0x31) in font "nullfont"
+warning: main.tex:60: Missing character: There is no 2 ("32) in font nullfont!
+warning: could not represent character "2" (0x32) in font "nullfont"
+warning: main.tex:163: 
+Missing character: There is no 1 ("31) in font nullfont!
+warning: could not represent character "1" (0x31) in font "nullfont"
+warning: main.tex:163: Missing character: There is no 7 ("37) in font nullfont!
+warning: could not represent character "7" (0x37) in font "nullfont"
+note: Running xdvipdfmx ...
+note: Writing `main.log` (27.3779296875 KiB)
+note: Writing `main.pdf` (1.6790857315063477 MiB)
+note: Skipped writing 5 intermediate files (use --keep-intermediates to keep them)

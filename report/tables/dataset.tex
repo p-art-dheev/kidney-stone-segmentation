@@ -1,0 +1,21 @@
+\small
+\begin{longtable}{p{0.34\linewidth}p{0.60\linewidth}}
+\caption{Audited original dataset statistics; areas are pixels, not physical sizes.}\\
+\toprule
+Item & Value\\\midrule
+\endfirsthead
+\toprule
+Item & Value\\\midrule
+\endhead
+Source image-mask pairs & 838\\
+Eligible unique images & 831\\
+Excluded exact duplicates & 7\\
+Image / mask shape & 512 x 512\\
+Formats & TIFF / uint8 grayscale\\
+Labels & 0 background; 1 stone\\
+Empty masks & 0\\
+Masks with area 1-10 pixels & 50\\
+Area min / Q1 / median / Q3 / max & 3 / 38.25 / 101.5 / 231 / 755\\
+Content groups / largest original cluster & 39 / 173\\
+Normalization / mask rule & uint8 / 255; decoded mask >127\\
+\bottomrule\end{longtable}\normalsize

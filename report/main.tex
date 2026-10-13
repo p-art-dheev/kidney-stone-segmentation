@@ -1,0 +1,197 @@
+\documentclass[a4paper,fleqn]{cas-sc}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{booktabs,longtable,array,amsmath,placeins}
+\graphicspath{{figures/}}
+\newcommand{\artifact}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\panel}[3]{\begin{figure}[pos=htbp]\centering\includegraphics[width=#3\linewidth]{#1}\caption{#2}\end{figure}\FloatBarrier}
+% Keep the official CAS class unchanged; identify this document as a course draft.
+\ExplSyntaxOn
+\cs_set:Npn \__first_footerline: { \small\sffamily 22AIE437~course~project~--~submission~draft }
+\RenewDocumentCommand \printorcid {} {}
+\ExplSyntaxOff
+\begin{document}
+\let\WriteBookmarks\relax
+\shorttitle{Audited kidney stone segmentation}
+\shortauthors{Team roster required}
+\title[mode=title]{Kidney Stone Segmentation Using Deep Learning: Controlled Short-Budget Replication and Attention Skip-Gate Evaluation}
+\tnotemark[1]
+\tnotetext[1]{22AIE437 -- Medical Image Processing. Amrita School of Artificial Intelligence. Group: [GROUP NAME/NUMBER REQUIRED]. Audit date: 13 October 2026. Submission draft: team identities and actual contributions must be completed.}
+\author[1]{[Member names required]}
+\affiliation[1]{organization={Amrita School of Artificial Intelligence},country={India}}
+\nonumnote{Roll numbers for all members: [REQUIRED]. Corresponding author: [NAME AND CONTACT REQUIRED, IF APPLICABLE]. This placeholder is not a claim about the number or identity of group members. Replace it with one author entry per actual member.}
+\begin{abstract}
+Pixel-level kidney stone segmentation is studied on KSSD2025 through an audited TensorFlow pipeline. The source contains 838 matched axial CT image--mask pairs; exclusion of seven exact redundant images leaves 831 eligible samples. A five-fold content-group evaluation with disjoint inner checkpoint selection addresses obvious duplication without claiming patient-independent splitting. Twenty-five completed fold runs across five models account for 250 training epochs in aggregate, with identical float32, Adam, augmentation and threshold settings. Mean fold-pooled Dice is 0.7910 for Modified U-Net, 0.3678 for U-Net++, 0.3230 for U-Net3+, and 0.4842 for TransUNet. Adding four spatial attention gates to Modified U-Net yields Dice $0.7585\pm0.2205$ and IoU $0.6515\pm0.2864$, versus baseline Dice $0.7910\pm0.0724$ and IoU $0.6589\pm0.0973$. The mean Dice difference is $-0.032463$, providing an honest negative result under this fixed budget. Saved confusion counts, selection histories, 25 checkpoint hashes and 831 Attention prediction masks were independently verified. Literature results exceeding 95\% Dice follow a different evaluation protocol and are not numerically reproduced by these runs. Limited training, tiny foreground regions, heuristic grouping, no external cohort and unpublished selected weights constrain interpretation and fresh-clone prediction reproduction.
+\end{abstract}
+\begin{keywords}
+Kidney stone segmentation \sep medical image processing \sep U-Net \sep grouped cross-validation \sep attention gates \sep reproducibility
+\end{keywords}
+\maketitle
+
+\section{Introduction and problem formulation}
+KSSD2025 was introduced by Bouzon et al. to support segmentation of kidney stones on axial CT images \cite{bouzon2025}. Their motivation is that manual outlining is time-consuming and can vary across observers. Pixel masks preserve localization and shape information that image-level classification does not provide. This project investigates automatic binary delineation on exported two-dimensional images. It does not diagnose patients, infer stone composition, measure clinical volume, or validate a treatment-planning system.
+
+For an input $x\in[0,1]^{512\times512\times1}$, a model estimates a probability map $p$ of the same spatial dimensions. The foreground label denotes annotated kidney stone pixels and the background denotes all remaining pixels. The binary output is $\hat y_{ij}=\mathbb{1}(p_{ij}\ge0.5)$. Deep encoder--decoder networks combine local appearance, wider context and skip information to recover small spatial targets. The foreground often comprises only a few pixels, so high background accuracy would be misleading; overlap, precision and recall are the evaluation objectives.
+
+The objectives are to validate image--mask correspondence, replace inconsistent historical metrics with one hard-mask convention, compare four implementations under a frozen protocol, and test a focused architectural modification. The local experimental contribution is an adaptation of published attention gates to the lightweight baseline and a controlled negative comparison. Neither the underlying architectures nor the dataset are claimed as inventions by the team.
+
+\section{Dataset and preprocessing}
+\label{sec:data}
+The source is the KSSD2025 Kaggle release \cite{kssddata,bouzon2025}. The reference paper describes selecting 838 stone-containing axial views from source CT exports, then developing masks through intensity thresholding, connected-component filtering and manual review. This describes the source annotation process, not new annotation work performed here. Identifying metadata was removed before export. The available TIFF metadata does not provide patient or scan identities.
+
+\input{tables/dataset.tex}
+Strict file pairing rejects missing, duplicate-stem or case-insensitive mismatches. Images and masks are decoded to grayscale; palette masks are converted through their palette before binarization. All images are 512 by 512 uint8 exports and are normalized by division by 255, without resizing. These intensities are not Hounsfield units. Observed mask intensities occupy two bands, 0--9 and 247--255. The prespecified mask rule is decoded intensity $>127$; thresholds from 9 through 246 produce identical masks for this release. The historical $>0$ rule counted 313,149 pixels as foreground, compared with 138,922 after correction, incorporating faint background artifacts into the target.
+
+Seven exact decoded-image duplicate pairs have identical corrected binary masks. The lexicographically first image in each pair remains eligible; source files are preserved. Content groups are connected components of a fixed similarity rule: 32 by 32 bicubic thumbnails on normalized images and mean absolute difference at most 0.01. The audit found 3,326 candidate edges and 39 clusters, with the largest containing 173 original images. Chaining can merge distinct exams; correlated images can also evade the rule. Content groups are a leakage precaution, not reconstructed patient labels.
+
+\subsection{Outer evaluation and inner checkpoint selection}
+Five outer GroupKFold partitions use base seed 42. Within each development partition, GroupShuffleSplit with nominal selection fraction 0.2 and seed $42+k$ separates training from checkpoint selection. A fraction of groups does not imply a fraction of images, explaining unequal sizes. All 831 eligible images appear exactly once in outer test for each model; training, selection and test have no shared recorded content groups. Each outer fold acts as a held-out evaluation set. There is no additional external test cohort in this project.
+\input{tables/splits.tex}
+
+\subsection{Training-only augmentation}
+Paired transformations use angle uniform in $[-2.5,2.5]$ degrees; shifts independently within $\pm0.0075$ of image width and height; zoom uniform in $[0.9925,1.0075]$; and horizontal flip probability 0.5. Images use bilinear interpolation, masks nearest-neighbour interpolation, identical geometry and zero border fill. Image-only Gaussian noise has standard deviation uniform in $[0,0.0075]$, followed by clipping to $[0,1]$. This is an explicit interpretation of an incompletely specified paper noise range. Selection and outer data receive no augmentation. Deterministic seeds and aligned mask tests guard against transform mismatch; these checks do not constitute annotation validation by a clinician.
+
+\section{Base paper and literature context}
+The full base-paper title is \emph{KSSD2025: A New Annotated Dataset for Automatic Kidney Stone Segmentation and Evaluation With Modified U-Net Based Deep Learning Models}. The authors are Murillo F. Bouzon, Paulo H. S. de Santana, Gabriel N. Missima, Weverson S. Pereira, Fernando P. Rivera, Gilson A. Giraldi, Oscar E. H. Fugita, and Paulo S. S. Silva. It appeared in \emph{IEEE Access}, volume 13, pages 171790--171806, in 2025, DOI 10.1109/ACCESS.2025.3610027 \cite{bouzon2025}. The supplied 17-page primary PDF was inspected, including its architecture, training discussion and visually rendered results table.
+
+The paper evaluates lightweight U-Net, nested U-Net++, full-scale U-Net3+, and transformer-based TransU-Net. It uses five-fold cross-validation, 150 epochs, batch size 16, Adam learning rate 0.001 and Dice loss on an RTX 3060 desktop with Ryzen 5 5500 and 16 GB RAM. Training augmentation includes the ranges described above, but exact sampling distributions and interpolation are incompletely specified. The paper also reports a separate 17-image external evaluation. Those external images are unavailable to this project and no external performance is claimed here.
+
+Nested skip pathways were proposed for feature fusion in UNet++ \cite{zhou2018}; full-scale fusion, deep supervision and other components appear in UNet 3+ \cite{huang2020}. Our implementation disables deep supervision and does not use its classification-guided module or hybrid loss. TransUNet combines convolutional features and transformer context \cite{chen2021}; the local implementation uses a small no-backbone configuration, not a claim of equivalence to the original pretrained hybrid system. Attention gates learn spatial weights conditioned on decoder context \cite{oktay2018}. Their motivation transfers to small foreground detection, but results on other anatomical targets do not establish a benefit on KSSD2025.
+
+\section{Methodology and architectures}
+\label{sec:models}
+All models accept 512 by 512 by 1 inputs and produce float32 single-channel sigmoid probabilities. Encoders use filters 16, 32, 64, 128 and a 256-channel bottleneck. The measured parameter counts include trainable and non-trainable model parameters, not optimizer state. All four canonical implementations use the same soft Dice training loss and experimental configuration.
+\input{tables/parameters.tex}
+
+\subsection{Modified U-Net: the replication baseline}
+Each encoder block has two bias-free 3 by 3 convolutions, batch normalization and ReLU; dropout follows the first activation, with rates 0.1, 0.2, 0.3 and 0.3 down the encoder and 0.3 at the bottleneck. Max pooling halves each resolution. Decoder stages use 2 by 2 stride-two transposed convolution, concatenate the corresponding encoder skip, and apply the same two-convolution block without dropout. The final 1 by 1 convolution has a sigmoid activation. The adjective ``Modified'' belongs to the base paper's lightweight U-Net design; it is not by itself the team's new modification.
+\panel{baseline-architecture.png}{Code-faithful redrawing of the lightweight Modified U-Net design, attributed to Bouzon et al., Fig. 5 (primary PDF p.7), with local block placement from kssd/models.py. Skip arrows link equal resolutions.}{1}
+
+\subsection{U-Net++}
+The keras-unet-collection 0.1.13 builder uses a five-level encoder and nested dense skip pathways, two convolution stacks per down/up block, batch normalization, ReLU, max pooling and interpolated upsampling. Deep supervision is disabled, the backbone is None, and only one sigmoid output is evaluated. The additional nested pathway blocks refine features between encoder and decoder. They also change the optimization and resource profile. These settings represent the local library implementation, not every component of the source UNet++ paper.
+
+\subsection{U-Net3+}
+The local builder aggregates full-scale encoder/decoder features at each decoder resolution, applying pooling or upsampling to align them before concatenation. Its four skip projection settings are 22 channels each and the aggregate is 110 channels. ReLU, batch normalization and two-stack encoder/decoder settings are retained. Deep supervision, classification-guided gating and the published hybrid loss are absent. Three zero-Dice folds are retained in the reported mean; a complex fusion design alone does not establish superior detection.
+
+\subsection{TransUNet}
+Convolutional blocks and four pooling stages create a 32 by 32 feature grid. A 1 by 1 projection precedes tokenization: 1,024 tokens with patch size one at the bottleneck, embedded to dimension 192. Three transformer blocks use four attention heads, GELU and MLP dimensions 384 and 192. The token grid is reshaped and projected back to 256 channels, then a skip-connected convolutional decoder upsamples to the mask. There is no pretrained backbone. Keras Reshape layers replace incompatible symbolic TensorFlow reshapes in the historical notebook; installed library source is not patched or executed dynamically.
+\panel{variant-architectures.png}{Local implementation schematics: nested skip fusion, full-scale fusion and the no-backbone token bottleneck. Attributed to the respective architecture papers; schematics emphasize implemented blocks and explicitly omit disabled source-paper components.}{1}
+
+\section{Implementation and reproducibility}
+\label{sec:repro}
+The three notebooks now delegate to the shared tested package and contain no stored corrected-run outputs. The notebook inventory records all 18 current cells. Historical notebook versions remain in Git history. Twenty old final-epoch .keras archives and old figures are preserved under Results; archive restoration establishes compatibility only and is not evidence of the corrected CV protocol.
+The completed workload is \textbf{250 training epochs across 25 fold runs}: five models, five folds per model, and ten epochs per fold. This aggregate describes the total experiment work, not the training duration of a single fitted checkpoint.
+\input{tables/configuration.tex}
+\input{tables/files.tex}
+Training verifies decoded image and mask hashes against the frozen manifest, starts a new seeded model and optimizer for every fold, keeps remainder batches, and rejects reuse of existing output directories. Maximum inner hard-mask Dice selects weights; ties use the earliest epoch. Complete fixed-budget histories are required. Selected weights are loaded before one outer evaluation. Thus no epoch is chosen using outer test performance. Training curves show all epochs; selected epoch references identify the reported checkpoint rather than implying the final epoch was used.
+
+Recorded runtime: Linux/WSL Ubuntu, Python 3.12.3, TensorFlow 2.20.0, Keras 3.13.2, NumPy 2.2.6, SciPy 1.15.3, Pillow 11.1.0, scikit-learn 1.7.2 and keras-unet-collection 0.1.13. The GPU was an RTX 4070 Laptop with 8,188 MiB physical memory; TensorFlow reported a CUDA 12.5.1 build with cuDNN 9 and actual loaded cuDNN 9.27.0. The exact dependency lock and device evidence are stored in reports/resources. Native Windows and different library/device combinations should not be assumed bitwise equivalent near a binary threshold.
+
+The compact records, binary Attention masks and plots are published in Git. Selected baseline and Attention H5 weights are ignored and locally backed up; raw dataset files require the official download. A fresh clone can recompute aggregates and audit saved Attention masks without retraining, but cannot regenerate model predictions unless it recovers the selected weights or trains again. This makes code-level reproduction possible with the documented inputs, while turnkey fresh-clone inference remains incomplete. Exact commands are supplied in Appendix~\ref{sec:commands} and docs/REPRODUCIBILITY.md.
+
+\section{Evaluation metrics}
+Let TP count correctly predicted foreground, FP predicted foreground on background, and FN annotated foreground missed by the prediction. TN counts correctly predicted background. All four scores refer to the same hard masks at threshold 0.5:
+\begin{align}
+ D&=\frac{2TP}{2TP+FP+FN}, & J&=\frac{TP}{TP+FP+FN},\\
+ P&=\frac{TP}{TP+FP}, & R&=\frac{TP}{TP+FN}.
+\end{align}
+Both-empty Dice and IoU are 1; precision or recall with zero denominator is 0. A missed nonempty stone has Dice and IoU 0. Unit tests cover these cases, false positives, perfect predictions, partial overlap, invalid values and the inclusive threshold boundary. Training uses a differentiable soft per-image Dice surrogate averaged over the batch; this is separate from reported hard-mask overlap.
+
+Confusion counts are summed over each outer fold before computing its primary pooled-pixel scores. The main table then reports unweighted mean and sample standard deviation across the five fold scores (ddof=1). This is not a confidence interval, a pixel-weighted cross-fold score or mean per-image Dice. Saved per-image macro averages and pooled-all-fold scores remain separately available. Unequal test sizes and foreground burdens explain why these aggregation conventions can give different values. Table~\ref{tab:pooled} makes that distinction explicit.
+
+\section{Published versus local replication results}
+\input{tables/paper.tex}
+The published values are transcribed from visually checked Table 3, primary PDF p.9, and expressed here as fractions. Their standard deviations are retained as reported, without asserting their aggregation is identical to ours. Local values are recomputed from canonical saved outer evaluations. Our values are substantially lower. The results table compares overlap scores only. The experimental settings are documented separately: corrected mask decoding, removal of duplicate samples, content grouping, inner checkpoint selection, activation/API repairs and explicit augmentation choices change the protocol. The paper's exact threshold, grouping and checkpoint policy cannot be inferred merely from its formulas. These experiments are a controlled replication attempt, not a numerical reproduction of Table 3.
+
+\section{Detailed experimental results}
+\input{tables/aggregate.tex}
+\input{tables/folds.tex}
+\input{tables/pooled.tex}
+\input{tables/runtime.tex}
+Modified U-Net has the highest measured mean Dice among the four original architectures. No model was chosen by replacing a poor fold, selecting independent metric maxima or mixing precision policies. U-Net++ misses the foreground in one fold; U-Net3+ has zero Dice in three folds; TransUNet ranges from 0.021893 to 0.908983. These failures remain in the aggregate and cannot be dismissed as reporting errors because verified integer counts support them.
+
+Runtime tables contain measured training durations. Inference measurements exclude the first batch as warm-up, disk I/O and preprocessing, and include model forward plus device synchronization. They are hardware-specific batch-two measurements, not clinical latency. Parameter counts do not establish inference speed. A simple linear extrapolation from the completed four-model duration gives approximately 72.9 GPU-hours for a future 150-epoch-per-fold run at batch two, excluding fixed overhead and assuming unchanged epoch cost. This is an estimate, not an executed result. Extended runs have not been executed; no unavailable metrics are filled in.
+\panel{comparison.png}{Four-model canonical mean fold-pooled Dice and IoU with sample-SD bars. Bars describe fold variation and may extend outside the metric range; they are not confidence intervals.}{0.95}
+\panel{modified_unet-curves.png}{Modified U-Net training and inner-selection loss and hard-metric curves across all five folds. Outer test data are absent from checkpoint-selection curves.}{0.95}
+\panel{unetpp-curves.png}{U-Net++ complete training and inner-selection histories, including the failed-learning fold.}{0.95}
+\panel{unet3plus-curves.png}{U-Net3+ complete histories; three zero-Dice outer folds are retained. Learning-instability mechanisms remain unestablished.}{0.95}
+\panel{transunet-curves.png}{TransUNet float32 histories. Earlier mixed-precision NaN runs are separate exploratory records and do not contribute to this table.}{0.95}
+\panel{training-log.png}{Readable screenshot-style rendering of original Modified U-Net fold-1 CSV training output. Displayed values are logged measurements, not synthetic curves.}{1}
+
+\section{Qualitative segmentation results}
+\label{sec:qualitative}
+\panel{required-three-examples.png}{Three verified Attention samples shown as input CT, ground truth and predicted binary mask, with matching crops as additional views. The full-image columns preserve the course's required views. Success, representative middle-ranked Dice and largest false-negative cases use masks saved during the original single outer evaluation, with independently recomputed counts.}{1}
+\input{tables/examples.tex}
+Examples are descriptive case studies, not a random visual sample or a replacement for full CV metrics. Selection criteria and image IDs are recorded in the figure index. A highest-Dice case can be very small, so visual success does not imply robustness. All baseline panels likewise reference selected checkpoint hashes and verified displayed counts. The following failures demonstrate why precision, recall and overlap must be examined together.
+\panel{modified_unet-largest_fn-302.png}{Baseline failure: 302.tif has TP/FP/FN 41/20/622, Dice 0.1133. Full masks and crops show extensive under-segmentation despite the strongest aggregate model.}{1}
+\panel{transunet-largest_fp-688.png}{TransUNet 688.tif has TP/FP/FN 14/10052/0; recall is 1 but Dice is approximately 0.0028 because of widespread false positives.}{1}
+\panel{unetpp-largest_fn-307.png}{U-Net++ misses the 755-pixel target in 307.tif completely. The failure is retained in evaluation rather than omitted as an outlier.}{1}
+\panel{unet3plus-largest_fn-324.png}{U-Net3+ misses all 741 annotated pixels in 324.tif. Empty prediction is a genuine zero-overlap result.}{1}
+
+\section{Our modification: additive attention skip gates}
+\label{sec:modification}
+The baseline is the lightweight Modified U-Net described above. The modification inserts four additive spatial gates immediately before skip concatenation, one per decoder resolution. It is inspired by Oktay et al. \cite{oktay2018}, adapted locally to same-resolution upsampled decoder context. All encoder/decoder convolution designs, normalization, dropout and widths remain matched in design. A gate with skip $s$ and decoder context $g$ computes
+\begin{equation}
+ a=\sigma\!\left(\psi\left[\operatorname{ReLU}(W_s*s+W_g*g)\right]\right),\qquad \tilde s=a\odot s,
+\end{equation}
+where $W_s,W_g$ and $\psi$ are learned 1 by 1 projections, the intermediate width is half the skip channels, and $a$ has one coefficient per pixel. The gated skip is concatenated with the decoder before its convolution block. The complete architecture has 1,967,357 parameters, 22,124 more than the 1,945,233-parameter baseline (approximately 1.14\%). This is a research-inspired application, not a newly invented attention mechanism.
+\panel{attention-architecture.png}{Matched baseline with four skip gates and the local gate equation. Each gate uses upsampled decoder context at the same spatial resolution; encoder and decoder block design remains unchanged.}{1}
+\input{tables/modification.tex}
+Identical frozen splits, seed sequence, learning rate, batch size, augmentation, Dice loss, float32 policy and ten-epoch budget are verified in the saved comparison. Architecture is the only configuration difference. Histories and checkpoint identities are complete for five folds; fold 1 is the retained pilot, not a retrained or discarded fold. The gate changes random-number consumption and parameter shapes, so matching seeds does not imply identical corresponding initial weights. Reported hashes document each actual initialization.
+\panel{attention-comparison.png}{Matched baseline versus Attention mean and sample SD. Attention lowers mean Dice by 0.032463 and IoU by approximately 0.0074 under this budget.}{0.95}
+\panel{attention_unet-curves.png}{Attention training and inner-selection curves across all five folds. Selected epochs are 9, 6, 7, 5 and 10.}{0.95}
+\panel{attention_unet-largest_fp-1143.png}{Attention false-positive example: 1143.tif has TP/FP/FN 443/1344/44, Dice 0.3896. Bright background regions are segmented in addition to the target.}{1}
+\panel{paired-small-stone.png}{Same outer sample 126.tif, annotated area three pixels. Baseline TP/FP/FN is 3/1/0 (Dice 0.8571); Attention is 2/0/1 (Dice 0.8). This matched qualitative example is illustrative, not evidence of an area-stratified improvement.}{1}
+
+\subsection{Negative result and ablation scope}
+Mean Attention Dice is lower; IoU is also lower, precision is lower and recall is slightly higher. Individual paired fold differences vary in sign. Greater gate capacity did not consistently improve overlap. Tiny target masks, unequal content groups, short optimization, gating suppression, batch-normalization dynamics and seed sensitivity are plausible explanations; none is isolated experimentally. A longer prespecified budget and a multiple-seed gate-placement comparison would help distinguish under-training from architectural mismatch. Since improvement is not claimed, the guideline's conditional improvement ablation is not triggered. The existing baseline/no-gate versus all-four-gates comparison is a controlled test, but it does not isolate individual gate levels.
+
+\subsection{Focal Tversky: implemented alternative, not completed evidence}
+The separate loss implementation draws on Focal Tversky literature \cite{abraham2018}. Its local convention is $TI=(TP+\epsilon)/(TP+0.3FP+0.7FN+\epsilon)$ on soft per-image predictions and $L=(1-TI)^{0.75}$, then batch mean, with smoothing $10^{-6}$ and a finite-gradient guard for perfect masks. The exponent convention is explicitly local; source papers may express the focal exponent differently. It is not claimed as an invention or as the current measured architectural modification. Numerical and GPU smoke tests passed, but the interrupted five-fold run produced zero complete epochs and zero complete outer evaluations. Therefore Focal Dice, IoU, size-bin comparisons and qualitative outcomes are NOT YET MEASURED. Retaining the already completed Attention experiment satisfies the master prompt's option to use a different appropriate modification.
+
+\section{Discussion}
+These results establish that the corrected pipeline produces traceable evaluations and that the chosen gate modification does not improve mean overlap in the recorded short-budget experiment. They do not establish general superiority of convolution over transformers, failure of attention as a class, statistical significance, patient independence or clinical readiness. A mean of five correlated fold estimates is insufficient for strong superiority claims, especially with unknown patient identities and markedly unequal folds.
+
+Small targets make a single-pixel error proportionally large: the smallest mask has three pixels. Mask area measures exported pixels, not millimetres or clinical severity. Faint mask artifacts created a material preprocessing error in legacy notebooks. Annotation uncertainty remains because the team has not performed independent expert relabelling. All original masks contain a stone; no normal-image negative cohort assesses screening false alarms.
+
+U-Net3+'s three failed folds and TransUNet's severe over-segmentation suggest unstable learning under the short fixed configuration. Complete finite histories do not imply effective foreground learning. Prior mixed-precision NaN failures are recorded separately; replacing them with float32 canonical runs changes the numerical protocol and is disclosed. Poor outcomes are not hidden by retaining only strong folds. A future causal analysis should inspect foreground gradient balance, initialization, normalization statistics and learning dynamics using inner data, rather than tune after observing outer scores.
+
+The discrepancy from literature reflects multiple protocol changes simultaneously. It cannot be attributed quantitatively to epochs alone. More training may help, but might also overfit; proper selection and external evaluation are still necessary. The current conservative grouping reduces exact/near-duplicate leakage but can both over-group and miss patient correlations. Without patient metadata, residual leakage risk remains unresolved.
+
+\section{Limitations and future work}
+The executed budget is ten epochs; paper-budget runs remain unavailable. Only one seed sequence was used. There is no external cohort, verified patient grouping, expert annotation audit or physical-size metadata. New selected weights are local rather than published, limiting turnkey reproducibility. Group details, contribution ownership, the exam deadline and the separate lecture writing guidance are not available. Actual classroom demonstration and each member's participation remain human deliverables.
+
+Next work should obtain the roster and real contribution statement, securely distribute selected weights with hashes, acquire patient/scan mapping where permitted, collect negative and external cases, and preregister a longer multiple-seed comparison. If Focal Tversky is pursued, run a new matched output directory, retain all folds and use training-derived area thresholds for descriptive size analysis. Do not interpret a partially executed run or a smoke update as a performance experiment. None of these future activities is reported as completed.
+
+\section{Conclusion}
+Under corrected binary metrics and content-group evaluation, Modified U-Net has the highest measured mean Dice among the four canonical ten-epoch models. Four additive skip attention gates produce a lower mean Dice and IoU, yielding a defensible negative modification result. Verified counts, histories, checkpoint hashes and saved masks support these findings. The project is technically suitable for a draft review, with honest limitations, but final submission readiness remains partial until human title/contribution information and submission requirements are completed. The results are not equivalent to the paper's 150-epoch scores.
+
+\section{Author contributions and required team input}
+\textbf{[TEAM TO COMPLETE: every member name, roll number and actual contribution.]}
+List what each person actually did in conceptualization, data validation, implementation, experiments, auditing, writing and presentation. The repository cannot establish personal ownership. No contribution assignments are invented. Every member must present and be ready to answer questions across the project; fill presentation/main.tex with the verified roster and participation plan.
+
+\bibliographystyle{cas-model2-names}
+\bibliography{references}
+\appendix
+\section{Commands and recovery requirements}\label{sec:commands}
+From the repository root, install the locked Linux/WSL environment described in \artifact{docs/GPU_ENVIRONMENT.md}. Set PYTHONHASHSEED=42 and TensorFlow intra/inter-op thread counts to two. Examples below preserve existing experiments by using new output names.
+\begin{verbatim}
+python -m pip install -r reports/resources/wsl_gpu.lock.txt
+python -m pip install --no-deps --no-build-isolation -e .
+python -m kssd.final_audit --output runs/records-audit.json
+python -m kssd.attention_audit --output runs/attention-audit.json
+python -m pytest -q tests --basetemp tmp/reproduce-tests
+python -m kssd.validate_data --data data/kssd2025/data \
+  --output runs/new-data-audit --mask-threshold 127
+python -m kssd.train --data data/kssd2025/data \
+  --config configs/10epoch/modified_unet.json \
+  --output runs/new-modified-unet --require-gpu --save-predictions
+\end{verbatim}
+Repeat the train command with the other architecture config files and separate outputs. For checkpoint verification, add the documented ignored backup root via --checkpoints to each auditor. Attention full audit also accepts --data to recompute intersections with original masks, without another forward pass. Recovered baseline weights plus dataset and original batch ordering are required for baseline figure regeneration. All source hashes and selected weight identities remain in the per-fold provenance.
+
+\section{Evidence ledger and audit boundaries}
+The fresh 13 October baseline audit recomputed all twenty fold evaluations, checked histories and protocols, verified twenty local selected-weight SHA-256 values and all thirty baseline figure/index identities. The fresh Attention audit checked five weight hashes and all 831 saved masks against decoded ground truth. Results are in reports/compliance-20261013. These are integrity checks, not retraining or independent clinical validation.
+
+Each numerical table is generated from canonical JSON records by the deliverable builder in scripts/. Literature values have a separate fixed transcribed dictionary. Dataset statistics derive from the frozen manifest and current integrity comparison. The current file inventory includes SHA-256 identities, and the complete three-notebook source inventory prevents treating an unexecuted wrapper as a measured experiment. The full per-image evaluations and confusion counts are available in the repository rather than reproduced as hundreds of pages in this article. The single-column class is the official Elsevier CAS template \cite{kastemplates}.
+
+\input{tables/counts.tex}
+\end{document}

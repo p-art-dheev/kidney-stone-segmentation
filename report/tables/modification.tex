@@ -1,0 +1,13 @@
+\small
+\begin{longtable}{lrrrr}
+\caption{Architecture-only controlled comparison. Differences are descriptive, not significance estimates.}\\
+\toprule
+Model / difference & Dice & IoU & Precision & Recall\\\midrule
+\endfirsthead
+\toprule
+Model / difference & Dice & IoU & Precision & Recall\\\midrule
+\endhead
+Modified U-Net & $0.7910\pm0.0724$ & $0.6589\pm0.0973$ & $0.8298\pm0.1621$ & $0.7786\pm0.0755$\\
+Attention U-Net & $0.7585\pm0.2205$ & $0.6515\pm0.2864$ & $0.7890\pm0.2621$ & $0.7803\pm0.1996$\\
+Attention minus baseline & -0.032463 & -0.007415 & -0.040763 & +0.001737\\
+\bottomrule\end{longtable}\normalsize

@@ -1,0 +1,19 @@
+\small
+\begin{longtable}{p{0.34\linewidth}p{0.60\linewidth}}
+\caption{Repository implementation and evidence map. Paths abbreviated after kssd/ where appropriate.}\\
+\toprule
+Purpose & File or directory\\\midrule
+\endfirsthead
+\toprule
+Purpose & File or directory\\\midrule
+\endhead
+Data and augmentation & kssd/data.py; augmentation.py\\
+Architectures / losses & kssd/models.py; tf\_metrics.py; losses.py\\
+Training / evaluation & kssd/train.py\\
+Integrity / splits & validate\_data.py; splits.py\\
+Aggregation / auditing & reporting.py; final\_audit.py; attention\_audit.py\\
+Selected-checkpoint records & reports/experiments/*/architecture/fold-N/\\
+Tests / runtime & tests/; reports/resources/wsl\_gpu.lock.txt\\
+Historical assets & Results/; three root notebooks\\
+Current deliverables & report/; presentation/; docs/\\
+\bottomrule\end{longtable}\normalsize

@@ -10,3 +10,17 @@ tmp/
 *.egg-info/
 .env
 .env.*
+/report/*.aux
+/report/*.abs
+/report/*.bbl
+/report/*.blg
+/report/*.log
+/report/*.out
+/report/*.xdv
+/presentation/*.aux
+/presentation/*.log
+/presentation/*.nav
+/presentation/*.out
+/presentation/*.snm
+/presentation/*.toc
+/presentation/*.xdv

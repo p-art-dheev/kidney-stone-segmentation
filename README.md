@@ -5,6 +5,23 @@ binary segmentation in exported axial CT images. Reference: Bouzon et al.,
 [*KSSD2025* (IEEE Access, 2025)](https://doi.org/10.1109/ACCESS.2025.3610027).
 The corrected protocol differs from the paper and historical notebooks.
 
+## Course report and Beamer deliverables
+
+The 13 October compliance audit produced the [Elsevier CAS report PDF](report/main.pdf)
+and [LaTeX source](report/main.tex), plus the [15-slide Beamer PDF](presentation/main.pdf)
+and [source](presentation/main.tex). The completed workload totals **250 training
+epochs across 25 fold runs** (five models, five folds each, ten epochs per fold).
+
+See the [slide preparation brief](docs/PPT_PREPARATION_BRIEF.md),
+[complete results](docs/EXPERIMENTAL_RESULTS.md), [compliance matrix](docs/GUIDELINE_COMPLIANCE_MATRIX.md),
+[final course audit](docs/FINAL_AUDIT_REPORT.md) and [build/recovery commands](docs/REPRODUCIBILITY.md).
+The draft still requires the actual group ID, all member names/roll numbers and
+individual contributions before submission. New selected weights remain local.
+Fresh checks verified all 25 selected checkpoint hashes, all 831 Attention masks,
+an exact regenerated 838-pair dataset manifest match and **80 passing tests**.
+
+## Previously verified experiment release
+
 **The final non-training baseline audit is complete.** All twenty saved float32
 folds, checkpoint hashes, counts, histories and matched configurations passed
 independent verification. All 29 result plots were reviewed. The matched Focal

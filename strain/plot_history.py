@@ -43,6 +43,7 @@ def plot(output):
             unet3plus="U-Net3+",
             unetpp="U-Net++",
             transunet="TransUNet",
+            attention_unet="Attention U-Net",
         )
         fig.suptitle(
             names.get(path.parent.name, path.parent.name) + " — Training history"

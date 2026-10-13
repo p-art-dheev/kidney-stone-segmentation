@@ -1,0 +1,37 @@
+........................................................................ [ 90%]
+........                                                                 [100%]
+=============================== warnings summary ===============================
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+../../../../../../../../../var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_mathtext.py:45
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+tests/test_losses.py: 2 warnings
+tests/test_metrics.py: 17 warnings
+tests/test_training.py: 1133 warnings
+  /var/tmp/kssd-gpu312-20261012/lib/python3.12/site-packages/keras/src/backend/tensorflow/core.py:171: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+    return np.array(x)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+80 passed, 1166 warnings in 406.96s (0:06:46)

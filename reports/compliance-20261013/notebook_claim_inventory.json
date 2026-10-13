@@ -1,0 +1,146 @@
+[
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 1,
+    "type": "markdown",
+    "source": "# Reproducible modified_unet \u2014 10-epoch preliminary configuration\n\nThis notebook now calls the shared, tested nested group-CV pipeline. The historical results in `Results/` and the README are unvalidated legacy evidence; these cells contain no claimed new results. Original notebook versions remain in Git history.\n\nInstall the repository with `python -m pip install -e \".[train]\"`, run the dataset validator, and set `KSSD_DATA` to the directory containing `image/` and `label/`. Run from this checkout. See `docs/DATASET.md` and `docs/TRAINING.md`. Use a GPU environment for full-size experiments. Restart the kernel with `PYTHONHASHSEED=42` set in its launching shell.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 2,
+    "type": "code",
+    "source": "import os, json\nfrom pathlib import Path\nfrom kssd.config import ExperimentConfig\nfrom kssd.train import run_fold\nfrom kssd.splits import validate_splits\nfrom kssd.tf_metrics import dice_loss, make_metrics\n\nDATA_DIR = Path(os.environ.get(\"KSSD_DATA\", \"data/kssd2025/data\"))\nOUTPUT = Path(os.environ.get(\"KSSD_RUN\", \"runs/notebook-experiment\"))\nmanifest = json.loads(Path(\"reports/dataset/manifest.json\").read_text())\nsplits = json.loads(Path(\"reports/splits.json\").read_text())\nvalidate_splits(splits, manifest)\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 3,
+    "type": "markdown",
+    "source": "## Fixed protocol\n\n831 eligible unique images; five outer content-group folds. A separate inner group split selects the checkpoint using epoch-wide binary Dice at >=0.5. The selected checkpoint is evaluated once on the untouched outer fold. Each fold gets a new seeded model and optimizer; no batch remainder is dropped. Source pixels must match the audited hashes. The result is not an exact paper reproduction or patient-level CV.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 4,
+    "type": "code",
+    "source": "ARCHITECTURES = ['modified_unet']\n# Load the same audited preliminary budget and augmentation as the CLI.\nconfigurations = [ExperimentConfig(**json.loads(\n    (Path(\"configs/10epoch\")/f\"{name}.json\").read_text())) for name in ARCHITECTURES]\nfor config in configurations:\n    print(config.to_dict())\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 5,
+    "type": "code",
+    "source": "results = {}\nfor config in configurations:\n    results[config.architecture] = []\n    for fold in range(1, 6):\n        result = run_fold(DATA_DIR, manifest, splits, config, fold, OUTPUT/config.architecture)\n        results[config.architecture].append(result)\n        print(config.architecture, fold, result[\"micro\"])\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-modified-unet-10epoch.ipynb",
+    "cell": 6,
+    "type": "markdown",
+    "source": "## Artifacts and interpretation\n\nEach architecture/fold directory records CSV/JSON histories, selected weights, exact identifiers, seed, configuration, hardware/dependencies, confusion counts and per-image scores. Choose a new `KSSD_RUN` directory for a new experiment; existing runs are never overwritten. Aggregate only all five completed folds from the same protocol. Model comparisons and failure plots must use their selected checkpoints, rather than independently selected epoch maxima. No result is validated merely because this notebook exists.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 1,
+    "type": "markdown",
+    "source": "# Reproducible unetpp, unet3plus \u2014 10-epoch preliminary configuration\n\nThis notebook now calls the shared, tested nested group-CV pipeline. The historical results in `Results/` and the README are unvalidated legacy evidence; these cells contain no claimed new results. Original notebook versions remain in Git history.\n\nInstall the repository with `python -m pip install -e \".[train]\"`, run the dataset validator, and set `KSSD_DATA` to the directory containing `image/` and `label/`. Run from this checkout. See `docs/DATASET.md` and `docs/TRAINING.md`. Use a GPU environment for full-size experiments. Restart the kernel with `PYTHONHASHSEED=42` set in its launching shell.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 2,
+    "type": "code",
+    "source": "import os, json\nfrom pathlib import Path\nfrom kssd.config import ExperimentConfig\nfrom kssd.train import run_fold\nfrom kssd.splits import validate_splits\nfrom kssd.tf_metrics import dice_loss, make_metrics\n\nDATA_DIR = Path(os.environ.get(\"KSSD_DATA\", \"data/kssd2025/data\"))\nOUTPUT = Path(os.environ.get(\"KSSD_RUN\", \"runs/notebook-experiment\"))\nmanifest = json.loads(Path(\"reports/dataset/manifest.json\").read_text())\nsplits = json.loads(Path(\"reports/splits.json\").read_text())\nvalidate_splits(splits, manifest)\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 3,
+    "type": "markdown",
+    "source": "## Fixed protocol\n\n831 eligible unique images; five outer content-group folds. A separate inner group split selects the checkpoint using epoch-wide binary Dice at >=0.5. The selected checkpoint is evaluated once on the untouched outer fold. Each fold gets a new seeded model and optimizer; no batch remainder is dropped. Source pixels must match the audited hashes. The result is not an exact paper reproduction or patient-level CV.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 4,
+    "type": "code",
+    "source": "ARCHITECTURES = ['unetpp', 'unet3plus']\n# Load the same audited preliminary budget and augmentation as the CLI.\nconfigurations = [ExperimentConfig(**json.loads(\n    (Path(\"configs/10epoch\")/f\"{name}.json\").read_text())) for name in ARCHITECTURES]\nfor config in configurations:\n    print(config.to_dict())\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 5,
+    "type": "code",
+    "source": "results = {}\nfor config in configurations:\n    results[config.architecture] = []\n    for fold in range(1, 6):\n        result = run_fold(DATA_DIR, manifest, splits, config, fold, OUTPUT/config.architecture)\n        results[config.architecture].append(result)\n        print(config.architecture, fold, result[\"micro\"])\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kdss-unetpp-unet3p-10epochs.ipynb",
+    "cell": 6,
+    "type": "markdown",
+    "source": "## Artifacts and interpretation\n\nEach architecture/fold directory records CSV/JSON histories, selected weights, exact identifiers, seed, configuration, hardware/dependencies, confusion counts and per-image scores. Choose a new `KSSD_RUN` directory for a new experiment; existing runs are never overwritten. Aggregate only all five completed folds from the same protocol. Model comparisons and failure plots must use their selected checkpoints, rather than independently selected epoch maxima. No result is validated merely because this notebook exists.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 1,
+    "type": "markdown",
+    "source": "# Reproducible transunet \u2014 10-epoch preliminary configuration\n\nThis notebook now calls the shared, tested nested group-CV pipeline. The historical results in `Results/` and the README are unvalidated legacy evidence; these cells contain no claimed new results. Original notebook versions remain in Git history.\n\nInstall the repository with `python -m pip install -e \".[train]\"`, run the dataset validator, and set `KSSD_DATA` to the directory containing `image/` and `label/`. Run from this checkout. See `docs/DATASET.md` and `docs/TRAINING.md`. Use a GPU environment for full-size experiments. Restart the kernel with `PYTHONHASHSEED=42` set in its launching shell.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 2,
+    "type": "code",
+    "source": "import os, json\nfrom pathlib import Path\nfrom kssd.config import ExperimentConfig\nfrom kssd.train import run_fold\nfrom kssd.splits import validate_splits\nfrom kssd.tf_metrics import dice_loss, make_metrics\n\nDATA_DIR = Path(os.environ.get(\"KSSD_DATA\", \"data/kssd2025/data\"))\nOUTPUT = Path(os.environ.get(\"KSSD_RUN\", \"runs/notebook-experiment\"))\nmanifest = json.loads(Path(\"reports/dataset/manifest.json\").read_text())\nsplits = json.loads(Path(\"reports/splits.json\").read_text())\nvalidate_splits(splits, manifest)\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 3,
+    "type": "markdown",
+    "source": "## Fixed protocol\n\n831 eligible unique images; five outer content-group folds. A separate inner group split selects the checkpoint using epoch-wide binary Dice at >=0.5. The selected checkpoint is evaluated once on the untouched outer fold. Each fold gets a new seeded model and optimizer; no batch remainder is dropped. Source pixels must match the audited hashes. The result is not an exact paper reproduction or patient-level CV.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 4,
+    "type": "code",
+    "source": "ARCHITECTURES = ['transunet']\n# Load the same audited preliminary budget and augmentation as the CLI.\nconfigurations = [ExperimentConfig(**json.loads(\n    (Path(\"configs/10epoch\")/f\"{name}.json\").read_text())) for name in ARCHITECTURES]\nfor config in configurations:\n    print(config.to_dict())\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 5,
+    "type": "code",
+    "source": "results = {}\nfor config in configurations:\n    results[config.architecture] = []\n    for fold in range(1, 6):\n        result = run_fold(DATA_DIR, manifest, splits, config, fold, OUTPUT/config.architecture)\n        results[config.architecture].append(result)\n        print(config.architecture, fold, result[\"micro\"])\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  },
+  {
+    "notebook": "kssd-transunet-10epochs.ipynb",
+    "cell": 6,
+    "type": "markdown",
+    "source": "## Artifacts and interpretation\n\nEach architecture/fold directory records CSV/JSON histories, selected weights, exact identifiers, seed, configuration, hardware/dependencies, confusion counts and per-image scores. Choose a new `KSSD_RUN` directory for a new experiment; existing runs are never overwritten. Aggregate only all five completed folds from the same protocol. Model comparisons and failure plots must use their selected checkpoints, rather than independently selected epoch maxima. No result is validated merely because this notebook exists.\n",
+    "stored_text_outputs": [],
+    "evidence_class": "current reproducible wrapper; no executed corrected-run outputs"
+  }
+]

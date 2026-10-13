@@ -1,5 +1,10 @@
 # Isolated fast experiment
 
+Attention U-Net has completed [50 epochs](results/attention256_50epochs_20261014_v2/report.md)
+on the complete frozen training partition. Its [runner and protocol](attention/README.md)
+reuse the verified preprocessing and held-out evaluation. The file index below
+includes Attention U-Net's checkpoint, loss/metric logs and curves.
+
 The latest completed four-model run is [full256_20261013_v2](results/full256_20261013_v2/report.md).
 Open the [completed model file index](COMPLETED_MODELS.md) to find each model's
 architecture entry point, results, loss/metric logs, curves and checkpoint.

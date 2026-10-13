@@ -1,6 +1,6 @@
 # Completed model files
 
-The completed run is **full256_20261013_v2**. All four models completed 20
+The completed four-model run is **full256_20261013_v2**. All four models completed 20
 additional epochs. Each model has its own output folder. Architecture entry
 points share `kssd/models.py`; U-Net3+ and U-Net++ use the installed
 `keras_unet_collection` builders through that file.
@@ -50,7 +50,24 @@ points share `kssd/models.py`; U-Net3+ and U-Net++ use the installed
 - [Loss trial comparison](results/full256_20261013_v2/transunet/loss_comparison.json)
 - Local weights: `strain/checkpoints/full256_20261013_v2/transunet.best.weights.h5`
 
-## Shared experiment code
+## Attention U-Net
+
+The separate run `attention256_50epochs_20261014_v2` completed 50 epochs with
+fresh initialization and GPU mixed precision. Validation selected epoch 43.
+
+- [Architecture: attention_unet()](../kssd/models.py#L40)
+- [Final report](results/attention256_50epochs_20261014_v2/report.md)
+- [Validation and test metrics](results/attention256_50epochs_20261014_v2/attention_unet/result.json)
+- [Epoch loss and metric log, CSV](results/attention256_50epochs_20261014_v2/attention_unet/history.csv)
+- [Epoch loss and metric log, JSON](results/attention256_50epochs_20261014_v2/attention_unet/history.json)
+- [Training curves](results/attention256_50epochs_20261014_v2/attention_unet/training_curves.png)
+- [Epoch/sample verification](results/attention256_50epochs_20261014_v2/attention_unet/epoch_verification.json)
+- [Independent audit](results/attention256_50epochs_20261014_v2/independent_verification.json)
+- [Runner and protocol](attention/README.md)
+- Local best weights: `strain/checkpoints/attention256_50epochs_20261014_v2/attention_unet.best.weights.h5`
+- Local full model with optimizer: `strain/checkpoints/attention256_50epochs_20261014_v2/attention_unet.latest.keras`
+
+## Four-model experiment code
 
 | File | Purpose |
 |---|---|

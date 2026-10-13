@@ -1,0 +1,16 @@
+{
+  "tensorflow": "2.20.0",
+  "keras": "3.13.2",
+  "gpu": [
+    {
+      "compute_capability": [
+        8,
+        9
+      ],
+      "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    }
+  ],
+  "nvidia_smi": "name, utilization.gpu [%], memory.used [MiB], memory.free [MiB], driver_version\nNVIDIA GeForce RTX 4070 Laptop GPU, 0 %, 0 MiB, 7948 MiB, 580.88\n",
+  "project_process_check": "No project training process found in native Windows or WSL before launch; GPU idle",
+  "architecture_source_sha256": "fa705087d7d4609fc49dd1740f70941b55ea660e17d84053ea79943bed060a19"
+}

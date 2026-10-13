@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "epochs_completed": 50,
+  "required_epochs": 50,
+  "elapsed_seconds": 989.6543524265289,
+  "fit_seconds": 438.65775316900005,
+  "precision": "mixed_float16",
+  "batch": 16
+}

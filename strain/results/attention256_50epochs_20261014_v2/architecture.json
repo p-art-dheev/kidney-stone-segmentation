@@ -1,0 +1,26 @@
+{
+  "name": "Attention_UNet",
+  "parameters": 1967357,
+  "input_shape": [
+    null,
+    256,
+    256,
+    1
+  ],
+  "output_shape": [
+    null,
+    256,
+    256,
+    1
+  ],
+  "output_dtype": "float32",
+  "output_activation": "sigmoid",
+  "attention_gates": [
+    "attention_0_gated_skip",
+    "attention_1_gated_skip",
+    "attention_2_gated_skip",
+    "attention_3_gated_skip"
+  ],
+  "precision_policy": "mixed_float16",
+  "optimizer": "LossScaleOptimizer"
+}

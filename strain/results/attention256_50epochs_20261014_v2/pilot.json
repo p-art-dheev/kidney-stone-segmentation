@@ -1,0 +1,120 @@
+{
+  "measurements": [
+    {
+      "precision": "float32",
+      "batch": 4,
+      "stable": true,
+      "step_seconds": [
+        16.383497218000002,
+        0.07227258300000017,
+        0.06457273800000962,
+        0.05917879800000492,
+        0.06333256600001391,
+        0.06214122699999791,
+        0.06344764700000383,
+        0.05861865299999636
+      ],
+      "validation_seconds": 5.556787216000004,
+      "estimated_epoch_seconds": 12.556673241999931,
+      "memory": {
+        "current": 40797184,
+        "peak": 969723904
+      },
+      "optimizer": "Adam",
+      "total_seconds": 22.822103506000005
+    },
+    {
+      "precision": "float32",
+      "batch": 8,
+      "stable": true,
+      "step_seconds": [
+        11.904806144000005,
+        0.10708844799999895,
+        0.10533078699999976,
+        0.110900266999991,
+        0.10378663800000254,
+        0.10250770099999329,
+        0.10297082900000021,
+        0.10837692599999116
+      ],
+      "validation_seconds": 3.0546538880000185,
+      "estimated_epoch_seconds": 9.017907551999727,
+      "memory": {
+        "current": 74844928,
+        "peak": 2038224128
+      },
+      "optimizer": "Adam",
+      "total_seconds": 16.16602341800001
+    },
+    {
+      "precision": "mixed_float16",
+      "batch": 8,
+      "stable": true,
+      "step_seconds": [
+        15.591545359999998,
+        0.11494224800000552,
+        0.0980103139999926,
+        0.08955518199999801,
+        0.13339452600001778,
+        0.08431548499999053,
+        0.08118994700001281,
+        0.09102808299999765
+      ],
+      "validation_seconds": 3.6653247810000096,
+      "estimated_epoch_seconds": 8.539461566000028,
+      "memory": {
+        "current": 98194432,
+        "peak": 2027936768
+      },
+      "optimizer": "LossScaleOptimizer",
+      "total_seconds": 20.398870328000015
+    },
+    {
+      "precision": "mixed_float16",
+      "batch": 16,
+      "stable": true,
+      "step_seconds": [
+        15.34187955600001,
+        0.17211105100000168,
+        0.1690738060000001,
+        0.18710548200002108,
+        0.19708940499998562,
+        0.18784140899998647,
+        0.1833584110000004,
+        0.17229278199999953
+      ],
+      "validation_seconds": 1.8153715709999858,
+      "estimated_epoch_seconds": 7.069133390333188,
+      "memory": {
+        "current": 128277504,
+        "peak": 3903581696
+      },
+      "optimizer": "LossScaleOptimizer",
+      "total_seconds": 19.05710593500001
+    }
+  ],
+  "selected": {
+    "precision": "mixed_float16",
+    "batch": 16,
+    "stable": true,
+    "step_seconds": [
+      15.34187955600001,
+      0.17211105100000168,
+      0.1690738060000001,
+      0.18710548200002108,
+      0.19708940499998562,
+      0.18784140899998647,
+      0.1833584110000004,
+      0.17229278199999953
+    ],
+    "validation_seconds": 1.8153715709999858,
+    "estimated_epoch_seconds": 7.069133390333188,
+    "memory": {
+      "current": 128277504,
+      "peak": 3903581696
+    },
+    "optimizer": "LossScaleOptimizer",
+    "total_seconds": 19.05710593500001
+  },
+  "updates_discarded": true
+}

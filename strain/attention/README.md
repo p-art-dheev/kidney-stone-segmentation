@@ -3,7 +3,7 @@
 Run from the repository root using the existing WSL GPU runtime:
 
 ```bash
-/var/tmp/kssd-gpu312-20261012/bin/python -m strain.attention.run --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/attention256_50epochs_20261014
+/var/tmp/kssd-gpu312-20261012/bin/python -m strain.attention.run --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/attention256_new_run
 ```
 
 Use all 453 frozen training images, 288 validation images and 90 held-out test

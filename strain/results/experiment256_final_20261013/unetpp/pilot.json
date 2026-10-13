@@ -1,0 +1,41 @@
+{
+  "architecture": "unetpp",
+  "measurements": [
+    {
+      "size": 256,
+      "batch": 2,
+      "precision": "float32",
+      "init_seconds": 1.2895893610000257,
+      "step_seconds": [
+        9.912722458999951,
+        0.04689055599999392,
+        0.03685127599999305
+      ],
+      "steady_step_seconds": 0.041870915999993485,
+      "validation_batch_seconds": 0.6892114969999739,
+      "memory": {
+        "current": 150024192,
+        "peak": 449187072
+      }
+    },
+    {
+      "size": 512,
+      "batch": 2,
+      "precision": "float32",
+      "init_seconds": 1.407760132999897,
+      "step_seconds": [
+        9.86004403100003,
+        0.09038641600000119,
+        0.08428854900000715
+      ],
+      "steady_step_seconds": 0.08733748250000417,
+      "validation_batch_seconds": 0.6337520580000273,
+      "memory": {
+        "current": 184495360,
+        "peak": 1455813376
+      }
+    }
+  ],
+  "measured_speedup": 2.085874655811632,
+  "note": "512 timing uses upsampled cached train pairs; compute comparison only, not accuracy comparison"
+}

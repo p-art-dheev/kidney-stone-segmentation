@@ -3,4 +3,4 @@ checkpoints/
 results/*/predictions/
 results/*/matplotlib/
 results/*/resize_preview.png
-results/verification-tmp/
+results/verification-tmp*/

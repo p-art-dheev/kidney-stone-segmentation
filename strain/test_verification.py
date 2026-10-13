@@ -38,3 +38,12 @@ def test_frozen_splits_and_cache():
     # Vanished masks are documented, not silently dropped from the audit.
     assert len(audit['samples']) == 838
     assert set(audit['disappeared']) == {r['id'] for r in audit['samples'] if r['vanished']}
+
+
+def test_supervisor_rejects_budget_above_one_hour(monkeypatch):
+    import sys
+    import pytest
+    from strain.run_experiment import main
+    monkeypatch.setattr(sys, 'argv', ['experiment', '--data', 'unused', '--budget', '3601'])
+    with pytest.raises(ValueError, match='Budget'):
+        main()

@@ -1,0 +1,37 @@
+{
+  "python": "3.12.3",
+  "versions": {
+    "tensorflow": "2.20.0",
+    "keras": "3.13.2",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "Pillow": "11.1.0",
+    "keras-unet-collection": "0.1.13"
+  },
+  "gpu_details": [
+    {
+      "compute_capability": [
+        8,
+        9
+      ],
+      "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    }
+  ],
+  "build": {
+    "cpu_compiler": "clang 18",
+    "cuda_compute_capabilities": [
+      "sm_60",
+      "sm_70",
+      "sm_80",
+      "sm_89",
+      "compute_90"
+    ],
+    "cuda_version": "12.5.1",
+    "cudnn_version": "9",
+    "is_cuda_build": true,
+    "is_rocm_build": false,
+    "is_tensorrt_build": false
+  },
+  "seed": 20261013,
+  "deterministic": true
+}

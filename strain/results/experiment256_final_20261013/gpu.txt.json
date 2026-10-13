@@ -1,0 +1,3 @@
+{
+  "nvidia_smi": "name, memory.total [MiB], memory.free [MiB], driver_version\nNVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB, 7940 MiB, 580.88\n"
+}

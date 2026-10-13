@@ -3,7 +3,7 @@
 Run from the repository root in the existing CUDA TensorFlow environment:
 
 ```bash
-python -m strain.run_experiment --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/experiment256
+python -m strain.run_experiment --data /var/tmp/kssd-workspace-20261012/data/kssd2025/data --output strain/results/experiment256_rerun --reuse-verified-preview strain/results/experiment256_final_20261013
 ```
 
 The supervisor includes preprocessing, runtime imports, all four timing pilots,
@@ -14,6 +14,9 @@ Each model gets an equal share of remaining time and at most 150 epochs, with
 epoch; allow BatchNorm running statistics to settle). Inspect `resize_preview.png` before training,
 then write `preview_verified.json` in the result directory with inspection notes.
 No training starts before this marker. This inspection time counts toward the budget.
+For a rerun on this workstation, the command above reuses the existing inspection
+only if the new preview PNG is byte-identical. If downloading a fresh checkout
+without the local preview, omit that flag and inspect the generated preview.
 
 All code, caches, evidence and weights stay under strain. Original files are
 verified against decoded hashes in the frozen main-project manifest and never

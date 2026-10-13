@@ -1,5 +1,6 @@
 """Supervisor deadline includes imports, preprocessing, pilots, training and reports."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -65,6 +66,17 @@ def worker(args):
         ['nvidia-smi','--query-gpu=name,memory.total,memory.free,driver_version','--format=csv'],text=True)))
     arrays, splits = prepare(args.data, output)
     save(output/'preview_ready.json', dict(status='Awaiting local visual inspection', elapsed=time.monotonic()-started))
+    if args.reuse_verified_preview:
+        previous = Path(args.reuse_verified_preview)
+        verification = json.loads((previous/'preview_verified.json').read_text())
+        if not verification.get('verified'):
+            raise ValueError('Previous preview was not verified')
+        digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+        if digest(previous/'resize_preview.png') != digest(output/'resize_preview.png'):
+            raise ValueError('Preview differs; fresh visual inspection required')
+        save(output/'preview_verified.json', dict(verified=True,
+            notes='Byte-identical to previously visually inspected preview',
+            reused_from=str(previous), sha256=digest(output/'resize_preview.png')))
     while not (output/'preview_verified.json').exists():
         if time.monotonic() > deadline-120:
             raise TimeoutError('Preview inspection not completed before deadline')
@@ -104,6 +116,7 @@ def main():
     parser.add_argument('--budget', type=float, default=3600)
     parser.add_argument('--worker', action='store_true')
     parser.add_argument('--started', type=float)
+    parser.add_argument('--reuse-verified-preview', help='Reuse inspection only if PNG is byte-identical')
     args = parser.parse_args()
     if not 120 <= args.budget <= 3600:
         raise ValueError('Budget must be between 120 and 3600 seconds')
@@ -120,6 +133,8 @@ def main():
                TF_NUM_INTEROP_THREADS='2', MPLCONFIGDIR=str(output/'matplotlib'))
     command = [sys.executable, '-m', 'strain.run_experiment', '--worker', '--data', args.data,
         '--output', str(output), '--budget',str(args.budget), '--started',str(started)]
+    if args.reuse_verified_preview:
+        command += ['--reuse-verified-preview', args.reuse_verified_preview]
     with (output/'worker.log').open('w') as log:
         process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env)
         try:

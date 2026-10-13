@@ -121,8 +121,9 @@ def worker(args):
         return probability
 
     rows = []
-    for precision in ["mixed_float16", "float32"]:
-        for batch in [8, 16, 32]:
+    # Stay below the batch-32 memory failure recorded in the first pilot.
+    for precision, batches in [("float32", [4, 8]), ("mixed_float16", [8, 16])]:
+        for batch in batches:
             model = model_for(precision)
             start = time.monotonic()
             try:
@@ -166,8 +167,7 @@ def worker(args):
                     )
                 )
             except (
-                tf.errors.ResourceExhaustedError,
-                tf.errors.InvalidArgumentError,
+                tf.errors.OpError,
                 FloatingPointError,
                 AssertionError,
             ) as error:
@@ -433,7 +433,7 @@ def main():
             )
             raise
         return
-    started = time.time()
+    started = args.started if args.started is not None else time.time()
     output.mkdir(parents=True, exist_ok=False)
     (output / ".gitignore").write_text("matplotlib/\nresize_preview.png\n")
     env = dict(

@@ -19,12 +19,19 @@ in-memory paired augmentation and batching in `strain.full.train.dataset`.
 Inputs remain 256×256; CT normalization is uint8 /255, masks stay binary after
 nearest-neighbor resizing. Test arrays are loaded only after selection is sealed.
 
-Measure batch sizes 8, 16 and 32 under mixed float16 and float32. Choose the
+The initial mixed-precision pilot passed batches 8 and 16, but batch 32 caused
+an out-of-memory error followed by a cuDNN allocator failure. That attempt is
+preserved without claiming any training epoch. The corrected fresh process
+measures float32 batches 4/8 and mixed float16 batches 8/16. Choose the
 fastest finite configuration by backward-pass and full-validation timings.
 Validate metrics, weights, raw gradients and accepted optimizer updates.
 Mixed precision uses Keras automatic loss scaling and a float32 sigmoid head.
 Discard all pilot updates before the real training run. Resource or numerical
 failures are retained in pilot.json and trigger a stable fallback.
+
+The restart uses output `attention256_50epochs_20261014_v2` and
+`--started 1791919273.408109` to include the original failed pilot and restart
+delay in the reported total wall-clock time.
 
 Run exactly 50 epochs with no early stopping, use Adam at 0.001, per-image
 Dice + 0.25 BCE and validation-Dice plateau scheduling (patience 8, floor 1e-5).
